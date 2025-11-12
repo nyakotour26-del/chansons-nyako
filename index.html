@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Technique Chanson</title>
+    <style>
+        :root {
+            --primary-color: #2980b9;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        h1 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .search-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        input, select, button {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            width: 100%;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            min-width: 150px;
+        }
+        
+        button:hover {
+            background-color: #1f6391;
+        }
+        
+        .suggestions-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .suggestion-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background-color 0.2s;
+        }
+        
+        .suggestion-item:hover {
+            background-color: var(--light-color);
+        }
+        
+        .suggestion-item.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+        
+        .suggestion-highlight {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        
+        .suggestion-item.active .suggestion-highlight {
+            color: white;
+        }
+        
+        .results-section {
+            display: none;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        .result-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .result-content {
+            padding: 20px;
+        }
+        
+        .fiche-item {
+            margin-bottom: 40px;
+            border: 1px solid #e1e1e1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .fiche-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+        }
+        
+        .fiche-title {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        .num {
+            color: #16a085;
+            font-weight: 600;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            text-align: left;
+            padding: 12px;
+            width: 20%;
+            background: var(--light-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 14px;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .data-table td {
+            padding: 12px;
+            font-size: 15px;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .data-table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+        
+        .data-table img {
+            max-width: 95%;
+            max-height: 250px;
+            display: block;
+            margin: 5px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        .data-table a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .data-table a:hover {
+            text-decoration: underline;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        .success-message {
+            background-color: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .error-message {
+            background-color: #e74c3c;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .form-group {
+                width: 100%;
+            }
+            
+            .data-table th, .data-table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .data-table th {
+                background: var(--secondary-color);
+                color: white;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Fiche Technique Chanson</h1>
+            <p>Consultation des données des chansons en détails</p>
+        </header>
+        
+        <section class="search-section">
+            <form id="searchForm" class="search-form" autocomplete="off">
+                <div class="form-group">
+                    <label for="searchText">Mot clé pour la recherche :</label>
+                    <input type="text" id="searchText" placeholder="Rechercher dans toutes les colonnes..." autocomplete="off">
+                    <div class="suggestions-container" id="suggestionsContainer">
+                        <!-- Les suggestions dynamiques apparaîtront ici -->
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">🔍 Rechercher</button>
+                </div>
+            </form>
+            
+            <button id="showAllButton" style="background-color: #27ae60; margin-top: 10px; width: auto;">
+                📋 Afficher toutes les chansons
+            </button>
+            
+            <button id="retryButton" style="background-color: #f39c12; margin-top: 10px; width: auto; display: none;">
+                🔄 Réessayer le chargement
+            </button>
+        </section>
+        
+        <div class="loading" id="loadingIndicator">
+            <div class="spinner"></div>
+            <p>Chargement des données depuis Google Sheets...</p>
+        </div>
+
+        <div id="dataInfo" style="display: none;"></div>
+        
+        <section class="results-section" id="resultsSection">
+            <div class="result-header">
+                <h2 id="resultTitle">Résultats de la recherche</h2>
+                <button id="closeResults">✕ Fermer</button>
+            </div>
+            <div class="result-content" id="resultContent">
+                <!-- Les résultats seront affichés ici -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // VOTRE LIEN GOOGLE SHEETS
+        const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXIJyclDLf2asT-FMnmaeWMSPtQHxpAC1wiGJ_xzXbl2StziwiUw9ElW9XyK5yemQ-PHaWlRQbtdHb/pub?gid=602871919&single=true&output=csv';
+        
+        let sheetData = [];
+        let headers = [];
+        let allSongTitles = [];
+        let columnsWithData = [];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchText');
+            const suggestionsContainer = document.getElementById('suggestionsContainer');
+            
+            document.getElementById('searchForm').addEventListener('submit', handleSearch);
+            document.getElementById('showAllButton').addEventListener('click', showAllData);
+            document.getElementById('closeResults').addEventListener('click', closeResults);
+            document.getElementById('retryButton').addEventListener('click', loadDataFromGoogleSheets);
+            
+            searchInput.setAttribute('autocomplete', 'off');
+            searchInput.setAttribute('autocorrect', 'off');
+            searchInput.setAttribute('autocapitalize', 'off');
+            searchInput.setAttribute('spellcheck', 'false');
+            
+            searchInput.addEventListener('input', function() {
+                showSuggestions(this.value);
+            });
+            
+            searchInput.addEventListener('focus', function() {
+                if (this.value) {
+                    showSuggestions(this.value);
+                }
+            });
+            
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    navigateSuggestions(e.key);
+                }
+                
+                if (e.key === 'Enter' && suggestionsContainer.style.display === 'block') {
+                    e.preventDefault();
+                    selectActiveSuggestion();
+                }
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                    suggestionsContainer.style.display = 'none';
+                }
+            });
+            
+            loadDataFromGoogleSheets();
+        });
+        
+        function navigateSuggestions(key) {
+            const suggestions = document.querySelectorAll('.suggestion-item');
+            const activeSuggestion = document.querySelector('.suggestion-item.active');
+            
+            if (suggestions.length === 0) return;
+            
+            let nextIndex = 0;
+            
+            if (activeSuggestion) {
+                const currentIndex = Array.from(suggestions).indexOf(activeSuggestion);
+                if (key === 'ArrowDown') {
+                    nextIndex = (currentIndex + 1) % suggestions.length;
+                } else if (key === 'ArrowUp') {
+                    nextIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
+                }
+                
+                activeSuggestion.classList.remove('active');
+            }
+            
+            suggestions[nextIndex].classList.add('active');
+            suggestions[nextIndex].scrollIntoView({ block: 'nearest' });
+        }
+        
+        function selectActiveSuggestion() {
+            const activeSuggestion = document.querySelector('.suggestion-item.active');
+            if (activeSuggestion) {
+                document.getElementById('searchText').value = activeSuggestion.getAttribute('data-value');
+                document.getElementById('suggestionsContainer').style.display = 'none';
+                handleSearch(new Event('submit'));
+            }
+        }
+        
+        async function loadDataFromGoogleSheets() {
+            console.log('🔍 Début du chargement des données...');
+            document.getElementById('loadingIndicator').style.display = 'block';
+            document.getElementById('retryButton').style.display = 'none';
+            clearErrorMessages();
+            
+            try {
+                console.log('🔄 Essai 1: Accès direct...');
+                let response = await fetch(GOOGLE_SHEETS_URL);
+                
+                if (response.ok) {
+                    const csvText = await response.text();
+                    console.log('✅ Succès avec accès direct');
+                    processCSVData(csvText);
+                    return;
+                }
+                throw new Error(`Direct failed: ${response.status}`);
+                
+            } catch (error1) {
+                console.log('❌ Échec accès direct:', error1.message);
+                
+                try {
+                    console.log('🔄 Essai 2: AllOrigins...');
+                    const proxyUrl = 'https://api.allorigins.win/raw?url=';
+                    let response = await fetch(proxyUrl + encodeURIComponent(GOOGLE_SHEETS_URL));
+                    
+                    if (response.ok) {
+                        const csvText = await response.text();
+                        console.log('✅ Succès avec AllOrigins');
+                        processCSVData(csvText);
+                        return;
+                    }
+                    throw new Error(`AllOrigins failed: ${response.status}`);
+                    
+                } catch (error2) {
+                    console.log('❌ Échec AllOrigins:', error2.message);
+                    throw new Error('Impossible de charger les données. Vérifiez votre connexion internet.');
+                }
+            }
+        }
+
+        function parseCSVWithNewlines(csvText) {
+            console.log('🔄 Parsing CSV avec gestion des retours à la ligne...');
+            
+            const lines = [];
+            let currentLine = [];
+            let currentField = '';
+            let inQuotes = false;
+            let quoteChar = '"';
+            
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                const nextChar = csvText[i + 1];
+                
+                if (char === quoteChar) {
+                    if (inQuotes && nextChar === quoteChar) {
+                        currentField += quoteChar;
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    currentLine.push(currentField);
+                    currentField = '';
+                } else if (char === '\n' && !inQuotes) {
+                    currentLine.push(currentField);
+                    lines.push(currentLine);
+                    currentLine = [];
+                    currentField = '';
+                } else if (char === '\r') {
+                    if (nextChar === '\n' && !inQuotes) {
+                        currentLine.push(currentField);
+                        lines.push(currentLine);
+                        currentLine = [];
+                        currentField = '';
+                        i++;
+                    }
+                } else {
+                    currentField += char;
+                }
+            }
+            
+            if (currentField !== '' || currentLine.length > 0) {
+                currentLine.push(currentField);
+                lines.push(currentLine);
+            }
+            
+            console.log(`✅ Parsing terminé: ${lines.length} lignes détectées`);
+            
+            let newlineCount = 0;
+            lines.forEach(line => {
+                line.forEach(field => {
+                    if (field.includes('\n')) {
+                        newlineCount += field.split('\n').length - 1;
+                    }
+                });
+            });
+            console.log(`📊 ${newlineCount} retours à la ligne DANS les cellules (conservés)`);
+            
+            return lines;
+        }
+        
+        function processCSVData(csvText) {
+            try {
+                console.log('📄 Traitement des données CSV...');
+                
+                if (!csvText || csvText.trim().length === 0) {
+                    throw new Error('Le fichier CSV est vide');
+                }
+                
+                const lines = parseCSVWithNewlines(csvText);
+                
+                if (!lines || lines.length === 0) {
+                    throw new Error('Aucune donnée parsée');
+                }
+                
+                headers = lines[0] || [];
+                console.log('🏷️ En-têtes détectés:', headers.length, 'colonnes');
+                
+                sheetData = lines.slice(1).filter(row => 
+                    row && row.some(cell => cell && cell.trim() !== '')
+                );
+                
+                console.log('📈 Données extraites:', sheetData.length, 'chansons');
+                
+                if (sheetData.length === 0) {
+                    throw new Error('Aucune chanson avec des données trouvée');
+                }
+                
+                normalizeData();
+                detectColumnsWithData();
+                prepareSongTitles();
+                
+                showDataInfo();
+                
+            } catch (error) {
+                console.error('❌ Erreur de traitement:', error);
+                throw error;
+            } finally {
+                document.getElementById('loadingIndicator').style.display = 'none';
+            }
+        }
+        
+        function prepareSongTitles() {
+            allSongTitles = sheetData
+                .map(row => row[1] || '')
+                .filter(value => value && value.trim() !== '')
+                .map(value => value.trim());
+            
+            console.log('💡 Titres de chansons chargés:', allSongTitles.length);
+        }
+        
+        function normalizeData() {
+            let maxColumns = headers.length;
+            sheetData.forEach(row => {
+                if (row.length > maxColumns) {
+                    maxColumns = row.length;
+                }
+            });
+            
+            while (headers.length < maxColumns) {
+                headers.push(`Colonne ${headers.length + 1}`);
+            }
+            
+            sheetData.forEach(row => {
+                while (row.length < maxColumns) {
+                    row.push('');
+                }
+                if (row.length > maxColumns) {
+                    row.length = maxColumns;
+                }
+            });
+            
+            console.log(`📐 Données normalisées: ${maxColumns} colonnes`);
+        }
+        
+        function detectColumnsWithData() {
+            columnsWithData = [];
+            
+            for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+                let hasData = false;
+                
+                for (let rowIndex = 0; rowIndex < sheetData.length; rowIndex++) {
+                    const value = sheetData[rowIndex][colIndex];
+                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                        hasData = true;
+                        break;
+                    }
+                }
+                
+                if (hasData) {
+                    columnsWithData.push(colIndex);
+                }
+            }
+            
+            console.log(`🎯 ${columnsWithData.length} colonnes avec données sur ${headers.length} colonnes totales`);
+        }
+        
+        // FONCTION POUR SUPPRIMER LES ACCENTS
+        function removeAccents(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+        
+        function findMatchingSongTitles(searchTerm) {
+            const lowerSearchTerm = searchTerm.toLowerCase();
+            const searchWithoutAccents = removeAccents(lowerSearchTerm);
+            const matchingTitles = [];
+            
+            sheetData.forEach((row, index) => {
+                const songTitle = row[1] || '';
+                
+                if (songTitle && songTitle.trim() !== '') {
+                    const hasMatchInAnyColumn = row.some(cell => {
+                        const cellValue = String(cell).toLowerCase();
+                        const cellWithoutAccents = removeAccents(cellValue);
+                        
+                        return cellValue.includes(lowerSearchTerm) || 
+                               cellWithoutAccents.includes(searchWithoutAccents);
+                    });
+                    
+                    if (hasMatchInAnyColumn) {
+                        matchingTitles.push(songTitle.trim());
+                    }
+                }
+            });
+            
+            return [...new Set(matchingTitles)];
+        }
+        
+        function showSuggestions(searchTerm) {
+            const suggestionsContainer = document.getElementById('suggestionsContainer');
+            
+            if (!searchTerm || searchTerm.length < 2) {
+                suggestionsContainer.style.display = 'none';
+                return;
+            }
+            
+            const matchingTitles = findMatchingSongTitles(searchTerm);
+            
+            if (matchingTitles.length === 0) {
+                suggestionsContainer.style.display = 'none';
+                return;
+            }
+            
+            const suggestionsToShow = matchingTitles.slice(0, 10);
+            
+            suggestionsContainer.innerHTML = suggestionsToShow
+                .map(title => {
+                    const lowerTitle = title.toLowerCase();
+                    const lowerSearchTerm = searchTerm.toLowerCase();
+                    const startIndex = lowerTitle.indexOf(lowerSearchTerm);
+                    
+                    if (startIndex !== -1) {
+                        const endIndex = startIndex + searchTerm.length;
+                        const before = title.substring(0, startIndex);
+                        const match = title.substring(startIndex, endIndex);
+                        const after = title.substring(endIndex);
+                        
+                        return `
+                            <div class="suggestion-item" data-value="${title}">
+                                🎵 ${before}<span class="suggestion-highlight">${match}</span>${after}
+                            </div>
+                        `;
+                    } else {
+                        return `
+                            <div class="suggestion-item" data-value="${title}">
+                                🎵 ${title} <small style="color: #7f8c8d; font-style: italic;">(correspondance dans le contenu)</small>
+                            </div>
+                        `;
+                    }
+                })
+                .join('');
+            
+            suggestionsContainer.style.display = 'block';
+            
+            document.querySelectorAll('.suggestion-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    document.getElementById('searchText').value = this.getAttribute('data-value');
+                    suggestionsContainer.style.display = 'none';
+                    handleSearch(new Event('submit'));
+                });
+                
+                if (index === 0) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        function showDataInfo() {
+            const dataInfo = document.getElementById('dataInfo');
+            dataInfo.innerHTML = `
+                <div class="success-message">
+                    ✅ Données chargées avec succès : ${sheetData.length} chanson(s) trouvée(s)
+                    <br><small>${headers.length} colonnes totales - ${columnsWithData.length} colonnes avec données</small>
+                    <br><small>✅ Recherche sans accents activée</small>
+                </div>
+            `;
+            dataInfo.style.display = 'block';
+        }
+        
+        function showError(message) {
+            const searchSection = document.querySelector('.search-section');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <strong>❌ Erreur de chargement:</strong> ${message}
+                <br><small>Vérifiez votre connexion internet et que le Google Sheet est public</small>
+            `;
+            searchSection.appendChild(errorDiv);
+            
+            document.getElementById('retryButton').style.display = 'block';
+        }
+        
+        function clearErrorMessages() {
+            const errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(msg => msg.remove());
+        }
+        
+        function handleSearch(event) {
+            if (event) event.preventDefault();
+            
+            const searchValue = document.getElementById('searchText').value.trim();
+            
+            if (!searchValue) {
+                alert('Veuillez entrer un mot-clé pour la recherche');
+                return;
+            }
+            
+            if (sheetData.length === 0) {
+                alert('Aucune donnée chargée');
+                return;
+            }
+            
+            const results = searchData(searchValue);
+            displayResults(results, `Résultats pour "${searchValue}"`);
+            
+            document.getElementById('suggestionsContainer').style.display = 'none';
+        }
+        
+        function showAllData() {
+            if (sheetData.length === 0) {
+                alert('Aucune donnée chargée');
+                return;
+            }
+            
+            displayResults(sheetData, 'Toutes les chansons');
+        }
+        
+        // RECHERCHE SANS ACCENTS - NOUVELLE VERSION
+        function searchData(searchValue) {
+            const lowerSearch = searchValue.toLowerCase();
+            const searchWithoutAccents = removeAccents(lowerSearch);
+            
+            return sheetData.filter(row => {
+                return row.some(cell => {
+                    const cellValue = String(cell).toLowerCase();
+                    const cellWithoutAccents = removeAccents(cellValue);
+                    
+                    return cellValue.includes(lowerSearch) || 
+                           cellWithoutAccents.includes(searchWithoutAccents);
+                });
+            });
+        }
+        
+        function displayResults(results, title) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultContent = document.getElementById('resultContent');
+            const resultTitle = document.getElementById('resultTitle');
+            
+            if (results.length === 0) {
+                resultContent.innerHTML = `
+                    <div class="no-results">
+                        <h3>❌ Aucune chanson trouvée</h3>
+                        <p>Essayez avec d'autres mots-clés dans toutes les colonnes</p>
+                    </div>
+                `;
+            } else {
+                let html = `
+                    <div style="margin-bottom: 20px; padding: 15px; background: #ecf0f1; border-radius: 5px;">
+                        <strong>${results.length} chanson(s) trouvée(s)</strong>
+                    </div>
+                `;
+                
+                results.forEach((row, index) => {
+                    const numeroData = sheetData.findIndex(r => r === row) + 1;
+                    const titreColB = row[1] || `Chanson ${numeroData}`;
+                    
+                    html += `
+                        <div class="fiche-item">
+                            <div class="fiche-header">
+                                <h2>🎵 Fiche Technique Chanson</h2>
+                                <h3 class="fiche-title">
+                                    <span class="num">Chanson N°${numeroData}</span> — ${titreColB}
+                                </h3>
+                            </div>
+                            <div style="padding: 0;">
+                                <table class="data-table">
+                    `;
+                    
+                    for (let colIndex of columnsWithData) {
+                        const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                        const value = row[colIndex] || '';
+                        
+                        if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                            html += `
+                                <tr>
+                                    <th>${header}</th>
+                                    <td>${formatCellValue(value)}</td>
+                                </tr>
+                            `;
+                        }
+                    }
+                    
+                    html += `
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                resultContent.innerHTML = html;
+            }
+            
+            resultTitle.textContent = title;
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function formatCellValue(value) {
+            const strValue = String(value);
+            
+            if (strValue.startsWith('http') && strValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
+                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'">`;
+            }
+            
+            if (strValue.startsWith('http')) {
+                return `<a href="${strValue}" target="_blank">🔗 Ouvrir le lien</a>`;
+            }
+            
+            return `<div style="font-size:15px; font-weight:500; white-space:pre-wrap; line-height:1.8; font-family: inherit;">${strValue}</div>`;
+        }
+        
+        function closeResults() {
+            document.getElementById('resultsSection').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
