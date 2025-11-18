@@ -278,6 +278,25 @@
             text-align: center;
         }
         
+        .tek-access {
+            background-color: #8e44ad;
+            margin-top: 10px;
+            width: auto;
+        }
+        
+        .tek-access:hover {
+            background-color: #7d3c98;
+        }
+        
+        .tek-input-container {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
+        }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -330,6 +349,17 @@
                 📋 Afficher toutes les chansons
             </button>
             
+            <!-- BOUTON ET CHAMP POUR ACCÈS SPÉCIAL -->
+            <button id="tekAccessButton" class="tek-access">
+                🔓 Accès colonne spéciale
+            </button>
+            
+            <div id="tekInputContainer" class="tek-input-container">
+                <label for="tekCode">Code d'accès :</label>
+                <input type="password" id="tekCode" placeholder="Entrez le code...">
+                <button id="submitTekCode" style="margin-top: 10px; width: auto;">Valider</button>
+            </div>
+            
             <button id="retryButton" style="background-color: #f39c12; margin-top: 10px; width: auto; display: none;">
                 🔄 Réessayer le chargement
             </button>
@@ -361,6 +391,8 @@
         let headers = [];
         let allSongTitles = [];
         let columnsWithData = [];
+        let showRohinityColumn = false; // Colonne cachée par défaut
+        let rohinityColumnIndex = -1;
         
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchText');
@@ -370,6 +402,10 @@
             document.getElementById('showAllButton').addEventListener('click', showAllData);
             document.getElementById('closeResults').addEventListener('click', closeResults);
             document.getElementById('retryButton').addEventListener('click', loadDataFromGoogleSheets);
+            
+            // Gestion de l'accès TEK
+            document.getElementById('tekAccessButton').addEventListener('click', toggleTekInput);
+            document.getElementById('submitTekCode').addEventListener('click', validateTekCode);
             
             searchInput.setAttribute('autocomplete', 'off');
             searchInput.setAttribute('autocorrect', 'off');
@@ -406,6 +442,42 @@
             
             loadDataFromGoogleSheets();
         });
+        
+        function toggleTekInput() {
+            const tekInputContainer = document.getElementById('tekInputContainer');
+            tekInputContainer.style.display = tekInputContainer.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function validateTekCode() {
+            const tekCode = document.getElementById('tekCode').value;
+            if (tekCode === 'tek') {
+                showRohinityColumn = true;
+                document.getElementById('tekInputContainer').style.display = 'none';
+                document.getElementById('tekCode').value = '';
+                
+                // Afficher un message de succès
+                const dataInfo = document.getElementById('dataInfo');
+                dataInfo.innerHTML = `
+                    <div class="success-message">
+                        ✅ Accès spécial activé - Colonne "Rohin'ity hira ity" maintenant visible
+                    </div>
+                `;
+                dataInfo.style.display = 'block';
+                
+                // Si des résultats sont déjà affichés, les mettre à jour
+                if (document.getElementById('resultsSection').style.display === 'block') {
+                    const currentSearch = document.getElementById('searchText').value;
+                    if (currentSearch) {
+                        const results = searchData(currentSearch);
+                        displayResults(results, `Résultats pour "${currentSearch}"`);
+                    } else {
+                        displayResults(sheetData, 'Toutes les chansons');
+                    }
+                }
+            } else {
+                alert('Code incorrect. Veuillez réessayer.');
+            }
+        }
         
         function navigateSuggestions(key) {
             const suggestions = document.querySelectorAll('.suggestion-item');
@@ -558,6 +630,22 @@
                 headers = lines[0] || [];
                 console.log('🏷️ En-têtes détectés:', headers.length, 'colonnes');
                 
+                // Trouver l'index de la colonne "Rohin'ity hira ity"
+                rohinityColumnIndex = headers.findIndex(header => 
+                    header && typeof header === 'string' && 
+                    header.toLowerCase().includes("rohin'ity hira ity")
+                );
+                
+                if (rohinityColumnIndex === -1) {
+                    // Essayer une autre orthographe
+                    rohinityColumnIndex = headers.findIndex(header => 
+                        header && typeof header === 'string' && 
+                        header.toLowerCase().includes("rohinity")
+                    );
+                }
+                
+                console.log('🔍 Index de la colonne Rohin\'ity hira ity:', rohinityColumnIndex);
+                
                 sheetData = lines.slice(1).filter(row => 
                     row && row.some(cell => cell && cell.trim() !== '')
                 );
@@ -619,6 +707,11 @@
             columnsWithData = [];
             
             for (let colIndex = 0; colIndex < headers.length; colIndex++) {
+                // Exclure la colonne Rohin'ity hira ity si l'accès n'est pas activé
+                if (colIndex === rohinityColumnIndex && !showRohinityColumn) {
+                    continue;
+                }
+                
                 let hasData = false;
                 
                 for (let rowIndex = 0; rowIndex < sheetData.length; rowIndex++) {
@@ -729,13 +822,15 @@
         
         function showDataInfo() {
             const dataInfo = document.getElementById('dataInfo');
-            dataInfo.innerHTML = `
-                <div class="success-message">
-                    ✅ Données chargées avec succès : ${sheetData.length} chanson(s) trouvée(s)
+            let infoMessage = `✅ Données chargées avec succès : ${sheetData.length} chanson(s) trouvée(s)
                     <br><small>${headers.length} colonnes totales - ${columnsWithData.length} colonnes avec données</small>
-                    <br><small>✅ Recherche sans accents activée</small>
-                </div>
-            `;
+                    <br><small>✅ Recherche sans accents activée</small>`;
+            
+            if (rohinityColumnIndex !== -1 && !showRohinityColumn) {
+                infoMessage += `<br><small>🔒 Colonne "Rohin'ity hira ity" cachée - Utilisez le bouton d'accès spécial</small>`;
+            }
+            
+            dataInfo.innerHTML = `<div class="success-message">${infoMessage}</div>`;
             dataInfo.style.display = 'block';
         }
         
@@ -808,6 +903,9 @@
             const resultContent = document.getElementById('resultContent');
             const resultTitle = document.getElementById('resultTitle');
             
+            // Recalculer les colonnes avec données (au cas où l'accès TEK a changé)
+            detectColumnsWithData();
+            
             if (results.length === 0) {
                 resultContent.innerHTML = `
                     <div class="no-results">
@@ -819,6 +917,7 @@
                 let html = `
                     <div style="margin-bottom: 20px; padding: 15px; background: #ecf0f1; border-radius: 5px;">
                         <strong>${results.length} chanson(s) trouvée(s)</strong>
+                        ${showRohinityColumn ? '<br><small>✅ Colonne spéciale "Rohin\'ity hira ity" visible</small>' : ''}
                     </div>
                 `;
                 
