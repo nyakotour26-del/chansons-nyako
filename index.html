@@ -15,6 +15,7 @@
             --border-radius: 12px;
             --box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --section-color: #ff9800; /* Couleur orange pour les sections */
         }
         
         * {
@@ -75,7 +76,7 @@
             opacity: 0.9;
         }
         
-        .songs-list-section {
+        .songs-list-section, .authors-list-section, .themes-list-section {
             background-color: white;
             padding: 20px;
             border-radius: var(--border-radius);
@@ -87,7 +88,7 @@
             top: 20px;
         }
         
-        .songs-list-header {
+        .songs-list-header, .authors-list-header, .themes-list-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -96,7 +97,7 @@
             border-bottom: 2px solid var(--light-color);
         }
         
-        .songs-list-title {
+        .songs-list-title, .authors-list-title, .themes-list-title {
             font-size: 1.3em;
             font-weight: bold;
             color: var(--secondary-color);
@@ -105,7 +106,7 @@
             gap: 8px;
         }
         
-        .songs-count {
+        .songs-count, .authors-count, .themes-count {
             background-color: var(--music-color);
             color: white;
             padding: 5px 12px;
@@ -114,11 +115,11 @@
             font-weight: bold;
         }
         
-        .songs-list {
+        .songs-list, .authors-list, .themes-list {
             list-style: none;
         }
         
-        .song-item {
+        .song-item, .author-item, .theme-item {
             padding: 15px;
             margin-bottom: 10px;
             background-color: #f8f9fa;
@@ -130,7 +131,7 @@
             overflow: hidden;
         }
         
-        .song-item::before {
+        .song-item::before, .author-item::before, .theme-item::before {
             content: "♪";
             position: absolute;
             right: 15px;
@@ -141,26 +142,34 @@
             transition: all 0.3s ease;
         }
         
-        .song-item:hover {
+        .author-item::before {
+            content: "👤";
+        }
+        
+        .theme-item::before {
+            content: "🎭";
+        }
+        
+        .song-item:hover, .author-item:hover, .theme-item:hover {
             background-color: white;
             border-left-color: var(--music-color);
             transform: translateX(5px);
             box-shadow: 0 3px 10px rgba(0,0,0,0.08);
         }
         
-        .song-item:hover::before {
+        .song-item:hover::before, .author-item:hover::before, .theme-item:hover::before {
             opacity: 0.7;
             transform: translateY(-50%) scale(1.2);
         }
         
-        .song-item.active {
+        .song-item.active, .author-item.active, .theme-item.active {
             background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
             border-left-color: var(--accent-color);
             font-weight: bold;
             box-shadow: 0 3px 12px rgba(0,0,0,0.1);
         }
         
-        .song-title {
+        .song-title, .author-name, .theme-name {
             font-size: 1em;
             margin-bottom: 5px;
             font-weight: 600;
@@ -428,7 +437,7 @@
         .section-title {
             font-size: 1.4em;
             font-weight: bold;
-            color: var(--secondary-color);
+            color: var(--section-color);
             margin: 30px 0 15px 0;
             padding-bottom: 10px;
             border-bottom: 2px solid var(--light-color);
@@ -612,6 +621,13 @@
             min-width: 150px;
         }
         
+        .lists-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            grid-column: 1;
+        }
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
@@ -621,9 +637,10 @@
                 grid-template-columns: 1fr;
             }
             
-            .songs-list-section {
+            .lists-container {
                 grid-column: 1;
                 position: static;
+                grid-template-columns: 1fr 1fr 1fr;
             }
             
             .search-section, .results-section {
@@ -654,10 +671,13 @@
                 width: 100%;
             }
             
+            /* CORRECTION POUR LES TITRES DE COLONNE EN VERSION MOBILE */
             .data-table th {
-                background: var(--secondary-color);
-                color: white;
+                background: none;
+                color: var(--text-color);
                 margin-top: 10px;
+                font-weight: bold;
+                border-bottom: 1px solid #ddd;
             }
             
             .action-buttons {
@@ -666,6 +686,10 @@
             
             .action-buttons button {
                 width: 100%;
+            }
+            
+            .lists-container {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -677,15 +701,37 @@
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
-        <section class="songs-list-section" id="songsListSection">
-            <div class="songs-list-header">
-                <div class="songs-list-title">📜 Liste des Chansons</div>
-                <div class="songs-count" id="songsCount">0</div>
-            </div>
-            <ul class="songs-list" id="songsList">
-                <!-- La liste des chansons sera générée ici -->
-            </ul>
-        </section>
+        <div class="lists-container">
+            <section class="songs-list-section" id="songsListSection">
+                <div class="songs-list-header">
+                    <div class="songs-list-title">📜 Liste des Chansons</div>
+                    <div class="songs-count" id="songsCount">0</div>
+                </div>
+                <ul class="songs-list" id="songsList">
+                    <!-- La liste des chansons sera générée ici -->
+                </ul>
+            </section>
+            
+            <section class="authors-list-section" id="authorsListSection">
+                <div class="authors-list-header">
+                    <div class="authors-list-title">👤 Liste des Auteurs</div>
+                    <div class="authors-count" id="authorsCount">0</div>
+                </div>
+                <ul class="authors-list" id="authorsList">
+                    <!-- La liste des auteurs sera générée ici -->
+                </ul>
+            </section>
+            
+            <section class="themes-list-section" id="themesListSection">
+                <div class="themes-list-header">
+                    <div class="themes-list-title">🎭 Liste des Thèmes</div>
+                    <div class="themes-count" id="themesCount">0</div>
+                </div>
+                <ul class="themes-list" id="themesList">
+                    <!-- La liste des thèmes sera générée ici -->
+                </ul>
+            </section>
+        </div>
         
         <section class="search-section">
             <form id="searchForm" class="search-form" autocomplete="off">
@@ -1061,6 +1107,8 @@
                 prepareSongTitles();
                 prepareAuthorsAndThemes();
                 populateSongsList();
+                populateAuthorsList();
+                populateThemesList();
                 
                 showDataInfo();
                 
@@ -1137,6 +1185,76 @@
             });
             
             songsCount.textContent = sheetData.length;
+        }
+        
+        function populateAuthorsList() {
+            const authorsList = document.getElementById('authorsList');
+            const authorsCount = document.getElementById('authorsCount');
+            
+            authorsList.innerHTML = '';
+            
+            allAuthors.forEach((author, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'author-item';
+                listItem.dataset.author = author;
+                listItem.innerHTML = `
+                    <div class="author-name">${author}</div>
+                `;
+                
+                listItem.addEventListener('click', function() {
+                    // Retirer la classe active de tous les éléments
+                    document.querySelectorAll('.author-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Ajouter la classe active à l'élément cliqué
+                    this.classList.add('active');
+                    
+                    // Rechercher les chansons de cet auteur
+                    const authorName = this.getAttribute('data-author');
+                    const results = searchData(authorName);
+                    displayResults(results, `Chansons de "${authorName}"`);
+                });
+                
+                authorsList.appendChild(listItem);
+            });
+            
+            authorsCount.textContent = allAuthors.length;
+        }
+        
+        function populateThemesList() {
+            const themesList = document.getElementById('themesList');
+            const themesCount = document.getElementById('themesCount');
+            
+            themesList.innerHTML = '';
+            
+            allThemes.forEach((theme, index) => {
+                const listItem = document.createElement('li');
+                listItem.className = 'theme-item';
+                listItem.dataset.theme = theme;
+                listItem.innerHTML = `
+                    <div class="theme-name">${theme}</div>
+                `;
+                
+                listItem.addEventListener('click', function() {
+                    // Retirer la classe active de tous les éléments
+                    document.querySelectorAll('.theme-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Ajouter la classe active à l'élément cliqué
+                    this.classList.add('active');
+                    
+                    // Rechercher les chansons avec ce thème
+                    const themeName = this.getAttribute('data-theme');
+                    const results = searchData(themeName);
+                    displayResults(results, `Chansons avec le thème "${themeName}"`);
+                });
+                
+                themesList.appendChild(listItem);
+            });
+            
+            themesCount.textContent = allThemes.length;
         }
         
         function displaySingleSong(index) {
