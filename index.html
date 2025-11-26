@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎵 Répertoire de Chansons Malgaches</title>
+    <title>🎵 FICHE TECHNIQUE CHANSONS TOURNÉE 2026</title>
     <style>
         :root {
             --primary-color: #3498db;
@@ -352,12 +352,19 @@
             transform: translateY(-5px);
         }
         
+        /* NOUVEAU STYLE POUR LE TITRE FIGÉ */
         .fiche-header {
-            background: var(--gradient);
+            background: linear-gradient(rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85)), 
+                        url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
             padding: 30px;
             position: relative;
             overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .fiche-header::before {
@@ -368,6 +375,25 @@
             top: 50%;
             right: 30px;
             transform: translateY(-50%);
+        }
+        
+        .song-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        
+        .song-title-info {
+            flex: 1;
+        }
+        
+        .song-music-info {
+            text-align: right;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
         
         .fiche-title {
@@ -387,6 +413,36 @@
             margin-top: 8px;
         }
         
+        .tempo {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tonality {
+            font-size: 1em;
+            font-weight: 500;
+        }
+        
+        /* NOUVEAU STYLE POUR LES SECTIONS */
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-content {
+            background: white;
+            padding: 0;
+            border-radius: 8px;
+        }
+        
         .data-table {
             width: 100%;
             border-collapse: collapse;
@@ -396,16 +452,14 @@
             text-align: left;
             padding: 18px;
             width: 25%;
-            background: var(--light-color);
-            color: var(--primary-color);
+            background: none;
+            color: var(--text-color);
             font-weight: bold;
             font-size: 15px;
             vertical-align: top;
             white-space: normal;
             word-wrap: break-word;
             border-bottom: 1px solid #ddd;
-            position: sticky;
-            top: 0;
         }
         
         .data-table td {
@@ -423,6 +477,37 @@
         
         .data-table tr:hover td {
             background-color: #f0f7ff;
+        }
+        
+        /* STYLE POUR LES PAROLES */
+        .lyrics-container {
+            margin: 20px 0;
+        }
+        
+        .lyrics-box {
+            border: 2px solid var(--music-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .lyrics-title {
+            font-weight: bold;
+            color: var(--music-color);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lyrics-content {
+            font-size: 16px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-family: inherit;
         }
         
         .data-table img {
@@ -555,6 +640,15 @@
                 width: 100%;
             }
             
+            .song-info-header {
+                flex-direction: column;
+            }
+            
+            .song-music-info {
+                text-align: left;
+                margin-top: 15px;
+            }
+            
             .data-table th, .data-table td {
                 display: block;
                 width: 100%;
@@ -579,8 +673,8 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎵 Répertoire de Chansons Malgaches</h1>
-            <p class="subtitle">Découvrez et explorez notre collection de chansons traditionnelles et contemporaines</p>
+            <h1>🎵 FICHE TECHNIQUE CHANSONS TOURNÉE 2026</h1>
+            <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
         <section class="songs-list-section" id="songsListSection">
@@ -654,11 +748,16 @@
         let sheetData = [];
         let headers = [];
         let allSongTitles = [];
+        let allAuthors = [];
+        let allThemes = [];
         let columnsWithData = [];
         let showRohinityColumn = false; // Colonne cachée par défaut
         let rohinityColumnIndex = -1;
         let songTitleColumnIndex = -1; // Index de la colonne LOHATENY
         let authorColumnIndex = -1; // Index de la colonne MPANORATRA
+        let tempoColumnIndex = -1; // Index de la colonne TEMPO
+        let tonalityColumnIndex = -1; // Index de la colonne TONALITE
+        let themeColumnIndex = -1; // Index de la colonne HEVITRA FONOSIN'NY HIRA
         
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchText');
@@ -922,9 +1021,30 @@
                     header.toLowerCase().includes("mpanoratra")
                 );
                 
+                // Trouver l'index de la colonne "TEMPO"
+                tempoColumnIndex = headers.findIndex(header => 
+                    header && typeof header === 'string' && 
+                    header.toLowerCase().includes("tempo")
+                );
+                
+                // Trouver l'index de la colonne "TONALITE"
+                tonalityColumnIndex = headers.findIndex(header => 
+                    header && typeof header === 'string' && 
+                    header.toLowerCase().includes("tonalite")
+                );
+                
+                // Trouver l'index de la colonne "HEVITRA FONOSIN'NY HIRA"
+                themeColumnIndex = headers.findIndex(header => 
+                    header && typeof header === 'string' && 
+                    header.toLowerCase().includes("hevitra")
+                );
+                
                 console.log('🔍 Index de la colonne Rohin\'ity hira ity:', rohinityColumnIndex);
                 console.log('🔍 Index de la colonne LOHATENY:', songTitleColumnIndex);
                 console.log('🔍 Index de la colonne MPANORATRA:', authorColumnIndex);
+                console.log('🔍 Index de la colonne TEMPO:', tempoColumnIndex);
+                console.log('🔍 Index de la colonne TONALITE:', tonalityColumnIndex);
+                console.log('🔍 Index de la colonne HEVITRA FONOSIN\'NY HIRA:', themeColumnIndex);
                 
                 sheetData = lines.slice(1).filter(row => 
                     row && row.some(cell => cell && cell.trim() !== '')
@@ -939,6 +1059,7 @@
                 normalizeData();
                 detectColumnsWithData();
                 prepareSongTitles();
+                prepareAuthorsAndThemes();
                 populateSongsList();
                 
                 showDataInfo();
@@ -958,6 +1079,27 @@
                 .map(value => value.trim());
             
             console.log('💡 Titres de chansons chargés:', allSongTitles.length);
+        }
+        
+        function prepareAuthorsAndThemes() {
+            // Récupérer tous les auteurs uniques
+            allAuthors = [...new Set(
+                sheetData
+                    .map(row => row[authorColumnIndex] || '')
+                    .filter(value => value && value.trim() !== '')
+                    .map(value => value.trim())
+            )];
+            
+            // Récupérer tous les thèmes uniques
+            allThemes = [...new Set(
+                sheetData
+                    .map(row => row[themeColumnIndex] || '')
+                    .filter(value => value && value.trim() !== '')
+                    .map(value => value.trim())
+            )];
+            
+            console.log('👤 Auteurs chargés:', allAuthors.length);
+            console.log('🎭 Thèmes chargés:', allThemes.length);
         }
         
         function populateSongsList() {
@@ -1008,36 +1150,150 @@
             
             const songTitle = songData[songTitleColumnIndex] || `Chanson ${index + 1}`;
             const author = songData[authorColumnIndex] || '';
+            const tempo = songData[tempoColumnIndex] || '';
+            const tonality = songData[tonalityColumnIndex] || '';
             
+            // Créer la structure HTML pour la fiche
             let html = `
                 <div class="fiche-item">
                     <div class="fiche-header">
-                        <h2>🎵 Fiche de la Chanson</h2>
-                        <h3 class="fiche-title">
-                            ${songTitle}
-                            ${author ? `<div class="author">${author}</div>` : ''}
-                        </h3>
+                        <div class="song-info-header">
+                            <div class="song-title-info">
+                                <h3 class="fiche-title">${songTitle}</h3>
+                                ${author ? `<div class="author">${author}</div>` : ''}
+                            </div>
+                            <div class="song-music-info">
+                                ${tempo ? `<div class="tempo">TEMPO: ${tempo}</div>` : ''}
+                                ${tonality ? `<div class="tonality">TONALITÉ: ${tonality}</div>` : ''}
+                            </div>
+                        </div>
                     </div>
-                    <div style="padding: 0;">
-                        <table class="data-table">
+                    <div style="padding: 25px;">
             `;
             
-            for (let colIndex of columnsWithData) {
-                const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                const value = songData[colIndex] || '';
+            // Section MOMBA NY HIRA
+            const mombaColumns = getColumnsByCategory('MOMBA');
+            if (mombaColumns.length > 0) {
+                html += `
+                    <div class="section-title">📋 MOMBA NY HIRA</div>
+                    <div class="section-content">
+                        <table class="data-table">
+                `;
                 
-                if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                for (let colIndex of mombaColumns) {
+                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                    const value = songData[colIndex] || '';
+                    
+                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                        html += `
+                            <tr>
+                                <th>${header}</th>
+                                <td>${formatCellValue(value)}</td>
+                            </tr>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // Section TONONKIRA
+            const tononkiraColumns = getColumnsByCategory('TONONKIRA');
+            if (tononkiraColumns.length > 0) {
+                html += `
+                    <div class="section-title">🎤 TONONKIRA</div>
+                    <div class="lyrics-container">
+                `;
+                
+                // Paroles originales
+                const originalLyrics = songData[findColumnIndex('TONONKIRA (Original)')] || '';
+                if (originalLyrics) {
                     html += `
-                        <tr>
-                            <th>${header}</th>
-                            <td>${formatCellValue(value)}</td>
-                        </tr>
+                        <div class="lyrics-box">
+                            <div class="lyrics-title">🎵 Paroles originales</div>
+                            <div class="lyrics-content">${formatCellValue(originalLyrics)}</div>
+                        </div>
                     `;
                 }
+                
+                // Paroles traduites
+                const translatedLyrics = songData[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
+                if (translatedLyrics) {
+                    html += `
+                        <div class="lyrics-box">
+                            <div class="lyrics-title">🌍 Parole traduite</div>
+                            <div class="lyrics-content">${formatCellValue(translatedLyrics)}</div>
+                        </div>
+                    `;
+                }
+                
+                html += `</div>`;
+            }
+            
+            // Section HISTO FANATSARANA
+            const histoColumns = getColumnsByCategory('HISTO');
+            if (histoColumns.length > 0) {
+                html += `
+                    <div class="section-title">📝 HISTO FANATSARANA</div>
+                    <div class="section-content">
+                        <table class="data-table">
+                `;
+                
+                for (let colIndex of histoColumns) {
+                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                    const value = songData[colIndex] || '';
+                    
+                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                        // Remplacer "Horodateur" par "Niraketana"
+                        const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
+                        html += `
+                            <tr>
+                                <th>${displayHeader}</th>
+                                <td>${formatCellValue(value)}</td>
+                            </tr>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </table>
+                    </div>
+                `;
+            }
+            
+            // Section AHAFAHANA MIANATRA
+            const mianatraColumns = getColumnsByCategory('MIANATRA');
+            if (mianatraColumns.length > 0) {
+                html += `
+                    <div class="section-title">🎓 AHAFAHANA MIANATRA</div>
+                    <div class="section-content">
+                        <table class="data-table">
+                `;
+                
+                for (let colIndex of mianatraColumns) {
+                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                    const value = songData[colIndex] || '';
+                    
+                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                        html += `
+                            <tr>
+                                <th>${header}</th>
+                                <td>${formatCellValue(value)}</td>
+                            </tr>
+                        `;
+                    }
+                }
+                
+                html += `
+                        </table>
+                    </div>
+                `;
             }
             
             html += `
-                        </table>
                     </div>
                 </div>
             `;
@@ -1046,6 +1302,64 @@
             resultTitle.textContent = `Fiche: ${songTitle}`;
             resultsSection.style.display = 'block';
             resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Fonction pour trouver l'index d'une colonne par son nom
+        function findColumnIndex(columnName) {
+            return headers.findIndex(header => 
+                header && typeof header === 'string' && 
+                header.toLowerCase().includes(columnName.toLowerCase())
+            );
+        }
+        
+        // Fonction pour regrouper les colonnes par catégorie
+        function getColumnsByCategory(category) {
+            const categoryColumns = [];
+            
+            for (let colIndex of columnsWithData) {
+                const header = headers[colIndex] || '';
+                
+                // Exclure les colonnes déjà traitées séparément
+                if (colIndex === songTitleColumnIndex || 
+                    colIndex === authorColumnIndex || 
+                    colIndex === tempoColumnIndex || 
+                    colIndex === tonalityColumnIndex ||
+                    (colIndex === rohinityColumnIndex && !showRohinityColumn)) {
+                    continue;
+                }
+                
+                // Catégoriser selon le nom de la colonne
+                if (category === 'MOMBA' && (
+                    header.toLowerCase().includes('hevitra') ||
+                    header.toLowerCase().includes('gadona') ||
+                    header.toLowerCase().includes('structure')
+                )) {
+                    categoryColumns.push(colIndex);
+                } else if (category === 'TONONKIRA' && (
+                    header.toLowerCase().includes('tononkira') ||
+                    header.toLowerCase().includes('parole') ||
+                    header.toLowerCase().includes('dikan-teny')
+                )) {
+                    categoryColumns.push(colIndex);
+                } else if (category === 'HISTO' && (
+                    header.toLowerCase().includes('histo') ||
+                    header.toLowerCase().includes('horodateur') ||
+                    header.toLowerCase().includes('niraketana') ||
+                    header.toLowerCase().includes('fanavaozana') ||
+                    header.toLowerCase().includes('fanamarihana') ||
+                    (colIndex === rohinityColumnIndex && showRohinityColumn)
+                )) {
+                    categoryColumns.push(colIndex);
+                } else if (category === 'MIANATRA' && (
+                    header.toLowerCase().includes('rohy') ||
+                    header.toLowerCase().includes('solfa') ||
+                    header.toLowerCase().includes('mianatra')
+                )) {
+                    categoryColumns.push(colIndex);
+                }
+            }
+            
+            return categoryColumns;
         }
         
         function normalizeData() {
@@ -1076,11 +1390,6 @@
             columnsWithData = [];
             
             for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-                // Exclure la colonne Rohin'ity hira ity si l'accès n'est pas activé
-                if (colIndex === rohinityColumnIndex && !showRohinityColumn) {
-                    continue;
-                }
-                
                 let hasData = false;
                 
                 for (let rowIndex = 0; rowIndex < sheetData.length; rowIndex++) {
@@ -1295,36 +1604,149 @@
                     const numeroData = sheetData.findIndex(r => r === row) + 1;
                     const titreColB = row[songTitleColumnIndex] || `Chanson ${numeroData}`;
                     const author = row[authorColumnIndex] || '';
+                    const tempo = row[tempoColumnIndex] || '';
+                    const tonality = row[tonalityColumnIndex] || '';
                     
                     html += `
                         <div class="fiche-item">
                             <div class="fiche-header">
-                                <h2>🎵 Fiche de la Chanson</h2>
-                                <h3 class="fiche-title">
-                                    ${titreColB}
-                                    ${author ? `<div class="author">${author}</div>` : ''}
-                                </h3>
+                                <div class="song-info-header">
+                                    <div class="song-title-info">
+                                        <h3 class="fiche-title">${titreColB}</h3>
+                                        ${author ? `<div class="author">${author}</div>` : ''}
+                                    </div>
+                                    <div class="song-music-info">
+                                        ${tempo ? `<div class="tempo">TEMPO: ${tempo}</div>` : ''}
+                                        ${tonality ? `<div class="tonality">TONALITÉ: ${tonality}</div>` : ''}
+                                    </div>
+                                </div>
                             </div>
-                            <div style="padding: 0;">
-                                <table class="data-table">
+                            <div style="padding: 25px;">
                     `;
                     
-                    for (let colIndex of columnsWithData) {
-                        const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                        const value = row[colIndex] || '';
+                    // Section MOMBA NY HIRA
+                    const mombaColumns = getColumnsByCategory('MOMBA');
+                    if (mombaColumns.length > 0) {
+                        html += `
+                            <div class="section-title">📋 MOMBA NY HIRA</div>
+                            <div class="section-content">
+                                <table class="data-table">
+                        `;
                         
-                        if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                        for (let colIndex of mombaColumns) {
+                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                            const value = row[colIndex] || '';
+                            
+                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                                html += `
+                                    <tr>
+                                        <th>${header}</th>
+                                        <td>${formatCellValue(value)}</td>
+                                    </tr>
+                                `;
+                            }
+                        }
+                        
+                        html += `
+                                </table>
+                            </div>
+                        `;
+                    }
+                    
+                    // Section TONONKIRA
+                    const tononkiraColumns = getColumnsByCategory('TONONKIRA');
+                    if (tononkiraColumns.length > 0) {
+                        html += `
+                            <div class="section-title">🎤 TONONKIRA</div>
+                            <div class="lyrics-container">
+                        `;
+                        
+                        // Paroles originales
+                        const originalLyrics = row[findColumnIndex('TONONKIRA (Original)')] || '';
+                        if (originalLyrics) {
                             html += `
-                                <tr>
-                                    <th>${header}</th>
-                                    <td>${formatCellValue(value)}</td>
-                                </tr>
+                                <div class="lyrics-box">
+                                    <div class="lyrics-title">🎵 Paroles originales</div>
+                                    <div class="lyrics-content">${formatCellValue(originalLyrics)}</div>
+                                </div>
                             `;
                         }
+                        
+                        // Paroles traduites
+                        const translatedLyrics = row[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
+                        if (translatedLyrics) {
+                            html += `
+                                <div class="lyrics-box">
+                                    <div class="lyrics-title">🌍 Parole traduite</div>
+                                    <div class="lyrics-content">${formatCellValue(translatedLyrics)}</div>
+                                </div>
+                            `;
+                        }
+                        
+                        html += `</div>`;
+                    }
+                    
+                    // Section HISTO FANATSARANA
+                    const histoColumns = getColumnsByCategory('HISTO');
+                    if (histoColumns.length > 0) {
+                        html += `
+                            <div class="section-title">📝 HISTO FANATSARANA</div>
+                            <div class="section-content">
+                                <table class="data-table">
+                        `;
+                        
+                        for (let colIndex of histoColumns) {
+                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                            const value = row[colIndex] || '';
+                            
+                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                                // Remplacer "Horodateur" par "Niraketana"
+                                const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
+                                html += `
+                                    <tr>
+                                        <th>${displayHeader}</th>
+                                        <td>${formatCellValue(value)}</td>
+                                    </tr>
+                                `;
+                            }
+                        }
+                        
+                        html += `
+                                </table>
+                            </div>
+                        `;
+                    }
+                    
+                    // Section AHAFAHANA MIANATRA
+                    const mianatraColumns = getColumnsByCategory('MIANATRA');
+                    if (mianatraColumns.length > 0) {
+                        html += `
+                            <div class="section-title">🎓 AHAFAHANA MIANATRA</div>
+                            <div class="section-content">
+                                <table class="data-table">
+                        `;
+                        
+                        for (let colIndex of mianatraColumns) {
+                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
+                            const value = row[colIndex] || '';
+                            
+                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
+                                html += `
+                                    <tr>
+                                        <th>${header}</th>
+                                        <td>${formatCellValue(value)}</td>
+                                    </tr>
+                                `;
+                            }
+                        }
+                        
+                        html += `
+                                </table>
+                            </div>
+                        `;
                     }
                     
                     html += `
-                                </table>
                             </div>
                         </div>
                     `;
