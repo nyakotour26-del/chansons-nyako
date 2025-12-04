@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎵 FICHE TECHNIQUE CHANSONS TOURNÉE 2026</title>
+    <title>🎵 FICHE TECHNIQUE CHANSONS NY AKO</title>
     <style>
         :root {
             --primary-color: #3498db;
@@ -15,7 +15,7 @@
             --border-radius: 12px;
             --box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --section-color: #ff9800; /* Couleur orange pour les sections */
+            --section-color: #ff9800;
         }
         
         * {
@@ -31,6 +31,7 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 100px;
         }
         
         .container {
@@ -41,10 +42,11 @@
             gap: 25px;
         }
         
+        /* HEADER MODIFIÉ - HAUTEUR RÉDUITE */
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding: 25px;
+            margin-bottom: 20px;
+            padding: 15px;
             background: var(--gradient);
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
@@ -52,27 +54,34 @@
             color: white;
             position: relative;
             overflow: hidden;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         header::before {
             content: "🎵";
             position: absolute;
-            font-size: 120px;
+            font-size: 80px;
             opacity: 0.1;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
         }
         
+        /* TITRE MODIFIÉ - TAILLE RÉDUITE */
         h1 {
             color: white;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            margin-bottom: 5px;
+            font-size: 1.8em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
         }
         
         .subtitle {
-            font-size: 1.2em;
+            font-size: 0.9em;
             opacity: 0.9;
         }
         
@@ -98,7 +107,7 @@
         }
         
         .songs-list-title, .authors-list-title, .themes-list-title {
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             color: var(--secondary-color);
             display: flex;
@@ -109,9 +118,9 @@
         .songs-count, .authors-count, .themes-count {
             background-color: var(--music-color);
             color: white;
-            padding: 5px 12px;
+            padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.9em;
+            font-size: 0.8em;
             font-weight: bold;
         }
         
@@ -120,8 +129,8 @@
         }
         
         .song-item, .author-item, .theme-item {
-            padding: 15px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 8px;
             background-color: #f8f9fa;
             border-radius: var(--border-radius);
             cursor: pointer;
@@ -137,7 +146,7 @@
             right: 15px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 20px;
+            font-size: 18px;
             opacity: 0.3;
             transition: all 0.3s ease;
         }
@@ -170,106 +179,75 @@
         }
         
         .song-title, .author-name, .theme-name {
-            font-size: 1em;
+            font-size: 0.9em;
             margin-bottom: 5px;
             font-weight: 600;
             color: var(--secondary-color);
         }
         
         .song-author {
-            font-size: 0.85em;
+            font-size: 0.8em;
             color: var(--music-color);
             font-style: italic;
         }
         
         .search-section {
             background-color: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             grid-column: 2;
         }
         
+        /* BARRE DE RECHERCHE SUR LA MÊME LIGNE */
         .search-form {
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-end;
-        }
-        
-        .form-group {
-            flex: 1;
-            min-width: 250px;
-            position: relative;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        
-        input, select, button {
-            padding: 14px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
+            gap: 10px;
+            align-items: center;
             width: 100%;
+        }
+        
+        .search-input-group {
+            flex: 1;
+            display: flex;
+            gap: 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid #ddd;
             transition: all 0.3s;
         }
         
-        input:focus {
+        .search-input-group:focus-within {
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .search-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: none;
             outline: none;
         }
         
-        button {
+        .search-input-group button {
             background: var(--gradient);
             color: white;
             border: none;
+            padding: 12px 20px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            min-width: 150px;
-            position: relative;
-            overflow: hidden;
+            font-size: 16px;
+            min-width: auto;
+            width: auto;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        button::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
-        }
-        
-        button:active::after {
-            animation: ripple 1s ease-out;
-        }
-        
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(20, 20);
-                opacity: 0;
-            }
+        .search-input-group button:hover {
+            transform: none;
         }
         
         .suggestions-container {
@@ -288,13 +266,14 @@
         }
         
         .suggestion-item {
-            padding: 12px 15px;
+            padding: 10px 15px;
             cursor: pointer;
             border-bottom: 1px solid #f0f0f0;
             transition: background-color 0.2s;
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 0.9em;
         }
         
         .suggestion-item:hover {
@@ -306,17 +285,373 @@
             color: white;
         }
         
-        .suggestion-item:last-child {
-            border-bottom: none;
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
         }
         
-        .suggestion-highlight {
-            color: var(--accent-color);
-            font-weight: bold;
+        /* BOUTONS FLOTTANTS */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
         }
         
-        .suggestion-item.active .suggestion-highlight {
+        .floating-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
             color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .floating-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .floating-button.home {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .floating-button.songs {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+        
+        .floating-button.list {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .floating-button.search-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .floating-button.lock {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+        }
+        
+        /* BULLE POUR LE CADENAS */
+        .lock-bubble {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 250px;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .lock-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+        
+        .lock-bubble input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .lock-bubble button {
+            width: 100%;
+            padding: 10px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* STICKY HEADER MODIFIÉ - FOND ÉCLAIRCI ET TITRE EN BLANC */
+        .fiche-header {
+            background: 
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)),
+                repeating-linear-gradient(45deg,
+                    rgba(102, 126, 234, 0.05) 0px,
+                    rgba(102, 126, 234, 0.05) 10px,
+                    rgba(118, 75, 162, 0.05) 10px,
+                    rgba(118, 75, 162, 0.05) 20px,
+                    rgba(231, 76, 60, 0.05) 20px,
+                    rgba(231, 76, 60, 0.05) 30px,
+                    rgba(155, 89, 182, 0.05) 30px,
+                    rgba(155, 89, 182, 0.05) 40px
+                ),
+                url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');
+            background-size: cover, 200px 200px, cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            color: var(--text-color);
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--music-color);
+        }
+        
+        .fiche-header::before {
+            content: "🎤🎵";
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.08;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            color: var(--music-color);
+        }
+        
+        .song-info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        
+        .song-title-info {
+            flex: 1;
+        }
+        
+        .song-music-info {
+            text-align: right;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+        
+        /* TITRE DE LA CHANSON EN BLANC */
+        .fiche-title {
+            color: white;
+            font-weight: bold;
+            margin-top: 0;
+            font-size: 1.5em;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .author {
+            color: var(--music-color);
+            font-weight: 600;
+            font-size: 1em;
+            font-style: italic;
+            margin-top: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .tempo {
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 3px;
+            color: var(--accent-color);
+        }
+        
+        .tonality {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+        
+        .section-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--section-color);
+            margin: 25px 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-content {
+            background: white;
+            padding: 0;
+            border-radius: 8px;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-table th {
+            text-align: left;
+            padding: 15px;
+            width: 25%;
+            background: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 14px;
+            vertical-align: top;
+            white-space: normal;
+            word-wrap: break-word;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .data-table td {
+            padding: 15px;
+            font-size: 14px;
+            color: var(--text-color);
+            white-space: pre-wrap;
+            border-bottom: 1px solid #ddd;
+            background-color: white;
+        }
+        
+        .data-table tr:nth-child(even) td {
+            background: #f9f9f9;
+        }
+        
+        .data-table tr:hover td {
+            background-color: #f0f7ff;
+        }
+        
+        .lyrics-container {
+            margin: 15px 0;
+        }
+        
+        .lyrics-box {
+            border: 2px solid var(--music-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .lyrics-title {
+            font-weight: bold;
+            color: var(--music-color);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .lyrics-content {
+            font-size: 15px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            font-family: inherit;
+        }
+        
+        .data-table img {
+            max-width: 95%;
+            max-height: 200px;
+            display: block;
+            margin: 5px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        
+        .data-table a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #e3f2fd;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .data-table a:hover {
+            text-decoration: none;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .no-results-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            display: none;
+            grid-column: 1 / -1;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 8px 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-size: 0.9em;
+        }
+        
+        .error-message {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 8px 0;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-size: 0.9em;
+        }
+        
+        .tek-input-container {
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border: 1px solid #ddd;
         }
         
         .results-section {
@@ -337,18 +672,18 @@
         .result-header {
             background: var(--gradient);
             color: white;
-            padding: 20px 25px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .result-content {
-            padding: 25px;
+            padding: 20px;
         }
         
         .fiche-item {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border: 1px solid #e1e1e1;
             border-radius: var(--border-radius);
             overflow: hidden;
@@ -358,274 +693,7 @@
         
         .fiche-item:hover {
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transform: translateY(-5px);
-        }
-        
-        /* NOUVEAU STYLE POUR LE TITRE FIGÉ */
-        .fiche-header {
-            background: linear-gradient(rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85)), 
-                        url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .fiche-header::before {
-            content: "🎵";
-            position: absolute;
-            font-size: 100px;
-            opacity: 0.1;
-            top: 50%;
-            right: 30px;
-            transform: translateY(-50%);
-        }
-        
-        .song-info-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
-        }
-        
-        .song-title-info {
-            flex: 1;
-        }
-        
-        .song-music-info {
-            text-align: right;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px 15px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-        }
-        
-        .fiche-title {
-            color: white;
-            font-weight: bold;
-            margin-top: 0;
-            font-size: 1.8em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            line-height: 1.3;
-        }
-        
-        .author {
-            color: #ffeb3b;
-            font-weight: 600;
-            font-size: 1.1em;
-            font-style: italic;
-            margin-top: 8px;
-        }
-        
-        .tempo {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .tonality {
-            font-size: 1em;
-            font-weight: 500;
-        }
-        
-        /* NOUVEAU STYLE POUR LES SECTIONS */
-        .section-title {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: var(--section-color);
-            margin: 30px 0 15px 0;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .section-content {
-            background: white;
-            padding: 0;
-            border-radius: 8px;
-        }
-        
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .data-table th {
-            text-align: left;
-            padding: 18px;
-            width: 25%;
-            background: none;
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 15px;
-            vertical-align: top;
-            white-space: normal;
-            word-wrap: break-word;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .data-table td {
-            padding: 18px;
-            font-size: 15px;
-            color: var(--text-color);
-            white-space: pre-wrap;
-            border-bottom: 1px solid #ddd;
-            background-color: white;
-        }
-        
-        .data-table tr:nth-child(even) td {
-            background: #f9f9f9;
-        }
-        
-        .data-table tr:hover td {
-            background-color: #f0f7ff;
-        }
-        
-        /* STYLE POUR LES PAROLES */
-        .lyrics-container {
-            margin: 20px 0;
-        }
-        
-        .lyrics-box {
-            border: 2px solid var(--music-color);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            background: white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-        
-        .lyrics-title {
-            font-weight: bold;
-            color: var(--music-color);
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .lyrics-content {
-            font-size: 16px;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            font-family: inherit;
-        }
-        
-        .data-table img {
-            max-width: 95%;
-            max-height: 250px;
-            display: block;
-            margin: 5px auto;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
-        
-        .data-table a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #e3f2fd;
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-        
-        .data-table a:hover {
-            text-decoration: none;
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 50px;
-            color: #7f8c8d;
-        }
-        
-        .no-results-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 30px;
-            display: none;
-            grid-column: 1 / -1;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: var(--primary-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        .success-message {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .error-message {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 10px 0;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .tek-access {
-            background: linear-gradient(135deg, #8e44ad, #9b59b6);
-            margin-top: 10px;
-            width: auto;
-        }
-        
-        .tek-input-container {
-            display: none;
-            margin-top: 10px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: var(--border-radius);
-            border: 1px solid #ddd;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        
-        .action-buttons button {
-            flex: 1;
-            min-width: 150px;
-        }
-        
-        .lists-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            grid-column: 1;
+            transform: translateY(-3px);
         }
         
         @keyframes spin {
@@ -640,20 +708,51 @@
             .lists-container {
                 grid-column: 1;
                 position: static;
-                grid-template-columns: 1fr 1fr 1fr;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
             }
             
             .search-section, .results-section {
                 grid-column: 1;
             }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
         }
         
         @media (max-width: 768px) {
-            .search-form {
-                flex-direction: column;
+            header {
+                height: 100px;
+                padding: 10px;
             }
             
-            .form-group {
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .subtitle {
+                font-size: 0.8em;
+            }
+            
+            .lists-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-form {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-input-group {
                 width: 100%;
             }
             
@@ -663,7 +762,8 @@
             
             .song-music-info {
                 text-align: left;
-                margin-top: 15px;
+                margin-top: 10px;
+                width: 100%;
             }
             
             .data-table th, .data-table td {
@@ -671,25 +771,65 @@
                 width: 100%;
             }
             
-            /* CORRECTION POUR LES TITRES DE COLONNE EN VERSION MOBILE */
-            .data-table th {
-                background: none;
-                color: var(--text-color);
-                margin-top: 10px;
-                font-weight: bold;
-                border-bottom: 1px solid #ddd;
+            .floating-buttons {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
             }
             
-            .action-buttons {
-                flex-direction: column;
+            .floating-button {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
             }
             
-            .action-buttons button {
-                width: 100%;
+            .lock-bubble {
+                width: 200px;
+                right: -50px;
             }
             
-            .lists-container {
-                grid-template-columns: 1fr;
+            .lock-bubble::after {
+                right: 70px;
+            }
+            
+            .fiche-title {
+                font-size: 1.3em;
+                padding: 6px 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+                padding-bottom: 80px;
+            }
+            
+            header {
+                height: 80px;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+            }
+            
+            .subtitle {
+                font-size: 0.7em;
+            }
+            
+            .floating-buttons {
+                bottom: 10px;
+                right: 10px;
+            }
+            
+            .floating-button {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .fiche-title {
+                font-size: 1.2em;
+                padding: 5px 10px;
             }
         }
     </style>
@@ -697,7 +837,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>🎵 FICHE TECHNIQUE CHANSONS TOURNÉE 2026</h1>
+            <h1>FICHE TECHNIQUE CHANSONS NY AKO</h1>
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
@@ -735,34 +875,14 @@
         
         <section class="search-section">
             <form id="searchForm" class="search-form" autocomplete="off">
-                <div class="form-group">
-                    <label for="searchText">🔍 Rechercher une chanson :</label>
+                <div class="search-input-group">
                     <input type="text" id="searchText" placeholder="Titre, auteur, paroles..." autocomplete="off">
-                    <div class="suggestions-container" id="suggestionsContainer">
-                        <!-- Les suggestions dynamiques apparaîtront ici -->
-                    </div>
+                    <button type="submit" title="Rechercher">🔍</button>
                 </div>
-                
-                <div class="form-group">
-                    <button type="submit">🎶 Rechercher</button>
-                </div>
+                <div class="suggestions-container" id="suggestionsContainer"></div>
             </form>
             
-            <div class="action-buttons">
-                <button id="showAllButton" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
-                    📋 Toutes les chansons
-                </button>
-                
-                <button id="tekAccessButton" class="tek-access">
-                    🔓 Accès spécial
-                </button>
-                
-                <button id="retryButton" style="background: linear-gradient(135deg, #f39c12, #e67e22); display: none;">
-                    🔄 Réessayer
-                </button>
-            </div>
-            
-            <div id="tekInputContainer" class="tek-input-container">
+            <div class="tek-input-container" id="tekInputContainer" style="display: none;">
                 <label for="tekCode">Code d'accès :</label>
                 <input type="password" id="tekCode" placeholder="Entrez le code...">
                 <button id="submitTekCode" style="margin-top: 10px; width: auto;">Valider</button>
@@ -787,8 +907,21 @@
         </section>
     </div>
 
+    <!-- BOUTONS FLOTTANTS -->
+    <div class="floating-buttons">
+        <div class="lock-bubble" id="lockBubble">
+            <input type="password" id="floatingTekCode" placeholder="Entrez le code d'accès">
+            <button id="floatingSubmitTekCode">Déverrouiller</button>
+        </div>
+        
+        <button class="floating-button home" title="Retour à l'accueil">🏠</button>
+        <button class="floating-button songs" title="Liste des chansons">🎵</button>
+        <button class="floating-button list" title="Toutes les fiches">📋</button>
+        <button class="floating-button search-btn" title="Rechercher">🔍</button>
+        <button class="floating-button lock" title="Déverrouiller l'accès spécial">🔓</button>
+    </div>
+
     <script>
-        // VOTRE LIEN GOOGLE SHEETS
         const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXIJyclDLf2asT-FMnmaeWMSPtQHxpAC1wiGJ_xzXbl2StziwiUw9ElW9XyK5yemQ-PHaWlRQbtdHb/pub?gid=602871919&single=true&output=csv';
         
         let sheetData = [];
@@ -797,26 +930,24 @@
         let allAuthors = [];
         let allThemes = [];
         let columnsWithData = [];
-        let showRohinityColumn = false; // Colonne cachée par défaut
+        let showRohinityColumn = false;
         let rohinityColumnIndex = -1;
-        let songTitleColumnIndex = -1; // Index de la colonne LOHATENY
-        let authorColumnIndex = -1; // Index de la colonne MPANORATRA
-        let tempoColumnIndex = -1; // Index de la colonne TEMPO
-        let tonalityColumnIndex = -1; // Index de la colonne TONALITE
-        let themeColumnIndex = -1; // Index de la colonne HEVITRA FONOSIN'NY HIRA
-        
+        let songTitleColumnIndex = -1;
+        let authorColumnIndex = -1;
+        let tempoColumnIndex = -1;
+        let tonalityColumnIndex = -1;
+        let themeColumnIndex = -1;
+
         document.addEventListener('DOMContentLoaded', function() {
             const searchInput = document.getElementById('searchText');
             const suggestionsContainer = document.getElementById('suggestionsContainer');
             
             document.getElementById('searchForm').addEventListener('submit', handleSearch);
-            document.getElementById('showAllButton').addEventListener('click', showAllData);
             document.getElementById('closeResults').addEventListener('click', closeResults);
-            document.getElementById('retryButton').addEventListener('click', loadDataFromGoogleSheets);
             
             // Gestion de l'accès TEK
-            document.getElementById('tekAccessButton').addEventListener('click', toggleTekInput);
             document.getElementById('submitTekCode').addEventListener('click', validateTekCode);
+            document.getElementById('floatingSubmitTekCode').addEventListener('click', validateFloatingTekCode);
             
             searchInput.setAttribute('autocomplete', 'off');
             searchInput.setAttribute('autocorrect', 'off');
@@ -851,12 +982,58 @@
                 }
             });
             
+            // Gestion des boutons flottants
+            document.querySelector('.floating-button.home').addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            document.querySelector('.floating-button.songs').addEventListener('click', function() {
+                document.getElementById('songsListSection').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            document.querySelector('.floating-button.list').addEventListener('click', function() {
+                showAllData();
+            });
+            
+            document.querySelector('.floating-button.search-btn').addEventListener('click', function() {
+                document.getElementById('searchText').focus();
+            });
+            
+            document.querySelector('.floating-button.lock').addEventListener('click', function() {
+                const lockBubble = document.getElementById('lockBubble');
+                lockBubble.style.display = lockBubble.style.display === 'block' ? 'none' : 'block';
+            });
+            
             loadDataFromGoogleSheets();
         });
         
-        function toggleTekInput() {
-            const tekInputContainer = document.getElementById('tekInputContainer');
-            tekInputContainer.style.display = tekInputContainer.style.display === 'none' ? 'block' : 'none';
+        function validateFloatingTekCode() {
+            const tekCode = document.getElementById('floatingTekCode').value;
+            if (tekCode === 'tek') {
+                showRohinityColumn = true;
+                document.getElementById('lockBubble').style.display = 'none';
+                document.getElementById('floatingTekCode').value = '';
+                
+                const dataInfo = document.getElementById('dataInfo');
+                dataInfo.innerHTML = `
+                    <div class="success-message">
+                        ✅ Accès spécial activé - Colonne "Rohin'ity hira ity" maintenant visible
+                    </div>
+                `;
+                dataInfo.style.display = 'block';
+                
+                if (document.getElementById('resultsSection').style.display === 'block') {
+                    const currentSearch = document.getElementById('searchText').value;
+                    if (currentSearch) {
+                        const results = searchData(currentSearch);
+                        displayResults(results, `Résultats pour "${currentSearch}"`);
+                    } else {
+                        displayResults(sheetData, 'Toutes les chansons');
+                    }
+                }
+            } else {
+                alert('Code incorrect. Veuillez réessayer.');
+            }
         }
         
         function validateTekCode() {
@@ -866,7 +1043,6 @@
                 document.getElementById('tekInputContainer').style.display = 'none';
                 document.getElementById('tekCode').value = '';
                 
-                // Afficher un message de succès
                 const dataInfo = document.getElementById('dataInfo');
                 dataInfo.innerHTML = `
                     <div class="success-message">
@@ -875,7 +1051,6 @@
                 `;
                 dataInfo.style.display = 'block';
                 
-                // Si des résultats sont déjà affichés, les mettre à jour
                 if (document.getElementById('resultsSection').style.display === 'block') {
                     const currentSearch = document.getElementById('searchText').value;
                     if (currentSearch) {
@@ -925,8 +1100,6 @@
         async function loadDataFromGoogleSheets() {
             console.log('🔍 Début du chargement des données...');
             document.getElementById('loadingIndicator').style.display = 'block';
-            document.getElementById('retryButton').style.display = 'none';
-            clearErrorMessages();
             
             try {
                 console.log('🔄 Essai 1: Accès direct...');
@@ -1041,45 +1214,38 @@
                 headers = lines[0] || [];
                 console.log('🏷️ En-têtes détectés:', headers.length, 'colonnes');
                 
-                // Trouver l'index de la colonne "Rohin'ity hira ity"
                 rohinityColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("rohin'ity hira ity")
                 );
                 
                 if (rohinityColumnIndex === -1) {
-                    // Essayer une autre orthographe
                     rohinityColumnIndex = headers.findIndex(header => 
                         header && typeof header === 'string' && 
                         header.toLowerCase().includes("rohinity")
                     );
                 }
                 
-                // Trouver l'index de la colonne "LOHATENY"
                 songTitleColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("lohateny")
                 );
                 
-                // Trouver l'index de la colonne "MPANORATRA"
                 authorColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("mpanoratra")
                 );
                 
-                // Trouver l'index de la colonne "TEMPO"
                 tempoColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("tempo")
                 );
                 
-                // Trouver l'index de la colonne "TONALITE"
                 tonalityColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("tonalite")
                 );
                 
-                // Trouver l'index de la colonne "HEVITRA FONOSIN'NY HIRA"
                 themeColumnIndex = headers.findIndex(header => 
                     header && typeof header === 'string' && 
                     header.toLowerCase().includes("hevitra")
@@ -1130,7 +1296,6 @@
         }
         
         function prepareAuthorsAndThemes() {
-            // Récupérer tous les auteurs uniques
             allAuthors = [...new Set(
                 sheetData
                     .map(row => row[authorColumnIndex] || '')
@@ -1138,7 +1303,6 @@
                     .map(value => value.trim())
             )];
             
-            // Récupérer tous les thèmes uniques
             allThemes = [...new Set(
                 sheetData
                     .map(row => row[themeColumnIndex] || '')
@@ -1169,15 +1333,11 @@
                 `;
                 
                 listItem.addEventListener('click', function() {
-                    // Retirer la classe active de tous les éléments
                     document.querySelectorAll('.song-item').forEach(item => {
                         item.classList.remove('active');
                     });
                     
-                    // Ajouter la classe active à l'élément cliqué
                     this.classList.add('active');
-                    
-                    // Afficher la fiche correspondante
                     displaySingleSong(index);
                 });
                 
@@ -1202,15 +1362,11 @@
                 `;
                 
                 listItem.addEventListener('click', function() {
-                    // Retirer la classe active de tous les éléments
                     document.querySelectorAll('.author-item').forEach(item => {
                         item.classList.remove('active');
                     });
                     
-                    // Ajouter la classe active à l'élément cliqué
                     this.classList.add('active');
-                    
-                    // Rechercher les chansons de cet auteur
                     const authorName = this.getAttribute('data-author');
                     const results = searchData(authorName);
                     displayResults(results, `Chansons de "${authorName}"`);
@@ -1237,15 +1393,11 @@
                 `;
                 
                 listItem.addEventListener('click', function() {
-                    // Retirer la classe active de tous les éléments
                     document.querySelectorAll('.theme-item').forEach(item => {
                         item.classList.remove('active');
                     });
                     
-                    // Ajouter la classe active à l'élément cliqué
                     this.classList.add('active');
-                    
-                    // Rechercher les chansons avec ce thème
                     const themeName = this.getAttribute('data-theme');
                     const results = searchData(themeName);
                     displayResults(results, `Chansons avec le thème "${themeName}"`);
@@ -1263,7 +1415,6 @@
             const resultContent = document.getElementById('resultContent');
             const resultTitle = document.getElementById('resultTitle');
             
-            // Recalculer les colonnes avec données (au cas où l'accès TEK a changé)
             detectColumnsWithData();
             
             const songTitle = songData[songTitleColumnIndex] || `Chanson ${index + 1}`;
@@ -1271,7 +1422,6 @@
             const tempo = songData[tempoColumnIndex] || '';
             const tonality = songData[tonalityColumnIndex] || '';
             
-            // Créer la structure HTML pour la fiche
             let html = `
                 <div class="fiche-item">
                     <div class="fiche-header">
@@ -1286,10 +1436,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 25px;">
+                    <div style="padding: 20px;">
             `;
             
-            // Section MOMBA NY HIRA
             const mombaColumns = getColumnsByCategory('MOMBA');
             if (mombaColumns.length > 0) {
                 html += `
@@ -1318,7 +1467,6 @@
                 `;
             }
             
-            // Section TONONKIRA
             const tononkiraColumns = getColumnsByCategory('TONONKIRA');
             if (tononkiraColumns.length > 0) {
                 html += `
@@ -1326,7 +1474,6 @@
                     <div class="lyrics-container">
                 `;
                 
-                // Paroles originales
                 const originalLyrics = songData[findColumnIndex('TONONKIRA (Original)')] || '';
                 if (originalLyrics) {
                     html += `
@@ -1337,7 +1484,6 @@
                     `;
                 }
                 
-                // Paroles traduites
                 const translatedLyrics = songData[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
                 if (translatedLyrics) {
                     html += `
@@ -1351,7 +1497,6 @@
                 html += `</div>`;
             }
             
-            // Section HISTO FANATSARANA
             const histoColumns = getColumnsByCategory('HISTO');
             if (histoColumns.length > 0) {
                 html += `
@@ -1365,7 +1510,6 @@
                     const value = songData[colIndex] || '';
                     
                     if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                        // Remplacer "Horodateur" par "Niraketana"
                         const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
                         html += `
                             <tr>
@@ -1382,7 +1526,6 @@
                 `;
             }
             
-            // Section AHAFAHANA MIANATRA
             const mianatraColumns = getColumnsByCategory('MIANATRA');
             if (mianatraColumns.length > 0) {
                 html += `
@@ -1422,7 +1565,6 @@
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         }
         
-        // Fonction pour trouver l'index d'une colonne par son nom
         function findColumnIndex(columnName) {
             return headers.findIndex(header => 
                 header && typeof header === 'string' && 
@@ -1430,14 +1572,12 @@
             );
         }
         
-        // Fonction pour regrouper les colonnes par catégorie
         function getColumnsByCategory(category) {
             const categoryColumns = [];
             
             for (let colIndex of columnsWithData) {
                 const header = headers[colIndex] || '';
                 
-                // Exclure les colonnes déjà traitées séparément
                 if (colIndex === songTitleColumnIndex || 
                     colIndex === authorColumnIndex || 
                     colIndex === tempoColumnIndex || 
@@ -1446,7 +1586,6 @@
                     continue;
                 }
                 
-                // Catégoriser selon le nom de la colonne
                 if (category === 'MOMBA' && (
                     header.toLowerCase().includes('hevitra') ||
                     header.toLowerCase().includes('gadona') ||
@@ -1526,7 +1665,6 @@
             console.log(`🎯 ${columnsWithData.length} colonnes avec données sur ${headers.length} colonnes totales`);
         }
         
-        // FONCTION POUR SUPPRIMER LES ACCENTS
         function removeAccents(str) {
             return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
@@ -1639,8 +1777,6 @@
                 <br><small>Vérifiez votre connexion internet et que le Google Sheet est public</small>
             `;
             searchSection.appendChild(errorDiv);
-            
-            document.getElementById('retryButton').style.display = 'block';
         }
         
         function clearErrorMessages() {
@@ -1678,7 +1814,6 @@
             displayResults(sheetData, 'Toutes les chansons');
         }
         
-        // RECHERCHE SANS ACCENTS - NOUVELLE VERSION
         function searchData(searchValue) {
             const lowerSearch = searchValue.toLowerCase();
             const searchWithoutAccents = removeAccents(lowerSearch);
@@ -1699,7 +1834,6 @@
             const resultContent = document.getElementById('resultContent');
             const resultTitle = document.getElementById('resultTitle');
             
-            // Recalculer les colonnes avec données (au cas où l'accès TEK a changé)
             detectColumnsWithData();
             
             if (results.length === 0) {
@@ -1712,7 +1846,7 @@
                 `;
             } else {
                 let html = `
-                    <div style="margin-bottom: 20px; padding: 15px; background: #ecf0f1; border-radius: 5px;">
+                    <div style="margin-bottom: 15px; padding: 12px; background: #ecf0f1; border-radius: 5px;">
                         <strong>${results.length} chanson(s) trouvée(s)</strong>
                         ${showRohinityColumn ? '<br><small>✅ Colonne spéciale "Rohin\'ity hira ity" visible</small>' : ''}
                     </div>
@@ -1739,10 +1873,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="padding: 25px;">
+                            <div style="padding: 20px;">
                     `;
                     
-                    // Section MOMBA NY HIRA
                     const mombaColumns = getColumnsByCategory('MOMBA');
                     if (mombaColumns.length > 0) {
                         html += `
@@ -1771,7 +1904,6 @@
                         `;
                     }
                     
-                    // Section TONONKIRA
                     const tononkiraColumns = getColumnsByCategory('TONONKIRA');
                     if (tononkiraColumns.length > 0) {
                         html += `
@@ -1779,7 +1911,6 @@
                             <div class="lyrics-container">
                         `;
                         
-                        // Paroles originales
                         const originalLyrics = row[findColumnIndex('TONONKIRA (Original)')] || '';
                         if (originalLyrics) {
                             html += `
@@ -1790,7 +1921,6 @@
                             `;
                         }
                         
-                        // Paroles traduites
                         const translatedLyrics = row[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
                         if (translatedLyrics) {
                             html += `
@@ -1804,7 +1934,6 @@
                         html += `</div>`;
                     }
                     
-                    // Section HISTO FANATSARANA
                     const histoColumns = getColumnsByCategory('HISTO');
                     if (histoColumns.length > 0) {
                         html += `
@@ -1818,7 +1947,6 @@
                             const value = row[colIndex] || '';
                             
                             if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                                // Remplacer "Horodateur" par "Niraketana"
                                 const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
                                 html += `
                                     <tr>
@@ -1835,7 +1963,6 @@
                         `;
                     }
                     
-                    // Section AHAFAHANA MIANATRA
                     const mianatraColumns = getColumnsByCategory('MIANATRA');
                     if (mianatraColumns.length > 0) {
                         html += `
@@ -1889,7 +2016,7 @@
                 return `<a href="${strValue}" target="_blank">🔗 Ouvrir le lien</a>`;
             }
             
-            return `<div style="font-size:15px; font-weight:500; white-space:pre-wrap; line-height:1.8; font-family: inherit;">${strValue}</div>`;
+            return `<div style="font-size:14px; font-weight:500; white-space:pre-wrap; line-height:1.6; font-family: inherit;">${strValue}</div>`;
         }
         
         function closeResults() {
