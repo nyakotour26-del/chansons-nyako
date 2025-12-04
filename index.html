@@ -786,6 +786,127 @@
             .fiche-title {
                 font-size: 1.4em;
             }
+            
+            /* AMÉLIORATION MOBILE POUR LA VISIBILITÉ DE L'IMAGE DE FOND */
+            .fiche-header {
+                background: 
+                    linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.92)),
+                    url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'),
+                    linear-gradient(90deg, 
+                        rgba(102, 126, 234, 0.7) 0%, 
+                        rgba(118, 75, 162, 0.7) 25%, 
+                        rgba(155, 89, 182, 0.7) 50%, 
+                        rgba(231, 76, 60, 0.7) 75%, 
+                        rgba(52, 152, 219, 0.7) 100%);
+                background-size: cover, cover, 100% 100%;
+                background-position: center;
+                background-blend-mode: overlay, normal, normal;
+                color: var(--text-color);
+                padding: 15px;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                min-height: 140px; /* Augmenté pour mobile */
+                display: flex;
+                align-items: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+                border-bottom: 4px solid var(--music-color);
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .fiche-header::before {
+                content: "🎵";
+                position: absolute;
+                font-size: 60px; /* Réduit pour mobile */
+                opacity: 0.15; /* Augmenté la visibilité */
+                top: 50%;
+                right: 20px;
+                transform: translateY(-50%);
+                z-index: 1;
+            }
+            
+            .song-info-header {
+                position: relative;
+                z-index: 2;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .fiche-title {
+                color: var(--secondary-color);
+                font-weight: bold;
+                margin-top: 0;
+                font-size: 1.5em;
+                text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+                line-height: 1.3;
+                background: rgba(255, 255, 255, 0.7);
+                padding: 8px 15px;
+                border-radius: 8px;
+                backdrop-filter: blur(3px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+            
+            .author {
+                color: var(--music-color);
+                font-weight: 600;
+                font-size: 1em;
+                font-style: italic;
+                margin-top: 8px;
+                background: rgba(255, 255, 255, 0.7);
+                padding: 5px 10px;
+                border-radius: 5px;
+                display: inline-block;
+                backdrop-filter: blur(3px);
+            }
+            
+            .song-music-info {
+                text-align: center;
+                background: rgba(255, 255, 255, 0.8);
+                padding: 10px;
+                border-radius: 8px;
+                backdrop-filter: blur(5px);
+                border: 1px solid rgba(0,0,0,0.1);
+                margin-top: 10px;
+                width: 100%;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            }
+            
+            /* Amélioration pour les très petits écrans */
+            @media (max-width: 480px) {
+                .fiche-header {
+                    background: 
+                        linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80'),
+                        linear-gradient(90deg, 
+                            rgba(102, 126, 234, 0.8) 0%, 
+                            rgba(118, 75, 162, 0.8) 25%, 
+                            rgba(155, 89, 182, 0.8) 50%, 
+                            rgba(231, 76, 60, 0.8) 75%, 
+                            rgba(52, 152, 219, 0.8) 100%);
+                    background-size: cover, cover, 100% 100%;
+                    min-height: 150px;
+                    padding: 12px;
+                }
+                
+                .fiche-header::before {
+                    font-size: 50px;
+                    opacity: 0.2;
+                }
+                
+                .fiche-title {
+                    font-size: 1.3em;
+                    padding: 6px 12px;
+                }
+                
+                .song-music-info {
+                    padding: 8px;
+                }
+                
+                .tempo, .tonality {
+                    font-size: 0.9em;
+                }
+            }
         }
         
         @media (max-width: 480px) {
@@ -815,10 +936,6 @@
                 width: 40px;
                 height: 40px;
                 font-size: 16px;
-            }
-            
-            .fiche-title {
-                font-size: 1.3em;
             }
         }
     </style>
