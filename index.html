@@ -1,408 +1,361 @@
-https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrOFSSi5FGMHn0O_QfhUqdB3Buv69F7s1dC-QDU2HCgKI3ii23/pub?gid=1410332882&single=true&output=csv<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎵 FICHE TECHNIQUE CHANSONS NY AKO</title>
+    <title>🎵 Gestionnaire de Chansons - Ny Ako</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #3498db;
             --secondary-color: #2c3e50;
             --accent-color: #e74c3c;
             --music-color: #9b59b6;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
             --light-color: #ecf0f1;
-            --text-color: #2c3e50;
+            --dark-color: #2c3e50;
+            --text-color: #333;
             --border-radius: 12px;
             --box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --section-color: #ff9800;
         }
-        
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
-            padding: 20px;
             padding-bottom: 100px;
         }
-        
-        .container {
+
+        /* HEADER/Navigation principale */
+        .main-nav {
+            background: linear-gradient(135deg, var(--secondary-color), var(--dark-color));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
             max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 25px;
-        }
-        
-        /* HEADER MODIFIÉ - HAUTEUR RÉDUITE */
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: var(--gradient);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            grid-column: 1 / -1;
-            color: white;
-            position: relative;
-            overflow: hidden;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        header::before {
-            content: "🎵";
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.1;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        /* TITRE MODIFIÉ - TAILLE RÉDUITE */
-        h1 {
-            color: white;
-            margin-bottom: 5px;
-            font-size: 1.8em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            line-height: 1.2;
-        }
-        
-        .subtitle {
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        .songs-list-section, .authors-list-section, .themes-list-section {
-            background-color: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            height: fit-content;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: sticky;
-            top: 20px;
-        }
-        
-        .songs-list-header, .authors-list-header, .themes-list-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-color);
+            padding: 0 2rem;
         }
-        
-        .songs-list-title, .authors-list-title, .themes-list-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: var(--secondary-color);
+
+        .nav-brand {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 1rem;
         }
-        
-        .songs-count, .authors-count, .themes-count {
-            background-color: var(--music-color);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-        }
-        
-        .songs-list, .authors-list, .themes-list {
-            list-style: none;
-        }
-        
-        .song-item, .author-item, .theme-item {
-            padding: 12px;
-            margin-bottom: 8px;
-            background-color: #f8f9fa;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .song-item::before, .author-item::before, .theme-item::before {
-            content: "♪";
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-        
-        .author-item::before {
-            content: "👤";
-        }
-        
-        .theme-item::before {
-            content: "🎭";
-        }
-        
-        .song-item:hover, .author-item:hover, .theme-item:hover {
-            background-color: white;
-            border-left-color: var(--music-color);
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        }
-        
-        .song-item:hover::before, .author-item:hover::before, .theme-item:hover::before {
-            opacity: 0.7;
-            transform: translateY(-50%) scale(1.2);
-        }
-        
-        .song-item.active, .author-item.active, .theme-item.active {
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            border-left-color: var(--accent-color);
-            font-weight: bold;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-        }
-        
-        .song-title, .author-name, .theme-name {
-            font-size: 0.9em;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        
-        .song-author {
-            font-size: 0.8em;
+
+        .nav-brand i {
+            font-size: 2rem;
             color: var(--music-color);
+        }
+
+        .nav-brand h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            opacity: 0.8;
             font-style: italic;
         }
-        
-        .search-section {
-            background-color: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            margin-bottom: 25px;
-            grid-column: 2;
+
+        .nav-search {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
         }
-        
-        /* BARRE DE RECHERCHE SUR LA MÊME LIGNE */
-        .search-form {
-            display: flex;
-            gap: 10px;
-            align-items: center;
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .search-container input {
             width: 100%;
-        }
-        
-        .search-input-group {
-            flex: 1;
-            display: flex;
-            gap: 0;
+            padding: 12px 15px 12px 45px;
+            border: none;
             border-radius: var(--border-radius);
-            overflow: hidden;
-            border: 1px solid #ddd;
-            transition: all 0.3s;
+            font-size: 1rem;
+            transition: var(--transition);
         }
-        
-        .search-input-group:focus-within {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-        
-        .search-input-group input {
-            flex: 1;
-            padding: 12px 15px;
-            font-size: 16px;
-            border: none;
+
+        .search-container input:focus {
             outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
         }
-        
-        .search-input-group button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-size: 16px;
-            min-width: auto;
-            width: auto;
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .search-input-group button:hover {
-            transform: none;
-        }
-        
-        .suggestions-container {
+
+        .suggestions-box {
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
             background: white;
-            border: 1px solid #ddd;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
-            z-index: 1000;
-            display: none;
-        }
-        
-        .suggestion-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            border-bottom: 1px solid #f0f0f0;
-            transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.9em;
-        }
-        
-        .suggestion-item:hover {
-            background-color: var(--light-color);
-        }
-        
-        .suggestion-item.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        
-        /* BOUTONS FLOTTANTS */
-        .floating-buttons {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 1000;
-        }
-        
-        .floating-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .floating-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-        
-        .floating-button.home {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
-        }
-        
-        .floating-button.songs {
-            background: linear-gradient(135deg, #3498db, #2980b9);
-        }
-        
-        .floating-button.list {
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        }
-        
-        .floating-button.search-btn {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-        
-        .floating-button.lock {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-        }
-        
-        /* BULLE POUR LE CADENAS */
-        .lock-bubble {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: white;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            width: 250px;
             display: none;
             z-index: 1001;
         }
-        
-        .lock-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: white transparent transparent;
-        }
-        
-        .lock-bubble input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        
-        .lock-bubble button {
-            width: 100%;
-            padding: 10px;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 5px;
+
+        .suggestion-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
             cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
         }
-        
-        /* TITRE FIGÉ AVEC FOND MULTICOLORE (comme le 2ème modèle) */
-        .fiche-header {
+
+        .suggestion-item:hover {
+            background-color: var(--light-color);
+        }
+
+        .suggestion-song {
+            font-size: 0.8rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--secondary-color);
+        }
+
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 12px;
+            background: var(--light-color);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .songs-list, .authors-list, .themes-list, .genres-list {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .songs-list li, .authors-list li, .themes-list li, .genres-list li {
+            padding: 10px 15px;
+            margin-bottom: 5px;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .songs-list li:hover, .authors-list li:hover, .themes-list li:hover, .genres-list li:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .songs-list li.active, .authors-list li.active, .themes-list li.active, .genres-list li.active {
+            background: var(--music-color);
+            color: white;
+        }
+
+        .song-title-small {
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .song-author-small {
+            font-size: 0.8em;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* CONTENU PRINCIPAL */
+        .main-content {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            min-height: 600px;
+            overflow: hidden;
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .welcome-icon {
+            color: var(--music-color);
+            margin-bottom: 2rem;
+        }
+
+        .welcome-message h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .welcome-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            min-width: 120px;
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--music-color);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-card span {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: block;
+        }
+
+        /* FICHE CHANSON - NOUVELLE PRÉSENTATION */
+        .song-detail {
+            padding: 0;
+        }
+
+        .song-header {
             background: 
                 linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95)),
-                url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'),
                 linear-gradient(90deg, 
                     rgba(102, 126, 234, 0.6) 0%, 
                     rgba(118, 75, 162, 0.6) 25%, 
                     rgba(155, 89, 182, 0.6) 50%, 
                     rgba(231, 76, 60, 0.6) 75%, 
                     rgba(52, 152, 219, 0.6) 100%);
-            background-size: cover, cover, 100% 100%;
-            background-position: center;
-            background-blend-mode: overlay;
+            background-size: cover, 100% 100%;
             color: var(--text-color);
-            padding: 20px;
+            padding: 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -412,8 +365,8 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             border-bottom: 3px solid var(--music-color);
         }
-        
-        .fiche-header::before {
+
+        .song-header::before {
             content: "🎵";
             position: absolute;
             font-size: 80px;
@@ -422,18 +375,18 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             right: 30px;
             transform: translateY(-50%);
         }
-        
+
         .song-info-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
         }
-        
+
         .song-title-info {
             flex: 1;
         }
-        
+
         .song-music-info {
             text-align: right;
             background: rgba(255, 255, 255, 0.8);
@@ -442,42 +395,41 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             backdrop-filter: blur(5px);
             border: 1px solid rgba(0,0,0,0.1);
         }
-        
-        /* TITRE DE LA CHANSON EN COULEUR (pas en blanc) */
+
         .fiche-title {
             color: var(--secondary-color);
             font-weight: bold;
             margin-top: 0;
-            font-size: 1.6em;
+            font-size: 1.8em;
             text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
             line-height: 1.3;
         }
-        
+
         .author {
             color: var(--music-color);
             font-weight: 600;
-            font-size: 1em;
+            font-size: 1.1em;
             font-style: italic;
             margin-top: 8px;
         }
-        
+
         .tempo {
             font-size: 1.1em;
             font-weight: bold;
             margin-bottom: 5px;
             color: var(--accent-color);
         }
-        
+
         .tonality {
             font-size: 1em;
             font-weight: 500;
             color: var(--primary-color);
         }
-        
+
         .section-title {
             font-size: 1.2em;
             font-weight: bold;
-            color: var(--section-color);
+            color: var(--primary-color);
             margin: 25px 0 12px 0;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--light-color);
@@ -485,18 +437,20 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             align-items: center;
             gap: 10px;
         }
-        
+
         .section-content {
             background: white;
-            padding: 0;
+            padding: 1.5rem;
             border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        
+
         .data-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         .data-table th {
             text-align: left;
             padding: 15px;
@@ -510,7 +464,7 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             word-wrap: break-word;
             border-bottom: 1px solid #ddd;
         }
-        
+
         .data-table td {
             padding: 15px;
             font-size: 14px;
@@ -519,19 +473,19 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             border-bottom: 1px solid #ddd;
             background-color: white;
         }
-        
+
         .data-table tr:nth-child(even) td {
             background: #f9f9f9;
         }
-        
+
         .data-table tr:hover td {
             background-color: #f0f7ff;
         }
-        
+
         .lyrics-container {
             margin: 15px 0;
         }
-        
+
         .lyrics-box {
             border: 2px solid var(--music-color);
             border-radius: var(--border-radius);
@@ -540,7 +494,7 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             background: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
-        
+
         .lyrics-title {
             font-weight: bold;
             color: var(--music-color);
@@ -550,69 +504,488 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             align-items: center;
             gap: 8px;
         }
-        
+
         .lyrics-content {
             font-size: 15px;
             line-height: 1.6;
             white-space: pre-wrap;
             font-family: inherit;
-        }
-        
-        .data-table img {
-            max-width: 95%;
-            max-height: 200px;
-            display: block;
-            margin: 5px auto;
+            background: #f8f9fa;
+            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            border-left: 4px solid var(--music-color);
         }
-        
-        .data-table a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            padding: 6px 12px;
-            background-color: #e3f2fd;
-            border-radius: 6px;
-            transition: all 0.2s;
+
+        /* SECTION TONONKIRA - Multiples paroles */
+        .tononkira-section {
+            margin: 20px 0;
         }
-        
-        .data-table a:hover {
-            text-decoration: none;
-            background-color: var(--primary-color);
-            color: white;
+
+        .tononkira-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--music-color);
         }
-        
-        .no-results {
-            text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
-        }
-        
-        .no-results-icon {
-            font-size: 50px;
+
+        .tononkira-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin-bottom: 15px;
-            opacity: 0.5;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #dee2e6;
         }
-        
+
+        .tononkira-type {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tononkira-language {
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        .tononkira-content {
+            font-size: 15px;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        /* DEBUG PANEL */
+        .debug-panel {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 15px;
+            max-width: 300px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 999;
+            display: none;
+            font-size: 12px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .debug-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .debug-section {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .debug-section h4 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .debug-item {
+            margin: 3px 0;
+            padding: 2px 5px;
+            background: #f8f9fa;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .column-match {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .column-mismatch {
+            color: var(--accent-color);
+        }
+
+        /* MEDIA PREVIEW */
+        .media-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .media-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+
+        .media-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .youtube-preview {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .youtube-preview iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .audio-preview {
+            padding: 20px;
+            text-align: center;
+            background: #e3f2fd;
+        }
+
+        .audio-preview i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* BOUTONS FLOTTANTS */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--music-color), #8e44ad);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .export-bubble {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 10px;
+            min-width: 200px;
+            display: none;
+            z-index: 1001;
+        }
+
+        .export-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+
+        .export-option {
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .export-option:hover {
+            background: var(--light-color);
+        }
+
+        /* MODALS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 50px auto;
+            max-width: 90%;
+            width: 1000px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--secondary-color), var(--dark-color));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th {
+            background: var(--light-color);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--secondary-color);
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .clickable {
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .clickable:hover {
+            text-decoration: underline;
+            color: var(--accent-color);
+        }
+
+        .remark-card,
+        .lyrics-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .remark-card:hover,
+        .lyrics-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .lyrics-preview {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+
+        .form-group {
+            margin: 1rem 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .songs-checkbox-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 2px solid #ddd;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkbox-item:last-child {
+            border-bottom: none;
+        }
+
+        .solfa-image {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+        }
+
         .loading {
             text-align: center;
-            padding: 20px;
-            display: none;
-            grid-column: 1 / -1;
+            padding: 3rem;
+            color: var(--secondary-color);
         }
-        
+
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: var(--primary-color);
+            border-left-color: var(--music-color);
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 1rem;
         }
-        
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* NOTATIONS SECTION */
+        .notations-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .notation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .notation-table th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .notation-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .notation-table tr:hover {
+            background-color: #f5f7fa;
+        }
+
+        .song-link {
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .song-link:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* MESSAGES */
         .success-message {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             color: white;
@@ -623,7 +996,7 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             font-size: 0.9em;
         }
-        
+
         .error-message {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
@@ -634,116 +1007,80 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             box-shadow: 0 3px 10px rgba(0,0,0,0.1);
             font-size: 0.9em;
         }
-        
-        .tek-input-container {
-            display: none;
+
+        .password-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            margin: 100px auto;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .password-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .password-error {
+            color: var(--accent-color);
             margin-top: 10px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: var(--border-radius);
-            border: 1px solid #ddd;
-        }
-        
-        .results-section {
             display: none;
-            background-color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden;
-            grid-column: 2;
-            animation: fadeIn 0.5s ease;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .result-header {
-            background: var(--gradient);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .result-content {
-            padding: 20px;
-        }
-        
-        .fiche-item {
-            margin-bottom: 30px;
-            border: 1px solid #e1e1e1;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .fiche-item:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transform: translateY(-3px);
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
-        @media (max-width: 1024px) {
+
+        /* MEDIA QUERIES */
+        @media (max-width: 1200px) {
             .container {
                 grid-template-columns: 1fr;
             }
             
-            .lists-container {
-                grid-column: 1;
+            .sidebar {
                 position: static;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
             }
             
-            .search-section, .results-section {
-                grid-column: 1;
+            .modal-content {
+                width: 95%;
             }
             
-            .floating-buttons {
-                bottom: 20px;
-                right: 20px;
+            .debug-panel {
+                display: none !important;
             }
             
-            .floating-button {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+            .debug-toggle {
+                display: none !important;
             }
         }
-        
+
         @media (max-width: 768px) {
-            header {
-                height: 100px;
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 1.5em;
-            }
-            
-            .subtitle {
-                font-size: 0.8em;
-            }
-            
-            .lists-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .search-form {
+            .nav-container {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
+                padding: 1rem;
             }
             
-            .search-input-group {
-                width: 100%;
+            .nav-search {
+                margin: 0;
+                max-width: 100%;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .welcome-stats {
+                flex-direction: column;
+                align-items: center;
             }
             
             .song-info-header {
@@ -763,47 +1100,34 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             }
             
             .floating-buttons {
-                bottom: 15px;
-                right: 15px;
-                gap: 10px;
+                bottom: 20px;
+                right: 20px;
             }
             
-            .floating-button {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-            }
-            
-            .lock-bubble {
-                width: 200px;
-                right: -50px;
-            }
-            
-            .lock-bubble::after {
-                right: 70px;
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
             }
             
             .fiche-title {
-                font-size: 1.4em;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-                padding-bottom: 80px;
-            }
-            
-            header {
-                height: 80px;
-            }
-            
-            h1 {
                 font-size: 1.3em;
             }
             
-            .subtitle {
-                font-size: 0.7em;
+            .tononkira-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .tononkira-language {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .song-header {
+                padding: 1rem;
             }
             
             .floating-buttons {
@@ -811,317 +1135,367 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
                 right: 10px;
             }
             
-            .floating-button {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
+            .nav-brand h1 {
+                font-size: 1.2rem;
             }
             
-            .fiche-title {
-                font-size: 1.3em;
+            .section-content {
+                padding: 1rem;
+            }
+            
+            .tononkira-content {
+                padding: 15px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>FICHE TECHNIQUE CHANSONS NY AKO</h1>
-            <p class="subtitle">Consultation des données des chansons en détails</p>
-        </header>
-        
-        <div class="lists-container">
-            <section class="songs-list-section" id="songsListSection">
-                <div class="songs-list-header">
-                    <div class="songs-list-title">📜 Liste des Chansons</div>
-                    <div class="songs-count" id="songsCount">0</div>
-                </div>
-                <ul class="songs-list" id="songsList">
-                    <!-- La liste des chansons sera générée ici -->
-                </ul>
-            </section>
-            
-            <section class="authors-list-section" id="authorsListSection">
-                <div class="authors-list-header">
-                    <div class="authors-list-title">👤 Liste des Auteurs</div>
-                    <div class="authors-count" id="authorsCount">0</div>
-                </div>
-                <ul class="authors-list" id="authorsList">
-                    <!-- La liste des auteurs sera générée ici -->
-                </ul>
-            </section>
-            
-            <section class="themes-list-section" id="themesListSection">
-                <div class="themes-list-header">
-                    <div class="themes-list-title">🎭 Liste des Thèmes</div>
-                    <div class="themes-count" id="themesCount">0</div>
-                </div>
-                <ul class="themes-list" id="themesList">
-                    <!-- La liste des thèmes sera générée ici -->
-                </ul>
-            </section>
-        </div>
-        
-        <section class="search-section">
-            <form id="searchForm" class="search-form" autocomplete="off">
-                <div class="search-input-group">
-                    <input type="text" id="searchText" placeholder="Titre, auteur, paroles..." autocomplete="off">
-                    <button type="submit" title="Rechercher">🔍</button>
-                </div>
-                <div class="suggestions-container" id="suggestionsContainer"></div>
-            </form>
-            
-            <div class="tek-input-container" id="tekInputContainer" style="display: none;">
-                <label for="tekCode">Code d'accès :</label>
-                <input type="password" id="tekCode" placeholder="Entrez le code...">
-                <button id="submitTekCode" style="margin-top: 10px; width: auto;">Valider</button>
-            </div>
-        </section>
-        
-        <div class="loading" id="loadingIndicator">
-            <div class="spinner"></div>
-            <p>Chargement des chansons depuis Google Sheets...</p>
-        </div>
+    <!-- Debug Toggle Button -->
+    <button class="debug-toggle" id="debugToggle" title="Afficher les infos de débogage">
+        <i class="fas fa-bug"></i>
+    </button>
 
-        <div id="dataInfo" style="display: none;"></div>
-        
-        <section class="results-section" id="resultsSection">
-            <div class="result-header">
-                <h2 id="resultTitle">Résultats de la recherche</h2>
-                <button id="closeResults">✕ Fermer</button>
-            </div>
-            <div class="result-content" id="resultContent">
-                <!-- Les résultats seront affichés ici -->
-            </div>
-        </section>
+    <!-- Debug Panel -->
+    <div class="debug-panel" id="debugPanel">
+        <h3 style="color: var(--accent-color); margin-bottom: 10px;">🔧 Debug Info</h3>
+        <div class="debug-section">
+            <h4>En-têtes détectés (<span id="headerCount">0</span>)</h4>
+            <div id="headersList"></div>
+        </div>
+        <div class="debug-section">
+            <h4>Colonnes importantes</h4>
+            <div id="columnDetection"></div>
+        </div>
+        <div class="debug-section">
+            <h4>Colonnes Tononkira</h4>
+            <div id="tononkiraColumnsDebug"></div>
+        </div>
+        <div class="debug-section">
+            <h4>Données de test</h4>
+            <div id="testData"></div>
+        </div>
     </div>
 
-    <!-- BOUTONS FLOTTANTS -->
-    <div class="floating-buttons">
-        <div class="lock-bubble" id="lockBubble">
-            <input type="password" id="floatingTekCode" placeholder="Entrez le code d'accès">
-            <button id="floatingSubmitTekCode">Déverrouiller</button>
+    <!-- Navigation principale -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-music"></i>
+                <h1>Gestionnaire de Chansons</h1>
+                <span class="subtitle">Ny Ako</span>
+            </div>
+            
+            <div class="nav-search">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Rechercher une chanson, auteur, thème...">
+                    <div class="suggestions-box" id="suggestionsBox"></div>
+                </div>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="btn btn-primary" onclick="showAllSongs()">
+                    <i class="fas fa-list"></i> Toutes les chansons
+                </button>
+                <button class="btn btn-secondary" onclick="window.open('https://docs.google.com/spreadsheets/d/1LOZrYIUEVtqyBwJ1atHyC0nCzDiXVmHHmZfDNaJOBlI/edit?gid=1410332882', '_blank')">
+                    <i class="fas fa-external-link-alt"></i> Source
+                </button>
+            </div>
         </div>
+    </nav>
+
+    <!-- Conteneur principal -->
+    <main class="container">
+        <!-- Panneau latéral -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3><i class="fas fa-filter"></i> Filtres rapides</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn" onclick="showSingerRemarks()">
+                        <i class="fas fa-microphone"></i> Remarques chanteurs
+                    </button>
+                    <button class="filter-btn" onclick="showMusicianRemarks()">
+                        <i class="fas fa-guitar"></i> Remarques musiciens
+                    </button>
+                    <button class="filter-btn" onclick="showAllLyrics()">
+                        <i class="fas fa-file-alt"></i> Tous les tononkira
+                    </button>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><i class="fas fa-music"></i> Chansons</h3>
+                <ul class="songs-list" id="songsList">
+                    <!-- Liste des chansons chargée dynamiquement -->
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><i class="fas fa-users"></i> Auteurs</h3>
+                <ul class="authors-list" id="authorsList">
+                    <!-- Liste des auteurs chargée dynamiquement -->
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3><i class="fas fa-tags"></i> Thèmes</h3>
+                <ul class="themes-list" id="themesList">
+                    <!-- Liste des thèmes chargée dynamiquement -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Contenu principal -->
+        <section class="main-content">
+            <div id="contentArea">
+                <!-- Contenu chargé dynamiquement -->
+                <div class="welcome-message" id="welcomeMessage">
+                    <div class="welcome-icon">
+                        <i class="fas fa-music fa-4x"></i>
+                    </div>
+                    <h2>Bienvenue dans le gestionnaire de chansons</h2>
+                    <p>Sélectionnez une chanson dans la liste ou utilisez les boutons flottants pour accéder aux différentes fonctionnalités.</p>
+                    <div class="welcome-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-file-audio"></i>
+                            <span id="totalSongs">0</span>
+                            <small>Chansons</small>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-user-edit"></i>
+                            <span id="totalAuthors">0</span>
+                            <small>Auteurs</small>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-tag"></i>
+                            <span id="totalThemes">0</span>
+                            <small>Thèmes</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="loading" id="loadingIndicator" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>Chargement des données depuis Google Sheets...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Boutons flottants -->
+    <div class="floating-buttons">
+        <button class="floating-btn" onclick="toggleSongsTable()" title="Tableau des chansons">
+            <i class="fas fa-table"></i>
+        </button>
         
-        <button class="floating-button home" title="Retour à l'accueil">🏠</button>
-        <button class="floating-button songs" title="Liste des chansons">🎵</button>
-        <button class="floating-button list" title="Toutes les fiches">📋</button>
-        <button class="floating-button search-btn" title="Rechercher">🔍</button>
-        <button class="floating-button lock" title="Déverrouiller l'accès spécial">🔓</button>
+        <button class="floating-btn" onclick="showExportOptions()" title="Options d'export">
+            <i class="fas fa-download"></i>
+        </button>
+        
+        <button class="floating-btn" onclick="showPasswordModal()" title="Déverrouiller les données">
+            <i class="fas fa-lock" id="lockIcon"></i>
+        </button>
+        
+        <div class="export-bubble" id="exportBubble">
+            <div class="export-option" onclick="exportToPDF()">
+                <i class="fas fa-file-pdf"></i> Exporter en PDF
+            </div>
+            <div class="export-option" onclick="exportLyricsToPDF()">
+                <i class="fas fa-file-alt"></i> Exporter paroles
+            </div>
+            <div class="export-option" onclick="showEmailForm()">
+                <i class="fas fa-envelope"></i> Envoyer par mail
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tableau des chansons -->
+    <div id="songsTableModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-table"></i> Tableau des chansons</h3>
+                <button class="close-modal" onclick="closeModal('songsTableModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lohateny</th>
+                            <th>Mpanoratra</th>
+                            <th>Lohahevitra lehibe</th>
+                            <th>Karazan-kira</th>
+                            <th>Gadona/Tempo</th>
+                            <th>Tonalité</th>
+                        </tr>
+                    </thead>
+                    <tbody id="songsTableBody">
+                        <!-- Rempli dynamiquement -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Email -->
+    <div id="emailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-envelope"></i> Envoyer par email</h3>
+                <button class="close-modal" onclick="closeModal('emailModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="songs-checkbox-list" id="emailSongsList">
+                    <!-- Liste des chansons avec checkbox -->
+                </div>
+                <div class="form-group">
+                    <label for="emailRecipient">Destinataire</label>
+                    <input type="email" id="emailRecipient" placeholder="email@exemple.com">
+                </div>
+                <button class="btn btn-primary" onclick="sendEmail()">Envoyer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Password -->
+    <div id="passwordModal" class="modal">
+        <div class="password-modal-content">
+            <h2><i class="fas fa-lock"></i> Déverrouiller les données</h2>
+            <p>Entrez le mot de passe pour accéder à la colonne "Rohin'ity hira ity" :</p>
+            <input type="password" id="passwordInput" class="password-input" placeholder="Mot de passe">
+            <div id="passwordError" class="password-error">Mot de passe incorrect. Essayez "tek".</div>
+            <div style="margin-top: 20px;">
+                <button id="submitPassword" style="padding: 10px 30px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+                    Valider
+                </button>
+                <button id="cancelPassword" style="padding: 10px 30px; background: #ccc; color: #333; border: none; border-radius: 5px; cursor: pointer;">
+                    Annuler
+                </button>
+            </div>
+        </div>
     </div>
 
     <script>
+        // VOTRE URL Google Sheets
         const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXIJyclDLf2asT-FMnmaeWMSPtQHxpAC1wiGJ_xzXbl2StziwiUw9ElW9XyK5yemQ-PHaWlRQbtdHb/pub?gid=602871919&single=true&output=csv';
+        const ORIGINAL_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1LOZrYIUEVtqyBwJ1atHyC0nCzDiXVmHHmZfDNaJOBlI/edit?usp=sharing';
         
+        // Variables globales
         let sheetData = [];
         let headers = [];
         let allSongTitles = [];
         let allAuthors = [];
         let allThemes = [];
-        let columnsWithData = [];
-        let showRohinityColumn = false;
-        let rohinityColumnIndex = -1;
-        let songTitleColumnIndex = -1;
-        let authorColumnIndex = -1;
-        let tempoColumnIndex = -1;
-        let tonalityColumnIndex = -1;
-        let themeColumnIndex = -1;
+        let allGenres = [];
+        let allTempos = [];
+        let allTonalities = [];
+        
+        // Index des colonnes importantes - MIS À JOUR AVEC DES NOMS EXACTS
+        let columnIndices = {
+            title: -1,
+            author: -1,
+            mainTheme: -1, // "Lohahevitra lehibe" EXACT
+            genre: -1,
+            tempo: -1,
+            tonality: -1,
+            songIdea: -1, // "Hevitra fonosin'ny hira"
+            karazanKira: -1, // "Karazan-kira"
+            gadona: -1, // "Gadona"
+            structure: -1,
+            singersNotes: -1, // "Fanamarihana feo & fihira"
+            musiciansNotes: -1, // "Fanamarihana mozika"
+            history: -1, // "Historique Fanavaozana"
+            audioLinks: -1, // "Rohy hafa AUDIO"
+            videoLinks: -1, // "Rohy hafa VIDEO"
+            solfa: -1,
+            rohinity: -1, // "Rohin'ity hira ity" EXACT
+        };
+        
+        // Nouveau: Stocker les indices de toutes les colonnes Tononkira
+        let tononkiraColumns = [];
+        
+        // Variable pour suivre l'état de déverrouillage
+        let isUnlocked = false;
 
+        // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            const searchInput = document.getElementById('searchText');
-            const suggestionsContainer = document.getElementById('suggestionsContainer');
-            
-            document.getElementById('searchForm').addEventListener('submit', handleSearch);
-            document.getElementById('closeResults').addEventListener('click', closeResults);
-            
-            // Gestion de l'accès TEK
-            document.getElementById('submitTekCode').addEventListener('click', validateTekCode);
-            document.getElementById('floatingSubmitTekCode').addEventListener('click', validateFloatingTekCode);
-            
-            searchInput.setAttribute('autocomplete', 'off');
-            searchInput.setAttribute('autocorrect', 'off');
-            searchInput.setAttribute('autocapitalize', 'off');
-            searchInput.setAttribute('spellcheck', 'false');
-            
-            searchInput.addEventListener('input', function() {
-                showSuggestions(this.value);
-            });
-            
-            searchInput.addEventListener('focus', function() {
-                if (this.value) {
-                    showSuggestions(this.value);
-                }
-            });
-            
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    navigateSuggestions(e.key);
-                }
-                
-                if (e.key === 'Enter' && suggestionsContainer.style.display === 'block') {
-                    e.preventDefault();
-                    selectActiveSuggestion();
-                }
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
-                    suggestionsContainer.style.display = 'none';
-                }
-            });
-            
-            // Gestion des boutons flottants
-            document.querySelector('.floating-button.home').addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            document.querySelector('.floating-button.songs').addEventListener('click', function() {
-                document.getElementById('songsListSection').scrollIntoView({ behavior: 'smooth' });
-            });
-            
-            document.querySelector('.floating-button.list').addEventListener('click', function() {
-                showAllData();
-            });
-            
-            document.querySelector('.floating-button.search-btn').addEventListener('click', function() {
-                document.getElementById('searchText').focus();
-            });
-            
-            document.querySelector('.floating-button.lock').addEventListener('click', function() {
-                const lockBubble = document.getElementById('lockBubble');
-                lockBubble.style.display = lockBubble.style.display === 'block' ? 'none' : 'block';
-            });
-            
+            initEventListeners();
             loadDataFromGoogleSheets();
         });
         
-        function validateFloatingTekCode() {
-            const tekCode = document.getElementById('floatingTekCode').value;
-            if (tekCode === 'tek') {
-                showRohinityColumn = true;
-                document.getElementById('lockBubble').style.display = 'none';
-                document.getElementById('floatingTekCode').value = '';
-                
-                const dataInfo = document.getElementById('dataInfo');
-                dataInfo.innerHTML = `
-                    <div class="success-message">
-                        ✅ Accès spécial activé - Colonne "Rohin'ity hira ity" maintenant visible
-                    </div>
-                `;
-                dataInfo.style.display = 'block';
-                
-                if (document.getElementById('resultsSection').style.display === 'block') {
-                    const currentSearch = document.getElementById('searchText').value;
-                    if (currentSearch) {
-                        const results = searchData(currentSearch);
-                        displayResults(results, `Résultats pour "${currentSearch}"`);
-                    } else {
-                        displayResults(sheetData, 'Toutes les chansons');
-                    }
+        function initEventListeners() {
+            // Recherche
+            document.getElementById('globalSearch').addEventListener('input', handleSearchInput);
+            
+            // Password
+            document.getElementById('submitPassword').addEventListener('click', checkPassword);
+            document.getElementById('cancelPassword').addEventListener('click', () => {
+                document.getElementById('passwordModal').style.display = 'none';
+            });
+            
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
                 }
-            } else {
-                alert('Code incorrect. Veuillez réessayer.');
-            }
-        }
-        
-        function validateTekCode() {
-            const tekCode = document.getElementById('tekCode').value;
-            if (tekCode === 'tek') {
-                showRohinityColumn = true;
-                document.getElementById('tekInputContainer').style.display = 'none';
-                document.getElementById('tekCode').value = '';
-                
-                const dataInfo = document.getElementById('dataInfo');
-                dataInfo.innerHTML = `
-                    <div class="success-message">
-                        ✅ Accès spécial activé - Colonne "Rohin'ity hira ity" maintenant visible
-                    </div>
-                `;
-                dataInfo.style.display = 'block';
-                
-                if (document.getElementById('resultsSection').style.display === 'block') {
-                    const currentSearch = document.getElementById('searchText').value;
-                    if (currentSearch) {
-                        const results = searchData(currentSearch);
-                        displayResults(results, `Résultats pour "${currentSearch}"`);
-                    } else {
-                        displayResults(sheetData, 'Toutes les chansons');
-                    }
+            });
+            
+            // Debug panel
+            document.getElementById('debugToggle').addEventListener('click', function() {
+                const panel = document.getElementById('debugPanel');
+                panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Fermer les modals en cliquant à l'extérieur
+            window.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal')) {
+                    e.target.style.display = 'none';
                 }
-            } else {
-                alert('Code incorrect. Veuillez réessayer.');
-            }
-        }
-        
-        function navigateSuggestions(key) {
-            const suggestions = document.querySelectorAll('.suggestion-item');
-            const activeSuggestion = document.querySelector('.suggestion-item.active');
-            
-            if (suggestions.length === 0) return;
-            
-            let nextIndex = 0;
-            
-            if (activeSuggestion) {
-                const currentIndex = Array.from(suggestions).indexOf(activeSuggestion);
-                if (key === 'ArrowDown') {
-                    nextIndex = (currentIndex + 1) % suggestions.length;
-                } else if (key === 'ArrowUp') {
-                    nextIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
+                if (!e.target.closest('.floating-btn') && !e.target.closest('.export-bubble')) {
+                    document.getElementById('exportBubble').style.display = 'none';
                 }
-                
-                activeSuggestion.classList.remove('active');
-            }
-            
-            suggestions[nextIndex].classList.add('active');
-            suggestions[nextIndex].scrollIntoView({ block: 'nearest' });
-        }
-        
-        function selectActiveSuggestion() {
-            const activeSuggestion = document.querySelector('.suggestion-item.active');
-            if (activeSuggestion) {
-                document.getElementById('searchText').value = activeSuggestion.getAttribute('data-value');
-                document.getElementById('suggestionsContainer').style.display = 'none';
-                handleSearch(new Event('submit'));
-            }
+                if (!e.target.closest('.debug-toggle') && !e.target.closest('.debug-panel')) {
+                    document.getElementById('debugPanel').style.display = 'none';
+                }
+            });
         }
         
         async function loadDataFromGoogleSheets() {
             console.log('🔍 Début du chargement des données...');
-            document.getElementById('loadingIndicator').style.display = 'block';
+            showLoading(true);
             
             try {
-                console.log('🔄 Essai 1: Accès direct...');
+                console.log('🔄 Chargement depuis Google Sheets...');
                 let response = await fetch(GOOGLE_SHEETS_URL);
                 
                 if (response.ok) {
                     const csvText = await response.text();
-                    console.log('✅ Succès avec accès direct');
+                    console.log('✅ Données chargées avec succès');
                     processCSVData(csvText);
                     return;
                 }
-                throw new Error(`Direct failed: ${response.status}`);
+                throw new Error(`Erreur HTTP: ${response.status}`);
                 
-            } catch (error1) {
-                console.log('❌ Échec accès direct:', error1.message);
+            } catch (error) {
+                console.log('❌ Échec du chargement:', error.message);
                 
                 try {
-                    console.log('🔄 Essai 2: AllOrigins...');
+                    console.log('🔄 Essai avec proxy...');
                     const proxyUrl = 'https://api.allorigins.win/raw?url=';
                     let response = await fetch(proxyUrl + encodeURIComponent(GOOGLE_SHEETS_URL));
                     
                     if (response.ok) {
                         const csvText = await response.text();
-                        console.log('✅ Succès avec AllOrigins');
+                        console.log('✅ Succès avec proxy');
                         processCSVData(csvText);
                         return;
                     }
-                    throw new Error(`AllOrigins failed: ${response.status}`);
+                    throw new Error(`Proxy failed: ${response.status}`);
                     
                 } catch (error2) {
-                    console.log('❌ Échec AllOrigins:', error2.message);
+                    console.log('❌ Échec complet:', error2.message);
                     showError('Impossible de charger les données. Vérifiez votre connexion internet.');
                 }
+            } finally {
+                showLoading(false);
             }
         }
 
@@ -1172,17 +1546,6 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             }
             
             console.log(`✅ Parsing terminé: ${lines.length} lignes détectées`);
-            
-            let newlineCount = 0;
-            lines.forEach(line => {
-                line.forEach(field => {
-                    if (field.includes('\n')) {
-                        newlineCount += field.split('\n').length - 1;
-                    }
-                });
-            });
-            console.log(`📊 ${newlineCount} retours à la ligne DANS les cellules (conservés)`);
-            
             return lines;
         }
         
@@ -1201,51 +1564,13 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
                 }
                 
                 headers = lines[0] || [];
-                console.log('🏷️ En-têtes détectés:', headers.length, 'colonnes');
+                console.log('🏷️ En-têtes détectés:', headers);
                 
-                rohinityColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("rohin'ity hira ity")
-                );
+                // Afficher les en-têtes dans le debug panel
+                updateDebugPanel(headers);
                 
-                if (rohinityColumnIndex === -1) {
-                    rohinityColumnIndex = headers.findIndex(header => 
-                        header && typeof header === 'string' && 
-                        header.toLowerCase().includes("rohinity")
-                    );
-                }
-                
-                songTitleColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("lohateny")
-                );
-                
-                authorColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("mpanoratra")
-                );
-                
-                tempoColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("tempo")
-                );
-                
-                tonalityColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("tonalite")
-                );
-                
-                themeColumnIndex = headers.findIndex(header => 
-                    header && typeof header === 'string' && 
-                    header.toLowerCase().includes("hevitra")
-                );
-                
-                console.log('🔍 Index de la colonne Rohin\'ity hira ity:', rohinityColumnIndex);
-                console.log('🔍 Index de la colonne LOHATENY:', songTitleColumnIndex);
-                console.log('🔍 Index de la colonne MPANORATRA:', authorColumnIndex);
-                console.log('🔍 Index de la colonne TEMPO:', tempoColumnIndex);
-                console.log('🔍 Index de la colonne TONALITE:', tonalityColumnIndex);
-                console.log('🔍 Index de la colonne HEVITRA FONOSIN\'NY HIRA:', themeColumnIndex);
+                // Détection des colonnes importantes - AVEC DÉTECTION EXACTE
+                detectImportantColumns(headers);
                 
                 sheetData = lines.slice(1).filter(row => 
                     row && row.some(cell => cell && cell.trim() !== '')
@@ -1258,354 +1583,346 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
                 }
                 
                 normalizeData();
-                detectColumnsWithData();
-                prepareSongTitles();
-                prepareAuthorsAndThemes();
+                prepareLists();
                 populateSongsList();
                 populateAuthorsList();
                 populateThemesList();
+                updateStats();
                 
-                showDataInfo();
+                // Test: afficher les premières données pour vérifier
+                testDataDetection();
+                
+                // Afficher toutes les chansons par défaut
+                showAllSongs();
                 
             } catch (error) {
                 console.error('❌ Erreur de traitement:', error);
                 showError(error.message);
-            } finally {
-                document.getElementById('loadingIndicator').style.display = 'none';
             }
         }
         
-        function prepareSongTitles() {
+        function updateDebugPanel(headers) {
+            document.getElementById('headerCount').textContent = headers.length;
+            
+            let headersHTML = '';
+            headers.forEach((header, index) => {
+                headersHTML += `
+                    <div class="debug-item">
+                        ${index}: "${header || '(vide)'}"
+                    </div>
+                `;
+            });
+            document.getElementById('headersList').innerHTML = headersHTML;
+        }
+        
+        function testDataDetection() {
+            if (sheetData.length > 0) {
+                const firstSong = sheetData[0];
+                let testHTML = '';
+                
+                // Test pour "Lohahevitra lehibe"
+                if (columnIndices.mainTheme !== -1) {
+                    const value = firstSong[columnIndices.mainTheme] || '(vide)';
+                    testHTML += `
+                        <div class="debug-item ${value !== '(vide)' ? 'column-match' : 'column-mismatch'}">
+                            <strong>Lohahevitra lehibe</strong> (col ${columnIndices.mainTheme}): ${value}
+                        </div>
+                    `;
+                } else {
+                    testHTML += `
+                        <div class="debug-item column-mismatch">
+                            <strong>Lohahevitra lehibe:</strong> NON DÉTECTÉ
+                        </div>
+                    `;
+                }
+                
+                // Test pour "Rohin'ity hira ity"
+                if (columnIndices.rohinity !== -1) {
+                    const value = firstSong[columnIndices.rohinity] || '(vide)';
+                    testHTML += `
+                        <div class="debug-item ${value !== '(vide)' ? 'column-match' : 'column-mismatch'}">
+                            <strong>Rohin'ity hira ity</strong> (col ${columnIndices.rohinity}): ${value.substring(0, 50)}${value.length > 50 ? '...' : ''}
+                        </div>
+                    `;
+                } else {
+                    testHTML += `
+                        <div class="debug-item column-mismatch">
+                            <strong>Rohin'ity hira ity:</strong> NON DÉTECTÉ
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('testData').innerHTML = testHTML;
+            }
+        }
+        
+        function detectImportantColumns(headers) {
+            // Réinitialiser tononkiraColumns
+            tononkiraColumns = [];
+            
+            console.log('🔍 Détection des colonnes importantes...');
+            console.log('En-têtes disponibles:', headers);
+            
+            // Recherche EXACTE d'abord, puis recherche partielle
+            for (let i = 0; i < headers.length; i++) {
+                const header = (headers[i] || '').trim();
+                const headerLower = header.toLowerCase();
+                
+                console.log(`  Colonne ${i}: "${header}" (${headerLower})`);
+                
+                // Détection EXACTE pour les colonnes critiques
+                if (header === "Lohahevitra lehibe") {
+                    columnIndices.mainTheme = i;
+                    console.log(`    ✅ DÉTECTÉ EXACT: Lohahevitra lehibe (colonne ${i})`);
+                }
+                
+                if (header === "Rohin'ity hira ity") {
+                    columnIndices.rohinity = i;
+                    console.log(`    ✅ DÉTECTÉ EXACT: Rohin'ity hira ity (colonne ${i})`);
+                }
+                
+                if (header === "Lohateny") {
+                    columnIndices.title = i;
+                    console.log(`    ✅ DÉTECTÉ EXACT: Lohateny (colonne ${i})`);
+                }
+                
+                if (header === "Mpanoratra") {
+                    columnIndices.author = i;
+                    console.log(`    ✅ DÉTECTÉ EXACT: Mpanoratra (colonne ${i})`);
+                }
+                
+                // Détection des colonnes Tononkira
+                if (headerLower.includes('tononkira')) {
+                    tononkiraColumns.push({
+                        index: i,
+                        name: header,
+                        isOriginal: headerLower.includes('original'),
+                        isTranslated: headerLower.includes('dikan') || headerLower.includes('traduit') || headerLower.includes('traduction') || headerLower.includes('hafa')
+                    });
+                    console.log(`    🎵 DÉTECTÉ: Tononkira - ${header} (colonne ${i})`);
+                }
+            }
+            
+            // Si pas trouvé exactement, chercher par correspondance partielle
+            if (columnIndices.mainTheme === -1) {
+                columnIndices.mainTheme = findColumnIndexPartial(headers, ['lohahevitra', 'thème principal', 'main theme']);
+                console.log(`    🔍 Recherche partielle Lohahevitra: ${columnIndices.mainTheme}`);
+            }
+            
+            if (columnIndices.rohinity === -1) {
+                columnIndices.rohinity = findColumnIndexPartial(headers, ['rohin\'ity', 'rohinity', 'origine', 'source']);
+                console.log(`    🔍 Recherche partielle Rohinity: ${columnIndices.rohinity}`);
+            }
+            
+            if (columnIndices.title === -1) {
+                columnIndices.title = findColumnIndexPartial(headers, ['lohateny', 'titre', 'title']);
+                console.log(`    🔍 Recherche partielle Titre: ${columnIndices.title}`);
+            }
+            
+            if (columnIndices.author === -1) {
+                columnIndices.author = findColumnIndexPartial(headers, ['mpanoratra', 'auteur', 'author']);
+                console.log(`    🔍 Recherche partielle Auteur: ${columnIndices.author}`);
+            }
+            
+            // Détection des autres colonnes
+            columnIndices.genre = findColumnIndexPartial(headers, ['karazan-kira', 'genre', 'type de musique']);
+            columnIndices.tempo = findColumnIndexPartial(headers, ['tempo', 'gadona/tempo', 'rythme']);
+            columnIndices.tonality = findColumnIndexPartial(headers, ['tonalité', 'tonalite', 'tonality']);
+            columnIndices.songIdea = findColumnIndexPartial(headers, ['hevitra fonosin\'ny hira', 'idée de la chanson']);
+            columnIndices.karazanKira = findColumnIndexPartial(headers, ['karazan-kira', 'genre musical']);
+            columnIndices.gadona = findColumnIndexPartial(headers, ['gadona']);
+            columnIndices.structure = findColumnIndexPartial(headers, ['structure']);
+            columnIndices.singersNotes = findColumnIndexPartial(headers, ['fanamarihana feo', 'fanamarihana fihira', 'notes pour chanteurs']);
+            columnIndices.musiciansNotes = findColumnIndexPartial(headers, ['fanamarihana mozika', 'notes pour musiciens']);
+            columnIndices.history = findColumnIndexPartial(headers, ['historique', 'fanavaozana']);
+            columnIndices.audioLinks = findColumnIndexPartial(headers, ['audio', 'rohy audio']);
+            columnIndices.videoLinks = findColumnIndexPartial(headers, ['video', 'rohy video']);
+            columnIndices.solfa = findColumnIndexPartial(headers, ['solfa', 'partition']);
+            
+            console.log('🔍 Résultat détection:');
+            console.log('  - Lohahevitra lehibe:', columnIndices.mainTheme);
+            console.log('  - Rohin\'ity hira ity:', columnIndices.rohinity);
+            console.log('  - Titre:', columnIndices.title);
+            console.log('  - Auteur:', columnIndices.author);
+            console.log('🎵 Colonnes Tononkira:', tononkiraColumns.length);
+            
+            // Mettre à jour le debug panel
+            updateColumnDetectionDebug();
+            updateTononkiraDebug();
+        }
+        
+        function findColumnIndexPartial(headers, keywords) {
+            for (let i = 0; i < headers.length; i++) {
+                const header = (headers[i] || '').toLowerCase().trim();
+                for (const keyword of keywords) {
+                    if (header.includes(keyword.toLowerCase())) {
+                        return i;
+                    }
+                }
+            }
+            return -1;
+        }
+        
+        function updateColumnDetectionDebug() {
+            let html = '';
+            for (const [key, value] of Object.entries(columnIndices)) {
+                const status = value !== -1 ? 'column-match' : 'column-mismatch';
+                const displayName = key === 'mainTheme' ? 'Lohahevitra lehibe' :
+                                  key === 'rohinity' ? 'Rohin\'ity hira ity' :
+                                  key === 'songIdea' ? 'Hevitra fonosin\'ny hira' :
+                                  key === 'singersNotes' ? 'Fanamarihana feo & fihira' :
+                                  key === 'musiciansNotes' ? 'Fanamarihana mozika' :
+                                  key;
+                
+                html += `
+                    <div class="debug-item ${status}">
+                        ${displayName}: ${value !== -1 ? `colonne ${value}` : 'NON DÉTECTÉ'}
+                    </div>
+                `;
+            }
+            document.getElementById('columnDetection').innerHTML = html;
+        }
+        
+        function updateTononkiraDebug() {
+            let html = '';
+            tononkiraColumns.forEach(col => {
+                html += `
+                    <div class="debug-item column-match">
+                        ${col.name} (col ${col.index}): ${col.isOriginal ? 'ORIGINAL' : col.isTranslated ? 'TRADUCTION' : 'AUTRE'}
+                    </div>
+                `;
+            });
+            if (tononkiraColumns.length === 0) {
+                html = '<div class="debug-item column-mismatch">Aucune colonne Tononkira détectée</div>';
+            }
+            document.getElementById('tononkiraColumnsDebug').innerHTML = html;
+        }
+        
+        function prepareLists() {
+            // Préparer les listes pour les filtres
             allSongTitles = sheetData
-                .map(row => row[songTitleColumnIndex] || '')
+                .map(row => row[columnIndices.title] || '')
                 .filter(value => value && value.trim() !== '')
                 .map(value => value.trim());
             
-            console.log('💡 Titres de chansons chargés:', allSongTitles.length);
-        }
-        
-        function prepareAuthorsAndThemes() {
             allAuthors = [...new Set(
                 sheetData
-                    .map(row => row[authorColumnIndex] || '')
+                    .map(row => row[columnIndices.author] || '')
                     .filter(value => value && value.trim() !== '')
                     .map(value => value.trim())
             )];
             
+            // CORRECTION: Utiliser columnIndices.mainTheme pour les thèmes
             allThemes = [...new Set(
                 sheetData
-                    .map(row => row[themeColumnIndex] || '')
+                    .map(row => row[columnIndices.mainTheme] || '')
                     .filter(value => value && value.trim() !== '')
                     .map(value => value.trim())
             )];
             
-            console.log('👤 Auteurs chargés:', allAuthors.length);
-            console.log('🎭 Thèmes chargés:', allThemes.length);
+            console.log('📊 Listes préparées:');
+            console.log('  - Titres:', allSongTitles.length);
+            console.log('  - Auteurs:', allAuthors.length);
+            console.log('  - Thèmes:', allThemes.length);
+            
+            // Debug: Afficher les 5 premiers thèmes
+            console.log('  - Exemple thèmes:', allThemes.slice(0, 5));
         }
         
         function populateSongsList() {
             const songsList = document.getElementById('songsList');
-            const songsCount = document.getElementById('songsCount');
-            
             songsList.innerHTML = '';
             
-            sheetData.forEach((row, index) => {
-                const songTitle = row[songTitleColumnIndex] || `Chanson ${index + 1}`;
-                const author = row[authorColumnIndex] || '';
-                
-                const listItem = document.createElement('li');
-                listItem.className = 'song-item';
-                listItem.dataset.index = index;
-                listItem.innerHTML = `
-                    <div class="song-title">${songTitle}</div>
-                    ${author ? `<div class="song-author">${author}</div>` : ''}
-                `;
-                
-                listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.song-item').forEach(item => {
-                        item.classList.remove('active');
+            allSongTitles.forEach((title, index) => {
+                if (index < 20) {
+                    const songData = sheetData.find(row => 
+                        (row[columnIndices.title] || '').trim() === title
+                    );
+                    const author = songData ? (songData[columnIndices.author] || '') : '';
+                    
+                    const listItem = document.createElement('li');
+                    listItem.dataset.title = title;
+                    listItem.innerHTML = `
+                        <div class="song-title-small">${escapeHtml(title)}</div>
+                        ${author ? `<div class="song-author-small">${escapeHtml(author)}</div>` : ''}
+                    `;
+                    
+                    listItem.addEventListener('click', function() {
+                        document.querySelectorAll('.songs-list li').forEach(item => {
+                            item.classList.remove('active');
+                        });
+                        
+                        this.classList.add('active');
+                        const songIndex = sheetData.findIndex(row => 
+                            (row[columnIndices.title] || '').trim() === title
+                        );
+                        if (songIndex !== -1) {
+                            showSongDetail(songIndex);
+                        }
                     });
                     
-                    this.classList.add('active');
-                    displaySingleSong(index);
-                });
-                
-                songsList.appendChild(listItem);
+                    songsList.appendChild(listItem);
+                }
             });
             
-            songsCount.textContent = sheetData.length;
+            if (allSongTitles.length > 20) {
+                const moreItem = document.createElement('li');
+                moreItem.innerHTML = `<div class="song-title-small" style="color: var(--music-color); text-align: center;">... ${allSongTitles.length - 20} autres chansons</div>`;
+                moreItem.addEventListener('click', showAllSongs);
+                songsList.appendChild(moreItem);
+            }
         }
         
         function populateAuthorsList() {
             const authorsList = document.getElementById('authorsList');
-            const authorsCount = document.getElementById('authorsCount');
-            
             authorsList.innerHTML = '';
             
-            allAuthors.forEach((author, index) => {
+            allAuthors.forEach((author) => {
                 const listItem = document.createElement('li');
-                listItem.className = 'author-item';
+                listItem.textContent = author;
                 listItem.dataset.author = author;
-                listItem.innerHTML = `
-                    <div class="author-name">${author}</div>
-                `;
                 
                 listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.author-item').forEach(item => {
+                    document.querySelectorAll('.authors-list li').forEach(item => {
                         item.classList.remove('active');
                     });
                     
                     this.classList.add('active');
-                    const authorName = this.getAttribute('data-author');
-                    const results = searchData(authorName);
-                    displayResults(results, `Chansons de "${authorName}"`);
+                    const results = filterByColumn(columnIndices.author, author);
+                    displayFilteredResults(results, `Chansons de "${author}"`);
                 });
                 
                 authorsList.appendChild(listItem);
             });
-            
-            authorsCount.textContent = allAuthors.length;
         }
         
         function populateThemesList() {
             const themesList = document.getElementById('themesList');
-            const themesCount = document.getElementById('themesCount');
-            
             themesList.innerHTML = '';
             
-            allThemes.forEach((theme, index) => {
+            allThemes.forEach((theme) => {
                 const listItem = document.createElement('li');
-                listItem.className = 'theme-item';
+                listItem.textContent = theme;
                 listItem.dataset.theme = theme;
-                listItem.innerHTML = `
-                    <div class="theme-name">${theme}</div>
-                `;
                 
                 listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.theme-item').forEach(item => {
+                    document.querySelectorAll('.themes-list li').forEach(item => {
                         item.classList.remove('active');
                     });
                     
                     this.classList.add('active');
-                    const themeName = this.getAttribute('data-theme');
-                    const results = searchData(themeName);
-                    displayResults(results, `Chansons avec le thème "${themeName}"`);
+                    const results = filterByColumn(columnIndices.mainTheme, theme);
+                    displayFilteredResults(results, `Chansons avec le thème "${theme}"`);
                 });
                 
                 themesList.appendChild(listItem);
             });
-            
-            themesCount.textContent = allThemes.length;
         }
         
-        function displaySingleSong(index) {
-            const songData = sheetData[index];
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            detectColumnsWithData();
-            
-            const songTitle = songData[songTitleColumnIndex] || `Chanson ${index + 1}`;
-            const author = songData[authorColumnIndex] || '';
-            const tempo = songData[tempoColumnIndex] || '';
-            const tonality = songData[tonalityColumnIndex] || '';
-            
-            let html = `
-                <div class="fiche-item">
-                    <div class="fiche-header">
-                        <div class="song-info-header">
-                            <div class="song-title-info">
-                                <h3 class="fiche-title">${songTitle}</h3>
-                                ${author ? `<div class="author">${author}</div>` : ''}
-                            </div>
-                            <div class="song-music-info">
-                                ${tempo ? `<div class="tempo">TEMPO: ${tempo}</div>` : ''}
-                                ${tonality ? `<div class="tonality">TONALITÉ: ${tonality}</div>` : ''}
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding: 20px;">
-            `;
-            
-            const mombaColumns = getColumnsByCategory('MOMBA');
-            if (mombaColumns.length > 0) {
-                html += `
-                    <div class="section-title">📋 MOMBA NY HIRA</div>
-                    <div class="section-content">
-                        <table class="data-table">
-                `;
-                
-                for (let colIndex of mombaColumns) {
-                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                    const value = songData[colIndex] || '';
-                    
-                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                        html += `
-                            <tr>
-                                <th>${header}</th>
-                                <td>${formatCellValue(value)}</td>
-                            </tr>
-                        `;
-                    }
-                }
-                
-                html += `
-                        </table>
-                    </div>
-                `;
-            }
-            
-            const tononkiraColumns = getColumnsByCategory('TONONKIRA');
-            if (tononkiraColumns.length > 0) {
-                html += `
-                    <div class="section-title">🎤 TONONKIRA</div>
-                    <div class="lyrics-container">
-                `;
-                
-                const originalLyrics = songData[findColumnIndex('TONONKIRA (Original)')] || '';
-                if (originalLyrics) {
-                    html += `
-                        <div class="lyrics-box">
-                            <div class="lyrics-title">🎵 Paroles originales</div>
-                            <div class="lyrics-content">${formatCellValue(originalLyrics)}</div>
-                        </div>
-                    `;
-                }
-                
-                const translatedLyrics = songData[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
-                if (translatedLyrics) {
-                    html += `
-                        <div class="lyrics-box">
-                            <div class="lyrics-title">🌍 Parole traduite</div>
-                            <div class="lyrics-content">${formatCellValue(translatedLyrics)}</div>
-                        </div>
-                    `;
-                }
-                
-                html += `</div>`;
-            }
-            
-            const histoColumns = getColumnsByCategory('HISTO');
-            if (histoColumns.length > 0) {
-                html += `
-                    <div class="section-title">📝 HISTO FANATSARANA</div>
-                    <div class="section-content">
-                        <table class="data-table">
-                `;
-                
-                for (let colIndex of histoColumns) {
-                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                    const value = songData[colIndex] || '';
-                    
-                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                        const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
-                        html += `
-                            <tr>
-                                <th>${displayHeader}</th>
-                                <td>${formatCellValue(value)}</td>
-                            </tr>
-                        `;
-                    }
-                }
-                
-                html += `
-                        </table>
-                    </div>
-                `;
-            }
-            
-            const mianatraColumns = getColumnsByCategory('MIANATRA');
-            if (mianatraColumns.length > 0) {
-                html += `
-                    <div class="section-title">🎓 AHAFAHANA MIANATRA</div>
-                    <div class="section-content">
-                        <table class="data-table">
-                `;
-                
-                for (let colIndex of mianatraColumns) {
-                    const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                    const value = songData[colIndex] || '';
-                    
-                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                        html += `
-                            <tr>
-                                <th>${header}</th>
-                                <td>${formatCellValue(value)}</td>
-                            </tr>
-                        `;
-                    }
-                }
-                
-                html += `
-                        </table>
-                    </div>
-                `;
-            }
-            
-            html += `
-                    </div>
-                </div>
-            `;
-            
-            resultContent.innerHTML = html;
-            resultTitle.textContent = `Fiche: ${songTitle}`;
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function findColumnIndex(columnName) {
-            return headers.findIndex(header => 
-                header && typeof header === 'string' && 
-                header.toLowerCase().includes(columnName.toLowerCase())
-            );
-        }
-        
-        function getColumnsByCategory(category) {
-            const categoryColumns = [];
-            
-            for (let colIndex of columnsWithData) {
-                const header = headers[colIndex] || '';
-                
-                if (colIndex === songTitleColumnIndex || 
-                    colIndex === authorColumnIndex || 
-                    colIndex === tempoColumnIndex || 
-                    colIndex === tonalityColumnIndex ||
-                    (colIndex === rohinityColumnIndex && !showRohinityColumn)) {
-                    continue;
-                }
-                
-                if (category === 'MOMBA' && (
-                    header.toLowerCase().includes('hevitra') ||
-                    header.toLowerCase().includes('gadona') ||
-                    header.toLowerCase().includes('structure')
-                )) {
-                    categoryColumns.push(colIndex);
-                } else if (category === 'TONONKIRA' && (
-                    header.toLowerCase().includes('tononkira') ||
-                    header.toLowerCase().includes('parole') ||
-                    header.toLowerCase().includes('dikan-teny')
-                )) {
-                    categoryColumns.push(colIndex);
-                } else if (category === 'HISTO' && (
-                    header.toLowerCase().includes('histo') ||
-                    header.toLowerCase().includes('horodateur') ||
-                    header.toLowerCase().includes('niraketana') ||
-                    header.toLowerCase().includes('fanavaozana') ||
-                    header.toLowerCase().includes('fanamarihana') ||
-                    (colIndex === rohinityColumnIndex && showRohinityColumn)
-                )) {
-                    categoryColumns.push(colIndex);
-                } else if (category === 'MIANATRA' && (
-                    header.toLowerCase().includes('rohy') ||
-                    header.toLowerCase().includes('solfa') ||
-                    header.toLowerCase().includes('mianatra')
-                )) {
-                    categoryColumns.push(colIndex);
-                }
-            }
-            
-            return categoryColumns;
+        function updateStats() {
+            document.getElementById('totalSongs').textContent = sheetData.length;
+            document.getElementById('totalAuthors').textContent = allAuthors.length;
+            document.getElementById('totalThemes').textContent = allThemes.length;
         }
         
         function normalizeData() {
@@ -1632,386 +1949,868 @@ https://docs.google.com/spreadsheets/d/e/2PACX-1vT7CcABJHJROA0lD_pbspvxqye3ESFrO
             console.log(`📐 Données normalisées: ${maxColumns} colonnes`);
         }
         
-        function detectColumnsWithData() {
-            columnsWithData = [];
-            
-            for (let colIndex = 0; colIndex < headers.length; colIndex++) {
-                let hasData = false;
-                
-                for (let rowIndex = 0; rowIndex < sheetData.length; rowIndex++) {
-                    const value = sheetData[rowIndex][colIndex];
-                    if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                        hasData = true;
-                        break;
-                    }
-                }
-                
-                if (hasData) {
-                    columnsWithData.push(colIndex);
-                }
-            }
-            
-            console.log(`🎯 ${columnsWithData.length} colonnes avec données sur ${headers.length} colonnes totales`);
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
         
-        function removeAccents(str) {
-            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        }
-        
-        function findMatchingSongTitles(searchTerm) {
-            const lowerSearchTerm = searchTerm.toLowerCase();
-            const searchWithoutAccents = removeAccents(lowerSearchTerm);
-            const matchingTitles = [];
+        function showLoading(show) {
+            const welcome = document.getElementById('welcomeMessage');
+            const loading = document.getElementById('loadingIndicator');
             
-            sheetData.forEach((row, index) => {
-                const songTitle = row[songTitleColumnIndex] || '';
-                
-                if (songTitle && songTitle.trim() !== '') {
-                    const hasMatchInAnyColumn = row.some(cell => {
-                        const cellValue = String(cell).toLowerCase();
-                        const cellWithoutAccents = removeAccents(cellValue);
-                        
-                        return cellValue.includes(lowerSearchTerm) || 
-                               cellWithoutAccents.includes(searchWithoutAccents);
-                    });
-                    
-                    if (hasMatchInAnyColumn) {
-                        matchingTitles.push(songTitle.trim());
-                    }
-                }
-            });
-            
-            return [...new Set(matchingTitles)];
-        }
-        
-        function showSuggestions(searchTerm) {
-            const suggestionsContainer = document.getElementById('suggestionsContainer');
-            
-            if (!searchTerm || searchTerm.length < 2) {
-                suggestionsContainer.style.display = 'none';
-                return;
+            if (show) {
+                welcome.style.display = 'none';
+                loading.style.display = 'block';
+            } else {
+                loading.style.display = 'none';
+                welcome.style.display = 'block';
             }
-            
-            const matchingTitles = findMatchingSongTitles(searchTerm);
-            
-            if (matchingTitles.length === 0) {
-                suggestionsContainer.style.display = 'none';
-                return;
-            }
-            
-            const suggestionsToShow = matchingTitles.slice(0, 10);
-            
-            suggestionsContainer.innerHTML = suggestionsToShow
-                .map(title => {
-                    const lowerTitle = title.toLowerCase();
-                    const lowerSearchTerm = searchTerm.toLowerCase();
-                    const startIndex = lowerTitle.indexOf(lowerSearchTerm);
-                    
-                    if (startIndex !== -1) {
-                        const endIndex = startIndex + searchTerm.length;
-                        const before = title.substring(0, startIndex);
-                        const match = title.substring(startIndex, endIndex);
-                        const after = title.substring(endIndex);
-                        
-                        return `
-                            <div class="suggestion-item" data-value="${title}">
-                                🎵 ${before}<span class="suggestion-highlight">${match}</span>${after}
-                            </div>
-                        `;
-                    } else {
-                        return `
-                            <div class="suggestion-item" data-value="${title}">
-                                🎵 ${title} <small style="color: #7f8c8d; font-style: italic;">(correspondance dans le contenu)</small>
-                            </div>
-                        `;
-                    }
-                })
-                .join('');
-            
-            suggestionsContainer.style.display = 'block';
-            
-            document.querySelectorAll('.suggestion-item').forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    document.getElementById('searchText').value = this.getAttribute('data-value');
-                    suggestionsContainer.style.display = 'none';
-                    handleSearch(new Event('submit'));
-                });
-                
-                if (index === 0) {
-                    item.classList.add('active');
-                }
-            });
-        }
-        
-        function showDataInfo() {
-            const dataInfo = document.getElementById('dataInfo');
-            let infoMessage = `✅ ${sheetData.length} chanson(s) chargée(s) avec succès !
-                    <br><small>${headers.length} colonnes - ${columnsWithData.length} avec données</small>
-                    <br><small>🎶 Recherche intuitive activée</small>`;
-            
-            if (rohinityColumnIndex !== -1 && !showRohinityColumn) {
-                infoMessage += `<br><small>🔒 Colonne spéciale cachée - Utilisez l'accès spécial</small>`;
-            }
-            
-            dataInfo.innerHTML = `<div class="success-message">${infoMessage}</div>`;
-            dataInfo.style.display = 'block';
         }
         
         function showError(message) {
-            const searchSection = document.querySelector('.search-section');
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.innerHTML = `
-                <strong>❌ Erreur de chargement:</strong> ${message}
-                <br><small>Vérifiez votre connexion internet et que le Google Sheet est public</small>
+            const content = document.getElementById('contentArea');
+            content.innerHTML = `
+                <div class="welcome-message">
+                    <div class="welcome-icon">
+                        <i class="fas fa-exclamation-triangle fa-4x"></i>
+                    </div>
+                    <h2>Erreur de chargement</h2>
+                    <p>${message}</p>
+                    <button class="btn btn-primary" onclick="loadDataFromGoogleSheets()">
+                        <i class="fas fa-redo"></i> Réessayer
+                    </button>
+                </div>
             `;
-            searchSection.appendChild(errorDiv);
         }
         
-        function clearErrorMessages() {
-            const errorMessages = document.querySelectorAll('.error-message');
-            errorMessages.forEach(msg => msg.remove());
-        }
-        
-        function handleSearch(event) {
-            if (event) event.preventDefault();
-            
-            const searchValue = document.getElementById('searchText').value.trim();
-            
-            if (!searchValue) {
-                alert('Veuillez entrer un mot-clé pour la recherche');
-                return;
-            }
+        function showAllSongs() {
+            const content = document.getElementById('contentArea');
             
             if (sheetData.length === 0) {
-                alert('Aucune donnée chargée');
+                content.innerHTML = `
+                    <div class="welcome-message">
+                        <div class="welcome-icon">
+                            <i class="fas fa-exclamation-triangle fa-4x"></i>
+                        </div>
+                        <h2>Aucune chanson trouvée</h2>
+                        <p>Les données n'ont pas pu être chargées. Vérifiez votre connexion internet.</p>
+                        <button class="btn btn-primary" onclick="loadDataFromGoogleSheets()">
+                            <i class="fas fa-redo"></i> Réessayer
+                        </button>
+                    </div>
+                `;
                 return;
             }
             
-            const results = searchData(searchValue);
-            displayResults(results, `Résultats pour "${searchValue}"`);
+            let html = '<div style="padding: 2rem;">';
+            html += '<h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">Toutes les chansons</h2>';
+            html += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">';
             
-            document.getElementById('suggestionsContainer').style.display = 'none';
-        }
-        
-        function showAllData() {
-            if (sheetData.length === 0) {
-                alert('Aucune donnée chargée');
-                return;
-            }
-            
-            displayResults(sheetData, 'Toutes les chansons');
-        }
-        
-        function searchData(searchValue) {
-            const lowerSearch = searchValue.toLowerCase();
-            const searchWithoutAccents = removeAccents(lowerSearch);
-            
-            return sheetData.filter(row => {
-                return row.some(cell => {
-                    const cellValue = String(cell).toLowerCase();
-                    const cellWithoutAccents = removeAccents(cellValue);
-                    
-                    return cellValue.includes(lowerSearch) || 
-                           cellWithoutAccents.includes(searchWithoutAccents);
-                });
-            });
-        }
-        
-        function displayResults(results, title) {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            detectColumnsWithData();
-            
-            if (results.length === 0) {
-                resultContent.innerHTML = `
-                    <div class="no-results">
-                        <div class="no-results-icon">🎵</div>
-                        <h3>Aucune chanson trouvée</h3>
-                        <p>Essayez avec d'autres mots-clés ou consultez la liste complète</p>
-                    </div>
-                `;
-            } else {
-                let html = `
-                    <div style="margin-bottom: 15px; padding: 12px; background: #ecf0f1; border-radius: 5px;">
-                        <strong>${results.length} chanson(s) trouvée(s)</strong>
-                        ${showRohinityColumn ? '<br><small>✅ Colonne spéciale "Rohin\'ity hira ity" visible</small>' : ''}
-                    </div>
-                `;
+            sheetData.forEach((row, index) => {
+                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
+                const author = row[columnIndices.author] || '';
+                const theme = row[columnIndices.mainTheme] || '';
                 
-                results.forEach((row, index) => {
-                    const numeroData = sheetData.findIndex(r => r === row) + 1;
-                    const titreColB = row[songTitleColumnIndex] || `Chanson ${numeroData}`;
-                    const author = row[authorColumnIndex] || '';
-                    const tempo = row[tempoColumnIndex] || '';
-                    const tonality = row[tonalityColumnIndex] || '';
+                html += `
+                    <div class="song-card" onclick="showSongDetail(${index})" style="background: white; border-radius: var(--border-radius); padding: 1.5rem; box-shadow: var(--box-shadow); cursor: pointer; transition: var(--transition);">
+                        <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">${escapeHtml(title)}</h3>
+                        ${author ? `<p style="color: var(--music-color); margin-bottom: 0.5rem;"><i class="fas fa-user-edit"></i> ${escapeHtml(author)}</p>` : ''}
+                        ${theme ? `<p style="color: #666; font-size: 0.9rem;"><i class="fas fa-tag"></i> ${escapeHtml(theme)}</p>` : ''}
+                    </div>
+                `;
+            });
+            
+            html += '</div></div>';
+            content.innerHTML = html;
+        }
+        
+        function showSongDetail(index) {
+            const songData = sheetData[index];
+            const content = document.getElementById('contentArea');
+            
+            const songTitle = songData[columnIndices.title] || `Chanson ${index + 1}`;
+            const author = songData[columnIndices.author] || '';
+            const tempo = songData[columnIndices.tempo] || '';
+            const tonality = songData[columnIndices.tonality] || '';
+            
+            // DEBUG: Afficher les valeurs réelles
+            console.log('🎵 Affichage fiche pour:', songTitle);
+            console.log('  - Lohahevitra lehibe (col', columnIndices.mainTheme, '):', songData[columnIndices.mainTheme]);
+            console.log('  - Rohin\'ity hira ity (col', columnIndices.rohinity, '):', songData[columnIndices.rohinity]);
+            
+            let html = `
+                <div class="song-detail">
+                    <div class="song-header">
+                        <div class="song-info-header">
+                            <div class="song-title-info">
+                                <h3 class="fiche-title">${escapeHtml(songTitle)}</h3>
+                                ${author ? `<div class="author">${escapeHtml(author)}</div>` : ''}
+                            </div>
+                            <div class="song-music-info">
+                                ${tempo ? `<div class="tempo">TEMPO: ${escapeHtml(tempo)}</div>` : ''}
+                                ${tonality ? `<div class="tonality">TONALITÉ: ${escapeHtml(tonality)}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
                     
+                    <div style="padding: 2rem;">
+            `;
+            
+            // Ajouter la section "Rohin'ity hira ity" si déverrouillée
+            if (isUnlocked && columnIndices.rohinity !== -1 && songData[columnIndices.rohinity]) {
+                const rohinity = songData[columnIndices.rohinity];
+                if (rohinity.trim() !== '') {
                     html += `
-                        <div class="fiche-item">
-                            <div class="fiche-header">
-                                <div class="song-info-header">
-                                    <div class="song-title-info">
-                                        <h3 class="fiche-title">${titreColB}</h3>
-                                        ${author ? `<div class="author">${author}</div>` : ''}
-                                    </div>
-                                    <div class="song-music-info">
-                                        ${tempo ? `<div class="tempo">TEMPO: ${tempo}</div>` : ''}
-                                        ${tonality ? `<div class="tonality">TONALITÉ: ${tonality}</div>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="padding: 20px;">
-                    `;
-                    
-                    const mombaColumns = getColumnsByCategory('MOMBA');
-                    if (mombaColumns.length > 0) {
-                        html += `
-                            <div class="section-title">📋 MOMBA NY HIRA</div>
-                            <div class="section-content">
-                                <table class="data-table">
-                        `;
-                        
-                        for (let colIndex of mombaColumns) {
-                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                            const value = row[colIndex] || '';
-                            
-                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                                html += `
-                                    <tr>
-                                        <th>${header}</th>
-                                        <td>${formatCellValue(value)}</td>
-                                    </tr>
-                                `;
-                            }
-                        }
-                        
-                        html += `
-                                </table>
-                            </div>
-                        `;
-                    }
-                    
-                    const tononkiraColumns = getColumnsByCategory('TONONKIRA');
-                    if (tononkiraColumns.length > 0) {
-                        html += `
-                            <div class="section-title">🎤 TONONKIRA</div>
-                            <div class="lyrics-container">
-                        `;
-                        
-                        const originalLyrics = row[findColumnIndex('TONONKIRA (Original)')] || '';
-                        if (originalLyrics) {
-                            html += `
-                                <div class="lyrics-box">
-                                    <div class="lyrics-title">🎵 Paroles originales</div>
-                                    <div class="lyrics-content">${formatCellValue(originalLyrics)}</div>
-                                </div>
-                            `;
-                        }
-                        
-                        const translatedLyrics = row[findColumnIndex('TONONKIRA (Dikan-teny hafa)')] || '';
-                        if (translatedLyrics) {
-                            html += `
-                                <div class="lyrics-box">
-                                    <div class="lyrics-title">🌍 Parole traduite</div>
-                                    <div class="lyrics-content">${formatCellValue(translatedLyrics)}</div>
-                                </div>
-                            `;
-                        }
-                        
-                        html += `</div>`;
-                    }
-                    
-                    const histoColumns = getColumnsByCategory('HISTO');
-                    if (histoColumns.length > 0) {
-                        html += `
-                            <div class="section-title">📝 HISTO FANATSARANA</div>
-                            <div class="section-content">
-                                <table class="data-table">
-                        `;
-                        
-                        for (let colIndex of histoColumns) {
-                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                            const value = row[colIndex] || '';
-                            
-                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                                const displayHeader = header === 'Horodateur' ? 'Niraketana' : header;
-                                html += `
-                                    <tr>
-                                        <th>${displayHeader}</th>
-                                        <td>${formatCellValue(value)}</td>
-                                    </tr>
-                                `;
-                            }
-                        }
-                        
-                        html += `
-                                </table>
-                            </div>
-                        `;
-                    }
-                    
-                    const mianatraColumns = getColumnsByCategory('MIANATRA');
-                    if (mianatraColumns.length > 0) {
-                        html += `
-                            <div class="section-title">🎓 AHAFAHANA MIANATRA</div>
-                            <div class="section-content">
-                                <table class="data-table">
-                        `;
-                        
-                        for (let colIndex of mianatraColumns) {
-                            const header = headers[colIndex] || `Colonne ${colIndex + 1}`;
-                            const value = row[colIndex] || '';
-                            
-                            if (value !== undefined && value !== null && value !== '' && value.trim() !== '') {
-                                html += `
-                                    <tr>
-                                        <th>${header}</th>
-                                        <td>${formatCellValue(value)}</td>
-                                    </tr>
-                                `;
-                            }
-                        }
-                        
-                        html += `
-                                </table>
-                            </div>
-                        `;
-                    }
-                    
-                    html += `
+                        <div class="notations-section">
+                            <h4 class="section-title" style="color: #e67e22;">
+                                <i class="fas fa-unlock"></i> ROHIN'ITY HIRA ITY
+                            </h4>
+                            <div style="padding: 1rem; background: #f9f9f9; border-radius: 8px;">
+                                ${formatCellValue(rohinity)}
                             </div>
                         </div>
                     `;
-                });
-                
-                resultContent.innerHTML = html;
+                }
             }
             
-            resultTitle.textContent = title;
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            // Section MOMBA NY HIRA - AVEC VÉRIFICATION DE LA COLONNE CORRECTE
+            html += `
+                <div class="section-content">
+                    <h4 class="section-title"><i class="fas fa-info-circle"></i> MOMBA NY HIRA</h4>
+                    <table class="data-table">
+            `;
+            
+            // 1. Lohahevitra lehibe (Thème principal) - CORRIGÉ
+            if (columnIndices.mainTheme !== -1) {
+                const mainTheme = songData[columnIndices.mainTheme] || '';
+                if (mainTheme.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-star"></i> Lohahevitra lehibe</th>
+                            <td>${formatCellValue(mainTheme)}</td>
+                        </tr>
+                    `;
+                } else {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-star"></i> Lohahevitra lehibe</th>
+                            <td><em style="color: #999;">Non spécifié</em></td>
+                        </tr>
+                    `;
+                }
+            } else {
+                html += `
+                    <tr>
+                        <th><i class="fas fa-star"></i> Lohahevitra lehibe</th>
+                        <td><em style="color: #ff6b6b;">Colonne non détectée</em></td>
+                    </tr>
+                `;
+            }
+            
+            // 2. HEVITRA FONOSIN'NY HIRA (Idée de la chanson)
+            if (columnIndices.songIdea !== -1 && songData[columnIndices.songIdea]) {
+                const songIdea = songData[columnIndices.songIdea];
+                if (songIdea.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-lightbulb"></i> HEVITRA FONOSIN'NY HIRA</th>
+                            <td>${formatCellValue(songIdea)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // 3. Karazan-kira (Genre musical)
+            if (columnIndices.karazanKira !== -1 && songData[columnIndices.karazanKira]) {
+                const karazanKira = songData[columnIndices.karazanKira];
+                if (karazanKira.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-headphones"></i> Karazan-kira</th>
+                            <td>${formatCellValue(karazanKira)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // 4. GADONA
+            if (columnIndices.gadona !== -1 && songData[columnIndices.gadona]) {
+                const gadona = songData[columnIndices.gadona];
+                if (gadona.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-tachometer-alt"></i> GADONA</th>
+                            <td>${formatCellValue(gadona)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // 5. STRUCTURE
+            if (columnIndices.structure !== -1 && songData[columnIndices.structure]) {
+                const structure = songData[columnIndices.structure];
+                if (structure.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-project-diagram"></i> STRUCTURE</th>
+                            <td>${formatCellValue(structure)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            html += `
+                    </table>
+                </div>
+            `;
+            
+            // SECTION TONONKIRA - TOUTES LES COLONNES QUI CONTIENNENT "TONONKIRA"
+            if (tononkiraColumns.length > 0) {
+                let hasTononkiraData = false;
+                let tononkiraHTML = '';
+                
+                tononkiraColumns.forEach(col => {
+                    const tononkiraData = songData[col.index] || '';
+                    if (tononkiraData.trim() !== '') {
+                        hasTononkiraData = true;
+                        
+                        // Déterminer le type de tononkira
+                        let type = 'Tononkira';
+                        let language = 'MG';
+                        
+                        if (col.isOriginal) {
+                            type = 'TONONKIRA (Original)';
+                            language = 'Malagasy';
+                        } else if (col.isTranslated) {
+                            type = 'TONONKIRA (Dikan-teny hafa)';
+                            language = 'Traduction';
+                        } else {
+                            // Essayer de deviner d'après le nom de la colonne
+                            const colName = col.name.toLowerCase();
+                            if (colName.includes('dikan') || colName.includes('traduit') || colName.includes('traduction') || colName.includes('hafa')) {
+                                type = 'TONONKIRA (Dikan-teny hafa)';
+                                language = 'Traduction';
+                            } else if (colName.includes('original')) {
+                                type = 'TONONKIRA (Original)';
+                                language = 'Malagasy';
+                            }
+                        }
+                        
+                        tononkiraHTML += `
+                            <div class="tononkira-item">
+                                <div class="tononkira-header">
+                                    <div class="tononkira-type">
+                                        <i class="fas fa-music"></i> ${type}
+                                    </div>
+                                    <div class="tononkira-language">
+                                        ${language}
+                                    </div>
+                                </div>
+                                <div class="tononkira-content">
+                                    ${formatCellValue(tononkiraData)}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                if (hasTononkiraData) {
+                    html += `
+                        <div class="section-content">
+                            <h4 class="section-title"><i class="fas fa-file-alt"></i> TONONKIRA</h4>
+                            <div class="tononkira-section">
+                                ${tononkiraHTML}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Section HISTO FANATSARANA
+            html += `
+                <div class="section-content">
+                    <h4 class="section-title"><i class="fas fa-history"></i> HISTO FANATSARANA</h4>
+                    <table class="data-table">
+            `;
+            
+            // Fanamarihana feo & fihira (Remarques chanteurs)
+            if (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) {
+                const singersNotes = songData[columnIndices.singersNotes];
+                if (singersNotes.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-microphone"></i> Fanamarihana feo & fihira</th>
+                            <td>${formatCellValue(singersNotes)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // Fanamarihana mozika (Remarques musiciens)
+            if (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) {
+                const musiciansNotes = songData[columnIndices.musiciansNotes];
+                if (musiciansNotes.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-guitar"></i> Fanamarihana mozika</th>
+                            <td>${formatCellValue(musiciansNotes)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            // Historique Fanavaozana
+            if (columnIndices.history !== -1 && songData[columnIndices.history]) {
+                const history = songData[columnIndices.history];
+                if (history.trim() !== '') {
+                    html += `
+                        <tr>
+                            <th><i class="fas fa-history"></i> Historique Fanavaozana</th>
+                            <td>${formatCellValue(history)}</td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            html += `
+                    </table>
+                </div>
+            `;
+            
+            // Section AHAFAHANA MIANATRA
+            html += `
+                <div class="section-content">
+                    <h4 class="section-title"><i class="fas fa-link"></i> AHAFAHANA MIANATRA</h4>
+            `;
+            
+            // Rohy hafa AUDIO & VIDEO
+            if ((columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
+                (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks])) {
+                html += `
+                    <h5 style="margin: 1rem 0 0.5rem 0; color: var(--secondary-color);">Rohy hafa AUDIO, VIDEO</h5>
+                    <div class="media-preview">
+                `;
+                
+                // Liens audio
+                if (songData[columnIndices.audioLinks]) {
+                    const audioLinks = songData[columnIndices.audioLinks].split('\n').filter(link => link.trim() !== '');
+                    audioLinks.forEach(link => {
+                        if (link.trim() !== '') {
+                            html += `
+                                <div class="media-item">
+                                    <div class="audio-preview">
+                                        <i class="fas fa-volume-up"></i>
+                                        <p>AUDIO</p>
+                                        <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 10px; padding: 5px 15px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px;">
+                                            Écouter
+                                        </a>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+                }
+                
+                // Liens vidéo
+                if (songData[columnIndices.videoLinks]) {
+                    const videoLinks = songData[columnIndices.videoLinks].split('\n').filter(link => link.trim() !== '');
+                    videoLinks.forEach(link => {
+                        if (link.trim() !== '') {
+                            if (link.includes('youtube.com') || link.includes('youtu.be')) {
+                                let videoId = '';
+                                if (link.includes('youtube.com/watch?v=')) {
+                                    videoId = link.split('v=')[1].split('&')[0];
+                                } else if (link.includes('youtu.be/')) {
+                                    videoId = link.split('youtu.be/')[1].split('?')[0];
+                                }
+                                
+                                if (videoId) {
+                                    html += `
+                                        <div class="media-item">
+                                            <div class="youtube-preview">
+                                                <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            }
+                        }
+                    });
+                }
+                
+                html += `</div>`;
+            }
+            
+            // Solfa
+            if (columnIndices.solfa !== -1 && songData[columnIndices.solfa]) {
+                const solfa = songData[columnIndices.solfa];
+                if (solfa.trim() !== '') {
+                    html += `
+                        <h5 style="margin: 1.5rem 0 0.5rem 0; color: var(--secondary-color);">Solfa</h5>
+                        ${formatCellValue(solfa)}
+                    `;
+                }
+            }
+            
+            html += `
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="showAllSongs()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         function formatCellValue(value) {
             const strValue = String(value);
             
             if (strValue.startsWith('http') && strValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
-                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'">`;
+                return `<img src="${strValue}" alt="Image" class="solfa-image" onerror="this.style.display='none'">`;
             }
             
             if (strValue.startsWith('http')) {
-                return `<a href="${strValue}" target="_blank">🔗 Ouvrir le lien</a>`;
+                return `<a href="${strValue}" target="_blank" style="color: var(--primary-color); text-decoration: none; font-weight: bold;">🔗 Ouvrir le lien</a>`;
             }
             
-            return `<div style="font-size:14px; font-weight:500; white-space:pre-wrap; line-height:1.6; font-family: inherit;">${strValue}</div>`;
+            // Pour les paroles de chansons, préserver les retours à la ligne
+            if (strValue.includes('\n')) {
+                return `<div style="white-space: pre-wrap; line-height: 1.8; font-family: inherit; background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--music-color);">${escapeHtml(strValue)}</div>`;
+            }
+            
+            return `<div style="white-space: pre-wrap; line-height: 1.6; font-family: inherit;">${escapeHtml(strValue)}</div>`;
         }
         
-        function closeResults() {
-            document.getElementById('resultsSection').style.display = 'none';
+        function filterByColumn(columnIndex, value) {
+            if (columnIndex === -1 || !value) return [];
+            
+            return sheetData.filter(row => {
+                const cellValue = row[columnIndex] || '';
+                return cellValue.toString().trim() === value;
+            });
+        }
+        
+        function displayFilteredResults(results, title) {
+            const content = document.getElementById('contentArea');
+            
+            if (results.length === 0) {
+                content.innerHTML = `
+                    <div style="padding: 2rem; text-align: center;">
+                        <h2 style="color: var(--secondary-color); margin-bottom: 1rem;">${escapeHtml(title)}</h2>
+                        <p>Aucune chanson trouvée.</p>
+                        <button class="btn btn-primary" onclick="showAllSongs()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = `<div style="padding: 2rem;">`;
+            html += `<h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">${escapeHtml(title)} (${results.length})</h2>`;
+            html += '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;">';
+            
+            results.forEach((row, index) => {
+                const songIndex = sheetData.findIndex(r => r === row);
+                const title = row[columnIndices.title] || `Chanson ${songIndex + 1}`;
+                const author = row[columnIndices.author] || '';
+                const theme = row[columnIndices.mainTheme] || '';
+                
+                html += `
+                    <div class="song-card" onclick="showSongDetail(${songIndex})" style="background: white; border-radius: var(--border-radius); padding: 1.5rem; box-shadow: var(--box-shadow); cursor: pointer; transition: var(--transition);">
+                        <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">${escapeHtml(title)}</h3>
+                        ${author ? `<p style="color: var(--music-color); margin-bottom: 0.5rem;"><i class="fas fa-user-edit"></i> ${escapeHtml(author)}</p>` : ''}
+                        ${theme ? `<p style="color: #666; font-size: 0.9rem;"><i class="fas fa-tag"></i> ${escapeHtml(theme)}</p>` : ''}
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            html += '<div style="text-align: center; margin-top: 2rem;">';
+            html += '<button class="btn btn-primary" onclick="showAllSongs()"><i class="fas fa-arrow-left"></i> Retour à la liste</button>';
+            html += '</div>';
+            html += '</div>';
+            
+            content.innerHTML = html;
+        }
+        
+        function showSingerRemarks() {
+            const results = sheetData.filter(row => {
+                const notes = row[columnIndices.singersNotes] || '';
+                return notes.trim() !== '';
+            });
+            
+            if (results.length === 0) {
+                alert('Aucune note pour les chanteurs trouvée');
+                return;
+            }
+            
+            const content = document.getElementById('contentArea');
+            let html = `
+                <div style="padding: 2rem;">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">
+                        <i class="fas fa-microphone"></i> Remarques pour les chanteurs
+                    </h2>
+                    <div class="notations-section">
+                        <table class="notation-table">
+                            <thead>
+                                <tr>
+                                    <th>Chanson</th>
+                                    <th>Auteur</th>
+                                    <th>Fanamarihana feo & fihira</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            results.forEach((row, index) => {
+                const songIndex = sheetData.findIndex(r => r === row);
+                const title = row[columnIndices.title] || `Chanson ${songIndex + 1}`;
+                const author = row[columnIndices.author] || '';
+                const voiceNotes = row[columnIndices.singersNotes] || '';
+                
+                html += `
+                    <tr>
+                        <td>
+                            <span class="song-link" onclick="showSongDetail(${songIndex})">
+                                ${escapeHtml(title)}
+                            </span>
+                        </td>
+                        <td>${escapeHtml(author)}</td>
+                        <td>${escapeHtml(voiceNotes.substring(0, 150))}${voiceNotes.length > 150 ? '...' : ''}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="showAllSongs()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+        
+        function showMusicianRemarks() {
+            const results = sheetData.filter(row => {
+                const notes = row[columnIndices.musiciansNotes] || '';
+                return notes.trim() !== '';
+            });
+            
+            if (results.length === 0) {
+                alert('Aucune note pour les musiciens trouvée');
+                return;
+            }
+            
+            const content = document.getElementById('contentArea');
+            let html = `
+                <div style="padding: 2rem;">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">
+                        <i class="fas fa-guitar"></i> Remarques pour les musiciens
+                    </h2>
+                    <div class="notations-section">
+                        <table class="notation-table">
+                            <thead>
+                                <tr>
+                                    <th>Chanson</th>
+                                    <th>Auteur</th>
+                                    <th>Fanamarihana mozika</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            results.forEach((row, index) => {
+                const songIndex = sheetData.findIndex(r => r === row);
+                const title = row[columnIndices.title] || `Chanson ${songIndex + 1}`;
+                const author = row[columnIndices.author] || '';
+                const musicNotes = row[columnIndices.musiciansNotes] || '';
+                
+                html += `
+                    <tr>
+                        <td>
+                            <span class="song-link" onclick="showSongDetail(${songIndex})">
+                                ${escapeHtml(title)}
+                            </span>
+                        </td>
+                        <td>${escapeHtml(author)}</td>
+                        <td>${escapeHtml(musicNotes.substring(0, 150))}${musicNotes.length > 150 ? '...' : ''}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="showAllSongs()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+        
+        function showAllLyrics() {
+            const content = document.getElementById('contentArea');
+            let html = `
+                <div style="padding: 2rem;">
+                    <h2 style="margin-bottom: 1.5rem; color: var(--secondary-color);">
+                        <i class="fas fa-file-alt"></i> Tous les tononkira
+                    </h2>
+                    <div style="display: grid; gap: 1.5rem;">
+            `;
+            
+            sheetData.forEach((row, index) => {
+                // Vérifier si cette chanson a des tononkira
+                let hasTononkira = false;
+                let tononkiraPreview = '';
+                
+                tononkiraColumns.forEach(col => {
+                    const tononkiraData = row[col.index] || '';
+                    if (tononkiraData.trim() !== '') {
+                        hasTononkira = true;
+                        // Prendre le premier tononkira pour l'aperçu
+                        if (!tononkiraPreview) {
+                            tononkiraPreview = tononkiraData.substring(0, 200);
+                        }
+                    }
+                });
+                
+                if (hasTononkira) {
+                    const title = row[columnIndices.title] || `Chanson ${index + 1}`;
+                    const author = row[columnIndices.author] || '';
+                    
+                    html += `
+                        <div class="lyrics-card" onclick="showSongDetail(${index})">
+                            <h3 style="color: var(--secondary-color); margin-bottom: 0.5rem;">${escapeHtml(title)}</h3>
+                            ${author ? `<p style="color: var(--music-color); margin-bottom: 0.5rem;">${escapeHtml(author)}</p>` : ''}
+                            <div class="lyrics-preview">
+                                ${escapeHtml(tononkiraPreview)}${tononkiraPreview.length > 200 ? '...' : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            html += `
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn btn-primary" onclick="showAllSongs()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            content.innerHTML = html;
+        }
+        
+        function toggleSongsTable() {
+            const modal = document.getElementById('songsTableModal');
+            const tableBody = document.getElementById('songsTableBody');
+            
+            tableBody.innerHTML = '';
+            
+            sheetData.forEach((row, index) => {
+                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
+                const author = row[columnIndices.author] || '';
+                const theme = row[columnIndices.mainTheme] || '';
+                const genre = row[columnIndices.genre] || '';
+                const tempo = row[columnIndices.tempo] || '';
+                const tonality = row[columnIndices.tonality] || '';
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><span class="clickable" onclick="showSongDetail(${index}); closeModal('songsTableModal')">${escapeHtml(title)}</span></td>
+                    <td>${author ? `<span class="clickable" onclick="filterByColumnAndShow(${columnIndices.author}, '${escapeHtml(author)}'); closeModal('songsTableModal')">${escapeHtml(author)}</span>` : ''}</td>
+                    <td>${theme ? `<span class="clickable" onclick="filterByColumnAndShow(${columnIndices.mainTheme}, '${escapeHtml(theme)}'); closeModal('songsTableModal')">${escapeHtml(theme)}</span>` : ''}</td>
+                    <td>${genre ? `<span class="clickable" onclick="filterByColumnAndShow(${columnIndices.genre}, '${escapeHtml(genre)}'); closeModal('songsTableModal')">${escapeHtml(genre)}</span>` : ''}</td>
+                    <td>${escapeHtml(tempo)}</td>
+                    <td>${escapeHtml(tonality)}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+            
+            modal.style.display = 'block';
+        }
+        
+        function filterByColumnAndShow(columnIndex, value) {
+            const results = filterByColumn(columnIndex, value);
+            let title = '';
+            
+            if (columnIndex === columnIndices.author) {
+                title = `Chansons de "${value}"`;
+            } else if (columnIndex === columnIndices.mainTheme) {
+                title = `Chansons avec le thème "${value}"`;
+            } else if (columnIndex === columnIndices.genre) {
+                title = `Chansons du genre "${value}"`;
+            }
+            
+            displayFilteredResults(results, title);
+        }
+        
+        function showExportOptions() {
+            const bubble = document.getElementById('exportBubble');
+            bubble.style.display = bubble.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        function exportToPDF() {
+            alert('Export PDF - Cette fonctionnalité nécessite la bibliothèque jsPDF');
+            document.getElementById('exportBubble').style.display = 'none';
+        }
+        
+        function exportLyricsToPDF() {
+            showEmailForm('lyrics');
+            document.getElementById('exportBubble').style.display = 'none';
+        }
+        
+        function showEmailForm(type = 'all') {
+            const modal = document.getElementById('emailModal');
+            const songsList = document.getElementById('emailSongsList');
+            
+            songsList.innerHTML = '';
+            
+            sheetData.forEach((row, index) => {
+                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
+                const author = row[columnIndices.author] || '';
+                
+                const div = document.createElement('div');
+                div.className = 'checkbox-item';
+                div.innerHTML = `
+                    <input type="checkbox" id="song-${index}" value="${index}">
+                    <label for="song-${index}">${escapeHtml(title)} - ${escapeHtml(author)}</label>
+                `;
+                
+                songsList.appendChild(div);
+            });
+            
+            modal.style.display = 'block';
+        }
+        
+        function sendEmail() {
+            const recipient = document.getElementById('emailRecipient').value;
+            
+            if (!recipient || !recipient.includes('@')) {
+                alert('Veuillez entrer une adresse email valide');
+                return;
+            }
+            
+            alert(`Envoi de chansons à ${recipient}\n\nCette fonctionnalité nécessite un backend pour l'envoi réel d'emails.`);
+            closeModal('emailModal');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        function handleSearchInput(e) {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const suggestionsBox = document.getElementById('suggestionsBox');
+            
+            if (searchTerm.length < 2) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+            
+            const suggestions = [];
+            
+            sheetData.forEach((row, index) => {
+                // Rechercher dans les champs principaux
+                const fieldsToSearch = [
+                    {value: row[columnIndices.title], type: 'title'},
+                    {value: row[columnIndices.author], type: 'author'},
+                    {value: row[columnIndices.mainTheme], type: 'theme'},
+                ];
+                
+                // Ajouter toutes les colonnes tononkira à la recherche
+                tononkiraColumns.forEach(col => {
+                    fieldsToSearch.push({
+                        value: row[col.index],
+                        type: 'lyrics'
+                    });
+                });
+                
+                fieldsToSearch.forEach(field => {
+                    if (field.value && field.value.toLowerCase().includes(searchTerm)) {
+                        suggestions.push({
+                            index: index,
+                            type: field.type,
+                            title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                            author: row[columnIndices.author] || '',
+                            match: field.value.substring(0, 100)
+                        });
+                    }
+                });
+            });
+            
+            if (suggestions.length === 0) {
+                suggestionsBox.style.display = 'none';
+                return;
+            }
+            
+            // Limiter à 10 suggestions
+            const limitedSuggestions = suggestions.slice(0, 10);
+            
+            suggestionsBox.innerHTML = limitedSuggestions.map(s => `
+                <div class="suggestion-item" onclick="showSongDetail(${s.index}); document.getElementById('suggestionsBox').style.display='none';">
+                    <div>
+                        <strong>${escapeHtml(s.title)}</strong>
+                        <div class="suggestion-song">${escapeHtml(s.match)}...</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            suggestionsBox.style.display = 'block';
+        }
+        
+        function showPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'block';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+        
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const errorElement = document.getElementById('passwordError');
+            
+            if (password === 'tek') {
+                isUnlocked = true;
+                document.getElementById('passwordModal').style.display = 'none';
+                document.getElementById('lockIcon').className = 'fas fa-unlock';
+                
+                // Afficher un message de succès
+                const content = document.getElementById('contentArea');
+                const successMsg = document.createElement('div');
+                successMsg.className = 'success-message';
+                successMsg.innerHTML = '✅ Données déverrouillées avec succès ! La colonne "Rohin\'ity hira ity" est maintenant accessible.';
+                content.insertBefore(successMsg, content.firstChild);
+                
+                // Masquer le message après 5 secondes
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 5000);
+            } else {
+                errorElement.style.display = 'block';
+                document.getElementById('passwordInput').focus();
+            }
         }
     </script>
 </body>
 </html>
-
