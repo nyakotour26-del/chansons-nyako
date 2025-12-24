@@ -93,7 +93,7 @@
             position: fixed;
             left: 20px;
             top: 140px;
-            width: 320px; /* Élargi de 280px à 320px */
+            width: 320px;
             background: white;
             padding: 25px;
             border-radius: var(--border-radius);
@@ -122,7 +122,7 @@
         }
         
         .desktop-sidebar-option {
-            padding: 10px 15px; /* Hauteur réduite */
+            padding: 10px 15px;
             background-color: #f8f9fa;
             border-radius: 8px;
             cursor: pointer;
@@ -133,7 +133,7 @@
             margin-bottom: 8px;
             border: 1px solid transparent;
             font-size: 0.9em;
-            min-height: 50px; /* Hauteur fixe réduite */
+            min-height: 50px;
         }
         
         .desktop-sidebar-option:hover {
@@ -149,7 +149,7 @@
             min-width: 25px;
         }
         
-        /* BOUTONS D'ACCUEIL */
+        /* BOUTONS D'ACCUEIL - MODIFIÉ */
         .home-buttons-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -195,11 +195,11 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         
-        .home-button.authors-list {
+        .home-button.singers-notes {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
         
-        .home-button.themes-list {
+        .home-button.musicians-notes {
             background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
         }
         
@@ -249,11 +249,11 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         
-        .action-button.singers-notes {
+        .action-button.authors-list {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
         
-        .action-button.musicians-notes {
+        .action-button.themes-list {
             background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
         }
         
@@ -866,10 +866,10 @@
         }
         
         .tononkira-title {
-            color: #8B4513 !important; /* Marron or */
+            color: #8B4513 !important;
             font-weight: 700;
             margin-bottom: 15px;
-            font-size: 1.2em;
+            font-size: 1.3em; /* Agrandi */
             text-transform: uppercase;
             text-align: center;
             padding: 8px;
@@ -886,12 +886,12 @@
         }
         
         .tononkira-line {
-            margin-bottom: 8px; /* Réduction de l'interligne */
+            margin-bottom: 8px;
             padding-bottom: 8px;
             border-bottom: 1px dashed #D2B48C;
-            line-height: 1.3; /* Réduction de l'interligne */
-            font-size: 15px;
-            font-family: 'Brush Script MT', 'Segoe Script', cursive; /* Handwriting */
+            line-height: 1.5; /* Augmenté pour plus de lisibilité */
+            font-size: 16px; /* Agrandi */
+            font-family: 'Brush Script MT', 'Segoe Script', cursive;
             white-space: pre-wrap;
         }
         
@@ -1053,12 +1053,12 @@
         
         .floating-button.table-btn {
             background: linear-gradient(135deg, #8e44ad, #9b59b6);
-            display: none; /* Caché car transféré au sidebar */
+            display: none;
         }
         
         .floating-button.export-btn {
             background: linear-gradient(135deg, #16a085, #1abc9c);
-            display: none; /* Caché car transféré au sidebar */
+            display: none;
         }
         
         .floating-button.lock-btn {
@@ -1117,9 +1117,9 @@
             padding: 15px;
             border-radius: var(--border-radius);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            width: 320px; /* Élargi de 280px à 320px */
-            max-height: 70vh; /* Hauteur maximale pour le scroll */
-            overflow-y: auto; /* Scrollable */
+            width: 320px;
+            max-height: 70vh;
+            overflow-y: auto;
             display: none;
             z-index: 1001;
             border: 1px solid #e1e1e1;
@@ -1154,11 +1154,11 @@
         .mobile-sidebar-options {
             display: flex;
             flex-direction: column;
-            gap: 6px; /* Réduction de l'espace entre les options */
+            gap: 6px;
         }
         
         .mobile-sidebar-option {
-            padding: 10px 12px; /* Hauteur réduite */
+            padding: 10px 12px;
             background-color: #f8f9fa;
             border-radius: 8px;
             cursor: pointer;
@@ -1168,7 +1168,7 @@
             gap: 12px;
             border: 1px solid transparent;
             font-size: 0.9em;
-            min-height: 50px; /* Hauteur fixe réduite */
+            min-height: 50px;
         }
         
         .mobile-sidebar-option:hover {
@@ -1185,7 +1185,7 @@
         
         /* BULLES D'OPTIONS (maintenant cachées car transférées) */
         .bubble {
-            display: none; /* Cachées car transférées au sidebar */
+            display: none;
         }
         
         /* MESSAGES */
@@ -1337,7 +1337,7 @@
             margin-right: 8px;
         }
         
-        /* AFFICHAGE DES FICHES EN GRID - Hauteur réduite */
+        /* AFFICHAGE DES FICHES EN GRID - MODIFIÉ */
         .all-fiches-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1353,7 +1353,7 @@
             transition: all 0.3s;
             cursor: pointer;
             border: 1px solid #e1e1e1;
-            height: 140px; /* Hauteur réduite et fixe */
+            height: 140px;
             display: flex;
             flex-direction: column;
         }
@@ -1507,10 +1507,13 @@
         @media (min-width: 1025px) {
             .desktop-sidebar {
                 display: block;
+                max-height: calc(100vh - 160px);
+                height: calc(100vh - 160px);
+                overflow-y: auto;
             }
             
             .container {
-                margin-left: 350px; /* Ajusté pour sidebar plus large */
+                margin-left: 350px;
                 margin-right: 20px;
             }
             
@@ -1521,6 +1524,14 @@
             .mobile-sidebar {
                 display: none !important;
             }
+            
+            .all-fiches-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .authors-grid, .themes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         @media (max-width: 1024px) {
@@ -1529,6 +1540,10 @@
             }
             
             .all-fiches-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .authors-grid, .themes-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
@@ -1633,9 +1648,9 @@
             }
             
             .mobile-sidebar {
-                width: 300px; /* Largeur sur mobile */
+                width: 300px;
                 left: 20px;
-                max-height: 60vh; /* Hauteur maximale réduite sur mobile */
+                max-height: 60vh;
             }
             
             .all-fiches-grid {
@@ -1643,8 +1658,13 @@
                 gap: 12px;
             }
             
+            .authors-grid, .themes-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
             .fiche-card {
-                height: 130px; /* Hauteur réduite sur mobile */
+                height: 130px;
             }
             
             .fiche-card-header {
@@ -1689,6 +1709,10 @@
             }
             
             .all-fiches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .authors-grid, .themes-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1749,6 +1773,118 @@
                 grid-template-columns: 1fr;
             }
         }
+        
+        /* Nouveaux styles pour les listes en mode grid */
+        .authors-grid, .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .author-card, .theme-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .author-card:hover, .theme-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .author-card-header {
+            padding: 10px;
+            background: linear-gradient(135deg, #ffecd2, #fcb69f);
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .theme-card-header {
+            padding: 10px;
+            background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+            color: white;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .author-card-header::before, .theme-card-header::before {
+            content: "♪";
+            position: absolute;
+            font-size: 35px;
+            opacity: 0.1;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        
+        .author-name-grid, .theme-name-grid {
+            font-size: 0.9em;
+            font-weight: 700;
+            line-height: 1.2;
+            text-align: center;
+            margin-bottom: 4px;
+            color: var(--secondary-color);
+        }
+        
+        .author-count, .theme-count {
+            font-size: 0.75em;
+            opacity: 0.9;
+        }
+        
+        .author-card-footer, .theme-card-footer {
+            padding: 6px 10px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7em;
+            color: #666;
+            min-height: 32px;
+        }
+        
+        /* Bouton de sortie pour la bulle d'export */
+        .export-close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.2em;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .export-close-btn:hover {
+            background-color: #f0f0f0;
+            color: #e74c3c;
+        }
     </style>
 </head>
 <body>
@@ -1762,21 +1898,21 @@
                 <i class="fas fa-music"></i>
                 <div>
                     <strong>Liste des chansons</strong>
-                    <small>Afficher/Masquer la liste</small>
+                    <small>Afficher toutes les fiches</small>
                 </div>
             </div>
-            <div class="desktop-sidebar-option" id="desktopAuthorsListBtn">
-                <i class="fas fa-users"></i>
+            <div class="desktop-sidebar-option" id="desktopSingersNotesBtn">
+                <i class="fas fa-microphone"></i>
                 <div>
-                    <strong>Liste des auteurs</strong>
-                    <small>Afficher/Masquer la liste</small>
+                    <strong>Notes pour chanteurs</strong>
+                    <small>Fanamarihana feo & fihira</small>
                 </div>
             </div>
-            <div class="desktop-sidebar-option" id="desktopThemesListBtn">
-                <i class="fas fa-tags"></i>
+            <div class="desktop-sidebar-option" id="desktopMusiciansNotesBtn">
+                <i class="fas fa-guitar"></i>
                 <div>
-                    <strong>Liste des thèmes</strong>
-                    <small>Afficher/Masquer la liste</small>
+                    <strong>Notes pour musiciens</strong>
+                    <small>Fanamarihana mozika</small>
                 </div>
             </div>
         </div>
@@ -1853,18 +1989,18 @@
             <div class="desktop-sidebar-section-title">
                 <i class="fas fa-star"></i> Fonctions spéciales
             </div>
-            <div class="desktop-sidebar-option" id="desktopSingersNotesBtn">
-                <i class="fas fa-microphone"></i>
+            <div class="desktop-sidebar-option" id="desktopAuthorsListBtn">
+                <i class="fas fa-users"></i>
                 <div>
-                    <strong>Notes pour chanteurs</strong>
-                    <small>Fanamarihana feo & fihira</small>
+                    <strong>Liste des auteurs</strong>
+                    <small>Afficher tous les auteurs</small>
                 </div>
             </div>
-            <div class="desktop-sidebar-option" id="desktopMusiciansNotesBtn">
-                <i class="fas fa-guitar"></i>
+            <div class="desktop-sidebar-option" id="desktopThemesListBtn">
+                <i class="fas fa-tags"></i>
                 <div>
-                    <strong>Notes pour musiciens</strong>
-                    <small>Fanamarihana mozika</small>
+                    <strong>Liste des thèmes</strong>
+                    <small>Afficher tous les thèmes</small>
                 </div>
             </div>
             <div class="desktop-sidebar-option" id="desktopAllFichesBtn">
@@ -1883,24 +2019,24 @@
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
-        <!-- BOUTONS D'ACCUEIL -->
+        <!-- BOUTONS D'ACCUEIL - MODIFIÉ -->
         <div class="home-buttons-container">
             <button class="home-button songs-list" id="homeSongsListBtn">
                 <i class="fas fa-music"></i>
-                <span>Liste des chansons</span>
+                <span>Toutes les fiches</span>
                 <small>Afficher toutes les chansons</small>
             </button>
             
-            <button class="home-button authors-list" id="homeAuthorsListBtn">
-                <i class="fas fa-users"></i>
-                <span>Liste des auteurs</span>
-                <small>Afficher tous les auteurs</small>
+            <button class="home-button singers-notes" id="homeSingersNotesBtn">
+                <i class="fas fa-microphone"></i>
+                <span>Notes pour chanteurs</span>
+                <small>Fanamarihana feo & fihira</small>
             </button>
             
-            <button class="home-button themes-list" id="homeThemesListBtn">
-                <i class="fas fa-tags"></i>
-                <span>Liste des thèmes</span>
-                <small>Afficher tous les thèmes</small>
+            <button class="home-button musicians-notes" id="homeMusiciansNotesBtn">
+                <i class="fas fa-guitar"></i>
+                <span>Notes pour musiciens</span>
+                <small>Fanamarihana mozika</small>
             </button>
         </div>
         
@@ -1912,16 +2048,16 @@
                 <small>Afficher toutes les chansons avec filtres</small>
             </button>
             
-            <button class="action-button singers-notes" id="singersNotesBtn">
-                <i class="fas fa-microphone"></i>
-                <span>Notes pour chanteurs</span>
-                <small>Fanamarihana feo & fihira</small>
+            <button class="action-button authors-list" id="authorsListBtn">
+                <i class="fas fa-users"></i>
+                <span>Liste des auteurs</span>
+                <small>Afficher tous les auteurs</small>
             </button>
             
-            <button class="action-button musicians-notes" id="musiciansNotesBtn">
-                <i class="fas fa-guitar"></i>
-                <span>Notes pour musiciens</span>
-                <small>Fanamarihana mozika</small>
+            <button class="action-button themes-list" id="themesListBtn">
+                <i class="fas fa-tags"></i>
+                <span>Liste des thèmes</span>
+                <small>Afficher tous les thèmes</small>
             </button>
             
             <button class="action-button lyrics" id="lyricsBtn">
@@ -2038,9 +2174,10 @@
         </div>
     </div>
     
-    <!-- MODAL EXPORT -->
+    <!-- MODAL EXPORT - AJOUT DU BOUTON DE SORTIE -->
     <div class="export-modal" id="exportModal">
         <div class="export-modal-content">
+            <button class="export-close-btn" id="exportCloseBtn">&times;</button>
             <h2 style="font-size: 1.3em;"><i class="fas fa-share"></i> Options d'export et d'envoi</h2>
             
             <div class="export-options">
@@ -2140,21 +2277,21 @@
                         <i class="fas fa-music"></i>
                         <div>
                             <strong>Liste des chansons</strong>
-                            <small>Afficher/Masquer la liste</small>
+                            <small>Afficher toutes les fiches</small>
                         </div>
                     </div>
-                    <div class="mobile-sidebar-option" id="mobileAuthorsListBtn">
-                        <i class="fas fa-users"></i>
+                    <div class="mobile-sidebar-option" id="mobileSingersNotesBtn">
+                        <i class="fas fa-microphone"></i>
                         <div>
-                            <strong>Liste des auteurs</strong>
-                            <small>Afficher/Masquer la liste</small>
+                            <strong>Notes pour chanteurs</strong>
+                            <small>Fanamarihana feo & fihira</small>
                         </div>
                     </div>
-                    <div class="mobile-sidebar-option" id="mobileThemesListBtn">
-                        <i class="fas fa-tags"></i>
+                    <div class="mobile-sidebar-option" id="mobileMusiciansNotesBtn">
+                        <i class="fas fa-guitar"></i>
                         <div>
-                            <strong>Liste des thèmes</strong>
-                            <small>Afficher/Masquer la liste</small>
+                            <strong>Notes pour musiciens</strong>
+                            <small>Fanamarihana mozika</small>
                         </div>
                     </div>
                 </div>
@@ -2231,18 +2368,18 @@
             <div>
                 <div class="mobile-sidebar-section-title">Fonctions spéciales</div>
                 <div class="mobile-sidebar-options">
-                    <div class="mobile-sidebar-option" id="mobileSingersNotesBtn">
-                        <i class="fas fa-microphone"></i>
+                    <div class="mobile-sidebar-option" id="mobileAuthorsListBtn">
+                        <i class="fas fa-users"></i>
                         <div>
-                            <strong>Notes pour chanteurs</strong>
-                            <small>Fanamarihana feo & fihira</small>
+                            <strong>Liste des auteurs</strong>
+                            <small>Afficher tous les auteurs</small>
                         </div>
                     </div>
-                    <div class="mobile-sidebar-option" id="mobileMusiciansNotesBtn">
-                        <i class="fas fa-guitar"></i>
+                    <div class="mobile-sidebar-option" id="mobileThemesListBtn">
+                        <i class="fas fa-tags"></i>
                         <div>
-                            <strong>Notes pour musiciens</strong>
-                            <small>Fanamarihana mozika</small>
+                            <strong>Liste des thèmes</strong>
+                            <small>Afficher tous les thèmes</small>
                         </div>
                     </div>
                     <div class="mobile-sidebar-option" id="mobileAllFichesBtn">
@@ -2326,26 +2463,31 @@
                 }
             });
             
-            // Boutons d'accueil
+            // Boutons d'accueil - MODIFIÉS
             document.getElementById('homeSongsListBtn').addEventListener('click', function() {
-                showList('songs');
+                displayAllFichesGrid();
             });
             
-            document.getElementById('homeAuthorsListBtn').addEventListener('click', function() {
-                showList('authors');
+            document.getElementById('homeSingersNotesBtn').addEventListener('click', function() {
+                showSingersNotesInPage();
             });
             
-            document.getElementById('homeThemesListBtn').addEventListener('click', function() {
-                showList('themes');
+            document.getElementById('homeMusiciansNotesBtn').addEventListener('click', function() {
+                showMusiciansNotesInPage();
             });
             
             // Boutons d'action
             document.getElementById('songsTableBtn').addEventListener('click', showSongsTable);
-            document.getElementById('singersNotesBtn').addEventListener('click', showSingersNotesInPage);
-            document.getElementById('musiciansNotesBtn').addEventListener('click', showMusiciansNotesInPage);
+            document.getElementById('authorsListBtn').addEventListener('click', displayAuthorsGrid);
+            document.getElementById('themesListBtn').addEventListener('click', displayThemesGrid);
             document.getElementById('lyricsBtn').addEventListener('click', showAllTononkiraInPage);
             document.getElementById('sheetBtn').addEventListener('click', () => showPasswordModalForSheet());
             document.getElementById('exportBtn').addEventListener('click', showExportModal);
+            
+            // Bouton de fermeture de l'export modal
+            document.getElementById('exportCloseBtn').addEventListener('click', function() {
+                document.getElementById('exportModal').style.display = 'none';
+            });
             
             // Boutons flottants
             document.getElementById('homeBtn').addEventListener('click', function() {
@@ -2444,17 +2586,17 @@
             
             // Boutons du sidebar mobile
             document.getElementById('mobileSongsListBtn').addEventListener('click', function() {
-                showList('songs');
+                displayAllFichesGrid();
                 mobileSidebar.style.display = 'none';
             });
             
-            document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
-                showList('authors');
+            document.getElementById('mobileSingersNotesBtn').addEventListener('click', function() {
+                showSingersNotesInPage();
                 mobileSidebar.style.display = 'none';
             });
             
-            document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
-                showList('themes');
+            document.getElementById('mobileMusiciansNotesBtn').addEventListener('click', function() {
+                showMusiciansNotesInPage();
                 mobileSidebar.style.display = 'none';
             });
             
@@ -2498,13 +2640,13 @@
                 mobileSidebar.style.display = 'none';
             });
             
-            document.getElementById('mobileSingersNotesBtn').addEventListener('click', function() {
-                showSingersNotesInPage();
+            document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
+                displayAuthorsGrid();
                 mobileSidebar.style.display = 'none';
             });
             
-            document.getElementById('mobileMusiciansNotesBtn').addEventListener('click', function() {
-                showMusiciansNotesInPage();
+            document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
+                displayThemesGrid();
                 mobileSidebar.style.display = 'none';
             });
             
@@ -2517,15 +2659,15 @@
         function setupDesktopSidebar() {
             // Boutons du sidebar desktop
             document.getElementById('desktopSongsListBtn').addEventListener('click', function() {
-                showList('songs');
+                displayAllFichesGrid();
             });
             
-            document.getElementById('desktopAuthorsListBtn').addEventListener('click', function() {
-                showList('authors');
+            document.getElementById('desktopSingersNotesBtn').addEventListener('click', function() {
+                showSingersNotesInPage();
             });
             
-            document.getElementById('desktopThemesListBtn').addEventListener('click', function() {
-                showList('themes');
+            document.getElementById('desktopMusiciansNotesBtn').addEventListener('click', function() {
+                showMusiciansNotesInPage();
             });
             
             document.getElementById('desktopTableBtn').addEventListener('click', function() {
@@ -2560,45 +2702,17 @@
                 showSongSelectionModal('lyrics-translated');
             });
             
-            document.getElementById('desktopSingersNotesBtn').addEventListener('click', function() {
-                showSingersNotesInPage();
+            document.getElementById('desktopAuthorsListBtn').addEventListener('click', function() {
+                displayAuthorsGrid();
             });
             
-            document.getElementById('desktopMusiciansNotesBtn').addEventListener('click', function() {
-                showMusiciansNotesInPage();
+            document.getElementById('desktopThemesListBtn').addEventListener('click', function() {
+                displayThemesGrid();
             });
             
             document.getElementById('desktopAllFichesBtn').addEventListener('click', function() {
                 displayAllFichesGrid();
             });
-        }
-        
-        function showList(listType) {
-            const listsContainer = document.getElementById('listsContainer');
-            const songsSection = document.getElementById('songsListSection');
-            const authorsSection = document.getElementById('authorsListSection');
-            const themesSection = document.getElementById('themesListSection');
-            
-            // Masquer toutes les sections d'abord
-            songsSection.style.display = 'none';
-            authorsSection.style.display = 'none';
-            themesSection.style.display = 'none';
-            
-            // Afficher la section demandée
-            if (listType === 'songs') {
-                songsSection.style.display = 'block';
-                songsSection.style.gridColumn = '1 / -1';
-            } else if (listType === 'authors') {
-                authorsSection.style.display = 'block';
-                authorsSection.style.gridColumn = '1 / -1';
-            } else if (listType === 'themes') {
-                themesSection.style.display = 'block';
-                themesSection.style.gridColumn = '1 / -1';
-            }
-            
-            // Afficher le container
-            listsContainer.classList.add('active');
-            listsContainer.scrollIntoView({ behavior: 'smooth' });
         }
         
         async function loadDataFromGoogleSheets() {
@@ -2721,9 +2835,6 @@
                 
                 normalizeData();
                 prepareLists();
-                populateSongsList();
-                populateAuthorsList();
-                populateThemesList();
                 showDataInfo();
                 
             } catch (error) {
@@ -2834,117 +2945,6 @@
             });
         }
         
-        function populateSongsList() {
-            const songsList = document.getElementById('songsList');
-            const songsCount = document.getElementById('songsCount');
-            
-            songsList.innerHTML = '';
-            
-            // Trier les chansons par ordre alphabétique
-            const sortedSongs = sheetData
-                .map((row, index) => ({
-                    index,
-                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
-                    author: row[columnIndices.author] || '',
-                    tempo: row[columnIndices.tempo] || '',
-                    tonality: row[columnIndices.tonality] || ''
-                }))
-                .sort((a, b) => a.title.localeCompare(b.title));
-            
-            sortedSongs.forEach(song => {
-                const listItem = document.createElement('li');
-                listItem.className = 'song-item';
-                listItem.dataset.index = song.index;
-                
-                let details = '';
-                if (song.tempo || song.tonality) {
-                    const tempoText = song.tempo ? song.tempo : '';
-                    const tonalityText = song.tonality ? song.tonality : '';
-                    details = [tempoText, tonalityText].filter(Boolean).join(' - ');
-                }
-                
-                listItem.innerHTML = `
-                    <div class="song-title">${song.title}</div>
-                    ${song.author ? `<div class="song-author">${song.author}</div>` : ''}
-                    ${details ? `<div class="song-details">${details}</div>` : ''}
-                `;
-                
-                listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.song-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    displaySingleSong(song.index);
-                });
-                
-                songsList.appendChild(listItem);
-            });
-            
-            songsCount.textContent = sheetData.length;
-        }
-        
-        function populateAuthorsList() {
-            const authorsList = document.getElementById('authorsList');
-            const authorsCount = document.getElementById('authorsCount');
-            
-            authorsList.innerHTML = '';
-            
-            // Trier les auteurs par ordre alphabétique
-            const sortedAuthors = [...allAuthors].sort((a, b) => a.localeCompare(b));
-            
-            sortedAuthors.forEach((author, index) => {
-                const listItem = document.createElement('li');
-                listItem.className = 'author-item';
-                listItem.dataset.author = author;
-                listItem.innerHTML = `<div class="author-name">${author}</div>`;
-                
-                listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.author-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    const authorName = this.getAttribute('data-author');
-                    const results = filterByColumn(columnIndices.author, authorName);
-                    displayResults(results, `Chansons de "${authorName}"`);
-                });
-                
-                authorsList.appendChild(listItem);
-            });
-            
-            authorsCount.textContent = allAuthors.length;
-        }
-        
-        function populateThemesList() {
-            const themesList = document.getElementById('themesList');
-            const themesCount = document.getElementById('themesCount');
-            
-            themesList.innerHTML = '';
-            
-            // Trier les thèmes par ordre alphabétique
-            const sortedThemes = [...allThemes].sort((a, b) => a.localeCompare(b));
-            
-            sortedThemes.forEach((theme, index) => {
-                const listItem = document.createElement('li');
-                listItem.className = 'theme-item';
-                listItem.dataset.theme = theme;
-                listItem.innerHTML = `<div class="theme-name">${theme}</div>`;
-                
-                listItem.addEventListener('click', function() {
-                    document.querySelectorAll('.theme-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    const themeName = this.getAttribute('data-theme');
-                    const results = filterByColumn(columnIndices.mainTheme, themeName);
-                    displayResults(results, `Chansons avec le thème "${themeName}"`);
-                });
-                
-                themesList.appendChild(listItem);
-            });
-            
-            themesCount.textContent = allThemes.length;
-        }
-        
         function displayAllFichesGrid() {
             const resultsSection = document.getElementById('resultsSection');
             const resultContent = document.getElementById('resultContent');
@@ -2996,6 +2996,120 @@
                 card.addEventListener('click', function() {
                     const index = parseInt(this.getAttribute('data-index'));
                     displaySingleSong(index);
+                });
+            });
+        }
+        
+        function displayAuthorsGrid() {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultContent = document.getElementById('resultContent');
+            const resultTitle = document.getElementById('resultTitle');
+            
+            // Compter le nombre de chansons par auteur
+            const authorCounts = {};
+            sheetData.forEach(row => {
+                const author = row[columnIndices.author] || '';
+                if (author && author.trim() !== '') {
+                    authorCounts[author] = (authorCounts[author] || 0) + 1;
+                }
+            });
+            
+            let html = `
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 8px; border: 2px solid #f39c12;">
+                    <strong style="font-size: 1em;">${Object.keys(authorCounts).length} auteur(s) au total</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un auteur pour voir ses chansons</p>
+                </div>
+                <div class="authors-grid" id="authorsGrid">
+            `;
+            
+            // Trier les auteurs par ordre alphabétique
+            const sortedAuthors = Object.keys(authorCounts).sort((a, b) => a.localeCompare(b));
+            
+            sortedAuthors.forEach(author => {
+                const count = authorCounts[author];
+                html += `
+                    <div class="author-card" data-author="${author}">
+                        <div class="author-card-header">
+                            <div class="author-name-grid">${author}</div>
+                            <div class="author-count">${count} chanson(s)</div>
+                        </div>
+                        <div class="author-card-footer">
+                            <span>Cliquez pour voir les chansons</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            
+            resultContent.innerHTML = html;
+            resultTitle.textContent = 'Liste des auteurs';
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Ajouter les événements de clic
+            document.querySelectorAll('.author-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const author = this.getAttribute('data-author');
+                    const results = filterByColumn(columnIndices.author, author);
+                    displayResults(results, `Chansons de "${author}"`);
+                });
+            });
+        }
+        
+        function displayThemesGrid() {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultContent = document.getElementById('resultContent');
+            const resultTitle = document.getElementById('resultTitle');
+            
+            // Compter le nombre de chansons par thème
+            const themeCounts = {};
+            sheetData.forEach(row => {
+                const theme = row[columnIndices.mainTheme] || '';
+                if (theme && theme.trim() !== '') {
+                    themeCounts[theme] = (themeCounts[theme] || 0) + 1;
+                }
+            });
+            
+            let html = `
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); border-radius: 8px; border: 2px solid #3498db;">
+                    <strong style="font-size: 1em;">${Object.keys(themeCounts).length} thème(s) au total</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un thème pour voir ses chansons</p>
+                </div>
+                <div class="themes-grid" id="themesGrid">
+            `;
+            
+            // Trier les thèmes par ordre alphabétique
+            const sortedThemes = Object.keys(themeCounts).sort((a, b) => a.localeCompare(b));
+            
+            sortedThemes.forEach(theme => {
+                const count = themeCounts[theme];
+                html += `
+                    <div class="theme-card" data-theme="${theme}">
+                        <div class="theme-card-header">
+                            <div class="theme-name-grid">${theme}</div>
+                            <div class="theme-count">${count} chanson(s)</div>
+                        </div>
+                        <div class="theme-card-footer">
+                            <span>Cliquez pour voir les chansons</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            
+            resultContent.innerHTML = html;
+            resultTitle.textContent = 'Liste des thèmes';
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Ajouter les événements de clic
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    const results = filterByColumn(columnIndices.mainTheme, theme);
+                    displayResults(results, `Chansons avec le thème "${theme}"`);
                 });
             });
         }
@@ -3371,7 +3485,7 @@
             
             const lines = text.split('\n');
             if (lines.length <= 1) {
-                return `<div style="white-space: pre-wrap; line-height: 1.3; font-size: 15px; font-family: 'Brush Script MT', 'Segoe Script', cursive;">${text}</div>`;
+                return `<div style="white-space: pre-wrap; line-height: 1.5; font-size: 16px; font-family: 'Brush Script MT', 'Segoe Script', cursive;">${text}</div>`;
             }
             
             let html = '<div>';
@@ -3803,7 +3917,7 @@
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${song.index}">
+                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); font-weight: 500; text-decoration: underline;">
                                 ${song.title}
                             </span>
                         </td>
@@ -3827,6 +3941,14 @@
             `;
             
             displayResults([results[0]], 'Fanamarihana feo & fihira', html);
+            
+            // Ajouter les événements de clic sur les titres de chansons
+            document.querySelectorAll('.song-title-cell').forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    displaySingleSong(index);
+                });
+            });
         }
         
         function showMusiciansNotesInPage() {
@@ -3882,7 +4004,7 @@
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${song.index}">
+                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); font-weight: 500; text-decoration: underline;">
                                 ${song.title}
                             </span>
                         </td>
@@ -3906,6 +4028,14 @@
             `;
             
             displayResults([results[0]], 'Fanamarihana mozika', html);
+            
+            // Ajouter les événements de clic sur les titres de chansons
+            document.querySelectorAll('.song-title-cell').forEach(cell => {
+                cell.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    displaySingleSong(index);
+                });
+            });
         }
         
         function showExportModal() {
@@ -4191,7 +4321,7 @@
                         .song-author { color: #9b59b6; font-style: italic; margin-bottom: 20px; }
                         .lyrics-title { color: #8B4513; font-weight: bold; margin-top: 15px; margin-bottom: 10px; font-size: 16px; }
                         .lyrics-content { background-color: #fef9e7; padding: 15px; border-radius: 8px; border: 1px solid #D2B48C; }
-                        .lyrics-line { margin-bottom: 5px; line-height: 1.4; }
+                        .lyrics-line { margin-bottom: 5px; line-height: 1.4; font-size: 14px; }
                         .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
                         .page-break { page-break-before: always; }
                     </style>
@@ -4596,13 +4726,49 @@
         }
         
         function showPasswordModalForSheet() {
-            // Demander le mot de passe pour accéder au Google Sheet
-            const password = prompt('Entrez le mot de passe pour accéder au Google Sheet original:');
-            if (password === 'tek') {
-                window.open(ORIGINAL_SHEET_URL, '_blank');
-            } else if (password !== null) {
-                alert('Mot de passe incorrect. Essayez "tek".');
-            }
+            // Utiliser la même modal de password pour le Google Sheet
+            const modal = document.getElementById('passwordModal');
+            const header = document.querySelector('.password-modal-header h2');
+            const description = document.querySelector('.password-modal-header p');
+            const originalHeader = header.textContent;
+            const originalDescription = description.textContent;
+            
+            header.textContent = "Ouvrir le Google Sheet";
+            description.textContent = "Entrez le mot de passe pour accéder au document source Google Sheet";
+            
+            modal.style.display = 'flex';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+            
+            // Modifier le comportement du bouton de validation
+            const submitBtn = document.getElementById('submitPassword');
+            const originalOnClick = submitBtn.onclick;
+            
+            submitBtn.onclick = function() {
+                const password = document.getElementById('passwordInput').value;
+                const errorElement = document.getElementById('passwordError');
+                
+                if (password === 'tek') {
+                    modal.style.display = 'none';
+                    window.open(ORIGINAL_SHEET_URL, '_blank');
+                    
+                    // Restaurer les textes originaux
+                    header.textContent = originalHeader;
+                    description.textContent = originalDescription;
+                    submitBtn.onclick = originalOnClick;
+                } else {
+                    errorElement.style.display = 'block';
+                    document.getElementById('passwordInput').focus();
+                    document.getElementById('passwordInput').select();
+                }
+            };
+            
+            // Restaurer si l'utilisateur annule
+            document.getElementById('cancelPassword').addEventListener('click', function() {
+                header.textContent = originalHeader;
+                description.textContent = originalDescription;
+                submitBtn.onclick = originalOnClick;
+            }, { once: true });
         }
         
         function checkPassword() {
