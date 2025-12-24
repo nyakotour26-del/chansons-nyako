@@ -293,38 +293,39 @@
         .all-fiches-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin-top: 15px;
         }
         
         .authors-grid, .themes-grid, .songs-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 12px;
             margin-top: 15px;
         }
         
+        /* CARTES RÉDUITES - MODIFICATION */
         .fiche-card {
             background: white;
-            border-radius: 10px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
             transition: all 0.3s;
             cursor: pointer;
             border: 1px solid #e1e1e1;
-            height: 140px;
+            height: 100px; /* Réduit de 140px à 100px */
             display: flex;
             flex-direction: column;
         }
         
         .fiche-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             border-color: var(--primary-color);
         }
         
         .fiche-card-header {
-            padding: 10px;
+            padding: 8px 10px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             flex: 1;
@@ -338,10 +339,10 @@
         .fiche-card-header::before {
             content: "♪";
             position: absolute;
-            font-size: 35px;
+            font-size: 25px; /* Réduit */
             opacity: 0.1;
             top: 50%;
-            right: 10px;
+            right: 8px;
             transform: translateY(-50%);
         }
         
@@ -354,11 +355,11 @@
         }
         
         .fiche-card-title {
-            font-size: 0.9em;
+            font-size: 0.85em; /* Réduit */
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 4px;
-            max-height: 40px;
+            margin-bottom: 3px;
+            max-height: 32px; /* Réduit */
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
@@ -368,28 +369,28 @@
         }
         
         .fiche-card-author {
-            font-size: 0.8em;
+            font-size: 0.75em; /* Réduit */
             opacity: 0.9;
             color: white;
         }
         
         .fiche-card-footer {
-            padding: 6px 10px;
+            padding: 4px 8px; /* Réduit */
             background: #f8f9fa;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7em;
+            font-size: 0.65em; /* Réduit */
             color: #666;
-            min-height: 32px;
+            min-height: 24px; /* Réduit */
         }
         
         .song-count-badge {
             background: var(--primary-color);
             color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7em;
+            padding: 2px 6px; /* Réduit */
+            border-radius: 10px;
+            font-size: 0.65em; /* Réduit */
             font-weight: bold;
         }
         
@@ -488,23 +489,23 @@
             font-style: italic;
         }
         
-        /* FICHE AMÉLIORÉE */
+        /* FICHE AMÉLIORÉE - MODIFICATION DES TAILLES */
         .fiche-header {
             background: 
                 linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)),
                 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="%239b59b6" fill-opacity="0.05" d="M100,40 C120,30 140,35 160,50 L160,150 C140,165 120,170 100,160 C80,170 60,165 40,150 L40,50 C60,35 80,30 100,40 Z M80,80 L120,80 L120,120 L80,120 Z M90,90 L90,110 L110,110 L110,90 Z"/></svg>'),
                 linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             color: var(--text-color);
-            padding: 20px;
+            padding: 15px; /* Réduit */
             position: sticky;
             top: 0;
             z-index: 100;
-            min-height: 110px;
+            min-height: 90px; /* Réduit */
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-bottom: 4px solid var(--music-color);
-            border-radius: 12px 12px 0 0;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+            border-bottom: 3px solid var(--music-color);
+            border-radius: 10px 10px 0 0;
             background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
             background-position: center;
@@ -515,10 +516,10 @@
         .fiche-header::before {
             content: "🎤";
             position: absolute;
-            font-size: 70px;
+            font-size: 50px; /* Réduit */
             opacity: 0.1;
             top: 50%;
-            right: 30px;
+            right: 20px;
             transform: translateY(-50%);
         }
         
@@ -530,8 +531,8 @@
             position: relative;
             z-index: 2;
             background: rgba(255, 255, 255, 0.85);
-            padding: 15px;
-            border-radius: 8px;
+            padding: 12px; /* Réduit */
+            border-radius: 6px;
         }
         
         .song-title-info {
@@ -542,21 +543,21 @@
         .song-music-info {
             text-align: right;
             background: rgba(255, 255, 255, 0.95);
-            padding: 12px 15px;
-            border-radius: 8px;
+            padding: 10px 12px; /* Réduit */
+            border-radius: 6px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(155, 89, 182, 0.2);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            min-width: 160px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            min-width: 140px; /* Réduit */
         }
         
         .fiche-title {
             color: var(--secondary-color);
             font-weight: 800;
             margin-top: 0;
-            font-size: 1.6em;
+            font-size: 1.4em; /* Légèrement réduit */
             line-height: 1.2;
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* Réduit */
             text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
             font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
         }
@@ -564,19 +565,19 @@
         .author {
             color: var(--music-color);
             font-weight: 700;
-            font-size: 1.05em;
+            font-size: 0.95em; /* Réduit */
             margin-top: 3px;
             background: rgba(155, 89, 182, 0.1);
-            padding: 8px 15px;
-            border-radius: 6px;
+            padding: 6px 12px; /* Réduit */
+            border-radius: 5px;
             display: inline-block;
             font-family: 'Georgia', serif;
         }
         
         .tempo {
-            font-size: 1.05em;
+            font-size: 0.95em; /* Réduit */
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 5px; /* Réduit */
             color: var(--accent-color);
             display: flex;
             align-items: center;
@@ -584,7 +585,7 @@
         }
         
         .tonality {
-            font-size: 1em;
+            font-size: 0.95em; /* Réduit */
             font-weight: 700;
             color: var(--primary-color);
             display: flex;
@@ -593,11 +594,11 @@
         }
         
         .section-title {
-            font-size: 1.3em;
+            font-size: 1.2em; /* Réduit */
             font-weight: 800;
             color: var(--secondary-color);
-            margin: 20px 0 12px 0;
-            padding-bottom: 8px;
+            margin: 15px 0 10px 0; /* Réduit */
+            padding-bottom: 6px; /* Réduit */
             border-bottom: 2px solid var(--light-color);
             display: flex;
             align-items: center;
@@ -607,15 +608,15 @@
         
         .section-title i {
             color: var(--section-color);
-            font-size: 1.1em;
+            font-size: 1em; /* Réduit */
         }
         
         .section-content {
             background: white;
             padding: 0;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
         
         .data-table {
@@ -625,12 +626,12 @@
         
         .data-table th {
             text-align: left;
-            padding: 16px 18px;
+            padding: 12px 15px; /* Réduit */
             width: 25%;
             background: linear-gradient(135deg, #f8f9fa, #f1f3f5);
             color: var(--column-header-color);
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px; /* Réduit */
             vertical-align: top;
             white-space: normal;
             word-wrap: break-word;
@@ -640,13 +641,13 @@
         }
         
         .data-table td {
-            padding: 16px 18px;
-            font-size: 15px;
+            padding: 12px 15px; /* Réduit */
+            font-size: 14px; /* Augmenté de 13px à 14px */
             color: var(--data-value-color);
             white-space: pre-wrap;
             border-bottom: 1px solid #e9ecef;
             background-color: white;
-            line-height: 1.6;
+            line-height: 1.5; /* Réduit */
             font-weight: 500;
         }
         
@@ -661,24 +662,24 @@
         /* Style spécial pour les tononkira - MODIFICATION */
         .tononkira-container {
             background: linear-gradient(135deg, #fef9f3, #f5f0e8);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 10px 0 20px 0;
+            border-radius: 10px;
+            padding: 15px; /* Réduit */
+            margin: 8px 0 15px 0; /* Réduit */
             border: 2px solid #d4b896;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.1);
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.1);
             font-family: 'Dancing Script', cursive;
-            font-size: 1.4em;
+            font-size: 1.2em; /* Réduit */
             line-height: 1.3;
         }
         
         .tononkira-container::before {
             content: "♪";
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
+            top: 8px; /* Réduit */
+            right: 8px; /* Réduit */
+            font-size: 30px; /* Réduit */
             opacity: 0.1;
             color: #8B4513;
         }
@@ -697,13 +698,13 @@
         .tononkira-title {
             color: #8B4513 !important;
             font-weight: 700;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+            margin-bottom: 12px; /* Réduit */
+            font-size: 1.1em; /* Réduit */
             text-transform: uppercase;
             text-align: center;
-            padding: 8px;
+            padding: 6px; /* Réduit */
             background: linear-gradient(135deg, #F5DEB3, #DEB887);
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #D2B48C;
             font-family: 'Georgia', serif;
             letter-spacing: 1px;
@@ -715,11 +716,11 @@
         }
         
         .tononkira-line {
-            margin-bottom: 8px;
-            padding-bottom: 8px;
+            margin-bottom: 6px; /* Réduit */
+            padding-bottom: 6px; /* Réduit */
             border-bottom: 1px dashed #D2B48C;
             line-height: 1.3;
-            font-size: 1.2em;
+            font-size: 1.1em; /* Réduit */
             font-family: 'Dancing Script', cursive;
             white-space: pre-wrap;
         }
@@ -732,43 +733,43 @@
         
         /* Styles pour fanamarihana avec titre en vert pomme */
         .fanamarihana-section {
-            margin: 20px 0;
+            margin: 15px 0; /* Réduit */
             width: 100%;
         }
         
         .fanamarihana-title-section {
             background: linear-gradient(135deg, #4CAF50, #2E7D32);
             color: white;
-            padding: 12px 20px;
-            border-radius: 8px 8px 0 0;
+            padding: 10px 15px; /* Réduit */
+            border-radius: 6px 6px 0 0;
             margin: 0;
             font-weight: 800;
-            font-size: 1.1em;
+            font-size: 1em; /* Réduit */
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px; /* Réduit */
             width: 100%;
         }
         
         .fanamarihana-content {
             background: white;
-            padding: 20px;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 15px; /* Réduit */
+            border-radius: 0 0 6px 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid #4CAF50;
             border-top: none;
             width: 100%;
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px; /* Réduit */
+            line-height: 1.5; /* Réduit */
         }
         
         .data-table img {
             max-width: 95%;
-            max-height: 180px;
+            max-height: 150px; /* Réduit */
             display: block;
-            margin: 8px auto;
-            border-radius: 8px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+            margin: 6px auto; /* Réduit */
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         
         .data-table a {
@@ -776,41 +777,41 @@
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
-            padding: 6px 12px;
+            padding: 5px 10px; /* Réduit */
             background-color: #e3f2fd;
-            border-radius: 6px;
+            border-radius: 5px;
             transition: all 0.2s;
             border: 1px solid rgba(52, 152, 219, 0.2);
-            font-size: 12px;
+            font-size: 11px; /* Réduit */
         }
         
         .data-table a:hover {
             background-color: var(--primary-color);
             color: white;
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
         }
         
         /* PRÉVISUELS AUDIO/VIDÉO */
         .media-preview {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 12px 0;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px; /* Réduit */
+            margin: 10px 0; /* Réduit */
         }
         
         .media-item {
             border: 1px solid #e1e1e1;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             background: white;
             transition: all 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
         }
         
         .media-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
             border-color: var(--primary-color);
         }
         
@@ -832,10 +833,10 @@
         }
         
         .audio-preview {
-            padding: 20px;
+            padding: 15px; /* Réduit */
             text-align: center;
             background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            min-height: 120px;
+            min-height: 100px; /* Réduit */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -843,25 +844,25 @@
         }
         
         .audio-preview i {
-            font-size: 35px;
+            font-size: 30px; /* Réduit */
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Réduit */
         }
         
-        /* BOUTONS FLOTTANTS */
+        /* BOUTONS FLOTTANTS - AJOUT DU BOUTON "NOUVELLE FICHE" */
         .floating-buttons {
             position: fixed;
             bottom: 30px;
             right: 30px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px; /* Réduit */
             z-index: 1000;
         }
         
         .floating-button {
-            width: 55px;
-            height: 55px;
+            width: 50px; /* Réduit */
+            height: 50px; /* Réduit */
             border-radius: 50%;
             color: white;
             border: none;
@@ -870,7 +871,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px; /* Réduit */
             transition: all 0.3s ease;
             position: relative;
         }
@@ -900,13 +901,18 @@
             background: linear-gradient(135deg, #9c27b0, #673ab7);
         }
         
+        /* NOUVEAU BOUTON POUR ÉCRIRE UNE NOUVELLE FICHE */
+        .floating-button.new-btn {
+            background: linear-gradient(135deg, #ff5722, #e91e63);
+        }
+        
         /* BOUTON SIDEBAR MOBILE */
         .sidebar-toggle {
             position: fixed;
             bottom: 30px;
             left: 30px;
-            width: 55px;
-            height: 55px;
+            width: 50px; /* Réduit */
+            height: 50px; /* Réduit */
             border-radius: 50%;
             background: linear-gradient(135deg, #9c27b0, #673ab7);
             color: white;
@@ -916,7 +922,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px; /* Réduit */
             transition: all 0.3s ease;
             z-index: 1000;
             display: none;
@@ -930,14 +936,14 @@
         /* MOBILE SIDEBAR - ÉLARGI ET SCROLLABLE */
         .mobile-sidebar {
             position: fixed;
-            bottom: 100px;
+            bottom: 90px; /* Ajusté */
             left: 30px;
             background: white;
             padding: 15px;
             border-radius: var(--border-radius);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             width: 320px;
-            max-height: 80vh;
+            max-height: 70vh; /* Réduit */
             overflow-y: auto;
             display: none;
             z-index: 1001;
@@ -957,48 +963,48 @@
         .mobile-sidebar-sections {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px; /* Réduit */
         }
         
         .mobile-sidebar-section-title {
-            font-size: 0.9em;
+            font-size: 0.85em; /* Réduit */
             font-weight: 700;
             color: var(--secondary-color);
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* Réduit */
             padding-left: 5px;
             border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 5px;
+            padding-bottom: 4px; /* Réduit */
         }
         
         .mobile-sidebar-options {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px; /* Réduit */
         }
         
         .mobile-sidebar-option {
-            padding: 10px 12px;
+            padding: 8px 10px; /* Réduit */
             background-color: #f8f9fa;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px; /* Réduit */
             border: 1px solid transparent;
-            font-size: 0.9em;
-            min-height: 50px;
+            font-size: 0.85em; /* Réduit */
+            min-height: 45px; /* Réduit */
         }
         
         .mobile-sidebar-option:hover {
             background-color: white;
             transform: translateX(3px);
             border-color: var(--primary-color);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
         
         .mobile-sidebar-option i {
-            font-size: 18px;
+            font-size: 16px; /* Réduit */
             color: var(--primary-color);
         }
         
@@ -1039,18 +1045,18 @@
         .songs-data-table th {
             background-color: var(--primary-color);
             color: white;
-            padding: 10px;
+            padding: 8px 10px; /* Réduit */
             text-align: left;
             font-weight: bold;
             position: sticky;
             top: 0;
-            font-size: 0.9em;
+            font-size: 0.85em; /* Réduit */
         }
         
         .songs-data-table td {
-            padding: 8px 10px;
+            padding: 6px 8px; /* Réduit */
             border-bottom: 1px solid #eee;
-            font-size: 0.85em;
+            font-size: 0.8em; /* Réduit */
         }
         
         .songs-data-table tr:hover {
@@ -1071,11 +1077,11 @@
         /* TABLEAU POUR LES NOTES */
         .notes-table-container {
             overflow-x: auto;
-            margin-top: 15px;
+            margin-top: 12px; /* Réduit */
             border: 1px solid #e1e1e1;
             border-radius: var(--border-radius);
             background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
         }
         
         .notes-table {
@@ -1086,19 +1092,19 @@
         .notes-table th {
             background-color: var(--primary-color);
             color: white;
-            padding: 10px;
+            padding: 8px 10px; /* Réduit */
             text-align: left;
             font-weight: bold;
             position: sticky;
             top: 0;
-            font-size: 0.9em;
+            font-size: 0.85em; /* Réduit */
         }
         
         .notes-table td {
-            padding: 8px 10px;
+            padding: 6px 8px; /* Réduit */
             border-bottom: 1px solid #eee;
             vertical-align: top;
-            font-size: 0.85em;
+            font-size: 0.8em; /* Réduit */
         }
         
         .notes-table tr:hover {
@@ -1132,7 +1138,7 @@
         
         .export-modal-content {
             background: white;
-            padding: 25px;
+            padding: 20px; /* Réduit */
             border-radius: var(--border-radius);
             width: 90%;
             max-width: 800px;
@@ -1144,15 +1150,15 @@
         
         .close-export-modal {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 12px; /* Réduit */
+            right: 12px; /* Réduit */
             background: none;
             border: none;
-            font-size: 1.3em;
+            font-size: 1.2em; /* Réduit */
             color: var(--accent-color);
             cursor: pointer;
-            width: 30px;
-            height: 30px;
+            width: 25px; /* Réduit */
+            height: 25px; /* Réduit */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1168,12 +1174,12 @@
         .export-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
+            gap: 12px; /* Réduit */
+            margin: 12px 0; /* Réduit */
         }
         
         .export-option {
-            padding: 15px;
+            padding: 12px; /* Réduit */
             border: 2px solid #eee;
             border-radius: var(--border-radius);
             cursor: pointer;
@@ -1191,19 +1197,19 @@
         }
         
         .songs-checklist {
-            max-height: 300px;
+            max-height: 250px; /* Réduit */
             overflow-y: auto;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 12px 0;
+            border-radius: 6px;
+            padding: 10px; /* Réduit */
+            margin: 10px 0; /* Réduit */
         }
         
         .song-checkbox-item {
-            margin-bottom: 8px;
-            padding: 8px;
+            margin-bottom: 6px; /* Réduit */
+            padding: 6px; /* Réduit */
             background: #f9f9f9;
-            border-radius: 6px;
+            border-radius: 5px;
         }
         
         /* MODAL PASSWORD améliorée */
@@ -1222,7 +1228,7 @@
         
         .password-modal-content {
             background: white;
-            padding: 30px;
+            padding: 25px; /* Réduit */
             border-radius: var(--border-radius);
             width: 90%;
             max-width: 400px;
@@ -1238,15 +1244,15 @@
         
         .password-input-group {
             position: relative;
-            margin: 20px 0;
+            margin: 15px 0; /* Réduit */
         }
         
         .password-input {
             width: 100%;
-            padding: 14px 45px 14px 14px;
+            padding: 12px 40px 12px 12px; /* Réduit */
             border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 6px;
+            font-size: 15px; /* Réduit */
             transition: all 0.3s;
             background: #f9f9f9;
         }
@@ -1260,56 +1266,56 @@
         
         .password-toggle {
             position: absolute;
-            right: 12px;
+            right: 10px; /* Réduit */
             top: 50%;
             transform: translateY(-50%);
             background: none;
             border: none;
             color: #666;
             cursor: pointer;
-            font-size: 18px;
+            font-size: 16px; /* Réduit */
         }
         
         .password-error {
             color: #e74c3c;
-            margin-top: 10px;
+            margin-top: 8px; /* Réduit */
             display: none;
             font-weight: 500;
-            font-size: 0.9em;
-            padding: 8px;
+            font-size: 0.85em; /* Réduit */
+            padding: 6px; /* Réduit */
             background: #ffeaea;
-            border-radius: 5px;
+            border-radius: 4px;
             border-left: 3px solid #e74c3c;
         }
         
         .password-modal-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 15px; /* Réduit */
+            padding-bottom: 12px; /* Réduit */
             border-bottom: 2px solid #f0f0f0;
         }
         
         .password-modal-header i {
-            font-size: 40px;
+            font-size: 35px; /* Réduit */
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 8px; /* Réduit */
         }
         
         /* MESSAGES */
         .no-results {
             text-align: center;
-            padding: 40px;
+            padding: 30px; /* Réduit */
             color: #7f8c8d;
         }
         
         .no-results-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
+            font-size: 40px; /* Réduit */
+            margin-bottom: 12px; /* Réduit */
             opacity: 0.5;
         }
         
         .loading {
             text-align: center;
-            padding: 25px;
+            padding: 20px; /* Réduit */
             display: none;
             grid-column: 1 / -1;
         }
@@ -1318,32 +1324,32 @@
             border: 4px solid rgba(0, 0, 0, 0.1);
             border-left-color: var(--primary-color);
             border-radius: 50%;
-            width: 35px;
-            height: 35px;
+            width: 30px; /* Réduit */
+            height: 30px; /* Réduit */
             animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            margin: 0 auto 12px; /* Réduit */
         }
         
         .success-message {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             color: white;
-            padding: 12px;
-            border-radius: 6px;
-            margin: 8px 0;
+            padding: 10px; /* Réduit */
+            border-radius: 5px;
+            margin: 6px 0; /* Réduit */
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-size: 0.85em; /* Réduit */
         }
         
         .error-message {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
-            padding: 12px;
-            border-radius: 6px;
-            margin: 8px 0;
+            padding: 10px; /* Réduit */
+            border-radius: 5px;
+            margin: 6px 0; /* Réduit */
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            font-size: 0.9em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-size: 0.85em; /* Réduit */
         }
         
         .results-section {
@@ -1354,7 +1360,7 @@
             overflow: hidden;
             grid-column: 1 / -1;
             animation: fadeIn 0.5s ease;
-            margin-top: 15px;
+            margin-top: 12px; /* Réduit */
             position: relative;
         }
         
@@ -1366,7 +1372,7 @@
         .result-header {
             background: var(--gradient);
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px; /* Réduit */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1374,21 +1380,21 @@
         }
         
         .result-content {
-            padding: 20px;
+            padding: 15px; /* Réduit */
         }
         
         .fiche-item {
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Réduit */
             border: 1px solid #e1e1e1;
             border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             transition: all 0.3s ease;
             background: white;
         }
         
         .fiche-item:hover {
-            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
             transform: translateY(-3px);
         }
         
@@ -1399,48 +1405,73 @@
         /* BOUTON RETOUR À LA LISTE */
         .back-to-list {
             text-align: center;
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 15px; /* Réduit */
+            padding-top: 12px; /* Réduit */
             border-top: 2px dashed #eee;
         }
         
         .back-to-list button {
-            padding: 10px 20px;
+            padding: 8px 15px; /* Réduit */
             background: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.9em;
+            font-size: 0.85em; /* Réduit */
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px; /* Réduit */
         }
         
         .back-to-list button:hover {
             background: #2980b9;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 3px 10px rgba(52, 152, 219, 0.3);
         }
         
         /* TITRES DE SECTIONS EN EVIDENCE */
         .section-title-evidence {
             background: linear-gradient(135deg, #ff9800, #ff5722);
             color: white;
-            padding: 8px 15px;
-            border-radius: 6px 6px 0 0;
-            margin: 20px 0 0 0;
+            padding: 6px 12px; /* Réduit */
+            border-radius: 5px 5px 0 0;
+            margin: 15px 0 0 0; /* Réduit */
             font-weight: 800;
-            font-size: 1.1em;
+            font-size: 1em; /* Réduit */
             display: inline-block;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
         
         .section-title-evidence i {
             color: white;
-            margin-right: 8px;
+            margin-right: 6px; /* Réduit */
+        }
+        
+        /* NOUVEAU MODAL POUR ÉCRIRE UNE NOUVELLE FICHE */
+        .write-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .write-modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            text-align: center;
+            animation: modalAppear 0.3s ease-out;
         }
         
         /* Styles responsives */
@@ -1473,7 +1504,7 @@
             }
             
             .fiche-card-title {
-                font-size: 0.85em;
+                font-size: 0.8em;
             }
             
             .home-buttons-container {
@@ -1488,16 +1519,16 @@
             }
             
             header {
-                height: 80px;
-                padding: 10px;
+                height: 70px; /* Réduit */
+                padding: 8px; /* Réduit */
             }
             
             h1 {
-                font-size: 1.3em;
+                font-size: 1.2em; /* Réduit */
             }
             
             .subtitle {
-                font-size: 0.75em;
+                font-size: 0.7em; /* Réduit */
             }
             
             .action-buttons-container {
@@ -1505,13 +1536,13 @@
             }
             
             .action-button {
-                min-height: 80px;
-                padding: 10px 6px;
-                font-size: 0.8em;
+                min-height: 70px; /* Réduit */
+                padding: 8px 5px; /* Réduit */
+                font-size: 0.75em; /* Réduit */
             }
             
             .action-button i {
-                font-size: 20px;
+                font-size: 18px; /* Réduit */
             }
             
             .home-buttons-container {
@@ -1519,87 +1550,89 @@
             }
             
             .home-button {
-                min-height: 95px;
-                padding: 15px 8px;
-                font-size: 0.85em;
+                min-height: 85px; /* Réduit */
+                padding: 12px 8px; /* Réduit */
+                font-size: 0.8em; /* Réduit */
             }
             
             .home-button i {
-                font-size: 24px;
+                font-size: 22px; /* Réduit */
             }
             
             .fiche-title {
-                font-size: 1.4em;
+                font-size: 1.2em; /* Réduit */
             }
             
             .author {
-                font-size: 0.95em;
-                padding: 6px 12px;
+                font-size: 0.85em; /* Réduit */
+                padding: 5px 10px; /* Réduit */
             }
             
             .song-music-info {
-                min-width: 140px;
-                padding: 10px 12px;
+                min-width: 120px; /* Réduit */
+                padding: 8px 10px; /* Réduit */
             }
             
             .tempo, .tonality {
-                font-size: 0.95em;
+                font-size: 0.85em; /* Réduit */
             }
             
             .floating-buttons {
                 bottom: 20px;
                 right: 20px;
-                gap: 10px;
+                gap: 8px; /* Réduit */
             }
             
             .floating-button {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+                width: 45px; /* Réduit */
+                height: 45px; /* Réduit */
+                font-size: 18px; /* Réduit */
             }
             
             .sidebar-toggle {
                 display: flex;
                 bottom: 20px;
                 left: 20px;
+                width: 45px; /* Réduit */
+                height: 45px; /* Réduit */
             }
             
             .mobile-sidebar {
-                width: 300px;
+                width: 280px;
                 left: 20px;
-                max-height: 70vh;
+                max-height: 60vh; /* Réduit */
             }
             
             .all-fiches-grid, .authors-grid, .themes-grid, .songs-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
+                gap: 10px; /* Réduit */
             }
             
             .fiche-card {
-                height: 130px;
+                height: 90px; /* Réduit */
             }
             
             .fiche-card-header {
-                padding: 8px;
+                padding: 6px 8px; /* Réduit */
             }
             
             .fiche-card-title {
-                font-size: 0.85em;
-                max-height: 38px;
+                font-size: 0.8em; /* Réduit */
+                max-height: 28px; /* Réduit */
             }
             
             .fiche-card-footer {
-                padding: 5px 8px;
-                font-size: 0.7em;
-                min-height: 30px;
+                padding: 4px 6px; /* Réduit */
+                font-size: 0.6em; /* Réduit */
+                min-height: 22px; /* Réduit */
             }
             
             .tononkira-container {
-                font-size: 1.2em;
+                font-size: 1.1em; /* Réduit */
             }
             
             .tononkira-line {
-                font-size: 1.1em;
+                font-size: 1em; /* Réduit */
             }
         }
         
@@ -1609,14 +1642,14 @@
             }
             
             .action-button {
-                min-height: 70px;
-                padding: 8px 4px;
-                font-size: 0.75em;
-                gap: 4px;
+                min-height: 65px; /* Réduit */
+                padding: 6px 4px; /* Réduit */
+                font-size: 0.7em; /* Réduit */
+                gap: 3px; /* Réduit */
             }
             
             .action-button i {
-                font-size: 18px;
+                font-size: 16px; /* Réduit */
             }
             
             .home-buttons-container {
@@ -1624,8 +1657,8 @@
             }
             
             .home-button {
-                min-height: 85px;
-                padding: 12px 8px;
+                min-height: 75px; /* Réduit */
+                padding: 10px 6px; /* Réduit */
             }
             
             .all-fiches-grid, .authors-grid, .themes-grid, .songs-grid {
@@ -1633,56 +1666,56 @@
             }
             
             .fiche-header {
-                padding: 15px;
-                min-height: 100px;
+                padding: 12px; /* Réduit */
+                min-height: 80px; /* Réduit */
             }
             
             .fiche-title {
-                font-size: 1.3em;
+                font-size: 1.1em; /* Réduit */
             }
             
             .song-music-info {
-                min-width: 120px;
-                padding: 8px 10px;
+                min-width: 110px; /* Réduit */
+                padding: 6px 8px; /* Réduit */
             }
             
             .tempo, .tonality {
-                font-size: 0.9em;
+                font-size: 0.8em; /* Réduit */
             }
             
             .floating-buttons {
                 bottom: 15px;
                 right: 15px;
-                gap: 8px;
+                gap: 6px; /* Réduit */
             }
             
             .floating-button {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
+                width: 40px; /* Réduit */
+                height: 40px; /* Réduit */
+                font-size: 16px; /* Réduit */
             }
             
             .sidebar-toggle {
                 bottom: 15px;
                 left: 15px;
-                width: 45px;
-                height: 45px;
-                font-size: 20px;
+                width: 40px; /* Réduit */
+                height: 40px; /* Réduit */
+                font-size: 18px; /* Réduit */
             }
             
             .mobile-sidebar {
-                width: 280px;
+                width: 260px; /* Réduit */
                 left: 15px;
-                max-height: 65vh;
+                max-height: 55vh; /* Réduit */
             }
             
             .section-title {
-                font-size: 1.2em;
+                font-size: 1.1em; /* Réduit */
             }
             
             .data-table th, .data-table td {
-                padding: 14px 16px;
-                font-size: 13px;
+                padding: 10px 12px; /* Réduit */
+                font-size: 12px; /* Réduit */
             }
             
             .media-preview {
@@ -1690,11 +1723,11 @@
             }
             
             .tononkira-container {
-                font-size: 1.1em;
+                font-size: 1em; /* Réduit */
             }
             
             .tononkira-line {
-                font-size: 1em;
+                font-size: 0.95em; /* Réduit */
             }
         }
     </style>
@@ -2046,6 +2079,41 @@
         </div>
     </div>
 
+    <!-- NOUVEAU MODAL POUR ÉCRIRE UNE NOUVELLE FICHE -->
+    <div class="write-modal" id="writeModal">
+        <div class="write-modal-content">
+            <div class="password-modal-header">
+                <i class="fas fa-edit"></i>
+                <h2 style="font-size: 1.3em; margin: 0;">Écrire une nouvelle fiche</h2>
+                <p style="font-size: 0.9em; color: #666; margin-top: 5px;">Accès réservé aux administrateurs</p>
+            </div>
+            
+            <div class="password-input-group">
+                <input type="password" id="writePasswordInput" class="password-input" placeholder="Mot de passe administrateur">
+                <button type="button" id="writePasswordToggle" class="password-toggle">
+                    <i class="fas fa-eye"></i>
+                </button>
+            </div>
+            
+            <div id="writePasswordError" class="password-error">
+                <i class="fas fa-exclamation-circle"></i> Mot de passe administrateur incorrect.
+            </div>
+            
+            <div style="margin-top: 25px;">
+                <button id="submitWritePassword" style="padding: 12px 30px; background: linear-gradient(135deg, #ff5722, #e91e63); color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px; font-size: 1em; font-weight: 600; width: 48%;">
+                    <i class="fas fa-check"></i> Valider
+                </button>
+                <button id="cancelWritePassword" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 600; width: 48%;">
+                    <i class="fas fa-times"></i> Annuler
+                </button>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 0.8em; color: #999; border-top: 1px solid #eee; padding-top: 15px;">
+                <i class="fas fa-info-circle"></i> Ce formulaire permet de créer une nouvelle fiche technique de chanson.
+            </div>
+        </div>
+    </div>
+
     <!-- BOUTON SIDEBAR MOBILE -->
     <button class="sidebar-toggle" id="sidebarToggle">
         <i class="fas fa-bars"></i>
@@ -2178,8 +2246,11 @@
         </div>
     </div>
 
-    <!-- BOUTONS FLOTTANTS (simplifiés) -->
+    <!-- BOUTONS FLOTTANTS (simplifiés) - AJOUT DU BOUTON "NOUVELLE FICHE" -->
     <div class="floating-buttons">
+        <button class="floating-button new-btn" title="Écrire une nouvelle fiche" id="newFicheBtn">
+            <i class="fas fa-plus"></i>
+        </button>
         <button class="floating-button home-btn" title="Retour à l'accueil" id="homeBtn">
             <i class="fas fa-home"></i>
         </button>
@@ -2200,6 +2271,7 @@
     <script>
         const GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSXIJyclDLf2asT-FMnmaeWMSPtQHxpAC1wiGJ_xzXbl2StziwiUw9ElW9XyK5yemQ-PHaWlRQbtdHb/pub?gid=602871919&single=true&output=csv';
         const ORIGINAL_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1LOZrYIUEVtqyBwJ1atHyC0nCzDiXVmHHmZfDNaJOBlI/edit?usp=sharing';
+        const NEW_FICHE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc8-vDc86ukap_X4BYRQUlpCoIN_59Ugry7XdDZR-QPyRTPxQ/viewform?usp=header';
         
         let sheetData = [];
         let headers = [];
@@ -2235,17 +2307,17 @@
                 showSuggestions(this.value);
             });
             
-           searchInput.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        navigateSuggestions(e.key);
-    }
-    
-    if (e.key === 'Enter' && document.getElementById('suggestionsContainer').style.display === 'block') {
-        e.preventDefault();
-        selectActiveSuggestion();
-    }
-});
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    navigateSuggestions(e.key);
+                }
+                
+                if (e.key === 'Enter' && document.getElementById('suggestionsContainer').style.display === 'block') {
+                    e.preventDefault();
+                    selectActiveSuggestion();
+                }
+            });
             
             // Boutons d'accueil
             document.getElementById('homeSongsListBtn').addEventListener('click', function() {
@@ -2287,6 +2359,11 @@
             });
             
             document.getElementById('lockBtn').addEventListener('click', showPasswordModal);
+            
+            // NOUVEAU BOUTON POUR ÉCRIRE UNE NOUVELLE FICHE
+            document.getElementById('newFicheBtn').addEventListener('click', function() {
+                showWriteModal();
+            });
             
             // Modal tableau des chansons
             document.getElementById('closeSongsTable').addEventListener('click', () => {
@@ -2338,6 +2415,32 @@
                 }
             });
             
+            // NOUVEAU MODAL POUR ÉCRIRE UNE FICHE
+            document.getElementById('submitWritePassword').addEventListener('click', checkWritePassword);
+            document.getElementById('cancelWritePassword').addEventListener('click', () => {
+                document.getElementById('writeModal').style.display = 'none';
+            });
+            
+            document.getElementById('writePasswordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkWritePassword();
+                }
+            });
+            
+            // Toggle visibilité du mot de passe pour écrire
+            document.getElementById('writePasswordToggle').addEventListener('click', function() {
+                const passwordInput = document.getElementById('writePasswordInput');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    passwordInput.type = 'password';
+                    icon.className = 'fas fa-eye';
+                }
+            });
+            
             // Fermer les modals en cliquant à l'extérieur
             window.addEventListener('click', function(e) {
                 if (e.target.classList.contains('songs-table-modal')) {
@@ -2348,6 +2451,9 @@
                 }
                 if (e.target.classList.contains('password-modal')) {
                     document.getElementById('passwordModal').style.display = 'none';
+                }
+                if (e.target.classList.contains('write-modal')) {
+                    document.getElementById('writeModal').style.display = 'none';
                 }
                 if (!e.target.closest('.floating-button') && !e.target.closest('.bubble')) {
                     document.getElementById('exportBubble').style.display = 'none';
@@ -2367,7 +2473,7 @@
                 mobileSidebar.style.display = mobileSidebar.style.display === 'block' ? 'none' : 'block';
             });
             
-            // Boutons du sidebar mobile - MODIFICATION pour les options d'export
+            // Boutons du sidebar mobile
             document.getElementById('mobileSongsListBtn').addEventListener('click', function() {
                 displayAllFichesGrid();
                 mobileSidebar.style.display = 'none';
@@ -2769,9 +2875,9 @@
                 .sort((a, b) => a.title.localeCompare(b.title));
             
             let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
-                    <strong style="font-size: 1em;">${sheetData.length} chanson(s) au total</strong>
-                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une carte pour voir les détails complets</p>
+                <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 6px; border: 2px solid var(--primary-color);">
+                    <strong style="font-size: 0.95em;">${sheetData.length} chanson(s) au total</strong>
+                    <p style="margin-top: 4px; color: #666; font-size: 0.8em;">Cliquez sur une carte pour voir les détails complets</p>
                 </div>
                 <div class="songs-grid" id="songsGrid">
             `;
@@ -2812,7 +2918,7 @@
             // Trier les auteurs par ordre alphabétique
             const sortedAuthors = [...allAuthors].sort((a, b) => a.localeCompare(b));
             
-            // Compter le nombre de chansons par auteur - CORRECTION
+            // Compter le nombre de chansons par auteur
             const authorCounts = {};
             sheetData.forEach(row => {
                 const author = row[columnIndices.author] || '';
@@ -2823,9 +2929,9 @@
             });
             
             let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 8px; border: 2px solid #ff9800;">
-                    <strong style="font-size: 1em;">${sortedAuthors.length} auteur(s) au total</strong>
-                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un auteur pour voir ses chansons</p>
+                <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 6px; border: 2px solid #ff9800;">
+                    <strong style="font-size: 0.95em;">${sortedAuthors.length} auteur(s) au total</strong>
+                    <p style="margin-top: 4px; color: #666; font-size: 0.8em;">Cliquez sur un auteur pour voir ses chansons</p>
                 </div>
                 <div class="authors-grid" id="authorsGrid">
             `;
@@ -2851,7 +2957,7 @@
             listsContainer.classList.add('active');
             listsContainer.scrollIntoView({ behavior: 'smooth' });
             
-            // Ajouter les événements de clic - CORRECTION DU FILTRE
+            // Ajouter les événements de clic
             document.querySelectorAll('.fiche-card[data-author]').forEach(card => {
                 card.addEventListener('click', function() {
                     const authorName = this.getAttribute('data-author');
@@ -2875,7 +2981,7 @@
             // Trier les thèmes par ordre alphabétique
             const sortedThemes = [...allThemes].sort((a, b) => a.localeCompare(b));
             
-            // Compter le nombre de chansons par thème - CORRECTION
+            // Compter le nombre de chansons par thème
             const themeCounts = {};
             sheetData.forEach(row => {
                 const theme = row[columnIndices.mainTheme] || '';
@@ -2886,9 +2992,9 @@
             });
             
             let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); border-radius: 8px; border: 2px solid #27ae60;">
-                    <strong style="font-size: 1em;">${sortedThemes.length} thème(s) au total</strong>
-                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un thème pour voir les chansons correspondantes</p>
+                <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); border-radius: 6px; border: 2px solid #27ae60;">
+                    <strong style="font-size: 0.95em;">${sortedThemes.length} thème(s) au total</strong>
+                    <p style="margin-top: 4px; color: #666; font-size: 0.8em;">Cliquez sur un thème pour voir les chansons correspondantes</p>
                 </div>
                 <div class="themes-grid" id="themesGrid">
             `;
@@ -2914,7 +3020,7 @@
             listsContainer.classList.add('active');
             listsContainer.scrollIntoView({ behavior: 'smooth' });
             
-            // Ajouter les événements de clic - CORRECTION DU FILTRE
+            // Ajouter les événements de clic
             document.querySelectorAll('.fiche-card[data-theme]').forEach(card => {
                 card.addEventListener('click', function() {
                     const themeName = this.getAttribute('data-theme');
@@ -2959,7 +3065,7 @@
                         </div>
                     </div>
                     
-                    <div style="padding: 20px;">
+                    <div style="padding: 15px;">
             `;
             
             // Section MOAMBA NY HIRA
@@ -3024,7 +3130,7 @@
                 </div>
             `;
             
-            // Section TONONKIRA avec cadre décoratif - MODIFICATION
+            // Section TONONKIRA avec cadre décoratif
             const hasTononkira = tononkiraColumns.some(col => {
                 const value = songData[col.index] || '';
                 return value.trim() !== '';
@@ -3033,15 +3139,14 @@
             if (hasTononkira) {
                 html += `
                     <div class="section-title-evidence"><i class="fas fa-music"></i> TONONKIRA</div>
-                    <div style="margin-top: 15px; width: 100%;">
+                    <div style="margin-top: 12px; width: 100%;">
                 `;
                 
                 tononkiraColumns.forEach(col => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
-                        // Titre en marron or pour les tononkira
                         html += `
-                            <div style="margin-bottom: 25px; width: 100%;">
+                            <div style="margin-bottom: 15px; width: 100%;">
                                 <div class="tononkira-container">
                                     <div class="tononkira-title">
                                         ${col.name}
@@ -3128,7 +3233,7 @@
                 // Historique Fanavaozana
                 if (columnIndices.history !== -1 && songData[columnIndices.history]) {
                     html += `
-                        <div style="margin-top: 20px;">
+                        <div style="margin-top: 15px;">
                             <div class="section-title-evidence"><i class="fas fa-history"></i> Historique Fanavaozana</div>
                             <div class="section-content">
                                 <table class="data-table">
@@ -3142,7 +3247,7 @@
                 }
             }
             
-            // Section AHAFAHANA MIANATRA
+            // Section AHAFAHANA MIANATRA avec aperçu photo pour solfa
             const hasLearningData = (columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
                                    (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks]) ||
                                    (columnIndices.solfa !== -1 && songData[columnIndices.solfa]);
@@ -3157,8 +3262,8 @@
                 if ((columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
                     (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks])) {
                     html += `
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
+                        <div style="margin-bottom: 15px;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; font-size: 0.95em;">
                                 <i class="fas fa-link"></i> Rohy hafa AUDIO, VIDEO
                             </h4>
                             <div class="media-preview">
@@ -3207,8 +3312,8 @@
                                     <div class="media-item">
                                         <div class="audio-preview">
                                             <i class="fas fa-volume-up"></i>
-                                            <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">AUDIO</p>
-                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 15px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em;">
+                                            <p style="font-weight: 600; margin: 6px 0; color: var(--secondary-color); font-size: 0.85em;">AUDIO</p>
+                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.8em;">
                                                 Écouter <i class="fas fa-play-circle"></i>
                                             </a>
                                         </div>
@@ -3227,8 +3332,8 @@
                                     <div class="media-item">
                                         <div class="audio-preview">
                                             <i class="fas fa-video"></i>
-                                            <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">VIDEO</p>
-                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 15px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em;">
+                                            <p style="font-weight: 600; margin: 6px 0; color: var(--secondary-color); font-size: 0.85em;">VIDEO</p>
+                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 6px; padding: 5px 12px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.8em;">
                                                 Regarder <i class="fas fa-play-circle"></i>
                                             </a>
                                         </div>
@@ -3244,18 +3349,37 @@
                     `;
                 }
                 
-                // Solfa
+                // Solfa - MODIFICATION POUR AFFICHER L'APERÇU PHOTO
                 if (columnIndices.solfa !== -1 && songData[columnIndices.solfa]) {
+                    const solfaValue = songData[columnIndices.solfa];
                     html += `
                         <div>
-                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; font-size: 0.95em;">
                                 <i class="fas fa-music"></i> Solfa:
                             </h4>
-                            <div style="background: #f8f5ff; padding: 15px; border-radius: 8px; border: 2px solid #e1e1e1; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.4;">
-                                ${formatCellValue(songData[columnIndices.solfa])}
-                            </div>
-                        </div>
                     `;
+                    
+                    // Vérifier si c'est une URL d'image
+                    if (solfaValue.startsWith('http') && solfaValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
+                        html += `
+                            <div style="text-align: center;">
+                                <img src="${solfaValue}" alt="Partition Solfa" style="max-width: 100%; max-height: 250px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 2px solid var(--music-color);">
+                                <div style="margin-top: 8px;">
+                                    <a href="${solfaValue}" target="_blank" style="display: inline-block; padding: 6px 15px; background: var(--music-color); color: white; text-decoration: none; border-radius: 5px; font-weight: 600; font-size: 0.85em;">
+                                        <i class="fas fa-expand"></i> Agrandir l'image
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        html += `
+                            <div style="background: #f8f5ff; padding: 12px; border-radius: 6px; border: 2px solid #e1e1e1; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.4;">
+                                ${formatCellValue(solfaValue)}
+                            </div>
+                        `;
+                    }
+                    
+                    html += `</div>`;
                 }
                 
                 html += `</div>`;
@@ -3266,11 +3390,11 @@
                 const rohinityValue = songData[columnIndices.rohinity] || '';
                 if (rohinityValue.trim() !== '') {
                     html += `
-                        <div style="background: linear-gradient(135deg, #e8f5e9, #e3f2fd); border-radius: 10px; padding: 20px; margin: 20px 0; border: 2px solid #4caf50;">
+                        <div style="background: linear-gradient(135deg, #e8f5e9, #e3f2fd); border-radius: 8px; padding: 15px; margin: 15px 0; border: 2px solid #4caf50;">
                             <div class="section-title-evidence" style="color: #4caf50; margin-top: 0;">
                                 <i class="fas fa-unlock"></i> ROHIN'ITY HIRA ITY
                             </div>
-                            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #4caf50; font-size: 14px; line-height: 1.5;">
+                            <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #4caf50; font-size: 13px; line-height: 1.5;">
                                 ${formatCellValue(rohinityValue)}
                             </div>
                         </div>
@@ -3303,7 +3427,7 @@
             
             const lines = text.split('\n');
             if (lines.length <= 1) {
-                return `<div style="white-space: pre-wrap; line-height: 1.3; font-size: 1.2em; font-family: 'Dancing Script', cursive;">${text}</div>`;
+                return `<div style="white-space: pre-wrap; line-height: 1.3; font-size: 1.1em; font-family: 'Dancing Script', cursive;">${text}</div>`;
             }
             
             let html = '<div>';
@@ -3311,7 +3435,7 @@
             lines.forEach((line, index) => {
                 if (line.trim() === '') {
                     if (index > 0 && index < lines.length - 1) {
-                        html += '<div style="height: 8px;"></div>';
+                        html += '<div style="height: 6px;"></div>';
                     }
                 } else {
                     html += `<div class="tononkira-line">${line}</div>`;
@@ -3326,16 +3450,16 @@
             const strValue = String(value);
             
             if (strValue.startsWith('http') && strValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
-                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'" style="max-width: 100%; height: auto;">`;
+                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'" style="max-width: 100%; max-height: 200px; height: auto; border-radius: 6px; box-shadow: 0 3px 8px rgba(0,0,0,0.15);">`;
             }
             
             if (strValue.startsWith('http')) {
-                return `<a href="${strValue}" target="_blank" style="text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--primary-color); color: white; border-radius: 6px; font-size: 12px;">
+                return `<a href="${strValue}" target="_blank" style="text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; background: var(--primary-color); color: white; border-radius: 5px; font-size: 11px;">
                     <i class="fas fa-external-link-alt"></i> Ouvrir le lien
                 </a>`;
             }
             
-            return `<div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${strValue}</div>`;
+            return `<div style="white-space: pre-wrap; line-height: 1.5; font-size: 14px;">${strValue}</div>`;
         }
         
         function showAllTononkiraInPage() {
@@ -3361,11 +3485,11 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 20px;">
+                    <div style="padding: 15px;">
                         <div class="section-title-evidence"><i class="fas fa-music"></i> TONONKIRA DE TOUTES LES CHANSONS</div>
-                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                        <div style="margin: 10px 0; padding: 8px; background: #ecf0f1; border-radius: 5px; font-size: 0.85em;">
                             <strong>${results.length} chanson(s) avec des paroles disponibles</strong>
-                            <p style="margin-top: 5px;">Cliquez sur le titre d'une chanson pour voir sa fiche complète</p>
+                            <p style="margin-top: 4px;">Cliquez sur le titre d'une chanson pour voir sa fiche complète</p>
                         </div>
             `;
             
@@ -3385,24 +3509,24 @@
                 const author = songData[columnIndices.author] || '';
                 
                 html += `
-                    <div style="margin-bottom: 30px; border: 1px solid #e1e1e1; border-radius: 8px; overflow: hidden;">
-                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 15px; cursor: pointer;" class="song-header-toggle" data-index="${index}">
+                    <div style="margin-bottom: 20px; border: 1px solid #e1e1e1; border-radius: 6px; overflow: hidden;">
+                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px 12px; cursor: pointer;" class="song-header-toggle" data-index="${index}">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <div>
-                                    <h4 style="margin: 0; font-size: 1em; font-weight: 700;">${songTitle}</h4>
-                                    ${author ? `<div style="font-size: 0.85em; opacity: 0.9;">${author}</div>` : ''}
+                                    <h4 style="margin: 0; font-size: 0.95em; font-weight: 700;">${songTitle}</h4>
+                                    ${author ? `<div style="font-size: 0.8em; opacity: 0.9;">${author}</div>` : ''}
                                 </div>
                                 <i class="fas fa-chevron-down"></i>
                             </div>
                         </div>
-                        <div class="song-tononkira-content" id="tononkira-${index}" style="display: none; padding: 15px; background: white;">
+                        <div class="song-tononkira-content" id="tononkira-${index}" style="display: none; padding: 12px; background: white;">
                 `;
                 
                 tononkiraColumns.forEach(col => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
                         html += `
-                            <div style="margin-bottom: 20px;">
+                            <div style="margin-bottom: 15px;">
                                 <div class="tononkira-container">
                                     <div class="tononkira-title">
                                         ${col.name}
@@ -3722,9 +3846,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 20px;">
+                    <div style="padding: 15px;">
                         <div class="section-title-evidence"><i class="fas fa-microphone"></i> Fanamarihana feo & fihira</div>
-                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                        <div style="margin: 10px 0; padding: 8px; background: #ecf0f1; border-radius: 5px; font-size: 0.85em;">
                             <strong>${results.length} chanson(s) avec des notes pour les chanteurs</strong>
                         </div>
                         <div class="notes-table-container">
@@ -3809,9 +3933,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 20px;">
+                    <div style="padding: 15px;">
                         <div class="section-title-evidence"><i class="fas fa-guitar"></i> Fanamarihana mozika</div>
-                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                        <div style="margin: 10px 0; padding: 8px; background: #ecf0f1; border-radius: 5px; font-size: 0.85em;">
                             <strong>${results.length} chanson(s) avec des notes pour les musiciens</strong>
                         </div>
                         <div class="notes-table-container">
@@ -3958,7 +4082,7 @@
             document.getElementById('exportModal').style.display = 'none';
         }
         
-        // Fonction d'envoi par email - AMÉLIORÉE
+        // Fonction d'envoi par email
         function sendByEmail(songs) {
             const recipient = document.getElementById('emailRecipient').value;
             const subject = document.getElementById('emailSubject').value || 'Fiche technique des chansons';
@@ -4054,23 +4178,23 @@
                 <head>
                     <title>Fiches de Chansons - Export PDF</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { color: #3498db; text-align: center; }
-                        .song-section { margin-bottom: 30px; border: 1px solid #ddd; padding: 15px; border-radius: 8px; }
-                        .song-title { color: #2c3e50; font-size: 18px; font-weight: bold; margin-bottom: 10px; }
-                        .song-author { color: #9b59b6; font-style: italic; margin-bottom: 15px; }
-                        .section-title { color: #ff9800; font-weight: bold; margin-top: 15px; margin-bottom: 10px; }
-                        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
-                        .data-table th { background-color: #f8f9fa; text-align: left; padding: 8px; border: 1px solid #ddd; }
-                        .data-table td { padding: 8px; border: 1px solid #ddd; }
-                        .tononkira-section { background-color: #fef9f3; padding: 15px; border-radius: 8px; border: 2px solid #d4b896; margin: 10px 0; font-family: 'Dancing Script', cursive; font-size: 1.2em; }
-                        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+                        body { font-family: Arial, sans-serif; margin: 15px; }
+                        h1 { color: #3498db; text-align: center; font-size: 18px; }
+                        .song-section { margin-bottom: 25px; border: 1px solid #ddd; padding: 12px; border-radius: 6px; }
+                        .song-title { color: #2c3e50; font-size: 16px; font-weight: bold; margin-bottom: 8px; }
+                        .song-author { color: #9b59b6; font-style: italic; margin-bottom: 12px; font-size: 14px; }
+                        .section-title { color: #ff9800; font-weight: bold; margin-top: 12px; margin-bottom: 8px; font-size: 14px; }
+                        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 12px; }
+                        .data-table th { background-color: #f8f9fa; text-align: left; padding: 6px; border: 1px solid #ddd; }
+                        .data-table td { padding: 6px; border: 1px solid #ddd; }
+                        .tononkira-section { background-color: #fef9f3; padding: 12px; border-radius: 6px; border: 2px solid #d4b896; margin: 8px 0; font-family: 'Dancing Script', cursive; font-size: 14px; }
+                        .footer { text-align: center; margin-top: 25px; color: #666; font-size: 11px; }
                     </style>
                 </head>
                 <body>
                     <h1>Fiches de Chansons - Export PDF</h1>
-                    <p>Généré le ${new Date().toLocaleDateString()} à ${new Date().toLocaleTimeString()}</p>
-                    <p>Nombre de chansons: ${songs.length}</p>
+                    <p style="font-size: 13px;">Généré le ${new Date().toLocaleDateString()} à ${new Date().toLocaleTimeString()}</p>
+                    <p style="font-size: 13px;">Nombre de chansons: ${songs.length}</p>
                     <hr>
             `;
             
@@ -4202,22 +4326,22 @@
                 <head>
                     <title>Paroles de Chansons - Export PDF</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { color: #3498db; text-align: center; }
-                        .song-section { margin-bottom: 40px; }
-                        .song-title { color: #2c3e50; font-size: 20px; font-weight: bold; margin-bottom: 5px; }
-                        .song-author { color: #9b59b6; font-style: italic; margin-bottom: 20px; }
-                        .lyrics-title { color: #8B4513; font-weight: bold; margin-top: 15px; margin-bottom: 10px; font-size: 16px; }
-                        .lyrics-content { background-color: #fef9f3; padding: 15px; border-radius: 8px; border: 2px solid #d4b896; font-family: 'Dancing Script', cursive; font-size: 1.2em; }
-                        .lyrics-line { margin-bottom: 5px; line-height: 1.3; }
-                        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
+                        body { font-family: Arial, sans-serif; margin: 15px; }
+                        h1 { color: #3498db; text-align: center; font-size: 18px; }
+                        .song-section { margin-bottom: 30px; }
+                        .song-title { color: #2c3e50; font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+                        .song-author { color: #9b59b6; font-style: italic; margin-bottom: 15px; font-size: 14px; }
+                        .lyrics-title { color: #8B4513; font-weight: bold; margin-top: 12px; margin-bottom: 8px; font-size: 14px; }
+                        .lyrics-content { background-color: #fef9f3; padding: 12px; border-radius: 6px; border: 2px solid #d4b896; font-family: 'Dancing Script', cursive; font-size: 14px; }
+                        .lyrics-line { margin-bottom: 4px; line-height: 1.3; }
+                        .footer { text-align: center; margin-top: 25px; color: #666; font-size: 11px; }
                         .page-break { page-break-before: always; }
                     </style>
                 </head>
                 <body>
                     <h1>Paroles de Chansons - ${lyricType}</h1>
-                    <p>Généré le ${new Date().toLocaleDateString()} à ${new Date().toLocaleTimeString()}</p>
-                    <p>Nombre de chansons: ${songs.length}</p>
+                    <p style="font-size: 13px;">Généré le ${new Date().toLocaleDateString()} à ${new Date().toLocaleTimeString()}</p>
+                    <p style="font-size: 13px;">Nombre de chansons: ${songs.length}</p>
                     <hr>
             `;
             
@@ -4269,7 +4393,7 @@
                     pdfContent += `</div>`;
                 } else {
                     pdfContent += `
-                        <div style="color: #e74c3c; padding: 10px; background-color: #ffeaea; border-radius: 5px;">
+                        <div style="color: #e74c3c; padding: 8px; background-color: #ffeaea; border-radius: 4px; font-size: 12px;">
                             <i class="fas fa-exclamation-triangle"></i> Aucune parole "${lyricType}" disponible pour cette chanson.
                         </div>
                     `;
@@ -4341,87 +4465,87 @@
         }
         
         function showSuggestions(searchTerm) {
-    const suggestionsContainer = document.getElementById('suggestionsContainer');
-    
-    if (!searchTerm || searchTerm.length < 2) {
-        suggestionsContainer.style.display = 'none';
-        return;
-    }
-    
-    const matchingItems = findMatchingItems(searchTerm);
-    
-    if (matchingItems.length === 0) {
-        suggestionsContainer.style.display = 'none';
-        return;
-    }
-    
-    suggestionsContainer.innerHTML = matchingItems
-        .map(item => {
-            return `
-                <div class="suggestion-item" data-value="${item.value}" data-type="${item.type}">
-                    <span>${item.display}</span>
-                    <span class="suggestion-song-title">${item.songTitle}</span>
-                </div>
-            `;
-        })
-        .join('');
-    
-    suggestionsContainer.style.display = 'block';
-    
-    document.querySelectorAll('.suggestion-item').forEach((item, index) => {
-        item.addEventListener('click', function() {
-            const value = this.getAttribute('data-value');
-            const type = this.getAttribute('data-type');
+            const suggestionsContainer = document.getElementById('suggestionsContainer');
             
-            if (type === 'song') {
-                const index = parseInt(value);
-                displaySingleSong(index);
-            } else {
-                const results = searchData(value);
-                displayResults(results, `Résultats pour "${value}"`);
+            if (!searchTerm || searchTerm.length < 2) {
+                suggestionsContainer.style.display = 'none';
+                return;
             }
             
-            suggestionsContainer.style.display = 'none';
-        });
-        
-        if (index === 0) {
-            item.classList.add('active');
-        }
-    });
-}
-        
-        function findMatchingItems(searchTerm) {
-    const lowerSearch = searchTerm.toLowerCase();
-    const searchWithoutAccents = removeAccents(lowerSearch);
-    const matches = [];
-    
-    sheetData.forEach((row, rowIndex) => {
-        const songTitle = row[columnIndices.title] || `Chanson ${rowIndex + 1}`;
-        
-        row.forEach((cell, colIndex) => {
-            if (cell && cell.toString().trim() !== '') {
-                const cellValue = cell.toString().toLowerCase();
-                const cellWithoutAccents = removeAccents(cellValue);
-                
-                if (cellValue.includes(lowerSearch) || cellWithoutAccents.includes(searchWithoutAccents)) {
-                    let displayText = cell.toString();
-                    if (displayText.length > 40) {
-                        displayText = displayText.substring(0, 40) + '...';
+            const matchingItems = findMatchingItems(searchTerm);
+            
+            if (matchingItems.length === 0) {
+                suggestionsContainer.style.display = 'none';
+                return;
+            }
+            
+            suggestionsContainer.innerHTML = matchingItems
+                .map(item => {
+                    return `
+                        <div class="suggestion-item" data-value="${item.value}" data-type="${item.type}">
+                            <span>${item.display}</span>
+                            <span class="suggestion-song-title">${item.songTitle}</span>
+                        </div>
+                    `;
+                })
+                .join('');
+            
+            suggestionsContainer.style.display = 'block';
+            
+            document.querySelectorAll('.suggestion-item').forEach((item, index) => {
+                item.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    const type = this.getAttribute('data-type');
+                    
+                    if (type === 'song') {
+                        const index = parseInt(value);
+                        displaySingleSong(index);
+                    } else {
+                        const results = searchData(value);
+                        displayResults(results, `Résultats pour "${value}"`);
                     }
                     
-                    matches.push({
-                        value: rowIndex,
-                        type: 'song',
-                        display: `🎵 ${songTitle}`,
-                        songTitle: `"${displayText}"`
-                    });
+                    suggestionsContainer.style.display = 'none';
+                });
+                
+                if (index === 0) {
+                    item.classList.add('active');
                 }
-            }
-        });
-    });
-    
-    return matches.slice(0, 10);
-}
+            });
+        }
+        
+        function findMatchingItems(searchTerm) {
+            const lowerSearch = searchTerm.toLowerCase();
+            const searchWithoutAccents = removeAccents(lowerSearch);
+            const matches = [];
+            
+            sheetData.forEach((row, rowIndex) => {
+                const songTitle = row[columnIndices.title] || `Chanson ${rowIndex + 1}`;
+                
+                row.forEach((cell, colIndex) => {
+                    if (cell && cell.toString().trim() !== '') {
+                        const cellValue = cell.toString().toLowerCase();
+                        const cellWithoutAccents = removeAccents(cellValue);
+                        
+                        if (cellValue.includes(lowerSearch) || cellWithoutAccents.includes(searchWithoutAccents)) {
+                            let displayText = cell.toString();
+                            if (displayText.length > 40) {
+                                displayText = displayText.substring(0, 40) + '...';
+                            }
+                            
+                            matches.push({
+                                value: rowIndex,
+                                type: 'song',
+                                display: `🎵 ${songTitle}`,
+                                songTitle: `"${displayText}"`
+                            });
+                        }
+                    }
+                });
+            });
+            
+            return matches.slice(0, 10);
+        }
         
         function navigateSuggestions(key) {
             const suggestions = document.querySelectorAll('.suggestion-item');
@@ -4447,37 +4571,12 @@
         }
         
         function selectActiveSuggestion() {
-    const activeSuggestion = document.querySelector('.suggestion-item.active');
-    if (activeSuggestion) {
-        activeSuggestion.click();
-    }
-}
-        
-function navigateSuggestions(key) {
-    const suggestions = document.querySelectorAll('.suggestion-item');
-    const activeSuggestion = document.querySelector('.suggestion-item.active');
-    
-    if (suggestions.length === 0) return;
-    
-    let nextIndex = 0;
-    
-    if (activeSuggestion) {
-        const currentIndex = Array.from(suggestions).indexOf(activeSuggestion);
-        if (key === 'ArrowDown') {
-            nextIndex = (currentIndex + 1) % suggestions.length;
-        } else if (key === 'ArrowUp') {
-            nextIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
+            const activeSuggestion = document.querySelector('.suggestion-item.active');
+            if (activeSuggestion) {
+                activeSuggestion.click();
+            }
         }
         
-        activeSuggestion.classList.remove('active');
-    }
-    
-    suggestions[nextIndex].classList.add('active');
-    suggestions[nextIndex].scrollIntoView({ block: 'nearest' });
-}
-
-
-
         function showDataInfo() {
             const dataInfo = document.getElementById('dataInfo');
             let infoMessage = `✅ ${sheetData.length} chanson(s) chargée(s) avec succès !
@@ -4567,15 +4666,15 @@ function navigateSuggestions(key) {
                     .sort((a, b) => a.title.localeCompare(b.title));
                 
                 let html = `
-                    <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
-                        <strong style="font-size: 1em;">${sortedResults.length} chanson(s) trouvée(s)</strong>
-                        <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une chanson pour voir la fiche complète</p>
+                    <div style="margin-bottom: 12px; padding: 10px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 6px; border: 2px solid var(--primary-color);">
+                        <strong style="font-size: 0.95em;">${sortedResults.length} chanson(s) trouvée(s)</strong>
+                        <p style="margin-top: 4px; color: #666; font-size: 0.8em;">Cliquez sur une chanson pour voir la fiche complète</p>
                     </div>
                 `;
                 
                 sortedResults.forEach(song => {
                     html += `
-                        <div class="fiche-card" data-index="${song.index}" style="margin-bottom: 12px;">
+                        <div class="fiche-card" data-index="${song.index}" style="margin-bottom: 10px;">
                             <div class="fiche-card-header" style="cursor: pointer;">
                                 <div class="fiche-card-title">${song.title}</div>
                                 <div class="fiche-card-author">${song.author}</div>
@@ -4699,6 +4798,46 @@ function navigateSuggestions(key) {
                 errorElement.style.display = 'block';
                 document.getElementById('passwordInput').focus();
                 document.getElementById('passwordInput').select();
+            }
+        }
+        
+        // NOUVELLES FONCTIONS POUR ÉCRIRE UNE NOUVELLE FICHE
+        function showWriteModal() {
+            document.getElementById('writeModal').style.display = 'flex';
+            document.getElementById('writePasswordInput').value = '';
+            document.getElementById('writePasswordError').style.display = 'none';
+            document.getElementById('writePasswordInput').type = 'password';
+            document.getElementById('writePasswordToggle').querySelector('i').className = 'fas fa-eye';
+        }
+        
+        function checkWritePassword() {
+            const password = document.getElementById('writePasswordInput').value;
+            const errorElement = document.getElementById('writePasswordError');
+            
+            // Mot de passe administrateur (peut être changé)
+            const adminPassword = 'admin123';
+            
+            if (password === adminPassword) {
+                document.getElementById('writeModal').style.display = 'none';
+                window.open(NEW_FICHE_FORM_URL, '_blank');
+                
+                const dataInfo = document.getElementById('dataInfo');
+                dataInfo.innerHTML = `
+                    <div class="success-message">
+                        <i class="fas fa-edit"></i> Formulaire de nouvelle fiche ouvert !
+                        <br><small>Le formulaire Google s'ouvre dans un nouvel onglet</small>
+                        <br><small>Remplissez le formulaire pour ajouter une nouvelle chanson</small>
+                    </div>
+                `;
+                dataInfo.style.display = 'block';
+                
+                setTimeout(() => {
+                    dataInfo.style.display = 'none';
+                }, 5000);
+            } else {
+                errorElement.style.display = 'block';
+                document.getElementById('writePasswordInput').focus();
+                document.getElementById('writePasswordInput').select();
             }
         }
     </script>
