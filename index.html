@@ -87,6 +87,121 @@
             opacity: 0.9;
         }
         
+        /* SIDEBAR DESKTOP */
+        .desktop-sidebar {
+            display: none;
+            position: fixed;
+            left: 20px;
+            top: 140px;
+            width: 280px;
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 100;
+            border: 1px solid #e1e1e1;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+        
+        .desktop-sidebar-section {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .desktop-sidebar-section-title {
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 8px;
+        }
+        
+        .desktop-sidebar-option {
+            padding: 12px 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            font-size: 0.9em;
+        }
+        
+        .desktop-sidebar-option:hover {
+            background-color: white;
+            transform: translateX(5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .desktop-sidebar-option i {
+            font-size: 18px;
+            color: var(--primary-color);
+            min-width: 25px;
+        }
+        
+        /* BOUTONS D'ACCUEIL */
+        .home-buttons-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+            grid-column: 1 / -1;
+        }
+        
+        .home-button {
+            background: white;
+            border: none;
+            padding: 18px 12px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--secondary-color);
+            min-height: 110px;
+            font-size: 0.95em;
+        }
+        
+        .home-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .home-button i {
+            font-size: 28px;
+        }
+        
+        .home-button small {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+        
+        .home-button.songs-list {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        
+        .home-button.authors-list {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .home-button.themes-list {
+            background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
+        }
+        
         /* BOUTONS D'ACTION (NON FLOTTANTS) */
         .action-buttons-container {
             display: grid;
@@ -172,7 +287,7 @@
             padding: 15px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
-            height: 300px;
+            height: 350px;
             overflow-y: auto;
         }
         
@@ -186,20 +301,20 @@
         }
         
         .songs-list-title, .authors-list-title, .themes-list-title {
-            font-size: 1em;
+            font-size: 1.1em;
             font-weight: bold;
             color: var(--secondary-color);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
         
         .songs-count, .authors-count, .themes-count {
             background-color: var(--music-color);
             color: white;
-            padding: 3px 8px;
+            padding: 4px 10px;
             border-radius: 15px;
-            font-size: 0.75em;
+            font-size: 0.85em;
             font-weight: bold;
         }
         
@@ -208,8 +323,8 @@
         }
         
         .song-item, .author-item, .theme-item {
-            padding: 8px;
-            margin-bottom: 5px;
+            padding: 12px;
+            margin-bottom: 8px;
             background-color: #f8f9fa;
             border-radius: 8px;
             cursor: pointer;
@@ -217,8 +332,8 @@
             border-left: 4px solid transparent;
             position: relative;
             overflow: hidden;
-            font-size: 0.8em;
-            min-height: 35px;
+            font-size: 0.9em;
+            min-height: 45px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -227,10 +342,10 @@
         .song-item::before, .author-item::before, .theme-item::before {
             content: "♪";
             position: absolute;
-            right: 10px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 14px;
+            font-size: 16px;
             opacity: 0.3;
             transition: all 0.3s ease;
         }
@@ -247,25 +362,25 @@
             background-color: white;
             border-left-color: var(--music-color);
             transform: translateX(3px);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
         }
         
         .song-item.active, .author-item.active, .theme-item.active {
             background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
             border-left-color: var(--accent-color);
             font-weight: bold;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
         }
         
         .song-title, .author-name, .theme-name {
-            font-size: 0.8em;
-            margin-bottom: 2px;
+            font-size: 0.95em;
+            margin-bottom: 4px;
             font-weight: 600;
             color: var(--secondary-color);
         }
         
         .song-author, .song-details {
-            font-size: 0.7em;
+            font-size: 0.8em;
             color: var(--music-color);
             font-style: italic;
         }
@@ -711,7 +826,7 @@
             background-color: #f8fafc;
         }
         
-        /* Style spécial pour les tononkira */
+        /* Style spécial pour les tononkira - Titres en rouge */
         .tononkira-multiline {
             background: linear-gradient(135deg, #f8f5ff, #fff8f8);
             border-radius: 8px;
@@ -749,14 +864,23 @@
             border-bottom: none;
         }
         
-        /* Styles pour fanamarihana avec titre en haut */
+        /* Titres Tononkira en rouge */
+        .tononkira-title {
+            color: #ff0000 !important;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            text-transform: uppercase;
+        }
+        
+        /* Styles pour fanamarihana avec titre en vert pomme */
         .fanamarihana-section {
             margin: 20px 0;
             width: 100%;
         }
         
         .fanamarihana-title-section {
-            background: linear-gradient(135deg, #ff9800, #ff5722);
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
             color: white;
             padding: 12px 20px;
             border-radius: 8px 8px 0 0;
@@ -774,7 +898,7 @@
             padding: 20px;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border: 1px solid #ff9800;
+            border: 1px solid #4CAF50;
             border-top: none;
             width: 100%;
             font-size: 14px;
@@ -901,10 +1025,12 @@
         
         .floating-button.table-btn {
             background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            display: none; /* Caché car transféré au sidebar */
         }
         
         .floating-button.export-btn {
             background: linear-gradient(135deg, #16a085, #1abc9c);
+            display: none; /* Caché car transféré au sidebar */
         }
         
         .floating-button.lock-btn {
@@ -962,7 +1088,7 @@
             padding: 15px;
             border-radius: var(--border-radius);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            width: 250px;
+            width: 280px;
             display: none;
             z-index: 1001;
             border: 1px solid #e1e1e1;
@@ -978,10 +1104,26 @@
             border-color: white transparent transparent;
         }
         
+        .mobile-sidebar-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .mobile-sidebar-section-title {
+            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            padding-left: 5px;
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 5px;
+        }
+        
         .mobile-sidebar-options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
         
         .mobile-sidebar-option {
@@ -1009,65 +1151,9 @@
             color: var(--primary-color);
         }
         
-        /* BULLES D'OPTIONS */
+        /* BULLES D'OPTIONS (maintenant cachées car transférées) */
         .bubble {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: white;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            width: 280px;
-            display: none;
-            z-index: 1001;
-            border: 1px solid #e1e1e1;
-        }
-        
-        .bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            right: 20px;
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: white transparent transparent;
-        }
-        
-        .bubble-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .bubble-option {
-            padding: 12px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid transparent;
-            font-size: 0.9em;
-        }
-        
-        .bubble-option:hover {
-            background-color: white;
-            transform: translateX(3px);
-            border-color: var(--primary-color);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        }
-        
-        .bubble-option i {
-            font-size: 18px;
-            color: var(--primary-color);
-        }
-        
-        .bubble-option div small {
-            font-size: 0.8em;
-            color: #666;
+            display: none; /* Cachées car transférées au sidebar */
         }
         
         /* MESSAGES */
@@ -1244,10 +1330,10 @@
         }
         
         .fiche-card-header {
-            padding: 15px;
+            padding: 12px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            min-height: 100px;
+            min-height: 85px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -1258,36 +1344,37 @@
         .fiche-card-header::before {
             content: "♪";
             position: absolute;
-            font-size: 50px;
+            font-size: 40px;
             opacity: 0.1;
             top: 50%;
-            right: 15px;
+            right: 10px;
             transform: translateY(-50%);
         }
         
         .fiche-card-title {
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 5px;
         }
         
         .fiche-card-author {
-            font-size: 0.85em;
+            font-size: 0.8em;
             opacity: 0.9;
         }
         
         .fiche-card-footer {
-            padding: 10px 15px;
+            padding: 8px 12px;
             background: #f8f9fa;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.8em;
+            font-size: 0.75em;
             color: #666;
+            min-height: 40px;
         }
         
-        /* MODAL PASSWORD */
+        /* MODAL PASSWORD améliorée */
         .password-modal {
             display: none;
             position: fixed;
@@ -1309,33 +1396,92 @@
             max-width: 400px;
             box-shadow: 0 15px 50px rgba(0,0,0,0.25);
             text-align: center;
+            animation: modalAppear 0.3s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .password-input-group {
+            position: relative;
+            margin: 20px 0;
         }
         
         .password-input {
             width: 100%;
-            padding: 12px;
-            margin: 15px 0;
+            padding: 14px 45px 14px 14px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s;
+            background: #f9f9f9;
         }
         
         .password-input:focus {
             border-color: var(--primary-color);
             outline: none;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            background: white;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
         }
         
         .password-error {
-            color: var(--accent-color);
+            color: #e74c3c;
             margin-top: 10px;
             display: none;
             font-weight: 500;
             font-size: 0.9em;
+            padding: 8px;
+            background: #ffeaea;
+            border-radius: 5px;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .password-modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .password-modal-header i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
         
         /* Styles responsives */
+        @media (min-width: 1025px) {
+            .desktop-sidebar {
+                display: block;
+            }
+            
+            .container {
+                margin-left: 320px;
+                margin-right: 20px;
+            }
+            
+            .sidebar-toggle {
+                display: none;
+            }
+            
+            .mobile-sidebar {
+                display: none !important;
+            }
+        }
+        
         @media (max-width: 1024px) {
             .action-buttons-container {
                 grid-template-columns: repeat(3, 1fr);
@@ -1354,7 +1500,11 @@
             }
             
             .fiche-card-title {
-                font-size: 0.9em;
+                font-size: 0.85em;
+            }
+            
+            .home-buttons-container {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
         
@@ -1389,6 +1539,20 @@
             
             .action-button i {
                 font-size: 20px;
+            }
+            
+            .home-buttons-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .home-button {
+                min-height: 95px;
+                padding: 15px 8px;
+                font-size: 0.85em;
+            }
+            
+            .home-button i {
+                font-size: 24px;
             }
             
             .fiche-title {
@@ -1427,19 +1591,14 @@
                 left: 20px;
             }
             
-            .bubble {
-                width: 250px;
-                right: -30px;
-            }
-            
             .all-fiches-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
             
             .fiche-card-header {
-                min-height: 90px;
-                padding: 12px;
+                min-height: 80px;
+                padding: 10px;
             }
             
             .fiche-card-title {
@@ -1447,8 +1606,9 @@
             }
             
             .fiche-card-footer {
-                padding: 8px 12px;
+                padding: 6px 10px;
                 font-size: 0.75em;
+                min-height: 35px;
             }
         }
         
@@ -1466,6 +1626,15 @@
             
             .action-button i {
                 font-size: 18px;
+            }
+            
+            .home-buttons-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-button {
+                min-height: 85px;
+                padding: 12px 8px;
             }
             
             .all-fiches-grid {
@@ -1510,10 +1679,9 @@
                 font-size: 20px;
             }
             
-            .bubble {
-                width: 220px;
-                right: -20px;
-                padding: 12px;
+            .mobile-sidebar {
+                width: 250px;
+                left: 15px;
             }
             
             .section-title {
@@ -1532,11 +1700,157 @@
     </style>
 </head>
 <body>
+    <!-- SIDEBAR DESKTOP (visible sur ordinateur) -->
+    <div class="desktop-sidebar" id="desktopSidebar">
+        <div class="desktop-sidebar-section">
+            <div class="desktop-sidebar-section-title">
+                <i class="fas fa-list"></i> Listes
+            </div>
+            <div class="desktop-sidebar-option" id="desktopSongsListBtn">
+                <i class="fas fa-music"></i>
+                <div>
+                    <strong>Liste des chansons</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopAuthorsListBtn">
+                <i class="fas fa-users"></i>
+                <div>
+                    <strong>Liste des auteurs</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopThemesListBtn">
+                <i class="fas fa-tags"></i>
+                <div>
+                    <strong>Liste des thèmes</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="desktop-sidebar-section">
+            <div class="desktop-sidebar-section-title">
+                <i class="fas fa-table"></i> Tableau & Options
+            </div>
+            <div class="desktop-sidebar-option" id="desktopTableBtn">
+                <i class="fas fa-table"></i>
+                <div>
+                    <strong>Tableau des chansons</strong>
+                    <small>Afficher le tableau complet</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopFiltersBtn">
+                <i class="fas fa-filter"></i>
+                <div>
+                    <strong>Filtres de données</strong>
+                    <small>Fanamarihana feo & fihira</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopTononkiraBtn">
+                <i class="fas fa-music"></i>
+                <div>
+                    <strong>Tononkira</strong>
+                    <small>Afficher toutes les paroles</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopGoogleSheetBtn">
+                <i class="fas fa-external-link-alt"></i>
+                <div>
+                    <strong>Ouvrir le Google Sheet</strong>
+                    <small>Accéder au document source</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="desktop-sidebar-section">
+            <div class="desktop-sidebar-section-title">
+                <i class="fas fa-share"></i> Export & Email
+            </div>
+            <div class="desktop-sidebar-option" id="desktopEmailBtn">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <strong>Envoyer par email</strong>
+                    <small>Une ou plusieurs fiches</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopPDFBtn">
+                <i class="fas fa-file-pdf"></i>
+                <div>
+                    <strong>Exporter vers PDF</strong>
+                    <small>Une ou plusieurs fiches</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopLyricsOriginalBtn">
+                <i class="fas fa-file-alt"></i>
+                <div>
+                    <strong>Paroles originales (PDF)</strong>
+                    <small>TONONKIRA (Original)</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopLyricsTranslatedBtn">
+                <i class="fas fa-language"></i>
+                <div>
+                    <strong>Paroles traduites (PDF)</strong>
+                    <small>TONONKIRA (Dikan-teny hafa)</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="desktop-sidebar-section">
+            <div class="desktop-sidebar-section-title">
+                <i class="fas fa-star"></i> Fonctions spéciales
+            </div>
+            <div class="desktop-sidebar-option" id="desktopSingersNotesBtn">
+                <i class="fas fa-microphone"></i>
+                <div>
+                    <strong>Notes pour chanteurs</strong>
+                    <small>Fanamarihana feo & fihira</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopMusiciansNotesBtn">
+                <i class="fas fa-guitar"></i>
+                <div>
+                    <strong>Notes pour musiciens</strong>
+                    <small>Fanamarihana mozika</small>
+                </div>
+            </div>
+            <div class="desktop-sidebar-option" id="desktopAllFichesBtn">
+                <i class="fas fa-th-large"></i>
+                <div>
+                    <strong>Toutes les fiches</strong>
+                    <small>Afficher toutes les chansons</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <header>
             <h1>FICHE TECHNIQUE CHANSONS NY AKO</h1>
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
+        
+        <!-- BOUTONS D'ACCUEIL -->
+        <div class="home-buttons-container">
+            <button class="home-button songs-list" id="homeSongsListBtn">
+                <i class="fas fa-music"></i>
+                <span>Liste des chansons</span>
+                <small>Afficher toutes les chansons</small>
+            </button>
+            
+            <button class="home-button authors-list" id="homeAuthorsListBtn">
+                <i class="fas fa-users"></i>
+                <span>Liste des auteurs</span>
+                <small>Afficher tous les auteurs</small>
+            </button>
+            
+            <button class="home-button themes-list" id="homeThemesListBtn">
+                <i class="fas fa-tags"></i>
+                <span>Liste des thèmes</span>
+                <small>Afficher tous les thèmes</small>
+            </button>
+        </div>
         
         <!-- BOUTONS D'ACTION (NON FLOTTANTS) -->
         <div class="action-buttons-container">
@@ -1724,20 +2038,37 @@
         </div>
     </div>
 
-    <!-- MODAL PASSWORD -->
+    <!-- MODAL PASSWORD améliorée -->
     <div class="password-modal" id="passwordModal">
         <div class="password-modal-content">
-            <h2 style="font-size: 1.2em;"><i class="fas fa-lock"></i> Déverrouiller les données</h2>
-            <p style="font-size: 0.9em;">Entrez le mot de passe pour accéder aux données de la colonne "Rohin'ity hira ity" :</p>
-            <input type="password" id="passwordInput" class="password-input" placeholder="Mot de passe">
-            <div id="passwordError" class="password-error">Mot de passe incorrect. Essayez "tek".</div>
-            <div style="margin-top: 15px;">
-                <button id="submitPassword" style="padding: 8px 25px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; font-size: 0.9em;">
-                    Valider
+            <div class="password-modal-header">
+                <i class="fas fa-lock"></i>
+                <h2 style="font-size: 1.3em; margin: 0;">Déverrouiller les données</h2>
+                <p style="font-size: 0.9em; color: #666; margin-top: 5px;">Entrez le mot de passe pour accéder aux données de la colonne "Rohin'ity hira ity"</p>
+            </div>
+            
+            <div class="password-input-group">
+                <input type="password" id="passwordInput" class="password-input" placeholder="Mot de passe">
+                <button type="button" id="passwordToggle" class="password-toggle">
+                    <i class="fas fa-eye"></i>
                 </button>
-                <button id="cancelPassword" style="padding: 8px 25px; background: #ccc; color: #333; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
-                    Annuler
+            </div>
+            
+            <div id="passwordError" class="password-error">
+                <i class="fas fa-exclamation-circle"></i> Mot de passe incorrect. Essayez "tek".
+            </div>
+            
+            <div style="margin-top: 25px;">
+                <button id="submitPassword" style="padding: 12px 30px; background: linear-gradient(135deg, var(--primary-color), #2980b9); color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px; font-size: 1em; font-weight: 600; width: 48%;">
+                    <i class="fas fa-check"></i> Valider
                 </button>
+                <button id="cancelPassword" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 600; width: 48%;">
+                    <i class="fas fa-times"></i> Annuler
+                </button>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 0.8em; color: #999; border-top: 1px solid #eee; padding-top: 15px;">
+                <i class="fas fa-info-circle"></i> Le mot de passe est nécessaire pour accéder aux données sensibles.
             </div>
         </div>
     </div>
@@ -1748,116 +2079,106 @@
     </button>
     
     <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-options">
-            <div class="mobile-sidebar-option" id="mobileSongsListBtn">
-                <i class="fas fa-list"></i>
-                <div>
-                    <strong>Liste des chansons</strong>
-                    <small>Afficher/Masquer la liste</small>
+        <div class="mobile-sidebar-sections">
+            <div>
+                <div class="mobile-sidebar-section-title">Listes</div>
+                <div class="mobile-sidebar-options">
+                    <div class="mobile-sidebar-option" id="mobileSongsListBtn">
+                        <i class="fas fa-music"></i>
+                        <div>
+                            <strong>Liste des chansons</strong>
+                            <small>Afficher/Masquer la liste</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileAuthorsListBtn">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <strong>Liste des auteurs</strong>
+                            <small>Afficher/Masquer la liste</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileThemesListBtn">
+                        <i class="fas fa-tags"></i>
+                        <div>
+                            <strong>Liste des thèmes</strong>
+                            <small>Afficher/Masquer la liste</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mobile-sidebar-option" id="mobileAuthorsListBtn">
-                <i class="fas fa-users"></i>
-                <div>
-                    <strong>Liste des auteurs</strong>
-                    <small>Afficher/Masquer la liste</small>
+            
+            <div>
+                <div class="mobile-sidebar-section-title">Tableau & Options</div>
+                <div class="mobile-sidebar-options">
+                    <div class="mobile-sidebar-option" id="mobileTableBtn">
+                        <i class="fas fa-table"></i>
+                        <div>
+                            <strong>Tableau des chansons</strong>
+                            <small>Afficher le tableau complet</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileFiltersBtn">
+                        <i class="fas fa-filter"></i>
+                        <div>
+                            <strong>Filtres de données</strong>
+                            <small>Fanamarihana feo & fihira</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileTononkiraBtn">
+                        <i class="fas fa-music"></i>
+                        <div>
+                            <strong>Tononkira</strong>
+                            <small>Afficher toutes les paroles</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileGoogleSheetBtn">
+                        <i class="fas fa-external-link-alt"></i>
+                        <div>
+                            <strong>Ouvrir le Google Sheet</strong>
+                            <small>Accéder au document source</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="mobile-sidebar-option" id="mobileThemesListBtn">
-                <i class="fas fa-tags"></i>
-                <div>
-                    <strong>Liste des thèmes</strong>
-                    <small>Afficher/Masquer la liste</small>
-                </div>
-            </div>
-            <div class="mobile-sidebar-option" id="mobileTononkiraBtn">
-                <i class="fas fa-music"></i>
-                <div>
-                    <strong>Tononkira</strong>
-                    <small>Afficher toutes les paroles</small>
-                </div>
-            </div>
-            <div class="mobile-sidebar-option" id="mobileTableBtn">
-                <i class="fas fa-table"></i>
-                <div>
-                    <strong>Tableau des chansons</strong>
-                    <small>Afficher le tableau complet</small>
+            
+            <div>
+                <div class="mobile-sidebar-section-title">Export & Email</div>
+                <div class="mobile-sidebar-options">
+                    <div class="mobile-sidebar-option" id="mobileEmailBtn">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Envoyer par email</strong>
+                            <small>Une ou plusieurs fiches</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobilePDFBtn">
+                        <i class="fas fa-file-pdf"></i>
+                        <div>
+                            <strong>Exporter vers PDF</strong>
+                            <small>Une ou plusieurs fiches</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileLyricsOriginalBtn">
+                        <i class="fas fa-file-alt"></i>
+                        <div>
+                            <strong>Paroles originales (PDF)</strong>
+                            <small>TONONKIRA (Original)</small>
+                        </div>
+                    </div>
+                    <div class="mobile-sidebar-option" id="mobileLyricsTranslatedBtn">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <strong>Paroles traduites (PDF)</strong>
+                            <small>TONONKIRA (Dikan-teny hafa)</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- BOUTONS FLOTTANTS -->
+    <!-- BOUTONS FLOTTANTS (simplifiés) -->
     <div class="floating-buttons">
-        <!-- Bulle pour les options de tableau -->
-        <div class="bubble" id="tableBubble">
-            <div class="bubble-options">
-                <div class="bubble-option" id="showSongsTable">
-                    <i class="fas fa-table"></i>
-                    <div>
-                        <strong>Tableau des chansons</strong>
-                        <small>Afficher toutes les chansons sous forme de tableau</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="showFiltersTable">
-                    <i class="fas fa-filter"></i>
-                    <div>
-                        <strong>Filtres de données</strong>
-                        <small>Fanamarihana feo & fihira, Fanamarihana mozika</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="showTononkira">
-                    <i class="fas fa-music"></i>
-                    <div>
-                        <strong>Afficher les Tononkira</strong>
-                        <small>Paroles originales et traductions</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="showGoogleSheet">
-                    <i class="fas fa-external-link-alt"></i>
-                    <div>
-                        <strong>Ouvrir le Google Sheet</strong>
-                        <small>Accéder au document source</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Bulle pour les options d'export -->
-        <div class="bubble" id="exportBubble">
-            <div class="bubble-options">
-                <div class="bubble-option" id="exportEmail">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Envoyer par email</strong>
-                        <small>Une ou plusieurs fiches de chansons</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="exportPDF">
-                    <i class="fas fa-file-pdf"></i>
-                    <div>
-                        <strong>Exporter vers PDF</strong>
-                        <small>Une ou plusieurs fiches complètes</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="exportLyricsOriginal">
-                    <i class="fas fa-file-alt"></i>
-                    <div>
-                        <strong>Paroles originales (PDF)</strong>
-                        <small>TONONKIRA (Original)</small>
-                    </div>
-                </div>
-                <div class="bubble-option" id="exportLyricsTranslated">
-                    <i class="fas fa-language"></i>
-                    <div>
-                        <strong>Paroles traduites (PDF)</strong>
-                        <small>TONONKIRA (Dikan-teny hafa)</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Boutons flottants -->
         <button class="floating-button home-btn" title="Retour à l'accueil" id="homeBtn">
             <i class="fas fa-home"></i>
         </button>
@@ -1866,12 +2187,6 @@
         </button>
         <button class="floating-button all-btn" title="Toutes les fiches" id="allFichesBtn">
             <i class="fas fa-th-large"></i>
-        </button>
-        <button class="floating-button table-btn" title="Tableau et options" id="tableBtn">
-            <i class="fas fa-table"></i>
-        </button>
-        <button class="floating-button export-btn" title="Export et email" id="exportFloatBtn">
-            <i class="fas fa-file-export"></i>
         </button>
         <button class="floating-button search-btn" title="Rechercher" id="searchFloatBtn">
             <i class="fas fa-search"></i>
@@ -1906,6 +2221,7 @@
             initEventListeners();
             loadDataFromGoogleSheets();
             setupMobileSidebar();
+            setupDesktopSidebar();
         });
         
         function initEventListeners() {
@@ -1930,6 +2246,19 @@
                 }
             });
             
+            // Boutons d'accueil
+            document.getElementById('homeSongsListBtn').addEventListener('click', function() {
+                showList('songs');
+            });
+            
+            document.getElementById('homeAuthorsListBtn').addEventListener('click', function() {
+                showList('authors');
+            });
+            
+            document.getElementById('homeThemesListBtn').addEventListener('click', function() {
+                showList('themes');
+            });
+            
             // Boutons d'action
             document.getElementById('songsTableBtn').addEventListener('click', showSongsTable);
             document.getElementById('singersNotesBtn').addEventListener('click', showSingersNotesInPage);
@@ -1952,46 +2281,11 @@
             
             document.getElementById('allFichesBtn').addEventListener('click', displayAllFichesGrid);
             
-            document.getElementById('tableBtn').addEventListener('click', function() {
-                const tableBubble = document.getElementById('tableBubble');
-                tableBubble.style.display = tableBubble.style.display === 'block' ? 'none' : 'block';
-                document.getElementById('exportBubble').style.display = 'none';
-            });
-            
-            document.getElementById('exportFloatBtn').addEventListener('click', function() {
-                const exportBubble = document.getElementById('exportBubble');
-                exportBubble.style.display = exportBubble.style.display === 'block' ? 'none' : 'block';
-                document.getElementById('tableBubble').style.display = 'none';
-            });
-            
             document.getElementById('searchFloatBtn').addEventListener('click', function() {
                 document.getElementById('searchText').focus();
             });
             
             document.getElementById('lockBtn').addEventListener('click', showPasswordModal);
-            
-            // Options du tableau
-            document.getElementById('showSongsTable').addEventListener('click', showSongsTable);
-            document.getElementById('showFiltersTable').addEventListener('click', showFiltersTable);
-            document.getElementById('showTononkira').addEventListener('click', showAllTononkiraInPage);
-            document.getElementById('showGoogleSheet').addEventListener('click', () => showPasswordModalForSheet());
-            
-            // Options d'export
-            document.getElementById('exportEmail').addEventListener('click', function() {
-                showSongSelectionModal('email');
-            });
-            
-            document.getElementById('exportPDF').addEventListener('click', function() {
-                showSongSelectionModal('pdf');
-            });
-            
-            document.getElementById('exportLyricsOriginal').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-original');
-            });
-            
-            document.getElementById('exportLyricsTranslated').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-translated');
-            });
             
             // Modal tableau des chansons
             document.getElementById('closeSongsTable').addEventListener('click', () => {
@@ -2013,7 +2307,7 @@
             
             document.getElementById('confirmExport').addEventListener('click', handleExport);
             
-            // Modal password
+            // Modal password améliorée
             document.getElementById('submitPassword').addEventListener('click', checkPassword);
             document.getElementById('cancelPassword').addEventListener('click', () => {
                 document.getElementById('passwordModal').style.display = 'none';
@@ -2022,6 +2316,20 @@
             document.getElementById('passwordInput').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     checkPassword();
+                }
+            });
+            
+            // Toggle visibilité du mot de passe
+            document.getElementById('passwordToggle').addEventListener('click', function() {
+                const passwordInput = document.getElementById('passwordInput');
+                const icon = this.querySelector('i');
+                
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.className = 'fas fa-eye-slash';
+                } else {
+                    passwordInput.type = 'password';
+                    icon.className = 'fas fa-eye';
                 }
             });
             
@@ -2056,17 +2364,27 @@
             
             // Boutons du sidebar mobile
             document.getElementById('mobileSongsListBtn').addEventListener('click', function() {
-                toggleListVisibility('songs');
+                showList('songs');
                 mobileSidebar.style.display = 'none';
             });
             
             document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
-                toggleListVisibility('authors');
+                showList('authors');
                 mobileSidebar.style.display = 'none';
             });
             
             document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
-                toggleListVisibility('themes');
+                showList('themes');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileTableBtn').addEventListener('click', function() {
+                showSongsTable();
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileFiltersBtn').addEventListener('click', function() {
+                showFiltersTable();
                 mobileSidebar.style.display = 'none';
             });
             
@@ -2075,44 +2393,117 @@
                 mobileSidebar.style.display = 'none';
             });
             
-            document.getElementById('mobileTableBtn').addEventListener('click', function() {
-                showSongsTable();
+            document.getElementById('mobileGoogleSheetBtn').addEventListener('click', function() {
+                showPasswordModalForSheet();
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileEmailBtn').addEventListener('click', function() {
+                showSongSelectionModal('email');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobilePDFBtn').addEventListener('click', function() {
+                showSongSelectionModal('pdf');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileLyricsOriginalBtn').addEventListener('click', function() {
+                showSongSelectionModal('lyrics-original');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileLyricsTranslatedBtn').addEventListener('click', function() {
+                showSongSelectionModal('lyrics-translated');
                 mobileSidebar.style.display = 'none';
             });
         }
         
-        function toggleListVisibility(listType) {
-            const sections = {
-                songs: document.getElementById('songsListSection'),
-                authors: document.getElementById('authorsListSection'),
-                themes: document.getElementById('themesListSection')
-            };
+        function setupDesktopSidebar() {
+            // Boutons du sidebar desktop
+            document.getElementById('desktopSongsListBtn').addEventListener('click', function() {
+                showList('songs');
+            });
             
+            document.getElementById('desktopAuthorsListBtn').addEventListener('click', function() {
+                showList('authors');
+            });
+            
+            document.getElementById('desktopThemesListBtn').addEventListener('click', function() {
+                showList('themes');
+            });
+            
+            document.getElementById('desktopTableBtn').addEventListener('click', function() {
+                showSongsTable();
+            });
+            
+            document.getElementById('desktopFiltersBtn').addEventListener('click', function() {
+                showFiltersTable();
+            });
+            
+            document.getElementById('desktopTononkiraBtn').addEventListener('click', function() {
+                showAllTononkiraInPage();
+            });
+            
+            document.getElementById('desktopGoogleSheetBtn').addEventListener('click', function() {
+                showPasswordModalForSheet();
+            });
+            
+            document.getElementById('desktopEmailBtn').addEventListener('click', function() {
+                showSongSelectionModal('email');
+            });
+            
+            document.getElementById('desktopPDFBtn').addEventListener('click', function() {
+                showSongSelectionModal('pdf');
+            });
+            
+            document.getElementById('desktopLyricsOriginalBtn').addEventListener('click', function() {
+                showSongSelectionModal('lyrics-original');
+            });
+            
+            document.getElementById('desktopLyricsTranslatedBtn').addEventListener('click', function() {
+                showSongSelectionModal('lyrics-translated');
+            });
+            
+            document.getElementById('desktopSingersNotesBtn').addEventListener('click', function() {
+                showSingersNotesInPage();
+            });
+            
+            document.getElementById('desktopMusiciansNotesBtn').addEventListener('click', function() {
+                showMusiciansNotesInPage();
+            });
+            
+            document.getElementById('desktopAllFichesBtn').addEventListener('click', function() {
+                displayAllFichesGrid();
+            });
+        }
+        
+        function showList(listType) {
             const listsContainer = document.getElementById('listsContainer');
+            const songsSection = document.getElementById('songsListSection');
+            const authorsSection = document.getElementById('authorsListSection');
+            const themesSection = document.getElementById('themesListSection');
             
-            // Toggle la visibilité de la section spécifique
-            if (listType === 'all') {
-                listsContainer.classList.toggle('active');
-            } else {
-                listsVisibility[listType] = !listsVisibility[listType];
-                
-                // Si au moins une liste est visible, afficher le container
-                const anyVisible = Object.values(listsVisibility).some(v => v);
-                if (anyVisible) {
-                    listsContainer.classList.add('active');
-                    // Masquer toutes les sections d'abord
-                    Object.values(sections).forEach(section => {
-                        if (section) section.style.display = 'none';
-                    });
-                    // Afficher seulement la section demandée
-                    if (sections[listType]) {
-                        sections[listType].style.display = 'block';
-                        sections[listType].style.gridColumn = '1 / -1';
-                    }
-                } else {
-                    listsContainer.classList.remove('active');
-                }
+            // Masquer toutes les sections d'abord
+            songsSection.style.display = 'none';
+            authorsSection.style.display = 'none';
+            themesSection.style.display = 'none';
+            
+            // Afficher la section demandée
+            if (listType === 'songs') {
+                songsSection.style.display = 'block';
+                songsSection.style.gridColumn = '1 / -1';
+            } else if (listType === 'authors') {
+                authorsSection.style.display = 'block';
+                authorsSection.style.gridColumn = '1 / -1';
+            } else if (listType === 'themes') {
+                themesSection.style.display = 'block';
+                themesSection.style.gridColumn = '1 / -1';
             }
+            
+            // Afficher le container
+            listsContainer.classList.add('active');
+            listsContainer.scrollIntoView({ behavior: 'smooth' });
         }
         
         async function loadDataFromGoogleSheets() {
@@ -2491,8 +2882,8 @@
                             <div class="fiche-card-author">${song.author}</div>
                         </div>
                         <div class="fiche-card-footer">
-                            <span>${song.tempo ? song.tempo : 'Tempo N/A'}</span>
-                            <span>${song.tonality ? song.tonality : 'N/A'}</span>
+                            <span>${song.tempo ? song.tempo : ''}</span>
+                            <span>${song.tonality ? song.tonality : ''}</span>
                         </div>
                     </div>
                 `;
@@ -2535,8 +2926,8 @@
                                 ${author ? `<div class="author">${author}</div>` : ''}
                             </div>
                             <div class="song-music-info">
-                                ${tempo ? `<div class="tempo">${tempo}</div>` : ''}
-                                ${tonality ? `<div class="tonality">${tonality}</div>` : ''}
+                                ${tempo ? `<div class="tempo"><i class="fas fa-tachometer-alt"></i> ${tempo}</div>` : ''}
+                                ${tonality ? `<div class="tonality"><i class="fas fa-music"></i> ${tonality}</div>` : ''}
                             </div>
                         </div>
                     </div>
@@ -2621,9 +3012,11 @@
                 tononkiraColumns.forEach(col => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
+                        // Titre en rouge pour les tononkira
+                        const titleColor = col.name.includes('TONONKIRA') ? 'style="color: #ff0000;"' : '';
                         html += `
                             <div style="margin-bottom: 25px; width: 100%;">
-                                <div style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 10px 15px; border-radius: 6px 6px 0 0; font-weight: 700; font-size: 14px;">
+                                <div class="tononkira-title" ${titleColor}>
                                     ${col.name}
                                 </div>
                                 <div class="tononkira-multiline">
@@ -2676,7 +3069,7 @@
                     </div>
                 `;
                 
-                // Fanamarihana feo & fihira - avec titre en haut et contenu prenant toute la largeur
+                // Fanamarihana feo & fihira - avec titre en vert pomme
                 if (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) {
                     html += `
                         <div class="fanamarihana-section">
@@ -2690,7 +3083,7 @@
                     `;
                 }
                 
-                // Fanamarihana mozika - avec titre en haut et contenu prenant toute la largeur
+                // Fanamarihana mozika - avec titre en vert pomme
                 if (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) {
                     html += `
                         <div class="fanamarihana-section">
@@ -2980,9 +3373,11 @@
                 tononkiraColumns.forEach(col => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
+                        // Titre en rouge pour les tononkira
+                        const titleColor = col.name.includes('TONONKIRA') ? 'style="color: #ff0000;"' : '';
                         html += `
                             <div style="margin-bottom: 20px;">
-                                <div style="background: #f8f5ff; color: var(--music-color); padding: 8px 12px; border-radius: 4px; font-weight: 600; font-size: 13px; margin-bottom: 10px;">
+                                <div class="tononkira-title" ${titleColor}>
                                     ${col.name}
                                 </div>
                                 <div class="tononkira-multiline" style="margin: 0;">
@@ -3030,7 +3425,6 @@
         }
         
         function showSongsTable() {
-            document.getElementById('tableBubble').style.display = 'none';
             const modal = document.getElementById('songsTableModal');
             const tableBody = document.getElementById('songsTableBody');
             
@@ -3109,12 +3503,7 @@
             modal.style.display = 'flex';
         }
         
-        // Le reste du code JavaScript reste identique...
-        // (Les fonctions showFiltersTable, showVoiceNotesTable, showMusicNotesTable, etc.)
-        
         function showFiltersTable() {
-            document.getElementById('tableBubble').style.display = 'none';
-            
             const modal = document.getElementById('songsTableModal');
             const content = document.querySelector('.songs-table-content');
             
@@ -3255,109 +3644,6 @@
             `;
             
             filterContent.innerHTML = html;
-            
-            document.querySelectorAll('.clickable-cell[data-index]').forEach(el => {
-                el.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    document.getElementById('songsTableModal').style.display = 'none';
-                    displaySingleSong(index);
-                });
-            });
-        }
-        
-        function showTononkiraTable() {
-            document.getElementById('tableBubble').style.display = 'none';
-            
-            const modal = document.getElementById('songsTableModal');
-            const content = document.querySelector('.songs-table-content');
-            
-            content.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-music"></i> Tononkira - Paroles des chansons</h2>
-                    <button id="closeTononkira" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-                        <button id="showAllTononkira" style="padding: 8px 12px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
-                            Tous les Tononkira
-                        </button>
-                    </div>
-                    <div id="lyricsContent"></div>
-                </div>
-            `;
-            
-            modal.style.display = 'flex';
-            
-            document.getElementById('closeTononkira').addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            
-            document.getElementById('showAllTononkira').addEventListener('click', function() {
-                showAllTononkiraTable();
-            });
-            
-            showAllTononkiraTable();
-        }
-        
-        function showAllTononkiraTable() {
-            const lyricsContent = document.getElementById('lyricsContent');
-            
-            let html = `
-                <h3 style="margin-bottom: 12px; color: var(--primary-color); font-size: 1.1em;">Tous les Tononkira</h3>
-                <div style="margin-bottom: 15px; padding: 12px; background: #f8f5ff; border-radius: 8px; border-left: 4px solid var(--music-color); font-size: 0.9em;">
-                    <strong>${tononkiraColumns.length} colonne(s) Tononkira détectée(s)</strong>
-                    <div style="margin-top: 8px; color: #666;">
-                        ${tononkiraColumns.map(col => col.name).join(', ')}
-                    </div>
-                </div>
-                <div class="songs-table-container">
-                    <table class="songs-data-table">
-                        <thead>
-                            <tr>
-                                <th>Chanson</th>
-                                <th>Tononkira disponibles</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-            `;
-            
-            // Trier par titre de chanson
-            const sortedSongs = sheetData
-                .map((row, index) => ({
-                    index,
-                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
-                    tononkiraCount: tononkiraColumns.filter(col => {
-                        const value = row[col.index] || '';
-                        return value.trim() !== '';
-                    }).length
-                }))
-                .filter(song => song.tononkiraCount > 0)
-                .sort((a, b) => a.title.localeCompare(b.title));
-            
-            sortedSongs.forEach(song => {
-                html += `
-                    <tr>
-                        <td>
-                            <span class="clickable-cell" data-index="${song.index}">
-                                ${song.title}
-                            </span>
-                        </td>
-                        <td>
-                            <span style="color: ${song.tononkiraCount > 0 ? 'var(--music-color)' : '#666'}; font-weight: ${song.tononkiraCount > 0 ? '600' : '400'}">
-                                ${song.tononkiraCount} tononkira(s)
-                            </span>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-            
-            lyricsContent.innerHTML = html;
             
             document.querySelectorAll('.clickable-cell[data-index]').forEach(el => {
                 el.addEventListener('click', function() {
@@ -3610,12 +3896,41 @@
             }
             
             const songTitles = songs.map(s => s.title).join(', ');
-            alert(`Envoi simulé à ${recipient}\nSujet: ${subject}\nChansons: ${songTitles}\n\nCette fonctionnalité nécessiterait un backend pour fonctionner réellement.`);
+            
+            // Simulation d'envoi d'email
+            const dataInfo = document.getElementById('dataInfo');
+            dataInfo.innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-envelope"></i> Envoi par email simulé avec succès !
+                    <br><small>Destinataire: ${recipient}</small>
+                    <br><small>Chansons: ${songTitles}</small>
+                    <br><small>Note: Cette fonctionnalité nécessiterait un backend pour fonctionner réellement.</small>
+                </div>
+            `;
+            dataInfo.style.display = 'block';
+            
+            setTimeout(() => {
+                dataInfo.style.display = 'none';
+            }, 5000);
         }
         
         function exportToPDF(songs, type) {
             const songTitles = songs.map(s => s.title).join(', ');
-            alert(`Export PDF (${type}) des chansons: ${songTitles}\n\nCette fonctionnalité nécessiterait une bibliothèque PDF comme jsPDF pour fonctionner réellement.`);
+            
+            // Simulation d'export PDF
+            const dataInfo = document.getElementById('dataInfo');
+            dataInfo.innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-file-pdf"></i> Export PDF (${type}) simulé avec succès !
+                    <br><small>Chansons: ${songTitles}</small>
+                    <br><small>Note: Cette fonctionnalité nécessiterait une bibliothèque PDF comme jsPDF pour fonctionner réellement.</small>
+                </div>
+            `;
+            dataInfo.style.display = 'block';
+            
+            setTimeout(() => {
+                dataInfo.style.display = 'none';
+            }, 5000);
         }
         
         function normalizeData() {
@@ -3765,6 +4080,10 @@
             
             dataInfo.innerHTML = `<div class="success-message">${infoMessage}</div>`;
             dataInfo.style.display = 'block';
+            
+            setTimeout(() => {
+                dataInfo.style.display = 'none';
+            }, 5000);
         }
         
         function showError(message) {
@@ -3902,6 +4221,8 @@
             document.getElementById('passwordModal').style.display = 'flex';
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordInput').type = 'password';
+            document.getElementById('passwordToggle').querySelector('i').className = 'fas fa-eye';
         }
         
         function showPasswordModalForSheet() {
@@ -3940,6 +4261,7 @@
             } else {
                 errorElement.style.display = 'block';
                 document.getElementById('passwordInput').focus();
+                document.getElementById('passwordInput').select();
             }
         }
         
@@ -4045,16 +4367,16 @@
             
             switch(action) {
                 case 'email':
-                    message = `Préparation de l'envoi par email pour ${selectedIndexes.length} chanson(s)...`;
+                    message = `Envoi par email simulé pour ${selectedIndexes.length} chanson(s)`;
                     break;
                 case 'pdf':
-                    message = `Génération du PDF pour ${selectedIndexes.length} fiche(s)...`;
+                    message = `Export PDF simulé pour ${selectedIndexes.length} fiche(s)`;
                     break;
                 case 'lyrics-original':
-                    message = `Export des paroles originales en PDF pour ${selectedIndexes.length} chanson(s)...`;
+                    message = `Export des paroles originales en PDF simulé pour ${selectedIndexes.length} chanson(s)`;
                     break;
                 case 'lyrics-translated':
-                    message = `Export des paroles traduites en PDF pour ${selectedIndexes.length} chanson(s)...`;
+                    message = `Export des paroles traduites en PDF simulé pour ${selectedIndexes.length} chanson(s)`;
                     break;
             }
             
