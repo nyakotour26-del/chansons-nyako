@@ -2235,17 +2235,17 @@
                 showSuggestions(this.value);
             });
             
-            searchInput.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    navigateSuggestions(e.key);
-                }
-                
-                if (e.key === 'Enter' && document.getElementById('suggestionsContainer').style.display === 'block') {
-                    e.preventDefault();
-                    selectActiveSuggestion();
-                }
-            });
+           searchInput.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        navigateSuggestions(e.key);
+    }
+    
+    if (e.key === 'Enter' && document.getElementById('suggestionsContainer').style.display === 'block') {
+        e.preventDefault();
+        selectActiveSuggestion();
+    }
+});
             
             // Boutons d'accueil
             document.getElementById('homeSongsListBtn').addEventListener('click', function() {
@@ -4341,94 +4341,87 @@
         }
         
         function showSuggestions(searchTerm) {
-            const suggestionsContainer = document.getElementById('suggestionsContainer');
-            const searchInputGroup = document.querySelector('.search-input-group');
+    const suggestionsContainer = document.getElementById('suggestionsContainer');
+    
+    if (!searchTerm || searchTerm.length < 2) {
+        suggestionsContainer.style.display = 'none';
+        return;
+    }
+    
+    const matchingItems = findMatchingItems(searchTerm);
+    
+    if (matchingItems.length === 0) {
+        suggestionsContainer.style.display = 'none';
+        return;
+    }
+    
+    suggestionsContainer.innerHTML = matchingItems
+        .map(item => {
+            return `
+                <div class="suggestion-item" data-value="${item.value}" data-type="${item.type}">
+                    <span>${item.display}</span>
+                    <span class="suggestion-song-title">${item.songTitle}</span>
+                </div>
+            `;
+        })
+        .join('');
+    
+    suggestionsContainer.style.display = 'block';
+    
+    document.querySelectorAll('.suggestion-item').forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const type = this.getAttribute('data-type');
             
-            if (!searchTerm || searchTerm.length < 2) {
-                suggestionsContainer.style.display = 'none';
-                return;
+            if (type === 'song') {
+                const index = parseInt(value);
+                displaySingleSong(index);
+            } else {
+                const results = searchData(value);
+                displayResults(results, `Résultats pour "${value}"`);
             }
             
-            const matchingItems = findMatchingItems(searchTerm);
-            
-            if (matchingItems.length === 0) {
-                suggestionsContainer.style.display = 'none';
-                return;
-            }
-            
-            suggestionsContainer.innerHTML = matchingItems
-                .map(item => {
-                    return `
-                        <div class="suggestion-item" data-value="${item.value}" data-type="${item.type}">
-                            <span>${item.display}</span>
-                            <span class="suggestion-song-title">${item.songTitle}</span>
-                        </div>
-                    `;
-                })
-                .join('');
-            
-            suggestionsContainer.style.display = 'block';
-            
-            // Positionner le conteneur juste en dessous de la barre de recherche
-            const searchRect = searchInputGroup.getBoundingClientRect();
-            suggestionsContainer.style.top = (searchRect.bottom) + 'px';
-            suggestionsContainer.style.left = searchRect.left + 'px';
-            suggestionsContainer.style.width = searchRect.width + 'px';
-            
-            document.querySelectorAll('.suggestion-item').forEach((item, index) => {
-                item.addEventListener('click', function() {
-                    const value = this.getAttribute('data-value');
-                    const type = this.getAttribute('data-type');
-                    
-                    if (type === 'song') {
-                        const index = parseInt(value);
-                        displaySingleSong(index);
-                    } else {
-                        const results = searchData(value);
-                        displayResults(results, `Résultats pour "${value}"`);
-                    }
-                    
-                    suggestionsContainer.style.display = 'none';
-                });
-                
-                if (index === 0) {
-                    item.classList.add('active');
-                }
-            });
+            suggestionsContainer.style.display = 'none';
+        });
+        
+        if (index === 0) {
+            item.classList.add('active');
         }
+    });
+}
         
         function findMatchingItems(searchTerm) {
-            const lowerSearch = searchTerm.toLowerCase();
-            const searchWithoutAccents = removeAccents(lowerSearch);
-            const matches = [];
-            
-            sheetData.forEach((row, rowIndex) => {
-                const songTitle = row[columnIndices.title] || `Chanson ${rowIndex + 1}`;
+    const lowerSearch = searchTerm.toLowerCase();
+    const searchWithoutAccents = removeAccents(lowerSearch);
+    const matches = [];
+    
+    sheetData.forEach((row, rowIndex) => {
+        const songTitle = row[columnIndices.title] || `Chanson ${rowIndex + 1}`;
+        
+        row.forEach((cell, colIndex) => {
+            if (cell && cell.toString().trim() !== '') {
+                const cellValue = cell.toString().toLowerCase();
+                const cellWithoutAccents = removeAccents(cellValue);
                 
-                row.forEach((cell, colIndex) => {
-                    if (cell && cell.toString().trim() !== '') {
-                        const cellValue = cell.toString().toLowerCase();
-                        const cellWithoutAccents = removeAccents(cellValue);
-                        
-                        if (cellValue.includes(lowerSearch) || cellWithoutAccents.includes(searchWithoutAccents)) {
-                            let displayText = cell.toString();
-                            if (displayText.length > 40) {
-                                displayText = displayText.substring(0, 40) + '...';
-                            }
-                            
-                            matches.push({
-                                value: rowIndex,
-                                type: 'song',
-                                display: `🎵 ${songTitle}`,
-                                songTitle: `"${displayText}"`
-                            });
-                        }
+                if (cellValue.includes(lowerSearch) || cellWithoutAccents.includes(searchWithoutAccents)) {
+                    let displayText = cell.toString();
+                    if (displayText.length > 40) {
+                        displayText = displayText.substring(0, 40) + '...';
                     }
-                });
-            });
-            
-            return matches.slice(0, 10);
-        }
+                    
+                    matches.push({
+                        value: rowIndex,
+                        type: 'song',
+                        display: `🎵 ${songTitle}`,
+                        songTitle: `"${displayText}"`
+                    });
+                }
+            }
+        });
+    });
+    
+    return matches.slice(0, 10);
+}
         
         function navigateSuggestions(key) {
             const suggestions = document.querySelectorAll('.suggestion-item');
@@ -4454,12 +4447,37 @@
         }
         
         function selectActiveSuggestion() {
-            const activeSuggestion = document.querySelector('.suggestion-item.active');
-            if (activeSuggestion) {
-                activeSuggestion.click();
-            }
+    const activeSuggestion = document.querySelector('.suggestion-item.active');
+    if (activeSuggestion) {
+        activeSuggestion.click();
+    }
+}
+        
+function navigateSuggestions(key) {
+    const suggestions = document.querySelectorAll('.suggestion-item');
+    const activeSuggestion = document.querySelector('.suggestion-item.active');
+    
+    if (suggestions.length === 0) return;
+    
+    let nextIndex = 0;
+    
+    if (activeSuggestion) {
+        const currentIndex = Array.from(suggestions).indexOf(activeSuggestion);
+        if (key === 'ArrowDown') {
+            nextIndex = (currentIndex + 1) % suggestions.length;
+        } else if (key === 'ArrowUp') {
+            nextIndex = (currentIndex - 1 + suggestions.length) % suggestions.length;
         }
         
+        activeSuggestion.classList.remove('active');
+    }
+    
+    suggestions[nextIndex].classList.add('active');
+    suggestions[nextIndex].scrollIntoView({ block: 'nearest' });
+}
+
+
+
         function showDataInfo() {
             const dataInfo = document.getElementById('dataInfo');
             let infoMessage = `✅ ${sheetData.length} chanson(s) chargée(s) avec succès !
