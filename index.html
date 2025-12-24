@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🎵 FICHE TECHNIQUE CHANSONS NY AKO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #3498db;
@@ -100,7 +101,7 @@
             box-shadow: var(--box-shadow);
             z-index: 100;
             border: 1px solid #e1e1e1;
-            max-height: calc(100vh - 200px);
+            height: calc(100vh - 170px);
             overflow-y: auto;
         }
         
@@ -149,7 +150,7 @@
             min-width: 25px;
         }
         
-        /* BOUTONS D'ACCUEIL - MODIFIÉ */
+        /* BOUTONS D'ACCUEIL */
         .home-buttons-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -249,11 +250,11 @@
             background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
         
-        .action-button.authors-list {
+        .action-button.singers-notes {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
         
-        .action-button.themes-list {
+        .action-button.musicians-notes {
             background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
         }
         
@@ -269,301 +270,127 @@
             background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
         }
         
+        .action-button.authors-list {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .action-button.themes-list {
+            background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
+        }
+        
         /* LISTES (Masquées par défaut) */
         .lists-container {
             display: none;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
             grid-column: 1 / -1;
             margin-bottom: 15px;
         }
         
         .lists-container.active {
-            display: grid;
+            display: block;
             animation: fadeIn 0.5s ease;
         }
         
-        .songs-list-section, .authors-list-section, .themes-list-section {
-            background-color: white;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            height: 350px;
-            overflow-y: auto;
+        .all-fiches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
         }
         
-        .songs-list-header, .authors-list-header, .themes-list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
+        .authors-grid, .themes-grid, .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
         }
         
-        .songs-list-title, .authors-list-title, .themes-list-title {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .songs-count, .authors-count, .themes-count {
-            background-color: var(--music-color);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            font-weight: bold;
-        }
-        
-        .songs-list, .authors-list, .themes-list {
-            list-style: none;
-        }
-        
-        .song-item, .author-item, .theme-item {
-            padding: 12px;
-            margin-bottom: 8px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-            position: relative;
+        .fiche-card {
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            font-size: 0.9em;
-            min-height: 45px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .fiche-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .fiche-card-header {
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .song-item::before, .author-item::before, .theme-item::before {
+        .fiche-card-header::before {
             content: "♪";
             position: absolute;
-            right: 12px;
+            font-size: 35px;
+            opacity: 0.1;
             top: 50%;
+            right: 10px;
             transform: translateY(-50%);
-            font-size: 16px;
-            opacity: 0.3;
-            transition: all 0.3s ease;
         }
         
-        .author-item::before {
-            content: "👤";
+        .author-card-header {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
         }
         
-        .theme-item::before {
-            content: "🎭";
+        .theme-card-header {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
         }
         
-        .song-item:hover, .author-item:hover, .theme-item:hover {
-            background-color: white;
-            border-left-color: var(--music-color);
-            transform: translateX(3px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-        }
-        
-        .song-item.active, .author-item.active, .theme-item.active {
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            border-left-color: var(--accent-color);
-            font-weight: bold;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-        }
-        
-        .song-title, .author-name, .theme-name {
-            font-size: 0.95em;
+        .fiche-card-title {
+            font-size: 0.9em;
+            font-weight: 700;
+            line-height: 1.2;
             margin-bottom: 4px;
-            font-weight: 600;
-            color: var(--secondary-color);
+            max-height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            color: white;
         }
         
-        .song-author, .song-details {
+        .fiche-card-author {
             font-size: 0.8em;
-            color: var(--music-color);
-            font-style: italic;
-        }
-        
-        /* MODAL D'EXPORT */
-        .export-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .export-modal-content {
-            background: white;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-        
-        .export-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin: 15px 0;
-        }
-        
-        .export-option {
-            padding: 15px;
-            border: 2px solid #eee;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .export-option:hover {
-            border-color: var(--primary-color);
-            background: #f0f8ff;
-        }
-        
-        .export-option.selected {
-            border-color: var(--primary-color);
-            background: #e3f2fd;
-        }
-        
-        .songs-checklist {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 12px 0;
-        }
-        
-        .song-checkbox-item {
-            margin-bottom: 8px;
-            padding: 8px;
-            background: #f9f9f9;
-            border-radius: 6px;
-        }
-        
-        /* TABLEAU DES CHANSONS */
-        .songs-table-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .songs-table-content {
-            background-color: white;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 1200px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        
-        .songs-table-container {
-            overflow-x: auto;
-        }
-        
-        .songs-data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .songs-data-table th {
-            background-color: var(--primary-color);
+            opacity: 0.9;
             color: white;
-            padding: 10px;
-            text-align: left;
-            font-weight: bold;
-            position: sticky;
-            top: 0;
-            font-size: 0.9em;
         }
         
-        .songs-data-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #eee;
-            font-size: 0.85em;
+        .fiche-card-footer {
+            padding: 6px 10px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.7em;
+            color: #666;
+            min-height: 32px;
         }
         
-        .songs-data-table tr:hover {
-            background-color: #f5f7fa;
-        }
-        
-        .clickable-cell {
-            color: var(--primary-color);
-            cursor: pointer;
-            text-decoration: underline;
-            transition: all 0.2s;
-        }
-        
-        .clickable-cell:hover {
-            color: var(--accent-color);
-        }
-        
-        /* TABLEAU POUR LES NOTES */
-        .notes-table-container {
-            overflow-x: auto;
-            margin-top: 15px;
-            border: 1px solid #e1e1e1;
-            border-radius: var(--border-radius);
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .notes-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .notes-table th {
-            background-color: var(--primary-color);
+        .song-count-badge {
+            background: var(--primary-color);
             color: white;
-            padding: 10px;
-            text-align: left;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
             font-weight: bold;
-            position: sticky;
-            top: 0;
-            font-size: 0.9em;
-        }
-        
-        .notes-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-            font-size: 0.85em;
-        }
-        
-        .notes-table tr:hover {
-            background-color: #f5f7fa;
-        }
-        
-        .notes-table .song-title-cell {
-            color: var(--primary-color);
-            cursor: pointer;
-            font-weight: 500;
-        }
-        
-        .notes-table .song-title-cell:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
         }
         
         /* RECHERCHE avec suggestions positionnées */
@@ -636,7 +463,7 @@
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            margin-top: -1px;
+            margin-top: 0;
             border-top: none;
         }
         
@@ -831,17 +658,19 @@
             background-color: #f8fafc;
         }
         
-        /* Style spécial pour les tononkira - Titres en marron or et cadre décoratif */
+        /* Style spécial pour les tononkira - MODIFICATION */
         .tononkira-container {
-            background: linear-gradient(135deg, #fef9e7, #fcf3cf);
-            border-radius: 15px;
+            background: linear-gradient(135deg, #fef9f3, #f5f0e8);
+            border-radius: 12px;
             padding: 20px;
-            margin: 15px 0;
-            border: 3px double #D4AF37;
+            margin: 10px 0 20px 0;
+            border: 2px solid #d4b896;
             position: relative;
             overflow: hidden;
-            width: 100%;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 6px 20px rgba(139, 69, 19, 0.1);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4em;
+            line-height: 1.3;
         }
         
         .tononkira-container::before {
@@ -851,7 +680,7 @@
             right: 10px;
             font-size: 40px;
             opacity: 0.1;
-            color: #D4AF37;
+            color: #8B4513;
         }
         
         .tononkira-container::after {
@@ -861,7 +690,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23D4AF37" fill-opacity="0.03" d="M50,10 C65,5 80,10 90,25 L90,75 C80,90 65,95 50,90 C35,95 20,90 10,75 L10,25 C20,10 35,5 50,10 Z M40,40 L60,40 L60,60 L40,60 Z M45,45 L45,55 L55,55 L55,45 Z"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%238B4513" fill-opacity="0.03" d="M50,10 C65,5 80,10 90,25 L90,75 C80,90 65,95 50,90 C35,95 20,90 10,75 L10,25 C20,10 35,5 50,10 Z M40,40 L60,40 L60,60 L40,60 Z M45,45 L45,55 L55,55 L55,45 Z"/></svg>');
             pointer-events: none;
         }
         
@@ -869,7 +698,7 @@
             color: #8B4513 !important;
             font-weight: 700;
             margin-bottom: 15px;
-            font-size: 1.3em; /* Agrandi */
+            font-size: 1.2em;
             text-transform: uppercase;
             text-align: center;
             padding: 8px;
@@ -889,9 +718,9 @@
             margin-bottom: 8px;
             padding-bottom: 8px;
             border-bottom: 1px dashed #D2B48C;
-            line-height: 1.5; /* Augmenté pour plus de lisibilité */
-            font-size: 16px; /* Agrandi */
-            font-family: 'Brush Script MT', 'Segoe Script', cursive;
+            line-height: 1.3;
+            font-size: 1.2em;
+            font-family: 'Dancing Script', cursive;
             white-space: pre-wrap;
         }
         
@@ -1051,16 +880,6 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         
-        .floating-button.table-btn {
-            background: linear-gradient(135deg, #8e44ad, #9b59b6);
-            display: none;
-        }
-        
-        .floating-button.export-btn {
-            background: linear-gradient(135deg, #16a085, #1abc9c);
-            display: none;
-        }
-        
         .floating-button.lock-btn {
             background: linear-gradient(135deg, #f39c12, #e67e22);
         }
@@ -1118,7 +937,7 @@
             border-radius: var(--border-radius);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             width: 320px;
-            max-height: 70vh;
+            max-height: 80vh;
             overflow-y: auto;
             display: none;
             z-index: 1001;
@@ -1183,9 +1002,296 @@
             color: var(--primary-color);
         }
         
-        /* BULLES D'OPTIONS (maintenant cachées car transférées) */
-        .bubble {
+        /* TABLEAU DES CHANSONS */
+        .songs-table-modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .songs-table-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .songs-table-container {
+            overflow-x: auto;
+        }
+        
+        .songs-data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .songs-data-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            font-size: 0.9em;
+        }
+        
+        .songs-data-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.85em;
+        }
+        
+        .songs-data-table tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .clickable-cell {
+            color: var(--primary-color);
+            cursor: pointer;
+            text-decoration: underline;
+            transition: all 0.2s;
+        }
+        
+        .clickable-cell:hover {
+            color: var(--accent-color);
+        }
+        
+        /* TABLEAU POUR LES NOTES */
+        .notes-table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: var(--border-radius);
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .notes-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .notes-table th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            font-size: 0.9em;
+        }
+        
+        .notes-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            font-size: 0.85em;
+        }
+        
+        .notes-table tr:hover {
+            background-color: #f5f7fa;
+        }
+        
+        .notes-table .song-title-cell {
+            color: var(--primary-color);
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .notes-table .song-title-cell:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        /* MODAL D'EXPORT */
+        .export-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .export-modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .close-export-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.3em;
+            color: var(--accent-color);
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .close-export-modal:hover {
+            background-color: #f0f0f0;
+            transform: rotate(90deg);
+        }
+        
+        .export-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .export-option {
+            padding: 15px;
+            border: 2px solid #eee;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .export-option:hover {
+            border-color: var(--primary-color);
+            background: #f0f8ff;
+        }
+        
+        .export-option.selected {
+            border-color: var(--primary-color);
+            background: #e3f2fd;
+        }
+        
+        .songs-checklist {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 12px 0;
+        }
+        
+        .song-checkbox-item {
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        /* MODAL PASSWORD améliorée */
+        .password-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .password-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            text-align: center;
+            animation: modalAppear 0.3s ease-out;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .password-input-group {
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 14px 45px 14px 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f9f9f9;
+        }
+        
+        .password-input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            background: white;
+        }
+        
+        .password-toggle {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .password-error {
+            color: #e74c3c;
+            margin-top: 10px;
+            display: none;
+            font-weight: 500;
+            font-size: 0.9em;
+            padding: 8px;
+            background: #ffeaea;
+            border-radius: 5px;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .password-modal-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .password-modal-header i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
         
         /* MESSAGES */
@@ -1337,179 +1443,10 @@
             margin-right: 8px;
         }
         
-        /* AFFICHAGE DES FICHES EN GRID - MODIFIÉ */
-        .all-fiches-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .fiche-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 1px solid #e1e1e1;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .fiche-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-color: var(--primary-color);
-        }
-        
-        .fiche-card-header {
-            padding: 10px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .fiche-card-header::before {
-            content: "♪";
-            position: absolute;
-            font-size: 35px;
-            opacity: 0.1;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-        }
-        
-        .fiche-card-title {
-            font-size: 0.85em;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 4px;
-            max-height: 40px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        
-        .fiche-card-author {
-            font-size: 0.75em;
-            opacity: 0.9;
-        }
-        
-        .fiche-card-footer {
-            padding: 6px 10px;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.7em;
-            color: #666;
-            min-height: 32px;
-        }
-        
-        /* MODAL PASSWORD améliorée */
-        .password-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .password-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
-            text-align: center;
-            animation: modalAppear 0.3s ease-out;
-        }
-        
-        @keyframes modalAppear {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .password-input-group {
-            position: relative;
-            margin: 20px 0;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 14px 45px 14px 14px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s;
-            background: #f9f9f9;
-        }
-        
-        .password-input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-            background: white;
-        }
-        
-        .password-toggle {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 18px;
-        }
-        
-        .password-error {
-            color: #e74c3c;
-            margin-top: 10px;
-            display: none;
-            font-weight: 500;
-            font-size: 0.9em;
-            padding: 8px;
-            background: #ffeaea;
-            border-radius: 5px;
-            border-left: 3px solid #e74c3c;
-        }
-        
-        .password-modal-header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        .password-modal-header i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
         /* Styles responsives */
         @media (min-width: 1025px) {
             .desktop-sidebar {
                 display: block;
-                max-height: calc(100vh - 160px);
-                height: calc(100vh - 160px);
-                overflow-y: auto;
             }
             
             .container {
@@ -1524,14 +1461,6 @@
             .mobile-sidebar {
                 display: none !important;
             }
-            
-            .all-fiches-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .authors-grid, .themes-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
         
         @media (max-width: 1024px) {
@@ -1539,20 +1468,8 @@
                 grid-template-columns: repeat(3, 1fr);
             }
             
-            .all-fiches-grid {
+            .all-fiches-grid, .authors-grid, .themes-grid, .songs-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .authors-grid, .themes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .lists-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .songs-list-section, .authors-list-section, .themes-list-section {
-                height: 250px;
             }
             
             .fiche-card-title {
@@ -1650,15 +1567,10 @@
             .mobile-sidebar {
                 width: 300px;
                 left: 20px;
-                max-height: 60vh;
+                max-height: 70vh;
             }
             
-            .all-fiches-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            
-            .authors-grid, .themes-grid {
+            .all-fiches-grid, .authors-grid, .themes-grid, .songs-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 12px;
             }
@@ -1680,6 +1592,14 @@
                 padding: 5px 8px;
                 font-size: 0.7em;
                 min-height: 30px;
+            }
+            
+            .tononkira-container {
+                font-size: 1.2em;
+            }
+            
+            .tononkira-line {
+                font-size: 1.1em;
             }
         }
         
@@ -1708,11 +1628,7 @@
                 padding: 12px 8px;
             }
             
-            .all-fiches-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .authors-grid, .themes-grid {
+            .all-fiches-grid, .authors-grid, .themes-grid, .songs-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -1757,7 +1673,7 @@
             .mobile-sidebar {
                 width: 280px;
                 left: 15px;
-                max-height: 55vh;
+                max-height: 65vh;
             }
             
             .section-title {
@@ -1772,118 +1688,14 @@
             .media-preview {
                 grid-template-columns: 1fr;
             }
-        }
-        
-        /* Nouveaux styles pour les listes en mode grid */
-        .authors-grid, .themes-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .author-card, .theme-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s;
-            cursor: pointer;
-            border: 1px solid #e1e1e1;
-            height: 140px;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .author-card:hover, .theme-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-color: var(--primary-color);
-        }
-        
-        .author-card-header {
-            padding: 10px;
-            background: linear-gradient(135deg, #ffecd2, #fcb69f);
-            color: white;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .theme-card-header {
-            padding: 10px;
-            background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
-            color: white;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .author-card-header::before, .theme-card-header::before {
-            content: "♪";
-            position: absolute;
-            font-size: 35px;
-            opacity: 0.1;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-        }
-        
-        .author-name-grid, .theme-name-grid {
-            font-size: 0.9em;
-            font-weight: 700;
-            line-height: 1.2;
-            text-align: center;
-            margin-bottom: 4px;
-            color: var(--secondary-color);
-        }
-        
-        .author-count, .theme-count {
-            font-size: 0.75em;
-            opacity: 0.9;
-        }
-        
-        .author-card-footer, .theme-card-footer {
-            padding: 6px 10px;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 0.7em;
-            color: #666;
-            min-height: 32px;
-        }
-        
-        /* Bouton de sortie pour la bulle d'export */
-        .export-close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            font-size: 1.2em;
-            color: #666;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .export-close-btn:hover {
-            background-color: #f0f0f0;
-            color: #e74c3c;
+            
+            .tononkira-container {
+                font-size: 1.1em;
+            }
+            
+            .tononkira-line {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -1898,7 +1710,7 @@
                 <i class="fas fa-music"></i>
                 <div>
                     <strong>Liste des chansons</strong>
-                    <small>Afficher toutes les fiches</small>
+                    <small>Afficher toutes les chansons</small>
                 </div>
             </div>
             <div class="desktop-sidebar-option" id="desktopSingersNotesBtn">
@@ -1993,14 +1805,14 @@
                 <i class="fas fa-users"></i>
                 <div>
                     <strong>Liste des auteurs</strong>
-                    <small>Afficher tous les auteurs</small>
+                    <small>Afficher/Masquer la liste</small>
                 </div>
             </div>
             <div class="desktop-sidebar-option" id="desktopThemesListBtn">
                 <i class="fas fa-tags"></i>
                 <div>
                     <strong>Liste des thèmes</strong>
-                    <small>Afficher tous les thèmes</small>
+                    <small>Afficher/Masquer la liste</small>
                 </div>
             </div>
             <div class="desktop-sidebar-option" id="desktopAllFichesBtn">
@@ -2019,11 +1831,11 @@
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
-        <!-- BOUTONS D'ACCUEIL - MODIFIÉ -->
+        <!-- BOUTONS D'ACCUEIL -->
         <div class="home-buttons-container">
             <button class="home-button songs-list" id="homeSongsListBtn">
                 <i class="fas fa-music"></i>
-                <span>Toutes les fiches</span>
+                <span>Liste des chansons</span>
                 <small>Afficher toutes les chansons</small>
             </button>
             
@@ -2081,35 +1893,7 @@
         
         <!-- LISTES (Masquées par défaut) -->
         <div class="lists-container" id="listsContainer">
-            <section class="songs-list-section" id="songsListSection">
-                <div class="songs-list-header">
-                    <div class="songs-list-title">📜 Liste des Chansons</div>
-                    <div class="songs-count" id="songsCount">0</div>
-                </div>
-                <ul class="songs-list" id="songsList">
-                    <!-- La liste des chansons sera générée ici -->
-                </ul>
-            </section>
-            
-            <section class="authors-list-section" id="authorsListSection">
-                <div class="authors-list-header">
-                    <div class="authors-list-title">👤 Liste des Auteurs</div>
-                    <div class="authors-count" id="authorsCount">0</div>
-                </div>
-                <ul class="authors-list" id="authorsList">
-                    <!-- La liste des auteurs sera générée ici -->
-                </ul>
-            </section>
-            
-            <section class="themes-list-section" id="themesListSection">
-                <div class="themes-list-header">
-                    <div class="themes-list-title">🎭 Liste des Thèmes</div>
-                    <div class="themes-count" id="themesCount">0</div>
-                </div>
-                <ul class="themes-list" id="themesList">
-                    <!-- La liste des thèmes sera générée ici -->
-                </ul>
-            </section>
+            <!-- Le contenu sera généré dynamiquement -->
         </div>
         
         <!-- RECHERCHE avec suggestions positionnées -->
@@ -2174,10 +1958,10 @@
         </div>
     </div>
     
-    <!-- MODAL EXPORT - AJOUT DU BOUTON DE SORTIE -->
+    <!-- MODAL EXPORT -->
     <div class="export-modal" id="exportModal">
         <div class="export-modal-content">
-            <button class="export-close-btn" id="exportCloseBtn">&times;</button>
+            <button class="close-export-modal" id="closeExportModal">&times;</button>
             <h2 style="font-size: 1.3em;"><i class="fas fa-share"></i> Options d'export et d'envoi</h2>
             
             <div class="export-options">
@@ -2277,7 +2061,7 @@
                         <i class="fas fa-music"></i>
                         <div>
                             <strong>Liste des chansons</strong>
-                            <small>Afficher toutes les fiches</small>
+                            <small>Afficher toutes les chansons</small>
                         </div>
                     </div>
                     <div class="mobile-sidebar-option" id="mobileSingersNotesBtn">
@@ -2372,14 +2156,14 @@
                         <i class="fas fa-users"></i>
                         <div>
                             <strong>Liste des auteurs</strong>
-                            <small>Afficher tous les auteurs</small>
+                            <small>Afficher/Masquer la liste</small>
                         </div>
                     </div>
                     <div class="mobile-sidebar-option" id="mobileThemesListBtn">
                         <i class="fas fa-tags"></i>
                         <div>
                             <strong>Liste des thèmes</strong>
-                            <small>Afficher tous les thèmes</small>
+                            <small>Afficher/Masquer la liste</small>
                         </div>
                     </div>
                     <div class="mobile-sidebar-option" id="mobileAllFichesBtn">
@@ -2463,7 +2247,7 @@
                 }
             });
             
-            // Boutons d'accueil - MODIFIÉS
+            // Boutons d'accueil
             document.getElementById('homeSongsListBtn').addEventListener('click', function() {
                 displayAllFichesGrid();
             });
@@ -2483,11 +2267,6 @@
             document.getElementById('lyricsBtn').addEventListener('click', showAllTononkiraInPage);
             document.getElementById('sheetBtn').addEventListener('click', () => showPasswordModalForSheet());
             document.getElementById('exportBtn').addEventListener('click', showExportModal);
-            
-            // Bouton de fermeture de l'export modal
-            document.getElementById('exportCloseBtn').addEventListener('click', function() {
-                document.getElementById('exportModal').style.display = 'none';
-            });
             
             // Boutons flottants
             document.getElementById('homeBtn').addEventListener('click', function() {
@@ -2514,7 +2293,7 @@
                 document.getElementById('songsTableModal').style.display = 'none';
             });
             
-            // Modal export
+            // Modal export - avec bouton de fermeture
             document.querySelectorAll('.export-option').forEach(option => {
                 option.addEventListener('click', function() {
                     document.querySelectorAll('.export-option').forEach(o => o.classList.remove('selected'));
@@ -2524,6 +2303,10 @@
             });
             
             document.getElementById('cancelExport').addEventListener('click', () => {
+                document.getElementById('exportModal').style.display = 'none';
+            });
+            
+            document.getElementById('closeExportModal').addEventListener('click', () => {
                 document.getElementById('exportModal').style.display = 'none';
             });
             
@@ -2584,7 +2367,7 @@
                 mobileSidebar.style.display = mobileSidebar.style.display === 'block' ? 'none' : 'block';
             });
             
-            // Boutons du sidebar mobile
+            // Boutons du sidebar mobile - MODIFICATION pour les options d'export
             document.getElementById('mobileSongsListBtn').addEventListener('click', function() {
                 displayAllFichesGrid();
                 mobileSidebar.style.display = 'none';
@@ -2597,6 +2380,16 @@
             
             document.getElementById('mobileMusiciansNotesBtn').addEventListener('click', function() {
                 showMusiciansNotesInPage();
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
+                displayAuthorsGrid();
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
+                displayThemesGrid();
                 mobileSidebar.style.display = 'none';
             });
             
@@ -2620,34 +2413,37 @@
                 mobileSidebar.style.display = 'none';
             });
             
+            // Options d'export dans sidebar mobile
             document.getElementById('mobileEmailBtn').addEventListener('click', function() {
-                showSongSelectionModal('email');
                 mobileSidebar.style.display = 'none';
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="email"]').click();
+                }, 100);
             });
             
             document.getElementById('mobilePDFBtn').addEventListener('click', function() {
-                showSongSelectionModal('pdf');
                 mobileSidebar.style.display = 'none';
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-fiches"]').click();
+                }, 100);
             });
             
             document.getElementById('mobileLyricsOriginalBtn').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-original');
                 mobileSidebar.style.display = 'none';
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-original"]').click();
+                }, 100);
             });
             
             document.getElementById('mobileLyricsTranslatedBtn').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-translated');
                 mobileSidebar.style.display = 'none';
-            });
-            
-            document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
-                displayAuthorsGrid();
-                mobileSidebar.style.display = 'none';
-            });
-            
-            document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
-                displayThemesGrid();
-                mobileSidebar.style.display = 'none';
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-traduction"]').click();
+                }, 100);
             });
             
             document.getElementById('mobileAllFichesBtn').addEventListener('click', function() {
@@ -2670,6 +2466,14 @@
                 showMusiciansNotesInPage();
             });
             
+            document.getElementById('desktopAuthorsListBtn').addEventListener('click', function() {
+                displayAuthorsGrid();
+            });
+            
+            document.getElementById('desktopThemesListBtn').addEventListener('click', function() {
+                displayThemesGrid();
+            });
+            
             document.getElementById('desktopTableBtn').addEventListener('click', function() {
                 showSongsTable();
             });
@@ -2686,28 +2490,33 @@
                 showPasswordModalForSheet();
             });
             
+            // Options d'export dans sidebar desktop
             document.getElementById('desktopEmailBtn').addEventListener('click', function() {
-                showSongSelectionModal('email');
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="email"]').click();
+                }, 100);
             });
             
             document.getElementById('desktopPDFBtn').addEventListener('click', function() {
-                showSongSelectionModal('pdf');
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-fiches"]').click();
+                }, 100);
             });
             
             document.getElementById('desktopLyricsOriginalBtn').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-original');
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-original"]').click();
+                }, 100);
             });
             
             document.getElementById('desktopLyricsTranslatedBtn').addEventListener('click', function() {
-                showSongSelectionModal('lyrics-translated');
-            });
-            
-            document.getElementById('desktopAuthorsListBtn').addEventListener('click', function() {
-                displayAuthorsGrid();
-            });
-            
-            document.getElementById('desktopThemesListBtn').addEventListener('click', function() {
-                displayThemesGrid();
+                showExportModal();
+                setTimeout(() => {
+                    document.querySelector('.export-option[data-option="pdf-traduction"]').click();
+                }, 100);
             });
             
             document.getElementById('desktopAllFichesBtn').addEventListener('click', function() {
@@ -2946,17 +2755,7 @@
         }
         
         function displayAllFichesGrid() {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
-                    <strong style="font-size: 1em;">${sheetData.length} chanson(s) au total</strong>
-                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une carte pour voir les détails complets</p>
-                </div>
-                <div class="all-fiches-grid" id="allFichesGrid">
-            `;
+            const listsContainer = document.getElementById('listsContainer');
             
             // Trier les chansons par ordre alphabétique
             const sortedSongs = sheetData
@@ -2968,6 +2767,14 @@
                     tonality: row[columnIndices.tonality] || ''
                 }))
                 .sort((a, b) => a.title.localeCompare(b.title));
+            
+            let html = `
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
+                    <strong style="font-size: 1em;">${sheetData.length} chanson(s) au total</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une carte pour voir les détails complets</p>
+                </div>
+                <div class="songs-grid" id="songsGrid">
+            `;
             
             sortedSongs.forEach(song => {
                 html += `
@@ -2986,10 +2793,9 @@
             
             html += `</div>`;
             
-            resultContent.innerHTML = html;
-            resultTitle.textContent = 'Toutes les fiches de chansons';
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            listsContainer.innerHTML = html;
+            listsContainer.classList.add('active');
+            listsContainer.scrollIntoView({ behavior: 'smooth' });
             
             // Ajouter les événements de clic
             document.querySelectorAll('.fiche-card').forEach(card => {
@@ -3001,40 +2807,39 @@
         }
         
         function displayAuthorsGrid() {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
+            const listsContainer = document.getElementById('listsContainer');
             
-            // Compter le nombre de chansons par auteur
+            // Trier les auteurs par ordre alphabétique
+            const sortedAuthors = [...allAuthors].sort((a, b) => a.localeCompare(b));
+            
+            // Compter le nombre de chansons par auteur - CORRECTION
             const authorCounts = {};
             sheetData.forEach(row => {
                 const author = row[columnIndices.author] || '';
                 if (author && author.trim() !== '') {
-                    authorCounts[author] = (authorCounts[author] || 0) + 1;
+                    const cleanAuthor = author.trim();
+                    authorCounts[cleanAuthor] = (authorCounts[cleanAuthor] || 0) + 1;
                 }
             });
             
             let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 8px; border: 2px solid #f39c12;">
-                    <strong style="font-size: 1em;">${Object.keys(authorCounts).length} auteur(s) au total</strong>
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #ffecd2, #fcb69f); border-radius: 8px; border: 2px solid #ff9800;">
+                    <strong style="font-size: 1em;">${sortedAuthors.length} auteur(s) au total</strong>
                     <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un auteur pour voir ses chansons</p>
                 </div>
                 <div class="authors-grid" id="authorsGrid">
             `;
             
-            // Trier les auteurs par ordre alphabétique
-            const sortedAuthors = Object.keys(authorCounts).sort((a, b) => a.localeCompare(b));
-            
             sortedAuthors.forEach(author => {
-                const count = authorCounts[author];
+                const count = authorCounts[author] || 0;
                 html += `
-                    <div class="author-card" data-author="${author}">
-                        <div class="author-card-header">
-                            <div class="author-name-grid">${author}</div>
-                            <div class="author-count">${count} chanson(s)</div>
+                    <div class="fiche-card" data-author="${author}">
+                        <div class="fiche-card-header author-card-header">
+                            <div class="fiche-card-title">${author}</div>
+                            <div class="fiche-card-author">${count} chanson(s)</div>
                         </div>
-                        <div class="author-card-footer">
-                            <span>Cliquez pour voir les chansons</span>
+                        <div class="fiche-card-footer">
+                            <span class="song-count-badge">${count} chanson(s)</span>
                         </div>
                     </div>
                 `;
@@ -3042,56 +2847,62 @@
             
             html += `</div>`;
             
-            resultContent.innerHTML = html;
-            resultTitle.textContent = 'Liste des auteurs';
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            listsContainer.innerHTML = html;
+            listsContainer.classList.add('active');
+            listsContainer.scrollIntoView({ behavior: 'smooth' });
             
-            // Ajouter les événements de clic
-            document.querySelectorAll('.author-card').forEach(card => {
+            // Ajouter les événements de clic - CORRECTION DU FILTRE
+            document.querySelectorAll('.fiche-card[data-author]').forEach(card => {
                 card.addEventListener('click', function() {
-                    const author = this.getAttribute('data-author');
-                    const results = filterByColumn(columnIndices.author, author);
-                    displayResults(results, `Chansons de "${author}"`);
+                    const authorName = this.getAttribute('data-author');
+                    const results = sheetData.filter(row => {
+                        const rowAuthor = row[columnIndices.author] || '';
+                        return rowAuthor.trim() === authorName;
+                    });
+                    
+                    if (results.length > 0) {
+                        displayResults(results, `Chansons de "${authorName}"`);
+                    } else {
+                        alert(`Aucune chanson trouvée pour l'auteur "${authorName}"`);
+                    }
                 });
             });
         }
         
         function displayThemesGrid() {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
+            const listsContainer = document.getElementById('listsContainer');
             
-            // Compter le nombre de chansons par thème
+            // Trier les thèmes par ordre alphabétique
+            const sortedThemes = [...allThemes].sort((a, b) => a.localeCompare(b));
+            
+            // Compter le nombre de chansons par thème - CORRECTION
             const themeCounts = {};
             sheetData.forEach(row => {
                 const theme = row[columnIndices.mainTheme] || '';
                 if (theme && theme.trim() !== '') {
-                    themeCounts[theme] = (themeCounts[theme] || 0) + 1;
+                    const cleanTheme = theme.trim();
+                    themeCounts[cleanTheme] = (themeCounts[cleanTheme] || 0) + 1;
                 }
             });
             
             let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); border-radius: 8px; border: 2px solid #3498db;">
-                    <strong style="font-size: 1em;">${Object.keys(themeCounts).length} thème(s) au total</strong>
-                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un thème pour voir ses chansons</p>
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #c2e9fb, #a1c4fd); border-radius: 8px; border: 2px solid #27ae60;">
+                    <strong style="font-size: 1em;">${sortedThemes.length} thème(s) au total</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur un thème pour voir les chansons correspondantes</p>
                 </div>
                 <div class="themes-grid" id="themesGrid">
             `;
             
-            // Trier les thèmes par ordre alphabétique
-            const sortedThemes = Object.keys(themeCounts).sort((a, b) => a.localeCompare(b));
-            
             sortedThemes.forEach(theme => {
-                const count = themeCounts[theme];
+                const count = themeCounts[theme] || 0;
                 html += `
-                    <div class="theme-card" data-theme="${theme}">
-                        <div class="theme-card-header">
-                            <div class="theme-name-grid">${theme}</div>
-                            <div class="theme-count">${count} chanson(s)</div>
+                    <div class="fiche-card" data-theme="${theme}">
+                        <div class="fiche-card-header theme-card-header">
+                            <div class="fiche-card-title">${theme}</div>
+                            <div class="fiche-card-author">${count} chanson(s)</div>
                         </div>
-                        <div class="theme-card-footer">
-                            <span>Cliquez pour voir les chansons</span>
+                        <div class="fiche-card-footer">
+                            <span class="song-count-badge">${count} chanson(s)</span>
                         </div>
                     </div>
                 `;
@@ -3099,17 +2910,24 @@
             
             html += `</div>`;
             
-            resultContent.innerHTML = html;
-            resultTitle.textContent = 'Liste des thèmes';
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            listsContainer.innerHTML = html;
+            listsContainer.classList.add('active');
+            listsContainer.scrollIntoView({ behavior: 'smooth' });
             
-            // Ajouter les événements de clic
-            document.querySelectorAll('.theme-card').forEach(card => {
+            // Ajouter les événements de clic - CORRECTION DU FILTRE
+            document.querySelectorAll('.fiche-card[data-theme]').forEach(card => {
                 card.addEventListener('click', function() {
-                    const theme = this.getAttribute('data-theme');
-                    const results = filterByColumn(columnIndices.mainTheme, theme);
-                    displayResults(results, `Chansons avec le thème "${theme}"`);
+                    const themeName = this.getAttribute('data-theme');
+                    const results = sheetData.filter(row => {
+                        const rowTheme = row[columnIndices.mainTheme] || '';
+                        return rowTheme.trim() === themeName;
+                    });
+                    
+                    if (results.length > 0) {
+                        displayResults(results, `Chansons avec le thème "${themeName}"`);
+                    } else {
+                        alert(`Aucune chanson trouvée pour le thème "${themeName}"`);
+                    }
                 });
             });
         }
@@ -3206,7 +3024,7 @@
                 </div>
             `;
             
-            // Section TONONKIRA avec cadre décoratif
+            // Section TONONKIRA avec cadre décoratif - MODIFICATION
             const hasTononkira = tononkiraColumns.some(col => {
                 const value = songData[col.index] || '';
                 return value.trim() !== '';
@@ -3485,7 +3303,7 @@
             
             const lines = text.split('\n');
             if (lines.length <= 1) {
-                return `<div style="white-space: pre-wrap; line-height: 1.5; font-size: 16px; font-family: 'Brush Script MT', 'Segoe Script', cursive;">${text}</div>`;
+                return `<div style="white-space: pre-wrap; line-height: 1.3; font-size: 1.2em; font-family: 'Dancing Script', cursive;">${text}</div>`;
             }
             
             let html = '<div>';
@@ -3683,29 +3501,48 @@
                         
                         switch(type) {
                             case 'author':
-                                results = filterByColumn(columnIndices.author, value);
+                                results = sheetData.filter(row => {
+                                    const rowAuthor = row[columnIndices.author] || '';
+                                    return rowAuthor.trim() === value;
+                                });
                                 title = `Chansons de "${value}"`;
                                 break;
                             case 'theme':
-                                results = filterByColumn(columnIndices.mainTheme, value);
+                                results = sheetData.filter(row => {
+                                    const rowTheme = row[columnIndices.mainTheme] || '';
+                                    return rowTheme.trim() === value;
+                                });
                                 title = `Chansons avec le thème "${value}"`;
                                 break;
                             case 'genre':
-                                results = filterByColumn(columnIndices.genre, value);
+                                results = sheetData.filter(row => {
+                                    const rowGenre = row[columnIndices.genre] || '';
+                                    return rowGenre.trim() === value;
+                                });
                                 title = `Chansons du genre "${value}"`;
                                 break;
                             case 'tempo':
-                                results = filterByColumn(columnIndices.tempo, value);
+                                results = sheetData.filter(row => {
+                                    const rowTempo = row[columnIndices.tempo] || '';
+                                    return rowTempo.trim() === value;
+                                });
                                 title = `Chansons avec le tempo "${value}"`;
                                 break;
                             case 'tonality':
-                                results = filterByColumn(columnIndices.tonality, value);
+                                results = sheetData.filter(row => {
+                                    const rowTonality = row[columnIndices.tonality] || '';
+                                    return rowTonality.trim() === value;
+                                });
                                 title = `Chansons avec la tonalité "${value}"`;
                                 break;
                         }
                         
                         modal.style.display = 'none';
-                        displayResults(results, title);
+                        if (results.length > 0) {
+                            displayResults(results, title);
+                        } else {
+                            alert(`Aucune chanson trouvée pour "${value}"`);
+                        }
                     }
                 });
             });
@@ -3917,7 +3754,7 @@
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); font-weight: 500; text-decoration: underline;">
+                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); text-decoration: underline;">
                                 ${song.title}
                             </span>
                         </td>
@@ -4004,7 +3841,7 @@
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); font-weight: 500; text-decoration: underline;">
+                            <span class="song-title-cell" data-index="${song.index}" style="cursor: pointer; color: var(--primary-color); text-decoration: underline;">
                                 ${song.title}
                             </span>
                         </td>
@@ -4041,6 +3878,7 @@
         function showExportModal() {
             document.getElementById('exportModal').style.display = 'flex';
             document.getElementById('exportSelection').style.display = 'none';
+            document.getElementById('emailOptions').style.display = 'none';
             document.querySelectorAll('.export-option').forEach(o => o.classList.remove('selected'));
         }
         
@@ -4054,8 +3892,11 @@
             checklist.innerHTML = '';
             
             // Trier les chansons par ordre alphabétique
-            const sortedSongs = allSongTitles
-                .map((title, index) => ({ title, index }))
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`
+                }))
                 .sort((a, b) => a.title.localeCompare(b.title));
             
             sortedSongs.forEach(song => {
@@ -4071,6 +3912,12 @@
             });
             
             selectionDiv.style.display = 'block';
+            
+            // Pré-remplir les champs email si c'est l'option email
+            if (option === 'email') {
+                document.getElementById('emailSubject').value = 'Fiche technique des chansons';
+                document.getElementById('emailMessage').value = 'Bonjour,\n\nJe vous envoie les fiches techniques des chansons sélectionnées.\n\nCordialement,';
+            }
         }
         
         function handleExport() {
@@ -4111,25 +3958,66 @@
             document.getElementById('exportModal').style.display = 'none';
         }
         
-        // Fonction d'envoi par email
+        // Fonction d'envoi par email - AMÉLIORÉE
         function sendByEmail(songs) {
             const recipient = document.getElementById('emailRecipient').value;
-            const subject = document.getElementById('emailSubject').value || 'Fiches de chansons';
-            const message = document.getElementById('emailMessage').value || 'Voici les fiches de chansons demandées.';
+            const subject = document.getElementById('emailSubject').value || 'Fiche technique des chansons';
+            const message = document.getElementById('emailMessage').value || `Bonjour,\n\nJe vous envoie les fiches techniques des chansons suivantes :\n\n`;
             
             if (!recipient) {
                 alert('Veuillez entrer une adresse email');
                 return;
             }
             
-            const songTitles = songs.map(s => s.title).join(', ');
+            // Construire le corps de l'email avec les données des chansons
+            let emailBody = message;
             
-            // Créer le contenu de l'email
-            let emailBody = `${message}\n\n`;
-            emailBody += `Chansons incluses:\n`;
-            songs.forEach(song => {
-                emailBody += `- ${song.title}\n`;
+            // Ajouter la liste des chansons
+            emailBody += `Chansons incluses (${songs.length}) :\n`;
+            songs.forEach((song, index) => {
+                emailBody += `${index + 1}. ${song.title}\n`;
             });
+            
+            emailBody += `\n\nDétails des chansons :\n\n`;
+            
+            // Ajouter les détails de chaque chanson
+            songs.forEach((song, index) => {
+                const songData = sheetData[song.index];
+                const title = songData[columnIndices.title] || song.title;
+                const author = songData[columnIndices.author] || '';
+                const theme = songData[columnIndices.mainTheme] || '';
+                const genre = songData[columnIndices.genre] || '';
+                const tempo = songData[columnIndices.tempo] || '';
+                const tonality = songData[columnIndices.tonality] || '';
+                
+                emailBody += `=== ${index + 1}. ${title} ===\n`;
+                if (author) emailBody += `Auteur : ${author}\n`;
+                if (theme) emailBody += `Thème : ${theme}\n`;
+                if (genre) emailBody += `Genre : ${genre}\n`;
+                if (tempo) emailBody += `Tempo : ${tempo}\n`;
+                if (tonality) emailBody += `Tonalité : ${tonality}\n`;
+                
+                // Ajouter les tononkira si disponibles
+                const hasTononkira = tononkiraColumns.some(col => {
+                    const value = songData[col.index] || '';
+                    return value.trim() !== '';
+                });
+                
+                if (hasTononkira) {
+                    emailBody += `\nParoles :\n`;
+                    tononkiraColumns.forEach(col => {
+                        const value = songData[col.index] || '';
+                        if (value.trim() !== '') {
+                            emailBody += `${col.name} :\n${value}\n`;
+                        }
+                    });
+                }
+                
+                emailBody += `\n---\n\n`;
+            });
+            
+            emailBody += `\nCes fiches ont été générées depuis l'application Fiche Technique Chansons NY AKO.\n`;
+            emailBody += `Date : ${new Date().toLocaleDateString()}\n`;
             
             // Simuler l'envoi d'email
             const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
@@ -4143,7 +4031,7 @@
                 <div class="success-message">
                     <i class="fas fa-envelope"></i> Client de messagerie ouvert !
                     <br><small>Destinataire: ${recipient}</small>
-                    <br><small>Chansons: ${songTitles}</small>
+                    <br><small>${songs.length} chanson(s) incluse(s)</small>
                     <br><small>Vérifiez votre client de messagerie pour envoyer l'email.</small>
                 </div>
             `;
@@ -4175,7 +4063,7 @@
                         .data-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
                         .data-table th { background-color: #f8f9fa; text-align: left; padding: 8px; border: 1px solid #ddd; }
                         .data-table td { padding: 8px; border: 1px solid #ddd; }
-                        .tononkira-section { background-color: #fef9e7; padding: 10px; border-radius: 5px; margin: 10px 0; }
+                        .tononkira-section { background-color: #fef9f3; padding: 15px; border-radius: 8px; border: 2px solid #d4b896; margin: 10px 0; font-family: 'Dancing Script', cursive; font-size: 1.2em; }
                         .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
                     </style>
                 </head>
@@ -4257,7 +4145,7 @@
                             pdfContent += `
                                 <div class="tononkira-section">
                                     <strong>${col.name}:</strong><br>
-                                    <pre style="white-space: pre-wrap; font-family: 'Courier New', monospace;">${value}</pre>
+                                    <pre style="white-space: pre-wrap; font-family: 'Dancing Script', cursive;">${value}</pre>
                                 </div>
                             `;
                         }
@@ -4320,8 +4208,8 @@
                         .song-title { color: #2c3e50; font-size: 20px; font-weight: bold; margin-bottom: 5px; }
                         .song-author { color: #9b59b6; font-style: italic; margin-bottom: 20px; }
                         .lyrics-title { color: #8B4513; font-weight: bold; margin-top: 15px; margin-bottom: 10px; font-size: 16px; }
-                        .lyrics-content { background-color: #fef9e7; padding: 15px; border-radius: 8px; border: 1px solid #D2B48C; }
-                        .lyrics-line { margin-bottom: 5px; line-height: 1.4; font-size: 14px; }
+                        .lyrics-content { background-color: #fef9f3; padding: 15px; border-radius: 8px; border: 2px solid #d4b896; font-family: 'Dancing Script', cursive; font-size: 1.2em; }
+                        .lyrics-line { margin-bottom: 5px; line-height: 1.3; }
                         .footer { text-align: center; margin-top: 30px; color: #666; font-size: 12px; }
                         .page-break { page-break-before: always; }
                     </style>
@@ -4483,7 +4371,7 @@
             
             // Positionner le conteneur juste en dessous de la barre de recherche
             const searchRect = searchInputGroup.getBoundingClientRect();
-            suggestionsContainer.style.top = (searchRect.bottom - 1) + 'px';
+            suggestionsContainer.style.top = (searchRect.bottom) + 'px';
             suggestionsContainer.style.left = searchRect.left + 'px';
             suggestionsContainer.style.width = searchRect.width + 'px';
             
@@ -4633,15 +4521,6 @@
             });
         }
         
-        function filterByColumn(columnIndex, value) {
-            if (columnIndex === -1 || !value) return [];
-            
-            return sheetData.filter(row => {
-                const cellValue = row[columnIndex] || '';
-                return cellValue.toString().trim() === value;
-            });
-        }
-        
         function displayResults(results, title, customHtml = null) {
             const resultsSection = document.getElementById('resultsSection');
             const resultContent = document.getElementById('resultContent');
@@ -4678,12 +4557,14 @@
                 
                 sortedResults.forEach(song => {
                     html += `
-                        <div class="song-item" data-index="${song.index}" style="margin-bottom: 12px; cursor: pointer; padding: 15px; background: white; border-radius: 8px; border-left: 5px solid var(--music-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); font-size: 0.9em;">
-                            <div style="font-weight: 700; color: var(--secondary-color); margin-bottom: 6px;">${song.title}</div>
-                            ${song.author ? `<div style="color: var(--music-color); font-style: italic; font-weight: 600; margin-bottom: 4px;">${song.author}</div>` : ''}
-                            ${song.theme ? `<div style="color: #666; margin-bottom: 8px;">Thème: ${song.theme}</div>` : ''}
-                            <div style="margin-top: 8px; color: var(--primary-color); font-weight: 600; display: flex; align-items: center; gap: 6px; font-size: 0.85em;">
-                                <i class="fas fa-arrow-right"></i> Cliquez pour voir la fiche complète
+                        <div class="fiche-card" data-index="${song.index}" style="margin-bottom: 12px;">
+                            <div class="fiche-card-header" style="cursor: pointer;">
+                                <div class="fiche-card-title">${song.title}</div>
+                                <div class="fiche-card-author">${song.author}</div>
+                            </div>
+                            <div class="fiche-card-footer">
+                                <span>${song.theme}</span>
+                                <span style="color: var(--primary-color); font-weight: 600; cursor: pointer;" class="view-song-btn" data-index="${song.index}">Voir la fiche</span>
                             </div>
                         </div>
                     `;
@@ -4700,9 +4581,19 @@
                 
                 resultContent.innerHTML = html;
                 
-                document.querySelectorAll('.song-item').forEach(item => {
-                    item.addEventListener('click', function() {
-                        const index = parseInt(this.dataset.index);
+                // Ajouter les événements de clic
+                document.querySelectorAll('.fiche-card-header').forEach(header => {
+                    const card = header.closest('.fiche-card');
+                    const index = parseInt(card.getAttribute('data-index'));
+                    header.addEventListener('click', function() {
+                        displaySingleSong(index);
+                    });
+                });
+                
+                document.querySelectorAll('.view-song-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const index = parseInt(this.getAttribute('data-index'));
                         displaySingleSong(index);
                     });
                 });
@@ -4726,49 +4617,41 @@
         }
         
         function showPasswordModalForSheet() {
-            // Utiliser la même modal de password pour le Google Sheet
-            const modal = document.getElementById('passwordModal');
-            const header = document.querySelector('.password-modal-header h2');
-            const description = document.querySelector('.password-modal-header p');
-            const originalHeader = header.textContent;
-            const originalDescription = description.textContent;
-            
-            header.textContent = "Ouvrir le Google Sheet";
-            description.textContent = "Entrez le mot de passe pour accéder au document source Google Sheet";
-            
-            modal.style.display = 'flex';
+            document.getElementById('passwordModal').style.display = 'flex';
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordError').style.display = 'none';
+            document.getElementById('passwordInput').type = 'password';
+            document.getElementById('passwordToggle').querySelector('i').className = 'fas fa-eye';
             
-            // Modifier le comportement du bouton de validation
+            // Modifier le message pour l'ouverture du Google Sheet
+            const modalHeader = document.querySelector('.password-modal-header h2');
+            const modalDescription = document.querySelector('.password-modal-header p');
+            
+            if (modalHeader) modalHeader.textContent = "Accéder au Google Sheet";
+            if (modalDescription) modalDescription.textContent = "Entrez le mot de passe pour ouvrir le Google Sheet original";
+            
+            // Modifier le comportement de validation pour ouvrir le Google Sheet
             const submitBtn = document.getElementById('submitPassword');
-            const originalOnClick = submitBtn.onclick;
+            const originalClickHandler = submitBtn.onclick;
             
             submitBtn.onclick = function() {
                 const password = document.getElementById('passwordInput').value;
                 const errorElement = document.getElementById('passwordError');
                 
                 if (password === 'tek') {
-                    modal.style.display = 'none';
+                    document.getElementById('passwordModal').style.display = 'none';
                     window.open(ORIGINAL_SHEET_URL, '_blank');
                     
-                    // Restaurer les textes originaux
-                    header.textContent = originalHeader;
-                    description.textContent = originalDescription;
-                    submitBtn.onclick = originalOnClick;
+                    // Restaurer le comportement original
+                    submitBtn.onclick = originalClickHandler;
+                    if (modalHeader) modalHeader.textContent = "Déverrouiller les données";
+                    if (modalDescription) modalDescription.textContent = "Entrez le mot de passe pour accéder aux données de la colonne \"Rohin'ity hira ity\"";
                 } else {
                     errorElement.style.display = 'block';
                     document.getElementById('passwordInput').focus();
                     document.getElementById('passwordInput').select();
                 }
             };
-            
-            // Restaurer si l'utilisateur annule
-            document.getElementById('cancelPassword').addEventListener('click', function() {
-                header.textContent = originalHeader;
-                description.textContent = originalDescription;
-                submitBtn.onclick = originalOnClick;
-            }, { once: true });
         }
         
         function checkPassword() {
@@ -4799,123 +4682,6 @@
                 document.getElementById('passwordInput').focus();
                 document.getElementById('passwordInput').select();
             }
-        }
-        
-        function showSongSelectionModal(action) {
-            document.getElementById('exportBubble').style.display = 'none';
-            
-            const modal = document.getElementById('songsTableModal');
-            const content = document.querySelector('.songs-table-content');
-            
-            let title = '';
-            switch(action) {
-                case 'email': title = 'Envoyer par email'; break;
-                case 'pdf': title = 'Exporter vers PDF'; break;
-                case 'lyrics-original': title = 'Exporter les paroles originales (PDF)'; break;
-                case 'lyrics-translated': title = 'Exporter les paroles traduites (PDF)'; break;
-            }
-            
-            content.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-share"></i> ${title}</h2>
-                    <button id="closeSelection" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
-                </div>
-                <div style="margin-bottom: 15px;">
-                    <p style="font-size: 0.9em;">Sélectionnez les chansons à ${action.includes('email') ? 'envoyer par email' : 'exporter'}:</p>
-                    <div class="songs-table-container" style="max-height: 350px; overflow-y: auto;">
-                        <table class="songs-data-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 40px; text-align: center;">
-                                        <input type="checkbox" id="selectAll">
-                                    </th>
-                                    <th>Lohateny</th>
-                                    <th>Mpanoratra</th>
-                                </tr>
-                            </thead>
-                            <tbody id="selectionTableBody">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div style="margin-top: 15px; text-align: center;">
-                        <button id="confirmSelection" style="padding: 10px 20px; background: #f39c12; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em; font-weight: 600;">
-                            ${action.includes('email') ? 'Envoyer par email' : 'Exporter'}
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'flex';
-            
-            const selectionBody = document.getElementById('selectionTableBody');
-            selectionBody.innerHTML = '';
-            
-            // Trier les chansons par ordre alphabétique
-            const sortedSongs = sheetData
-                .map((row, index) => ({
-                    index,
-                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
-                    author: row[columnIndices.author] || ''
-                }))
-                .sort((a, b) => a.title.localeCompare(b.title));
-            
-            sortedSongs.forEach(song => {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td style="text-align: center;">
-                        <input type="checkbox" class="song-checkbox" data-index="${song.index}">
-                    </td>
-                    <td>${song.title}</td>
-                    <td>${song.author}</td>
-                `;
-                selectionBody.appendChild(tr);
-            });
-            
-            document.getElementById('selectAll').addEventListener('change', function() {
-                const checkboxes = document.querySelectorAll('.song-checkbox');
-                checkboxes.forEach(checkbox => {
-                    checkbox.checked = this.checked;
-                });
-            });
-            
-            document.getElementById('confirmSelection').addEventListener('click', function() {
-                const selectedIndexes = [];
-                document.querySelectorAll('.song-checkbox:checked').forEach(checkbox => {
-                    selectedIndexes.push(parseInt(checkbox.getAttribute('data-index')));
-                });
-                
-                if (selectedIndexes.length === 0) {
-                    alert('Veuillez sélectionner au moins une chanson.');
-                    return;
-                }
-                
-                modal.style.display = 'none';
-                if (action === 'email') {
-                    showExportModal();
-                    setTimeout(() => {
-                        document.querySelector('.export-option[data-option="email"]').click();
-                    }, 100);
-                } else if (action === 'pdf') {
-                    showExportModal();
-                    setTimeout(() => {
-                        document.querySelector('.export-option[data-option="pdf-fiches"]').click();
-                    }, 100);
-                } else if (action === 'lyrics-original') {
-                    showExportModal();
-                    setTimeout(() => {
-                        document.querySelector('.export-option[data-option="pdf-original"]').click();
-                    }, 100);
-                } else if (action === 'lyrics-translated') {
-                    showExportModal();
-                    setTimeout(() => {
-                        document.querySelector('.export-option[data-option="pdf-traduction"]').click();
-                    }, 100);
-                }
-            });
-            
-            document.getElementById('closeSelection').addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
         }
     </script>
 </body>
