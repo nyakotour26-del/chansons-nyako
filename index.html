@@ -17,7 +17,8 @@
             --box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --section-color: #ff9800;
-            --orange-title: #ff9800;
+            --column-header-color: #2980b9;
+            --data-value-color: #2c3e50;
         }
         
         * {
@@ -47,7 +48,7 @@
         /* HEADER */
         header {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             padding: 15px;
             background: var(--gradient);
             border-radius: var(--border-radius);
@@ -82,180 +83,23 @@
         }
         
         .subtitle {
-            font-size: 0.85em;
+            font-size: 0.8em;
             opacity: 0.9;
         }
         
-        /* LISTES (Masquées par défaut) */
-        .lists-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            grid-column: 1 / -1;
-            margin-bottom: 20px;
-            display: none; /* Masqué par défaut */
-        }
-        
-        .lists-container.visible {
-            display: grid;
-        }
-        
-        .lists-toggle {
-            grid-column: 1 / -1;
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .toggle-btn {
-            padding: 10px 20px;
-            background: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            box-shadow: var(--box-shadow);
-            transition: all 0.3s;
-        }
-        
-        .toggle-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-        }
-        
-        .toggle-btn.songs {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-        
-        .toggle-btn.authors {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-        }
-        
-        .toggle-btn.themes {
-            background: linear-gradient(135deg, #c2e9fb 0%, #a1c4fd 100%);
-        }
-        
-        .toggle-btn.active {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-        }
-        
-        .songs-list-section, .authors-list-section, .themes-list-section {
-            background-color: white;
-            padding: 15px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            height: fit-content;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .songs-list-header, .authors-list-header, .themes-list-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
-        }
-        
-        .songs-list-title, .authors-list-title, .themes-list-title {
-            font-size: 1em;
-            font-weight: bold;
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .songs-count, .authors-count, .themes-count {
-            background-color: var(--music-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: bold;
-        }
-        
-        .songs-list, .authors-list, .themes-list {
-            list-style: none;
-        }
-        
-        .song-item, .author-item, .theme-item {
-            padding: 10px;
-            margin-bottom: 6px;
-            background-color: #f8f9fa;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .song-item::before, .author-item::before, .theme-item::before {
-            content: "♪";
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 16px;
-            opacity: 0.3;
-            transition: all 0.3s ease;
-        }
-        
-        .author-item::before {
-            content: "👤";
-        }
-        
-        .theme-item::before {
-            content: "🎭";
-        }
-        
-        .song-item:hover, .author-item:hover, .theme-item:hover {
-            background-color: white;
-            border-left-color: var(--music-color);
-            transform: translateX(3px);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-        }
-        
-        .song-item.active, .author-item.active, .theme-item.active {
-            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
-            border-left-color: var(--accent-color);
-            font-weight: bold;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .song-title, .author-name, .theme-name {
-            font-size: 0.85em;
-            margin-bottom: 4px;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        
-        .song-author {
-            font-size: 0.75em;
-            color: var(--music-color);
-            font-style: italic;
-        }
-        
-        /* BOUTONS D'ACTION (REDUITS) */
+        /* BOUTONS D'ACTION (NON FLOTTANTS) */
         .action-buttons-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             grid-column: 1 / -1;
         }
         
         .action-button {
             background: white;
             border: none;
-            padding: 12px 10px;
+            padding: 12px 8px;
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow);
             cursor: pointer;
@@ -268,24 +112,20 @@
             gap: 6px;
             color: var(--secondary-color);
             min-height: 90px;
+            font-size: 0.85em;
         }
         
         .action-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         
         .action-button i {
-            font-size: 24px;
-        }
-        
-        .action-button span {
-            font-size: 0.85em;
-            font-weight: 600;
+            font-size: 22px;
         }
         
         .action-button small {
-            font-size: 0.7em;
+            font-size: 0.75em;
             opacity: 0.8;
         }
         
@@ -311,6 +151,123 @@
         
         .action-button.sheet {
             background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+        }
+        
+        /* LISTES (Masquées par défaut) */
+        .lists-container {
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            grid-column: 1 / -1;
+            margin-bottom: 15px;
+        }
+        
+        .lists-container.active {
+            display: grid;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .songs-list-section, .authors-list-section, .themes-list-section {
+            background-color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .songs-list-header, .authors-list-header, .themes-list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .songs-list-title, .authors-list-title, .themes-list-title {
+            font-size: 1em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .songs-count, .authors-count, .themes-count {
+            background-color: var(--music-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        
+        .songs-list, .authors-list, .themes-list {
+            list-style: none;
+        }
+        
+        .song-item, .author-item, .theme-item {
+            padding: 8px;
+            margin-bottom: 5px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+            font-size: 0.8em;
+            min-height: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .song-item::before, .author-item::before, .theme-item::before {
+            content: "♪";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        
+        .author-item::before {
+            content: "👤";
+        }
+        
+        .theme-item::before {
+            content: "🎭";
+        }
+        
+        .song-item:hover, .author-item:hover, .theme-item:hover {
+            background-color: white;
+            border-left-color: var(--music-color);
+            transform: translateX(3px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .song-item.active, .author-item.active, .theme-item.active {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-left-color: var(--accent-color);
+            font-weight: bold;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .song-title, .author-name, .theme-name {
+            font-size: 0.8em;
+            margin-bottom: 2px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .song-author, .song-details {
+            font-size: 0.7em;
+            color: var(--music-color);
+            font-style: italic;
         }
         
         /* MODAL D'EXPORT */
@@ -364,7 +321,7 @@
         }
         
         .songs-checklist {
-            max-height: 250px;
+            max-height: 300px;
             overflow-y: auto;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -584,30 +541,35 @@
             font-style: italic;
         }
         
-        /* FICHE - STYLE AMÉLIORÉ */
+        /* FICHE AMÉLIORÉE */
         .fiche-header {
             background: 
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
+                linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.98)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><path fill="%239b59b6" fill-opacity="0.05" d="M100,40 C120,30 140,35 160,50 L160,150 C140,165 120,170 100,160 C80,170 60,165 40,150 L40,50 C60,35 80,30 100,40 Z M80,80 L120,80 L120,120 L80,120 Z M90,90 L90,110 L110,110 L110,90 Z"/></svg>'),
+                linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            color: var(--text-color);
             padding: 20px;
             position: sticky;
             top: 0;
             z-index: 100;
-            min-height: 120px;
+            min-height: 110px;
             display: flex;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-bottom: 4px solid var(--music-color);
             border-radius: 12px 12px 0 0;
+            background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(255,255,255,0.9);
         }
         
         .fiche-header::before {
-            content: "🎵";
+            content: "🎤";
             position: absolute;
             font-size: 70px;
-            opacity: 0.2;
+            opacity: 0.1;
             top: 50%;
             right: 30px;
             transform: translateY(-50%);
@@ -620,6 +582,9 @@
             width: 100%;
             position: relative;
             z-index: 2;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 15px;
+            border-radius: 8px;
         }
         
         .song-title-info {
@@ -629,73 +594,73 @@
         
         .song-music-info {
             text-align: right;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.95);
             padding: 12px 15px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            min-width: 150px;
+            border: 1px solid rgba(155, 89, 182, 0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            min-width: 160px;
         }
         
         .fiche-title {
-            color: white;
-            font-weight: 700;
+            color: var(--secondary-color);
+            font-weight: 800;
             margin-top: 0;
-            font-size: 1.4em;
+            font-size: 1.6em;
             line-height: 1.2;
             margin-bottom: 8px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
         }
         
         .author {
-            color: rgba(255, 255, 255, 0.9);
-            font-weight: 600;
-            font-size: 0.95em;
+            color: var(--music-color);
+            font-weight: 700;
+            font-size: 1.05em;
             margin-top: 3px;
-            background: rgba(155, 89, 182, 0.3);
-            padding: 6px 12px;
+            background: rgba(155, 89, 182, 0.1);
+            padding: 8px 15px;
             border-radius: 6px;
             display: inline-block;
+            font-family: 'Georgia', serif;
         }
         
         .tempo {
-            font-size: 1em;
+            font-size: 1.05em;
             font-weight: 700;
             margin-bottom: 6px;
-            color: #ffcc00;
+            color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 6px;
         }
         
         .tonality {
-            font-size: 0.95em;
-            font-weight: 600;
-            color: #4cd964;
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 6px;
         }
         
         .section-title {
-            font-size: 1.1em;
-            font-weight: 700;
+            font-size: 1.3em;
+            font-weight: 800;
             color: var(--secondary-color);
             margin: 20px 0 12px 0;
             padding-bottom: 8px;
             border-bottom: 2px solid var(--light-color);
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-        
-        .section-title.orange {
-            color: var(--orange-title) !important;
+            gap: 8px;
+            font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
         }
         
         .section-title i {
-            font-size: 1em;
+            color: var(--section-color);
+            font-size: 1.1em;
         }
         
         .section-content {
@@ -703,7 +668,7 @@
             padding: 0;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
         }
         
         .data-table {
@@ -713,28 +678,29 @@
         
         .data-table th {
             text-align: left;
-            padding: 14px 16px;
+            padding: 16px 18px;
             width: 25%;
             background: linear-gradient(135deg, #f8f9fa, #f1f3f5);
-            color: var(--text-color);
+            color: var(--column-header-color);
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             vertical-align: top;
             white-space: normal;
             word-wrap: break-word;
             border-bottom: 1px solid #e9ecef;
             border-right: 1px solid #e9ecef;
-            line-height: 1.4;
+            font-family: 'Verdana', Geneva, sans-serif;
         }
         
         .data-table td {
-            padding: 14px 16px;
-            font-size: 13px;
-            color: var(--text-color);
+            padding: 16px 18px;
+            font-size: 15px;
+            color: var(--data-value-color);
             white-space: pre-wrap;
             border-bottom: 1px solid #e9ecef;
             background-color: white;
-            line-height: 1.4;
+            line-height: 1.6;
+            font-weight: 500;
         }
         
         .data-table tr:nth-child(even) td {
@@ -745,79 +711,74 @@
             background-color: #f8fafc;
         }
         
-        .lyrics-container {
-            margin: 15px 0;
-        }
-        
-        .lyrics-box {
-            border: 2px solid var(--music-color);
-            border-radius: var(--border-radius);
+        /* Style spécial pour les tononkira */
+        .tononkira-multiline {
+            background: linear-gradient(135deg, #f8f5ff, #fff8f8);
+            border-radius: 8px;
             padding: 15px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #f8f5ff, #fff);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
+            margin: 10px 0;
+            border-left: 4px solid var(--music-color);
+            border-right: 4px solid var(--music-color);
+            border-top: 2px dashed #e0e0e0;
+            border-bottom: 2px dashed #e0e0e0;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
         
-        .lyrics-box::before {
+        .tononkira-multiline::before {
             content: "♪";
             position: absolute;
-            font-size: 60px;
-            opacity: 0.05;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .lyrics-box:hover {
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            transform: translateY(-2px);
-        }
-        
-        .lyrics-title {
-            font-weight: 700;
-            color: var(--music-color);
-            margin-bottom: 12px;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(155, 89, 182, 0.2);
-        }
-        
-        .lyrics-content {
-            font-size: 13px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            font-family: inherit;
-            padding: 8px 0;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Style spécial pour les tononkira multi-lignes */
-        .tononkira-multiline {
-            background: #f8f5ff;
-            border-radius: 6px;
-            padding: 12px;
-            margin: 8px 0;
-            border-left: 3px solid var(--music-color);
-            line-height: 1.4;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+            opacity: 0.1;
         }
         
         .tononkira-line {
-            margin-bottom: 8px;
-            padding-bottom: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
             border-bottom: 1px dashed #e0e0e0;
+            line-height: 1.4;
+            font-size: 14px;
         }
         
         .tononkira-line:last-child {
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none;
+        }
+        
+        /* Styles pour fanamarihana avec titre en haut */
+        .fanamarihana-section {
+            margin: 20px 0;
+            width: 100%;
+        }
+        
+        .fanamarihana-title-section {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px 8px 0 0;
+            margin: 0;
+            font-weight: 800;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .fanamarihana-content {
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ff9800;
+            border-top: none;
+            width: 100%;
+            font-size: 14px;
+            line-height: 1.6;
         }
         
         .data-table img {
@@ -843,7 +804,6 @@
         }
         
         .data-table a:hover {
-            text-decoration: none;
             background-color: var(--primary-color);
             color: white;
             transform: translateY(-2px);
@@ -853,7 +813,7 @@
         /* PRÉVISUELS AUDIO/VIDÉO */
         .media-preview {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 15px;
             margin: 12px 0;
         }
@@ -919,8 +879,8 @@
         }
         
         .floating-button {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             color: white;
             border: none;
@@ -929,14 +889,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             transition: all 0.3s ease;
             position: relative;
         }
         
         .floating-button:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
         
         .floating-button.table-btn {
@@ -963,16 +923,102 @@
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
         
+        .floating-button.lists-btn {
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+        }
+        
+        /* BOUTON SIDEBAR MOBILE */
+        .sidebar-toggle {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .sidebar-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-sidebar {
+            position: fixed;
+            bottom: 100px;
+            left: 30px;
+            background: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            width: 250px;
+            display: none;
+            z-index: 1001;
+            border: 1px solid #e1e1e1;
+        }
+        
+        .mobile-sidebar::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: white transparent transparent;
+        }
+        
+        .mobile-sidebar-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .mobile-sidebar-option {
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid transparent;
+            font-size: 0.9em;
+        }
+        
+        .mobile-sidebar-option:hover {
+            background-color: white;
+            transform: translateX(3px);
+            border-color: var(--primary-color);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        
+        .mobile-sidebar-option i {
+            font-size: 18px;
+            color: var(--primary-color);
+        }
+        
         /* BULLES D'OPTIONS */
         .bubble {
             position: absolute;
-            bottom: 80px;
+            bottom: 70px;
             right: 0;
             background: white;
             padding: 15px;
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-            width: 300px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            width: 280px;
             display: none;
             z-index: 1001;
             border: 1px solid #e1e1e1;
@@ -1004,6 +1050,7 @@
             align-items: center;
             gap: 12px;
             border: 1px solid transparent;
+            font-size: 0.9em;
         }
         
         .bubble-option:hover {
@@ -1018,95 +1065,9 @@
             color: var(--primary-color);
         }
         
-        /* BOUTON RETOUR À LA LISTE */
-        .back-to-list-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            margin: 20px auto;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-        }
-        
-        .back-to-list-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
-            background: #2980b9;
-        }
-        
-        /* GRILLE POUR LES FICHES */
-        .fiches-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .fiche-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 1px solid #e1e1e1;
-        }
-        
-        .fiche-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            border-color: var(--primary-color);
-        }
-        
-        .fiche-card-header {
-            background: linear-gradient(135deg, var(--primary-color), var(--music-color));
-            color: white;
-            padding: 15px;
-            min-height: 100px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .fiche-card-title {
-            font-size: 1em;
-            font-weight: 700;
-            margin-bottom: 5px;
-            line-height: 1.3;
-        }
-        
-        .fiche-card-author {
-            font-size: 0.85em;
-            opacity: 0.9;
-            font-style: italic;
-        }
-        
-        .fiche-card-info {
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            background: #f8f9fa;
-        }
-        
-        .fiche-card-tempo, .fiche-card-tonality {
+        .bubble-option div small {
             font-size: 0.8em;
-            font-weight: 600;
-        }
-        
-        .fiche-card-tempo {
-            color: var(--accent-color);
-        }
-        
-        .fiche-card-tonality {
-            color: var(--primary-color);
+            color: #666;
         }
         
         /* MESSAGES */
@@ -1143,8 +1104,8 @@
             background: linear-gradient(135deg, #27ae60, #2ecc71);
             color: white;
             padding: 12px;
-            border-radius: 8px;
-            margin: 10px 0;
+            border-radius: 6px;
+            margin: 8px 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             font-size: 0.9em;
@@ -1154,8 +1115,8 @@
             background: linear-gradient(135deg, #e74c3c, #c0392b);
             color: white;
             padding: 12px;
-            border-radius: 8px;
-            margin: 10px 0;
+            border-radius: 6px;
+            margin: 8px 0;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             font-size: 0.9em;
@@ -1170,10 +1131,11 @@
             grid-column: 1 / -1;
             animation: fadeIn 0.5s ease;
             margin-top: 15px;
+            position: relative;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -1202,7 +1164,7 @@
         }
         
         .fiche-item:hover {
-            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
             transform: translateY(-3px);
         }
         
@@ -1210,20 +1172,120 @@
             to { transform: rotate(360deg); }
         }
         
-        /* ICONES POUR LES SECTIONS */
-        .icon-theme { color: #ff9800; }
-        .icon-idea { color: #9c27b0; }
-        .icon-music { color: #2196f3; }
-        .icon-structure { color: #4caf50; }
-        .icon-singers { color: var(--orange-title); }
-        .icon-musicians { color: var(--orange-title); }
-        .icon-history { color: #795548; }
-        .icon-links { color: #3f51b5; }
-        .icon-solfa { color: #009688; }
-        .icon-niraketana { color: #673ab7; }
-        .icon-fanamarihana { color: var(--orange-title); }
-        .icon-audio { color: #2196f3; }
-        .icon-video { color: #ff5722; }
+        /* BOUTON RETOUR À LA LISTE */
+        .back-to-list {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #eee;
+        }
+        
+        .back-to-list button {
+            padding: 10px 20px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .back-to-list button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+        
+        /* TITRES DE SECTIONS EN EVIDENCE */
+        .section-title-evidence {
+            background: linear-gradient(135deg, #ff9800, #ff5722);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px 6px 0 0;
+            margin: 20px 0 0 0;
+            font-weight: 800;
+            font-size: 1.1em;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .section-title-evidence i {
+            color: white;
+            margin-right: 8px;
+        }
+        
+        /* AFFICHAGE DES FICHES EN GRID */
+        .all-fiches-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .fiche-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid #e1e1e1;
+        }
+        
+        .fiche-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+        
+        .fiche-card-header {
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .fiche-card-header::before {
+            content: "♪";
+            position: absolute;
+            font-size: 50px;
+            opacity: 0.1;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+        
+        .fiche-card-title {
+            font-size: 1em;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+        
+        .fiche-card-author {
+            font-size: 0.85em;
+            opacity: 0.9;
+        }
+        
+        .fiche-card-footer {
+            padding: 10px 15px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+            color: #666;
+        }
         
         /* MODAL PASSWORD */
         .password-modal {
@@ -1241,7 +1303,7 @@
         
         .password-modal-content {
             background: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: var(--border-radius);
             width: 90%;
             max-width: 400px;
@@ -1255,7 +1317,7 @@
             margin: 15px 0;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 14px;
             transition: all 0.3s;
         }
         
@@ -1267,77 +1329,43 @@
         
         .password-error {
             color: var(--accent-color);
-            margin-top: 12px;
+            margin-top: 10px;
             display: none;
             font-weight: 500;
             font-size: 0.9em;
         }
         
-        /* Style pour les sections spéciales */
-        .special-section {
-            background: linear-gradient(135deg, #fff8e1, #f3e5f5);
-            border-radius: 10px;
-            padding: 15px;
-            margin: 15px 0;
-            border-left: 4px solid var(--music-color);
-        }
-        
-        .rohinity-section {
-            background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border: 2px solid #4caf50;
-        }
-        
         /* Styles responsives */
         @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
+            .action-buttons-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .all-fiches-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .lists-container {
                 grid-template-columns: 1fr;
             }
             
-            .fiches-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .songs-list-section, .authors-list-section, .themes-list-section {
+                height: 250px;
             }
             
-            .action-buttons-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            
-            .floating-buttons {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .bubble {
-                width: 280px;
-                right: -40px;
-            }
-            
-            .song-info-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .song-music-info {
-                margin-top: 15px;
-                width: 100%;
-                text-align: left;
-            }
-            
-            .fiche-header {
-                min-height: 110px;
-                padding: 15px;
+            .fiche-card-title {
+                font-size: 0.9em;
             }
         }
         
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                padding-bottom: 120px;
+            }
+            
             header {
-                height: 90px;
+                height: 80px;
                 padding: 10px;
             }
             
@@ -1349,69 +1377,41 @@
                 font-size: 0.75em;
             }
             
-            .lists-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .fiches-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            
             .action-buttons-container {
                 grid-template-columns: repeat(2, 1fr);
             }
             
             .action-button {
-                padding: 10px 8px;
                 min-height: 80px;
+                padding: 10px 6px;
+                font-size: 0.8em;
             }
             
             .action-button i {
                 font-size: 20px;
             }
             
-            .action-button span {
-                font-size: 0.8em;
+            .fiche-title {
+                font-size: 1.4em;
             }
             
-            .action-button small {
-                font-size: 0.65em;
+            .author {
+                font-size: 0.95em;
+                padding: 6px 12px;
             }
             
-            .search-form {
-                flex-direction: column;
-                gap: 12px;
-            }
-            
-            .search-input-group {
-                width: 100%;
-            }
-            
-            .data-table th, .data-table td {
-                display: block;
-                width: 100%;
-                border-right: none;
-            }
-            
-            .data-table th {
-                background: #f8f9fa;
-                border-bottom: none;
-                padding-bottom: 5px;
-                font-size: 12px;
+            .song-music-info {
+                min-width: 140px;
                 padding: 10px 12px;
             }
             
-            .data-table td {
-                padding-top: 8px;
-                border-top: 1px solid #eee;
-                font-size: 12px;
-                padding: 10px 12px;
+            .tempo, .tonality {
+                font-size: 0.95em;
             }
             
             .floating-buttons {
-                bottom: 15px;
-                right: 15px;
+                bottom: 20px;
+                right: 20px;
                 gap: 10px;
             }
             
@@ -1421,101 +1421,78 @@
                 font-size: 20px;
             }
             
+            .sidebar-toggle {
+                display: flex;
+                bottom: 20px;
+                left: 20px;
+            }
+            
             .bubble {
                 width: 250px;
                 right: -30px;
             }
             
-            .fiche-header {
-                min-height: 100px;
+            .all-fiches-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .fiche-card-header {
+                min-height: 90px;
                 padding: 12px;
             }
             
-            .fiche-title {
-                font-size: 1.2em;
-            }
-            
-            .author {
+            .fiche-card-title {
                 font-size: 0.85em;
-                padding: 5px 10px;
             }
             
-            .tempo, .tonality {
-                font-size: 0.9em;
-            }
-            
-            .section-title {
-                font-size: 1em;
-                margin: 15px 0 10px 0;
-            }
-            
-            .media-preview {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .fiche-card-footer {
+                padding: 8px 12px;
+                font-size: 0.75em;
             }
         }
         
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-                padding-bottom: 120px;
-            }
-            
-            header {
-                height: 80px;
-                padding: 8px;
-            }
-            
-            h1 {
-                font-size: 1.1em;
-            }
-            
-            .subtitle {
-                font-size: 0.7em;
-            }
-            
-            .lists-toggle {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .toggle-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .fiches-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .fiche-card-title {
-                font-size: 0.9em;
-            }
-            
-            .fiche-card-author {
-                font-size: 0.8em;
-            }
-            
             .action-buttons-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .action-button {
                 min-height: 70px;
-                padding: 8px;
+                padding: 8px 4px;
+                font-size: 0.75em;
+                gap: 4px;
             }
             
             .action-button i {
                 font-size: 18px;
             }
             
-            .action-button span {
-                font-size: 0.75em;
+            .all-fiches-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fiche-header {
+                padding: 15px;
+                min-height: 100px;
+            }
+            
+            .fiche-title {
+                font-size: 1.3em;
+            }
+            
+            .song-music-info {
+                min-width: 120px;
+                padding: 8px 10px;
+            }
+            
+            .tempo, .tonality {
+                font-size: 0.9em;
             }
             
             .floating-buttons {
-                bottom: 10px;
-                right: 10px;
+                bottom: 15px;
+                right: 15px;
                 gap: 8px;
             }
             
@@ -1525,39 +1502,31 @@
                 font-size: 18px;
             }
             
-            .fiche-header {
-                min-height: 90px;
-            }
-            
-            .fiche-title {
-                font-size: 1.1em;
-            }
-            
-            .author {
-                font-size: 0.8em;
-            }
-            
-            .song-music-info {
-                padding: 10px;
-                min-width: auto;
+            .sidebar-toggle {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
             }
             
             .bubble {
                 width: 220px;
                 right: -20px;
-            }
-            
-            .section-title {
-                font-size: 0.95em;
-            }
-            
-            .lyrics-box {
                 padding: 12px;
             }
             
-            .lyrics-content {
-                font-size: 12px;
-                line-height: 1.4;
+            .section-title {
+                font-size: 1.2em;
+            }
+            
+            .data-table th, .data-table td {
+                padding: 14px 16px;
+                font-size: 13px;
+            }
+            
+            .media-preview {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1569,16 +1538,42 @@
             <p class="subtitle">Consultation des données des chansons en détails</p>
         </header>
         
-        <!-- BOUTONS POUR AFFICHER/MASQUER LES LISTES -->
-        <div class="lists-toggle">
-            <button class="toggle-btn songs" id="toggleSongsBtn">
-                <i class="fas fa-list"></i> Liste des Chansons
+        <!-- BOUTONS D'ACTION (NON FLOTTANTS) -->
+        <div class="action-buttons-container">
+            <button class="action-button songs-table" id="songsTableBtn">
+                <i class="fas fa-table"></i>
+                <span>Tableau des chansons</span>
+                <small>Afficher toutes les chansons avec filtres</small>
             </button>
-            <button class="toggle-btn authors" id="toggleAuthorsBtn">
-                <i class="fas fa-users"></i> Liste des Auteurs
+            
+            <button class="action-button singers-notes" id="singersNotesBtn">
+                <i class="fas fa-microphone"></i>
+                <span>Notes pour chanteurs</span>
+                <small>Fanamarihana feo & fihira</small>
             </button>
-            <button class="toggle-btn themes" id="toggleThemesBtn">
-                <i class="fas fa-tags"></i> Liste des Thèmes
+            
+            <button class="action-button musicians-notes" id="musiciansNotesBtn">
+                <i class="fas fa-guitar"></i>
+                <span>Notes pour musiciens</span>
+                <small>Fanamarihana mozika</small>
+            </button>
+            
+            <button class="action-button lyrics" id="lyricsBtn">
+                <i class="fas fa-music"></i>
+                <span>Tononkira</span>
+                <small>Afficher toutes les paroles</small>
+            </button>
+            
+            <button class="action-button sheet" id="sheetBtn">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Google Sheet</span>
+                <small>Ouvrir la feuille source</small>
+            </button>
+            
+            <button class="action-button export" id="exportBtn">
+                <i class="fas fa-share"></i>
+                <span>Export & Envoi</span>
+                <small>PDF, Mail, Options</small>
             </button>
         </div>
         
@@ -1615,45 +1610,6 @@
             </section>
         </div>
         
-        <!-- BOUTONS D'ACTION -->
-        <div class="action-buttons-container">
-            <button class="action-button songs-table" id="songsTableBtn">
-                <i class="fas fa-table"></i>
-                <span>Tableau des chansons</span>
-                <small>Afficher avec filtres</small>
-            </button>
-            
-            <button class="action-button singers-notes" id="singersNotesBtn">
-                <i class="fas fa-microphone"></i>
-                <span>Notes pour chanteurs</span>
-                <small>Fanamarihana feo & fihira</small>
-            </button>
-            
-            <button class="action-button musicians-notes" id="musiciansNotesBtn">
-                <i class="fas fa-guitar"></i>
-                <span>Notes pour musiciens</span>
-                <small>Fanamarihana mozika</small>
-            </button>
-            
-            <button class="action-button lyrics" id="lyricsBtn">
-                <i class="fas fa-music"></i>
-                <span>Tononkira</span>
-                <small>Afficher les paroles</small>
-            </button>
-            
-            <button class="action-button sheet" id="sheetBtn">
-                <i class="fas fa-external-link-alt"></i>
-                <span>Google Sheet</span>
-                <small>Ouvrir la source</small>
-            </button>
-            
-            <button class="action-button export" id="exportBtn">
-                <i class="fas fa-share"></i>
-                <span>Export & Envoi</span>
-                <small>PDF, Mail, Options</small>
-            </button>
-        </div>
-        
         <!-- RECHERCHE -->
         <section class="search-section">
             <form id="searchForm" class="search-form" autocomplete="off">
@@ -1677,8 +1633,8 @@
         <!-- RÉSULTATS -->
         <section class="results-section" id="resultsSection">
             <div class="result-header">
-                <h2 id="resultTitle">Résultats de la recherche</h2>
-                <button id="closeResults">✕ Fermer</button>
+                <h2 id="resultTitle" style="font-size: 1.2em;">Résultats de la recherche</h2>
+                <button id="closeResults" style="background: none; border: none; font-size: 1.2em; cursor: pointer; color: white;">✕</button>
             </div>
             <div class="result-content" id="resultContent">
                 <!-- Les résultats seront affichés ici -->
@@ -1689,11 +1645,11 @@
     <!-- MODAL TABLEAU DES CHANSONS -->
     <div class="songs-table-modal" id="songsTableModal">
         <div class="songs-table-content">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--light-color);">
-                <h2 style="margin: 0; font-size: 1.2em;"><i class="fas fa-table"></i> Tableau des chansons</h2>
-                <button id="closeSongsTable" style="background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--accent-color);">&times;</button>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
+                <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-table"></i> Tableau des chansons</h2>
+                <button id="closeSongsTable" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
             </div>
-            <div style="margin: 10px 0; font-size: 0.85em; color: #666;">
+            <div style="margin: 12px 0; font-size: 0.85em; color: #666;">
                 Cliquez sur n'importe quelle cellule pour filtrer les chansons correspondantes
             </div>
             <div class="songs-table-container">
@@ -1704,7 +1660,7 @@
                             <th>Mpanoratra</th>
                             <th>Lohahevitra lehibe</th>
                             <th>Karazan-kira</th>
-                            <th>Tempo</th>
+                            <th>Gadona/Tempo</th>
                             <th>Tonalité</th>
                         </tr>
                     </thead>
@@ -1757,7 +1713,7 @@
                 </div>
                 
                 <div style="text-align: center; margin-top: 15px;">
-                    <button id="confirmExport" style="padding: 8px 25px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 8px; font-size: 0.9em;">
+                    <button id="confirmExport" style="padding: 8px 25px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; font-size: 0.9em;">
                         Confirmer
                     </button>
                     <button id="cancelExport" style="padding: 8px 25px; background: #ccc; color: #333; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
@@ -1771,17 +1727,62 @@
     <!-- MODAL PASSWORD -->
     <div class="password-modal" id="passwordModal">
         <div class="password-modal-content">
-            <h2 style="font-size: 1.3em;"><i class="fas fa-lock"></i> Déverrouiller les données</h2>
-            <p style="font-size: 0.95em;">Entrez le mot de passe pour accéder aux données de la colonne "Rohin'ity hira ity" :</p>
+            <h2 style="font-size: 1.2em;"><i class="fas fa-lock"></i> Déverrouiller les données</h2>
+            <p style="font-size: 0.9em;">Entrez le mot de passe pour accéder aux données de la colonne "Rohin'ity hira ity" :</p>
             <input type="password" id="passwordInput" class="password-input" placeholder="Mot de passe">
             <div id="passwordError" class="password-error">Mot de passe incorrect. Essayez "tek".</div>
             <div style="margin-top: 15px;">
-                <button id="submitPassword" style="padding: 8px 25px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 8px; font-size: 0.9em;">
+                <button id="submitPassword" style="padding: 8px 25px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px; font-size: 0.9em;">
                     Valider
                 </button>
                 <button id="cancelPassword" style="padding: 8px 25px; background: #ccc; color: #333; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
                     Annuler
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOUTON SIDEBAR MOBILE -->
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="mobile-sidebar" id="mobileSidebar">
+        <div class="mobile-sidebar-options">
+            <div class="mobile-sidebar-option" id="mobileSongsListBtn">
+                <i class="fas fa-list"></i>
+                <div>
+                    <strong>Liste des chansons</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+            <div class="mobile-sidebar-option" id="mobileAuthorsListBtn">
+                <i class="fas fa-users"></i>
+                <div>
+                    <strong>Liste des auteurs</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+            <div class="mobile-sidebar-option" id="mobileThemesListBtn">
+                <i class="fas fa-tags"></i>
+                <div>
+                    <strong>Liste des thèmes</strong>
+                    <small>Afficher/Masquer la liste</small>
+                </div>
+            </div>
+            <div class="mobile-sidebar-option" id="mobileTononkiraBtn">
+                <i class="fas fa-music"></i>
+                <div>
+                    <strong>Tononkira</strong>
+                    <small>Afficher toutes les paroles</small>
+                </div>
+            </div>
+            <div class="mobile-sidebar-option" id="mobileTableBtn">
+                <i class="fas fa-table"></i>
+                <div>
+                    <strong>Tableau des chansons</strong>
+                    <small>Afficher le tableau complet</small>
+                </div>
             </div>
         </div>
     </div>
@@ -1794,29 +1795,29 @@
                 <div class="bubble-option" id="showSongsTable">
                     <i class="fas fa-table"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Tableau des chansons</strong>
-                        <small style="font-size: 0.8em;">Afficher toutes les chansons sous forme de tableau</small>
+                        <strong>Tableau des chansons</strong>
+                        <small>Afficher toutes les chansons sous forme de tableau</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="showFiltersTable">
                     <i class="fas fa-filter"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Filtres de données</strong>
-                        <small style="font-size: 0.8em;">Fanamarihana feo & fihira, Fanamarihana mozika</small>
+                        <strong>Filtres de données</strong>
+                        <small>Fanamarihana feo & fihira, Fanamarihana mozika</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="showTononkira">
                     <i class="fas fa-music"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Afficher les Tononkira</strong>
-                        <small style="font-size: 0.8em;">Paroles originales et traductions</small>
+                        <strong>Afficher les Tononkira</strong>
+                        <small>Paroles originales et traductions</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="showGoogleSheet">
                     <i class="fas fa-external-link-alt"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Ouvrir le Google Sheet</strong>
-                        <small style="font-size: 0.8em;">Accéder au document source</small>
+                        <strong>Ouvrir le Google Sheet</strong>
+                        <small>Accéder au document source</small>
                     </div>
                 </div>
             </div>
@@ -1828,29 +1829,29 @@
                 <div class="bubble-option" id="exportEmail">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Envoyer par email</strong>
-                        <small style="font-size: 0.8em;">Une ou plusieurs fiches de chansons</small>
+                        <strong>Envoyer par email</strong>
+                        <small>Une ou plusieurs fiches de chansons</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="exportPDF">
                     <i class="fas fa-file-pdf"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Exporter vers PDF</strong>
-                        <small style="font-size: 0.8em;">Une ou plusieurs fiches complètes</small>
+                        <strong>Exporter vers PDF</strong>
+                        <small>Une ou plusieurs fiches complètes</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="exportLyricsOriginal">
                     <i class="fas fa-file-alt"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Paroles originales (PDF)</strong>
-                        <small style="font-size: 0.8em;">TONONKIRA (Original)</small>
+                        <strong>Paroles originales (PDF)</strong>
+                        <small>TONONKIRA (Original)</small>
                     </div>
                 </div>
                 <div class="bubble-option" id="exportLyricsTranslated">
                     <i class="fas fa-language"></i>
                     <div>
-                        <strong style="font-size: 0.95em;">Paroles traduites (PDF)</strong>
-                        <small style="font-size: 0.8em;">TONONKIRA (Dikan-teny hafa)</small>
+                        <strong>Paroles traduites (PDF)</strong>
+                        <small>TONONKIRA (Dikan-teny hafa)</small>
                     </div>
                 </div>
             </div>
@@ -1860,8 +1861,11 @@
         <button class="floating-button home-btn" title="Retour à l'accueil" id="homeBtn">
             <i class="fas fa-home"></i>
         </button>
-        <button class="floating-button all-btn" title="Toutes les fiches" id="allFichesBtn">
+        <button class="floating-button lists-btn" title="Afficher/Masquer les listes" id="listsBtn">
             <i class="fas fa-list"></i>
+        </button>
+        <button class="floating-button all-btn" title="Toutes les fiches" id="allFichesBtn">
+            <i class="fas fa-th-large"></i>
         </button>
         <button class="floating-button table-btn" title="Tableau et options" id="tableBtn">
             <i class="fas fa-table"></i>
@@ -1889,37 +1893,19 @@
         let allGenres = [];
         let allTempos = [];
         let allTonalities = [];
-        
-        // Index des colonnes importantes
-        let columnIndices = {
-            title: -1,
-            author: -1,
-            mainTheme: -1,
-            genre: -1,
-            tempo: -1,
-            tonality: -1,
-            songIdea: -1,
-            musicType: -1,
-            structure: -1,
-            singersNotes: -1,
-            musiciansNotes: -1,
-            history: -1,
-            niraketana: -1,
-            audioLinks: -1,
-            videoLinks: -1,
-            solfa: -1,
-            rohinity: -1,
-            horodateur: -1
-        };
-        
-        // Stocker toutes les colonnes Tononkira
+        let columnIndices = {};
         let tononkiraColumns = [];
-        
         let isUnlocked = false;
+        let listsVisibility = {
+            songs: false,
+            authors: false,
+            themes: false
+        };
 
         document.addEventListener('DOMContentLoaded', function() {
             initEventListeners();
             loadDataFromGoogleSheets();
+            setupMobileSidebar();
         });
         
         function initEventListeners() {
@@ -1944,46 +1930,27 @@
                 }
             });
             
-            // Boutons pour afficher/masquer les listes
-            document.getElementById('toggleSongsBtn').addEventListener('click', function() {
-                toggleLists('songs');
-                this.classList.toggle('active');
-            });
-            
-            document.getElementById('toggleAuthorsBtn').addEventListener('click', function() {
-                toggleLists('authors');
-                this.classList.toggle('active');
-            });
-            
-            document.getElementById('toggleThemesBtn').addEventListener('click', function() {
-                toggleLists('themes');
-                this.classList.toggle('active');
-            });
-            
             // Boutons d'action
             document.getElementById('songsTableBtn').addEventListener('click', showSongsTable);
-            document.getElementById('singersNotesBtn').addEventListener('click', function() {
-                showSingersNotesInPage();
-            });
-            document.getElementById('musiciansNotesBtn').addEventListener('click', function() {
-                showMusiciansNotesInPage();
-            });
-            document.getElementById('lyricsBtn').addEventListener('click', showLyrics);
-            document.getElementById('sheetBtn').addEventListener('click', () => {
-                showPasswordModalForSheet();
-            });
+            document.getElementById('singersNotesBtn').addEventListener('click', showSingersNotesInPage);
+            document.getElementById('musiciansNotesBtn').addEventListener('click', showMusiciansNotesInPage);
+            document.getElementById('lyricsBtn').addEventListener('click', showAllTononkiraInPage);
+            document.getElementById('sheetBtn').addEventListener('click', () => showPasswordModalForSheet());
             document.getElementById('exportBtn').addEventListener('click', showExportModal);
             
             // Boutons flottants
             document.getElementById('homeBtn').addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                closeResults();
-                hideAllLists();
             });
             
-            document.getElementById('allFichesBtn').addEventListener('click', function() {
-                displayAllFichesAsGrid();
+            document.getElementById('listsBtn').addEventListener('click', function() {
+                const listsContainer = document.getElementById('listsContainer');
+                listsContainer.classList.toggle('active');
+                this.innerHTML = listsContainer.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-list"></i>';
             });
+            
+            document.getElementById('allFichesBtn').addEventListener('click', displayAllFichesGrid);
             
             document.getElementById('tableBtn').addEventListener('click', function() {
                 const tableBubble = document.getElementById('tableBubble');
@@ -2001,17 +1968,13 @@
                 document.getElementById('searchText').focus();
             });
             
-            document.getElementById('lockBtn').addEventListener('click', function() {
-                showPasswordModal();
-            });
+            document.getElementById('lockBtn').addEventListener('click', showPasswordModal);
             
             // Options du tableau
             document.getElementById('showSongsTable').addEventListener('click', showSongsTable);
             document.getElementById('showFiltersTable').addEventListener('click', showFiltersTable);
-            document.getElementById('showTononkira').addEventListener('click', showTononkiraTable);
-            document.getElementById('showGoogleSheet').addEventListener('click', function() {
-                showPasswordModalForSheet();
-            });
+            document.getElementById('showTononkira').addEventListener('click', showAllTononkiraInPage);
+            document.getElementById('showGoogleSheet').addEventListener('click', () => showPasswordModalForSheet());
             
             // Options d'export
             document.getElementById('exportEmail').addEventListener('click', function() {
@@ -2077,45 +2040,79 @@
                     document.getElementById('exportBubble').style.display = 'none';
                     document.getElementById('tableBubble').style.display = 'none';
                 }
+                if (!e.target.closest('.sidebar-toggle') && !e.target.closest('.mobile-sidebar')) {
+                    document.getElementById('mobileSidebar').style.display = 'none';
+                }
             });
         }
         
-        function toggleLists(type) {
+        function setupMobileSidebar() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            
+            sidebarToggle.addEventListener('click', function() {
+                mobileSidebar.style.display = mobileSidebar.style.display === 'block' ? 'none' : 'block';
+            });
+            
+            // Boutons du sidebar mobile
+            document.getElementById('mobileSongsListBtn').addEventListener('click', function() {
+                toggleListVisibility('songs');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileAuthorsListBtn').addEventListener('click', function() {
+                toggleListVisibility('authors');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileThemesListBtn').addEventListener('click', function() {
+                toggleListVisibility('themes');
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileTononkiraBtn').addEventListener('click', function() {
+                showAllTononkiraInPage();
+                mobileSidebar.style.display = 'none';
+            });
+            
+            document.getElementById('mobileTableBtn').addEventListener('click', function() {
+                showSongsTable();
+                mobileSidebar.style.display = 'none';
+            });
+        }
+        
+        function toggleListVisibility(listType) {
+            const sections = {
+                songs: document.getElementById('songsListSection'),
+                authors: document.getElementById('authorsListSection'),
+                themes: document.getElementById('themesListSection')
+            };
+            
             const listsContainer = document.getElementById('listsContainer');
-            const songsSection = document.getElementById('songsListSection');
-            const authorsSection = document.getElementById('authorsListSection');
-            const themesSection = document.getElementById('themesListSection');
             
-            // Afficher le container des listes
-            listsContainer.classList.add('visible');
-            
-            // Masquer toutes les sections d'abord
-            songsSection.style.display = 'none';
-            authorsSection.style.display = 'none';
-            themesSection.style.display = 'none';
-            
-            // Afficher la section correspondante
-            switch(type) {
-                case 'songs':
-                    songsSection.style.display = 'block';
-                    break;
-                case 'authors':
-                    authorsSection.style.display = 'block';
-                    break;
-                case 'themes':
-                    themesSection.style.display = 'block';
-                    break;
+            // Toggle la visibilité de la section spécifique
+            if (listType === 'all') {
+                listsContainer.classList.toggle('active');
+            } else {
+                listsVisibility[listType] = !listsVisibility[listType];
+                
+                // Si au moins une liste est visible, afficher le container
+                const anyVisible = Object.values(listsVisibility).some(v => v);
+                if (anyVisible) {
+                    listsContainer.classList.add('active');
+                    // Masquer toutes les sections d'abord
+                    Object.values(sections).forEach(section => {
+                        if (section) section.style.display = 'none';
+                    });
+                    // Afficher seulement la section demandée
+                    if (sections[listType]) {
+                        sections[listType].style.display = 'block';
+                        sections[listType].style.gridColumn = '1 / -1';
+                    }
+                } else {
+                    listsContainer.classList.remove('active');
+                }
             }
-        }
-        
-        function hideAllLists() {
-            const listsContainer = document.getElementById('listsContainer');
-            listsContainer.classList.remove('visible');
-            
-            // Réinitialiser les boutons
-            document.querySelectorAll('.toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
         }
         
         async function loadDataFromGoogleSheets() {
@@ -2223,7 +2220,6 @@
                 
                 headers = lines[0] || [];
                 console.log('🏷️ En-têtes détectés:', headers.length, 'colonnes');
-                console.log('📋 En-têtes exacts:', headers);
                 
                 detectImportantColumns(headers);
                 
@@ -2253,25 +2249,27 @@
         }
         
         function detectImportantColumns(headers) {
-            // Détecter les indices des colonnes importantes AVEC LES NOMS EXACTS
-            columnIndices.title = findColumnIndexExact(headers, ['lohateny', 'titre', 'title']);
-            columnIndices.author = findColumnIndexExact(headers, ['mpanoratra', 'auteur', 'author', 'écrivain']);
-            columnIndices.mainTheme = findColumnIndexExact(headers, ['lohahevitra lehibe']);
-            columnIndices.genre = findColumnIndexExact(headers, ['karazan-kira', 'genre', 'type de musique', 'catégorie']);
-            columnIndices.tempo = findColumnIndexExact(headers, ['tempo']);
-            columnIndices.tonality = findColumnIndexExact(headers, ['tonalité', 'tonalite', 'tonality', 'key']);
-            columnIndices.songIdea = findColumnIndexExact(headers, ['hevitra fonosin\'ny hira', 'idée de la chanson', 'song idea']);
-            columnIndices.musicType = findColumnIndexExact(headers, ['gadona', 'type de musique', 'music type']);
-            columnIndices.structure = findColumnIndexExact(headers, ['structure', 'composition']);
-            columnIndices.singersNotes = findColumnIndexExact(headers, ['fanamarihana feo', 'fanamarihana fihira', 'notes pour chanteurs']);
-            columnIndices.musiciansNotes = findColumnIndexExact(headers, ['fanamarihana mozika', 'notes pour musiciens']);
-            columnIndices.history = findColumnIndexExact(headers, ['historique', 'fanavaozana', 'modifications', 'history']);
-            columnIndices.niraketana = findColumnIndexExact(headers, ['niraketana', 'date d\'enregistrement', 'enregistrement']);
-            columnIndices.audioLinks = findColumnIndexExact(headers, ['audio', 'rohy audio', 'lien audio']);
-            columnIndices.videoLinks = findColumnIndexExact(headers, ['video', 'rohy video', 'lien video']);
-            columnIndices.solfa = findColumnIndexExact(headers, ['solfa', 'partition', 'notes']);
-            columnIndices.rohinity = findColumnIndexExact(headers, ['rohin\'ity hira ity']);
-            columnIndices.horodateur = findColumnIndexExact(headers, ['horodateur', 'timestamp', 'date']);
+            // Détecter les indices des colonnes importantes
+            columnIndices = {
+                title: findColumnIndex(headers, ['lohateny', 'titre', 'title']),
+                author: findColumnIndex(headers, ['mpanoratra', 'auteur', 'author']),
+                mainTheme: findColumnIndex(headers, ['lohahevitra lehibe', 'thème', 'theme']),
+                genre: findColumnIndex(headers, ['karazan-kira', 'genre', 'type de musique']),
+                tempo: findColumnIndex(headers, ['tempo', 'gadona', 'rythme']),
+                tonality: findColumnIndex(headers, ['tonalité', 'tonalite', 'tonality', 'key']),
+                songIdea: findColumnIndex(headers, ['hevitra fonosin\'ny hira', 'idée de la chanson']),
+                musicType: findColumnIndex(headers, ['gadona', 'type de musique']),
+                structure: findColumnIndex(headers, ['structure', 'composition']),
+                singersNotes: findColumnIndex(headers, ['fanamarihana feo', 'fanamarihana fihira']),
+                musiciansNotes: findColumnIndex(headers, ['fanamarihana mozika']),
+                history: findColumnIndex(headers, ['historique', 'fanavaozana']),
+                niraketana: findColumnIndex(headers, ['niraketana', 'date d\'enregistrement']),
+                audioLinks: findColumnIndex(headers, ['audio', 'rohy audio']),
+                videoLinks: findColumnIndex(headers, ['video', 'rohy video']),
+                solfa: findColumnIndex(headers, ['solfa', 'partition']),
+                rohinity: findColumnIndex(headers, ['rohin\'ity hira ity']),
+                horodateur: findColumnIndex(headers, ['horodateur', 'timestamp', 'date'])
+            };
             
             // Détecter toutes les colonnes contenant "Tononkira"
             tononkiraColumns = [];
@@ -2285,19 +2283,14 @@
             });
             
             console.log('🔍 Colonnes détectées:', columnIndices);
-            console.log('🎵 Colonnes Tononkira trouvées:', tononkiraColumns.length, tononkiraColumns);
+            console.log('🎵 Colonnes Tononkira trouvées:', tononkiraColumns.length);
         }
         
-        function findColumnIndexExact(headers, keywords) {
+        function findColumnIndex(headers, keywords) {
             for (let i = 0; i < headers.length; i++) {
-                const header = headers[i] || '';
-                const headerTrimmed = header.trim();
-                const headerLower = headerTrimmed.toLowerCase();
-                
+                const header = (headers[i] || '').toLowerCase().trim();
                 for (const keyword of keywords) {
-                    const keywordLower = keyword.toLowerCase();
-                    if (headerLower === keywordLower || headerLower.includes(keywordLower)) {
-                        console.log(`🔎 Colonne "${headerTrimmed}" correspond au mot-clé "${keyword}" (index: ${i})`);
+                    if (header.includes(keyword.toLowerCase())) {
                         return i;
                     }
                 }
@@ -2321,7 +2314,7 @@
             
             allThemes = [...new Set(
                 sheetData
-                    .map(row => columnIndices.mainTheme !== -1 ? (row[columnIndices.mainTheme] || '') : '')
+                    .map(row => row[columnIndices.mainTheme] || '')
                     .filter(value => value && value.trim() !== '')
                     .map(value => value.trim())
             )];
@@ -2347,13 +2340,12 @@
                     .map(value => value.trim())
             )];
             
-            console.log('📊 Listes préparées:');
-            console.log('  - Titres:', allSongTitles.length);
-            console.log('  - Auteurs:', allAuthors.length);
-            console.log('  - Thèmes:', allThemes.length);
-            console.log('  - Genres:', allGenres.length);
-            console.log('  - Tempos:', allTempos.length);
-            console.log('  - Tonalités:', allTonalities.length);
+            console.log('📊 Listes préparées:', {
+                titres: allSongTitles.length,
+                auteurs: allAuthors.length,
+                themes: allThemes.length,
+                genres: allGenres.length
+            });
         }
         
         function populateSongsList() {
@@ -2362,25 +2354,41 @@
             
             songsList.innerHTML = '';
             
-            sheetData.forEach((row, index) => {
-                const songTitle = row[columnIndices.title] || `Chanson ${index + 1}`;
-                const author = row[columnIndices.author] || '';
-                
+            // Trier les chansons par ordre alphabétique
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    author: row[columnIndices.author] || '',
+                    tempo: row[columnIndices.tempo] || '',
+                    tonality: row[columnIndices.tonality] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
                 const listItem = document.createElement('li');
                 listItem.className = 'song-item';
-                listItem.dataset.index = index;
+                listItem.dataset.index = song.index;
+                
+                let details = '';
+                if (song.tempo || song.tonality) {
+                    const tempoText = song.tempo ? song.tempo : '';
+                    const tonalityText = song.tonality ? song.tonality : '';
+                    details = [tempoText, tonalityText].filter(Boolean).join(' - ');
+                }
+                
                 listItem.innerHTML = `
-                    <div class="song-title">${songTitle}</div>
-                    ${author ? `<div class="song-author">${author}</div>` : ''}
+                    <div class="song-title">${song.title}</div>
+                    ${song.author ? `<div class="song-author">${song.author}</div>` : ''}
+                    ${details ? `<div class="song-details">${details}</div>` : ''}
                 `;
                 
                 listItem.addEventListener('click', function() {
                     document.querySelectorAll('.song-item').forEach(item => {
                         item.classList.remove('active');
                     });
-                    
                     this.classList.add('active');
-                    displaySingleSong(index);
+                    displaySingleSong(song.index);
                 });
                 
                 songsList.appendChild(listItem);
@@ -2395,19 +2403,19 @@
             
             authorsList.innerHTML = '';
             
-            allAuthors.forEach((author, index) => {
+            // Trier les auteurs par ordre alphabétique
+            const sortedAuthors = [...allAuthors].sort((a, b) => a.localeCompare(b));
+            
+            sortedAuthors.forEach((author, index) => {
                 const listItem = document.createElement('li');
                 listItem.className = 'author-item';
                 listItem.dataset.author = author;
-                listItem.innerHTML = `
-                    <div class="author-name">${author}</div>
-                `;
+                listItem.innerHTML = `<div class="author-name">${author}</div>`;
                 
                 listItem.addEventListener('click', function() {
                     document.querySelectorAll('.author-item').forEach(item => {
                         item.classList.remove('active');
                     });
-                    
                     this.classList.add('active');
                     const authorName = this.getAttribute('data-author');
                     const results = filterByColumn(columnIndices.author, authorName);
@@ -2426,19 +2434,19 @@
             
             themesList.innerHTML = '';
             
-            allThemes.forEach((theme, index) => {
+            // Trier les thèmes par ordre alphabétique
+            const sortedThemes = [...allThemes].sort((a, b) => a.localeCompare(b));
+            
+            sortedThemes.forEach((theme, index) => {
                 const listItem = document.createElement('li');
                 listItem.className = 'theme-item';
                 listItem.dataset.theme = theme;
-                listItem.innerHTML = `
-                    <div class="theme-name">${theme}</div>
-                `;
+                listItem.innerHTML = `<div class="theme-name">${theme}</div>`;
                 
                 listItem.addEventListener('click', function() {
                     document.querySelectorAll('.theme-item').forEach(item => {
                         item.classList.remove('active');
                     });
-                    
                     this.classList.add('active');
                     const themeName = this.getAttribute('data-theme');
                     const results = filterByColumn(columnIndices.mainTheme, themeName);
@@ -2451,6 +2459,576 @@
             themesCount.textContent = allThemes.length;
         }
         
+        function displayAllFichesGrid() {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultContent = document.getElementById('resultContent');
+            const resultTitle = document.getElementById('resultTitle');
+            
+            let html = `
+                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
+                    <strong style="font-size: 1em;">${sheetData.length} chanson(s) au total</strong>
+                    <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une carte pour voir les détails complets</p>
+                </div>
+                <div class="all-fiches-grid" id="allFichesGrid">
+            `;
+            
+            // Trier les chansons par ordre alphabétique
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    author: row[columnIndices.author] || '',
+                    tempo: row[columnIndices.tempo] || '',
+                    tonality: row[columnIndices.tonality] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
+                html += `
+                    <div class="fiche-card" data-index="${song.index}">
+                        <div class="fiche-card-header">
+                            <div class="fiche-card-title">${song.title}</div>
+                            <div class="fiche-card-author">${song.author}</div>
+                        </div>
+                        <div class="fiche-card-footer">
+                            <span>${song.tempo ? song.tempo : 'Tempo N/A'}</span>
+                            <span>${song.tonality ? song.tonality : 'N/A'}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `</div>`;
+            
+            resultContent.innerHTML = html;
+            resultTitle.textContent = 'Toutes les fiches de chansons';
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Ajouter les événements de clic
+            document.querySelectorAll('.fiche-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    displaySingleSong(index);
+                });
+            });
+        }
+        
+        function displaySingleSong(index) {
+            const songData = sheetData[index];
+            const resultsSection = document.getElementById('resultsSection');
+            const resultContent = document.getElementById('resultContent');
+            const resultTitle = document.getElementById('resultTitle');
+            
+            const songTitle = songData[columnIndices.title] || `Chanson ${index + 1}`;
+            const author = songData[columnIndices.author] || '';
+            const tempo = songData[columnIndices.tempo] || '';
+            const tonality = songData[columnIndices.tonality] || '';
+            
+            let html = `
+                <div class="fiche-item">
+                    <!-- EN-TÊTE DE LA FICHE -->
+                    <div class="fiche-header">
+                        <div class="song-info-header">
+                            <div class="song-title-info">
+                                <h3 class="fiche-title">${songTitle}</h3>
+                                ${author ? `<div class="author">${author}</div>` : ''}
+                            </div>
+                            <div class="song-music-info">
+                                ${tempo ? `<div class="tempo">${tempo}</div>` : ''}
+                                ${tonality ? `<div class="tonality">${tonality}</div>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+            `;
+            
+            // Section MOAMBA NY HIRA
+            html += `
+                <div class="section-title-evidence"><i class="fas fa-info-circle"></i> MOMBA NY HIRA</div>
+                <div class="section-content">
+                    <table class="data-table">
+            `;
+            
+            // Lohahevitra lehibe
+            if (columnIndices.mainTheme !== -1 && songData[columnIndices.mainTheme]) {
+                html += `
+                    <tr>
+                        <th>Lohahevitra lehibe</th>
+                        <td>${formatCellValue(songData[columnIndices.mainTheme])}</td>
+                    </tr>
+                `;
+            }
+            
+            // Hevitra fonosin'ny hira
+            if (columnIndices.songIdea !== -1 && songData[columnIndices.songIdea]) {
+                html += `
+                    <tr>
+                        <th>Hevitra fonosin'ny hira</th>
+                        <td>${formatCellValue(songData[columnIndices.songIdea])}</td>
+                    </tr>
+                `;
+            }
+            
+            // Karazan-kira
+            if (columnIndices.genre !== -1 && songData[columnIndices.genre]) {
+                html += `
+                    <tr>
+                        <th>Karazan-kira</th>
+                        <td>${formatCellValue(songData[columnIndices.genre])}</td>
+                    </tr>
+                `;
+            }
+            
+            // Gadona
+            if (columnIndices.musicType !== -1 && songData[columnIndices.musicType]) {
+                html += `
+                    <tr>
+                        <th>Gadona</th>
+                        <td>${formatCellValue(songData[columnIndices.musicType])}</td>
+                    </tr>
+                `;
+            }
+            
+            // Structure
+            if (columnIndices.structure !== -1 && songData[columnIndices.structure]) {
+                html += `
+                    <tr>
+                        <th>Structure</th>
+                        <td>${formatCellValue(songData[columnIndices.structure])}</td>
+                    </tr>
+                `;
+            }
+            
+            html += `
+                    </table>
+                </div>
+            `;
+            
+            // Section TONONKIRA avec titre en haut et contenu prenant toute la largeur
+            const hasTononkira = tononkiraColumns.some(col => {
+                const value = songData[col.index] || '';
+                return value.trim() !== '';
+            });
+            
+            if (hasTononkira) {
+                html += `
+                    <div class="section-title-evidence"><i class="fas fa-music"></i> TONONKIRA</div>
+                    <div style="margin-top: 15px; width: 100%;">
+                `;
+                
+                tononkiraColumns.forEach(col => {
+                    const value = songData[col.index] || '';
+                    if (value.trim() !== '') {
+                        html += `
+                            <div style="margin-bottom: 25px; width: 100%;">
+                                <div style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 10px 15px; border-radius: 6px 6px 0 0; font-weight: 700; font-size: 14px;">
+                                    ${col.name}
+                                </div>
+                                <div class="tononkira-multiline">
+                                    ${formatTononkira(value)}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                html += `</div>`;
+            }
+            
+            // Section HISTO FANATSARANA
+            const hasHistoryData = (columnIndices.niraketana !== -1 && songData[columnIndices.niraketana]) ||
+                                  (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) ||
+                                  (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) ||
+                                  (columnIndices.history !== -1 && songData[columnIndices.history]) ||
+                                  (columnIndices.horodateur !== -1 && songData[columnIndices.horodateur]);
+            
+            if (hasHistoryData) {
+                html += `
+                    <div class="section-title-evidence"><i class="fas fa-history"></i> HISTO FANATSARANA</div>
+                    <div class="section-content">
+                        <table class="data-table">
+                `;
+                
+                // Niraketana
+                if (columnIndices.niraketana !== -1 && songData[columnIndices.niraketana]) {
+                    html += `
+                        <tr>
+                            <th>Niraketana</th>
+                            <td>${formatCellValue(songData[columnIndices.niraketana])}</td>
+                        </tr>
+                    `;
+                }
+                
+                // Horodateur
+                if (columnIndices.horodateur !== -1 && songData[columnIndices.horodateur]) {
+                    html += `
+                        <tr>
+                            <th>Horodateur</th>
+                            <td>${formatCellValue(songData[columnIndices.horodateur])}</td>
+                        </tr>
+                    `;
+                }
+                
+                html += `
+                        </table>
+                    </div>
+                `;
+                
+                // Fanamarihana feo & fihira - avec titre en haut et contenu prenant toute la largeur
+                if (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) {
+                    html += `
+                        <div class="fanamarihana-section">
+                            <div class="fanamarihana-title-section">
+                                <i class="fas fa-microphone"></i> Fanamarihana feo & fihira
+                            </div>
+                            <div class="fanamarihana-content">
+                                ${formatCellValue(songData[columnIndices.singersNotes])}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Fanamarihana mozika - avec titre en haut et contenu prenant toute la largeur
+                if (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) {
+                    html += `
+                        <div class="fanamarihana-section">
+                            <div class="fanamarihana-title-section">
+                                <i class="fas fa-guitar"></i> Fanamarihana mozika
+                            </div>
+                            <div class="fanamarihana-content">
+                                ${formatCellValue(songData[columnIndices.musiciansNotes])}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Historique Fanavaozana
+                if (columnIndices.history !== -1 && songData[columnIndices.history]) {
+                    html += `
+                        <div style="margin-top: 20px;">
+                            <div class="section-title-evidence"><i class="fas fa-history"></i> Historique Fanavaozana</div>
+                            <div class="section-content">
+                                <table class="data-table">
+                                    <tr>
+                                        <td>${formatCellValue(songData[columnIndices.history])}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Section AHAFAHANA MIANATRA
+            const hasLearningData = (columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
+                                   (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks]) ||
+                                   (columnIndices.solfa !== -1 && songData[columnIndices.solfa]);
+            
+            if (hasLearningData) {
+                html += `
+                    <div class="section-title-evidence"><i class="fas fa-graduation-cap"></i> AHAFAHANA MIANATRA</div>
+                    <div class="section-content">
+                `;
+                
+                // Rohy hafa AUDIO, VIDEO
+                if ((columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
+                    (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks])) {
+                    html += `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
+                                <i class="fas fa-link"></i> Rohy hafa AUDIO, VIDEO
+                            </h4>
+                            <div class="media-preview">
+                    `;
+                    
+                    // Liens vidéo (YouTube d'abord)
+                    let hasYouTube = false;
+                    let hasOtherVideo = false;
+                    let hasAudio = false;
+                    
+                    // Vérifier les liens YouTube
+                    if (songData[columnIndices.videoLinks]) {
+                        const videoLinks = songData[columnIndices.videoLinks].split('\n').filter(link => link.trim() !== '');
+                        videoLinks.forEach(link => {
+                            if (link.includes('youtube.com') || link.includes('youtu.be')) {
+                                hasYouTube = true;
+                                let videoId = '';
+                                if (link.includes('youtube.com/watch?v=')) {
+                                    videoId = link.split('v=')[1].split('&')[0];
+                                } else if (link.includes('youtu.be/')) {
+                                    videoId = link.split('youtu.be/')[1].split('?')[0];
+                                }
+                                
+                                if (videoId) {
+                                    html += `
+                                        <div class="media-item">
+                                            <div class="youtube-preview">
+                                                <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            } else if (link.trim() !== '') {
+                                hasOtherVideo = true;
+                            }
+                        });
+                    }
+                    
+                    // Liens audio (seulement si pas de YouTube)
+                    if (!hasYouTube && songData[columnIndices.audioLinks]) {
+                        const audioLinks = songData[columnIndices.audioLinks].split('\n').filter(link => link.trim() !== '');
+                        audioLinks.forEach(link => {
+                            if (link.trim() !== '') {
+                                hasAudio = true;
+                                html += `
+                                    <div class="media-item">
+                                        <div class="audio-preview">
+                                            <i class="fas fa-volume-up"></i>
+                                            <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">AUDIO</p>
+                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 15px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em;">
+                                                Écouter <i class="fas fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+                    }
+                    
+                    // Autres liens vidéo (seulement si pas de YouTube)
+                    if (!hasYouTube && hasOtherVideo && songData[columnIndices.videoLinks]) {
+                        const videoLinks = songData[columnIndices.videoLinks].split('\n').filter(link => link.trim() !== '');
+                        videoLinks.forEach(link => {
+                            if (link.trim() !== '' && !link.includes('youtube.com') && !link.includes('youtu.be')) {
+                                html += `
+                                    <div class="media-item">
+                                        <div class="audio-preview">
+                                            <i class="fas fa-video"></i>
+                                            <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">VIDEO</p>
+                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 15px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 0.85em;">
+                                                Regarder <i class="fas fa-play-circle"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+                    }
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Solfa
+                if (columnIndices.solfa !== -1 && songData[columnIndices.solfa]) {
+                    html += `
+                        <div>
+                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
+                                <i class="fas fa-music"></i> Solfa:
+                            </h4>
+                            <div style="background: #f8f5ff; padding: 15px; border-radius: 8px; border: 2px solid #e1e1e1; font-family: 'Courier New', monospace; font-size: 14px; line-height: 1.4;">
+                                ${formatCellValue(songData[columnIndices.solfa])}
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                html += `</div>`;
+            }
+            
+            // Ajouter la section "Rohin'ity hira ity" si déverrouillée
+            if (isUnlocked && columnIndices.rohinity !== -1) {
+                const rohinityValue = songData[columnIndices.rohinity] || '';
+                if (rohinityValue.trim() !== '') {
+                    html += `
+                        <div style="background: linear-gradient(135deg, #e8f5e9, #e3f2fd); border-radius: 10px; padding: 20px; margin: 20px 0; border: 2px solid #4caf50;">
+                            <div class="section-title-evidence" style="color: #4caf50; margin-top: 0;">
+                                <i class="fas fa-unlock"></i> ROHIN'ITY HIRA ITY
+                            </div>
+                            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #4caf50; font-size: 14px; line-height: 1.5;">
+                                ${formatCellValue(rohinityValue)}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Bouton retour à la liste
+            html += `
+                <div class="back-to-list">
+                    <button onclick="displayAllFichesGrid()">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </button>
+                </div>
+            `;
+            
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            resultContent.innerHTML = html;
+            resultTitle.textContent = songTitle;
+            resultsSection.style.display = 'block';
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function formatTononkira(text) {
+            if (!text) return '';
+            
+            const lines = text.split('\n');
+            if (lines.length <= 1) {
+                return `<div style="white-space: pre-wrap; line-height: 1.4; font-size: 14px;">${text}</div>`;
+            }
+            
+            let html = '<div>';
+            
+            lines.forEach((line, index) => {
+                if (line.trim() === '') {
+                    if (index > 0 && index < lines.length - 1) {
+                        html += '<div style="height: 10px;"></div>';
+                    }
+                } else {
+                    html += `<div class="tononkira-line">${line}</div>`;
+                }
+            });
+            
+            html += '</div>';
+            return html;
+        }
+        
+        function formatCellValue(value) {
+            const strValue = String(value);
+            
+            if (strValue.startsWith('http') && strValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
+                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'" style="max-width: 100%; height: auto;">`;
+            }
+            
+            if (strValue.startsWith('http')) {
+                return `<a href="${strValue}" target="_blank" style="text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--primary-color); color: white; border-radius: 6px; font-size: 12px;">
+                    <i class="fas fa-external-link-alt"></i> Ouvrir le lien
+                </a>`;
+            }
+            
+            return `<div style="white-space: pre-wrap; line-height: 1.6; font-size: 14px;">${strValue}</div>`;
+        }
+        
+        function showAllTononkiraInPage() {
+            const results = sheetData.filter(row => {
+                return tononkiraColumns.some(col => {
+                    const value = row[col.index] || '';
+                    return value.trim() !== '';
+                });
+            });
+            
+            if (results.length === 0) {
+                alert('Aucune parole de chanson trouvée');
+                return;
+            }
+            
+            let html = `
+                <div class="fiche-item">
+                    <div class="fiche-header">
+                        <div class="song-info-header">
+                            <div class="song-title-info">
+                                <h3 class="fiche-title">TONONKIRA - Toutes les paroles</h3>
+                                <div class="author">Paroles complètes de toutes les chansons</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div class="section-title-evidence"><i class="fas fa-music"></i> TONONKIRA DE TOUTES LES CHANSONS</div>
+                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                            <strong>${results.length} chanson(s) avec des paroles disponibles</strong>
+                            <p style="margin-top: 5px;">Cliquez sur le titre d'une chanson pour voir sa fiche complète</p>
+                        </div>
+            `;
+            
+            // Trier les chansons par ordre alphabétique
+            const sortedResults = results
+                .map(row => ({
+                    data: row,
+                    index: sheetData.findIndex(r => r === row),
+                    title: row[columnIndices.title] || `Chanson ${sheetData.findIndex(r => r === row) + 1}`
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedResults.forEach((song, songIndex) => {
+                const songData = song.data;
+                const index = song.index;
+                const songTitle = song.title;
+                const author = songData[columnIndices.author] || '';
+                
+                html += `
+                    <div style="margin-bottom: 30px; border: 1px solid #e1e1e1; border-radius: 8px; overflow: hidden;">
+                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 15px; cursor: pointer;" class="song-header-toggle" data-index="${index}">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h4 style="margin: 0; font-size: 1em; font-weight: 700;">${songTitle}</h4>
+                                    ${author ? `<div style="font-size: 0.85em; opacity: 0.9;">${author}</div>` : ''}
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="song-tononkira-content" id="tononkira-${index}" style="display: none; padding: 15px; background: white;">
+                `;
+                
+                tononkiraColumns.forEach(col => {
+                    const value = songData[col.index] || '';
+                    if (value.trim() !== '') {
+                        html += `
+                            <div style="margin-bottom: 20px;">
+                                <div style="background: #f8f5ff; color: var(--music-color); padding: 8px 12px; border-radius: 4px; font-weight: 600; font-size: 13px; margin-bottom: 10px;">
+                                    ${col.name}
+                                </div>
+                                <div class="tononkira-multiline" style="margin: 0;">
+                                    ${formatTononkira(value)}
+                                </div>
+                            </div>
+                        `;
+                    }
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += `
+                        <div class="back-to-list">
+                            <button onclick="displayAllFichesGrid()">
+                                <i class="fas fa-arrow-left"></i> Retour à la liste
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            displayResults([results[0]], 'TONONKIRA - Toutes les paroles', html);
+            
+            // Ajouter les événements pour ouvrir/fermer les sections
+            document.querySelectorAll('.song-header-toggle').forEach(header => {
+                header.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const content = document.getElementById(`tononkira-${index}`);
+                    const icon = this.querySelector('i');
+                    
+                    if (content.style.display === 'none') {
+                        content.style.display = 'block';
+                        icon.className = 'fas fa-chevron-up';
+                    } else {
+                        content.style.display = 'none';
+                        icon.className = 'fas fa-chevron-down';
+                    }
+                });
+            });
+        }
+        
         function showSongsTable() {
             document.getElementById('tableBubble').style.display = 'none';
             const modal = document.getElementById('songsTableModal');
@@ -2458,22 +3036,28 @@
             
             tableBody.innerHTML = '';
             
-            sheetData.forEach((row, index) => {
-                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
-                const author = row[columnIndices.author] || '';
-                const theme = columnIndices.mainTheme !== -1 ? (row[columnIndices.mainTheme] || '') : '';
-                const genre = row[columnIndices.genre] || '';
-                const tempo = row[columnIndices.tempo] || '';
-                const tonality = row[columnIndices.tonality] || '';
-                
+            // Trier les chansons par ordre alphabétique
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    author: row[columnIndices.author] || '',
+                    theme: row[columnIndices.mainTheme] || '',
+                    genre: row[columnIndices.genre] || '',
+                    tempo: row[columnIndices.tempo] || '',
+                    tonality: row[columnIndices.tonality] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td><span class="clickable-cell" data-index="${index}" data-type="song">${title}</span></td>
-                    <td>${author ? `<span class="clickable-cell" data-value="${author}" data-type="author">${author}</span>` : ''}</td>
-                    <td>${theme ? `<span class="clickable-cell" data-value="${theme}" data-type="theme">${theme}</span>` : ''}</td>
-                    <td>${genre ? `<span class="clickable-cell" data-value="${genre}" data-type="genre">${genre}</span>` : ''}</td>
-                    <td>${tempo ? `<span class="clickable-cell" data-value="${tempo}" data-type="tempo">${tempo}</span>` : ''}</td>
-                    <td>${tonality ? `<span class="clickable-cell" data-value="${tonality}" data-type="tonality">${tonality}</span>` : ''}</td>
+                    <td><span class="clickable-cell" data-index="${song.index}" data-type="song">${song.title}</span></td>
+                    <td>${song.author ? `<span class="clickable-cell" data-value="${song.author}" data-type="author">${song.author}</span>` : ''}</td>
+                    <td>${song.theme ? `<span class="clickable-cell" data-value="${song.theme}" data-type="theme">${song.theme}</span>` : ''}</td>
+                    <td>${song.genre ? `<span class="clickable-cell" data-value="${song.genre}" data-type="genre">${song.genre}</span>` : ''}</td>
+                    <td>${song.tempo ? `<span class="clickable-cell" data-value="${song.tempo}" data-type="tempo">${song.tempo}</span>` : ''}</td>
+                    <td>${song.tonality ? `<span class="clickable-cell" data-value="${song.tonality}" data-type="tonality">${song.tonality}</span>` : ''}</td>
                 `;
                 
                 tableBody.appendChild(tr);
@@ -2525,6 +3109,9 @@
             modal.style.display = 'flex';
         }
         
+        // Le reste du code JavaScript reste identique...
+        // (Les fonctions showFiltersTable, showVoiceNotesTable, showMusicNotesTable, etc.)
+        
         function showFiltersTable() {
             document.getElementById('tableBubble').style.display = 'none';
             
@@ -2532,12 +3119,12 @@
             const content = document.querySelector('.songs-table-content');
             
             content.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.2em;"><i class="fas fa-filter"></i> Filtres de données</h2>
-                    <button id="closeFilters" style="background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--accent-color);">&times;</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
+                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-filter"></i> Filtres de données</h2>
+                    <button id="closeFilters" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
                         <button id="showVoiceNotes" style="padding: 8px 12px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
                             Fanamarihana feo & fihira
                         </button>
@@ -2570,7 +3157,7 @@
             const filterContent = document.getElementById('filterContent');
             
             let html = `
-                <h3 style="margin-bottom: 10px; color: var(--primary-color); font-size: 1.1em;">Fanamarihana feo & fihira</h3>
+                <h3 style="margin-bottom: 12px; color: var(--primary-color); font-size: 1.1em;">Fanamarihana feo & fihira</h3>
                 <div class="songs-table-container">
                     <table class="songs-data-table">
                         <thead>
@@ -2582,22 +3169,27 @@
                         <tbody>
             `;
             
-            sheetData.forEach((row, index) => {
-                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
-                const voiceNotes = row[columnIndices.singersNotes] || '';
-                
-                if (voiceNotes.trim() !== '') {
-                    html += `
-                        <tr>
-                            <td>
-                                <span class="clickable-cell" data-index="${index}">
-                                    ${title}
-                                </span>
-                            </td>
-                            <td>${voiceNotes.substring(0, 80)}${voiceNotes.length > 80 ? '...' : ''}</td>
-                        </tr>
-                    `;
-                }
+            // Trier par titre de chanson
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    voiceNotes: row[columnIndices.singersNotes] || ''
+                }))
+                .filter(song => song.voiceNotes.trim() !== '')
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
+                html += `
+                    <tr>
+                        <td>
+                            <span class="clickable-cell" data-index="${song.index}">
+                                ${song.title}
+                            </span>
+                        </td>
+                        <td>${song.voiceNotes.substring(0, 80)}${song.voiceNotes.length > 80 ? '...' : ''}</td>
+                    </tr>
+                `;
             });
             
             html += `
@@ -2621,7 +3213,7 @@
             const filterContent = document.getElementById('filterContent');
             
             let html = `
-                <h3 style="margin-bottom: 10px; color: var(--music-color); font-size: 1.1em;">Fanamarihana mozika</h3>
+                <h3 style="margin-bottom: 12px; color: var(--music-color); font-size: 1.1em;">Fanamarihana mozika</h3>
                 <div class="songs-table-container">
                     <table class="songs-data-table">
                         <thead>
@@ -2633,22 +3225,27 @@
                         <tbody>
             `;
             
-            sheetData.forEach((row, index) => {
-                const title = row[columnIndices.title] || `Chanson ${index + 1}`;
-                const musicNotes = row[columnIndices.musiciansNotes] || '';
-                
-                if (musicNotes.trim() !== '') {
-                    html += `
-                        <tr>
-                            <td>
-                                <span class="clickable-cell" data-index="${index}">
-                                    ${title}
-                                </span>
-                            </td>
-                            <td>${musicNotes.substring(0, 80)}${musicNotes.length > 80 ? '...' : ''}</td>
-                        </tr>
-                    `;
-                }
+            // Trier par titre de chanson
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    musicNotes: row[columnIndices.musiciansNotes] || ''
+                }))
+                .filter(song => song.musicNotes.trim() !== '')
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
+                html += `
+                    <tr>
+                        <td>
+                            <span class="clickable-cell" data-index="${song.index}">
+                                ${song.title}
+                            </span>
+                        </td>
+                        <td>${song.musicNotes.substring(0, 80)}${song.musicNotes.length > 80 ? '...' : ''}</td>
+                    </tr>
+                `;
             });
             
             html += `
@@ -2675,12 +3272,12 @@
             const content = document.querySelector('.songs-table-content');
             
             content.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.2em;"><i class="fas fa-music"></i> Tononkira - Paroles des chansons</h2>
-                    <button id="closeTononkira" style="background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--accent-color);">&times;</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
+                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-music"></i> Tononkira - Paroles des chansons</h2>
+                    <button id="closeTononkira" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
                         <button id="showAllTononkira" style="padding: 8px 12px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em;">
                             Tous les Tononkira
                         </button>
@@ -2706,10 +3303,10 @@
             const lyricsContent = document.getElementById('lyricsContent');
             
             let html = `
-                <h3 style="margin-bottom: 10px; color: var(--primary-color); font-size: 1.1em;">Tous les Tononkira</h3>
-                <div style="margin-bottom: 15px; padding: 12px; background: #f8f5ff; border-radius: 8px; border-left: 4px solid var(--music-color);">
-                    <strong style="font-size: 0.95em;">${tononkiraColumns.length} colonne(s) Tononkira détectée(s)</strong>
-                    <div style="margin-top: 8px; font-size: 0.85em; color: #666;">
+                <h3 style="margin-bottom: 12px; color: var(--primary-color); font-size: 1.1em;">Tous les Tononkira</h3>
+                <div style="margin-bottom: 15px; padding: 12px; background: #f8f5ff; border-radius: 8px; border-left: 4px solid var(--music-color); font-size: 0.9em;">
+                    <strong>${tononkiraColumns.length} colonne(s) Tononkira détectée(s)</strong>
+                    <div style="margin-top: 8px; color: #666;">
                         ${tononkiraColumns.map(col => col.name).join(', ')}
                     </div>
                 </div>
@@ -2724,30 +3321,34 @@
                         <tbody>
             `;
             
-            sheetData.forEach((row, index) => {
-                const songTitle = row[columnIndices.title] || `Chanson ${index + 1}`;
-                
-                const tononkiraCount = tononkiraColumns.filter(col => {
-                    const value = row[col.index] || '';
-                    return value.trim() !== '';
-                }).length;
-                
-                if (tononkiraCount > 0) {
-                    html += `
-                        <tr>
-                            <td>
-                                <span class="clickable-cell" data-index="${index}">
-                                    ${songTitle}
-                                </span>
-                            </td>
-                            <td>
-                                <span style="color: ${tononkiraCount > 0 ? 'var(--music-color)' : '#666'}; font-weight: ${tononkiraCount > 0 ? '600' : '400'}; font-size: 0.9em;">
-                                    ${tononkiraCount} tononkira(s)
-                                </span>
-                            </td>
-                        </tr>
-                    `;
-                }
+            // Trier par titre de chanson
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    tononkiraCount: tononkiraColumns.filter(col => {
+                        const value = row[col.index] || '';
+                        return value.trim() !== '';
+                    }).length
+                }))
+                .filter(song => song.tononkiraCount > 0)
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
+                html += `
+                    <tr>
+                        <td>
+                            <span class="clickable-cell" data-index="${song.index}">
+                                ${song.title}
+                            </span>
+                        </td>
+                        <td>
+                            <span style="color: ${song.tononkiraCount > 0 ? 'var(--music-color)' : '#666'}; font-weight: ${song.tononkiraCount > 0 ? '600' : '400'}">
+                                ${song.tononkiraCount} tononkira(s)
+                            </span>
+                        </td>
+                    </tr>
+                `;
             });
             
             html += `
@@ -2788,9 +3389,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 15px;">
-                        <div class="section-title orange"><i class="fas fa-microphone icon-singers"></i> Fanamarihana feo & fihira</div>
-                        <div style="margin: 10px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                    <div style="padding: 20px;">
+                        <div class="section-title-evidence"><i class="fas fa-microphone"></i> Fanamarihana feo & fihira</div>
+                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
                             <strong>${results.length} chanson(s) avec des notes pour les chanteurs</strong>
                         </div>
                         <div class="notes-table-container">
@@ -2805,21 +3406,27 @@
                                 <tbody>
             `;
             
-            results.forEach((row, index) => {
-                const songIndex = sheetData.findIndex(r => r === row);
-                const title = row[columnIndices.title] || `Chanson ${songIndex + 1}`;
-                const author = row[columnIndices.author] || '';
-                const voiceNotes = row[columnIndices.singersNotes] || '';
-                
+            // Trier par titre de chanson
+            const sortedResults = results
+                .map(row => ({
+                    data: row,
+                    index: sheetData.findIndex(r => r === row),
+                    title: row[columnIndices.title] || `Chanson ${sheetData.findIndex(r => r === row) + 1}`,
+                    author: row[columnIndices.author] || '',
+                    voiceNotes: row[columnIndices.singersNotes] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedResults.forEach(song => {
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${songIndex}">
-                                ${title}
+                            <span class="song-title-cell" data-index="${song.index}">
+                                ${song.title}
                             </span>
                         </td>
-                        <td>${author}</td>
-                        <td>${voiceNotes.substring(0, 120)}${voiceNotes.length > 120 ? '...' : ''}</td>
+                        <td>${song.author}</td>
+                        <td>${song.voiceNotes.substring(0, 120)}${song.voiceNotes.length > 120 ? '...' : ''}</td>
                     </tr>
                 `;
             });
@@ -2828,11 +3435,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="back-to-list">
+                            <button onclick="displayAllFichesGrid()">
+                                <i class="fas fa-arrow-left"></i> Retour à la liste
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
             
-            displayResultsInSection(html, 'Fanamarihana feo & fihira');
+            displayResults([results[0]], 'Fanamarihana feo & fihira', html);
         }
         
         function showMusiciansNotesInPage() {
@@ -2856,9 +3468,9 @@
                             </div>
                         </div>
                     </div>
-                    <div style="padding: 15px;">
-                        <div class="section-title orange"><i class="fas fa-guitar icon-musicians"></i> Fanamarihana mozika</div>
-                        <div style="margin: 10px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
+                    <div style="padding: 20px;">
+                        <div class="section-title-evidence"><i class="fas fa-guitar"></i> Fanamarihana mozika</div>
+                        <div style="margin: 12px 0; padding: 10px; background: #ecf0f1; border-radius: 5px; font-size: 0.9em;">
                             <strong>${results.length} chanson(s) avec des notes pour les musiciens</strong>
                         </div>
                         <div class="notes-table-container">
@@ -2873,21 +3485,27 @@
                                 <tbody>
             `;
             
-            results.forEach((row, index) => {
-                const songIndex = sheetData.findIndex(r => r === row);
-                const title = row[columnIndices.title] || `Chanson ${songIndex + 1}`;
-                const author = row[columnIndices.author] || '';
-                const musicNotes = row[columnIndices.musiciansNotes] || '';
-                
+            // Trier par titre de chanson
+            const sortedResults = results
+                .map(row => ({
+                    data: row,
+                    index: sheetData.findIndex(r => r === row),
+                    title: row[columnIndices.title] || `Chanson ${sheetData.findIndex(r => r === row) + 1}`,
+                    author: row[columnIndices.author] || '',
+                    musicNotes: row[columnIndices.musiciansNotes] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedResults.forEach(song => {
                 html += `
                     <tr>
                         <td>
-                            <span class="song-title-cell" data-index="${songIndex}">
-                                ${title}
+                            <span class="song-title-cell" data-index="${song.index}">
+                                ${song.title}
                             </span>
                         </td>
-                        <td>${author}</td>
-                        <td>${musicNotes.substring(0, 120)}${musicNotes.length > 120 ? '...' : ''}</td>
+                        <td>${song.author}</td>
+                        <td>${song.musicNotes.substring(0, 120)}${song.musicNotes.length > 120 ? '...' : ''}</td>
                     </tr>
                 `;
             });
@@ -2896,48 +3514,16 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="back-to-list">
+                            <button onclick="displayAllFichesGrid()">
+                                <i class="fas fa-arrow-left"></i> Retour à la liste
+                            </button>
+                        </div>
                     </div>
                 </div>
             `;
             
-            displayResultsInSection(html, 'Fanamarihana mozika');
-        }
-        
-        function displayResultsInSection(html, title) {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            resultContent.innerHTML = html;
-            resultTitle.textContent = title;
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
-            
-            document.querySelectorAll('.song-title-cell[data-index]').forEach(el => {
-                el.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    displaySingleSong(index);
-                });
-            });
-            
-            // Ajouter le bouton retour à la liste
-            addBackToListButton();
-        }
-        
-        function showLyrics() {
-            const results = sheetData.filter(row => {
-                return tononkiraColumns.some(col => {
-                    const value = row[col.index] || '';
-                    return value.trim() !== '';
-                });
-            });
-            
-            if (results.length === 0) {
-                alert('Aucune parole de chanson trouvée');
-                return;
-            }
-            
-            displayResults(results, 'Tononkira - Paroles des chansons');
+            displayResults([results[0]], 'Fanamarihana mozika', html);
         }
         
         function showExportModal() {
@@ -2955,13 +3541,18 @@
             
             checklist.innerHTML = '';
             
-            allSongTitles.forEach((title, index) => {
+            // Trier les chansons par ordre alphabétique
+            const sortedSongs = allSongTitles
+                .map((title, index) => ({ title, index }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
                 const div = document.createElement('div');
                 div.className = 'song-checkbox-item';
                 div.innerHTML = `
-                    <label style="font-size: 0.9em;">
-                        <input type="checkbox" value="${index}" data-title="${title}">
-                        ${title}
+                    <label>
+                        <input type="checkbox" value="${song.index}" data-title="${song.title}">
+                        ${song.title}
                     </label>
                 `;
                 checklist.appendChild(div);
@@ -3047,8 +3638,6 @@
                     row.length = maxColumns;
                 }
             });
-            
-            console.log(`📐 Données normalisées: ${maxColumns} colonnes`);
         }
         
         function removeAccents(str) {
@@ -3176,10 +3765,6 @@
             
             dataInfo.innerHTML = `<div class="success-message">${infoMessage}</div>`;
             dataInfo.style.display = 'block';
-            
-            setTimeout(() => {
-                dataInfo.style.display = 'none';
-            }, 5000);
         }
         
         function showError(message) {
@@ -3238,467 +3823,61 @@
             });
         }
         
-        function displaySingleSong(index) {
-            const songData = sheetData[index];
+        function displayResults(results, title, customHtml = null) {
             const resultsSection = document.getElementById('resultsSection');
             const resultContent = document.getElementById('resultContent');
             const resultTitle = document.getElementById('resultTitle');
             
-            const songTitle = songData[columnIndices.title] || `Chanson ${index + 1}`;
-            const author = songData[columnIndices.author] || '';
-            const tempo = songData[columnIndices.tempo] || '';
-            const tonality = songData[columnIndices.tonality] || '';
-            
-            let html = `
-                <div class="fiche-item">
-                    <!-- EN-TÊTE DE LA FICHE -->
-                    <div class="fiche-header">
-                        <div class="song-info-header">
-                            <div class="song-title-info">
-                                <h3 class="fiche-title">${songTitle}</h3>
-                                ${author ? `<div class="author">${author}</div>` : ''}
-                            </div>
-                            <div class="song-music-info">
-                                ${tempo ? `<div class="tempo"><i class="fas fa-tachometer-alt"></i> ${tempo}</div>` : ''}
-                                ${tonality ? `<div class="tonality"><i class="fas fa-music"></i> ${tonality}</div>` : ''}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="padding: 20px;">
-            `;
-            
-            // Section MOAMBA NY HIRA
-            html += `
-                <div class="section-title" style="color: var(--primary-color);"><i class="fas fa-info-circle"></i> MOMBA NY HIRA</div>
-                <div class="section-content">
-                    <table class="data-table">
-            `;
-            
-            // 1. Lohahevitra lehibe
-            if (columnIndices.mainTheme !== -1) {
-                const lohahevitraValue = songData[columnIndices.mainTheme] || '';
-                if (lohahevitraValue.trim() !== '') {
-                    html += `
-                        <tr>
-                            <th><i class="fas fa-bullseye icon-theme"></i> Lohahevitra lehibe</th>
-                            <td>${formatCellValue(lohahevitraValue)}</td>
-                        </tr>
-                    `;
-                }
-            }
-            
-            // 2. Hevitra fonosin'ny hira
-            if (columnIndices.songIdea !== -1 && songData[columnIndices.songIdea]) {
-                html += `
-                    <tr>
-                        <th><i class="fas fa-lightbulb icon-idea"></i> Hevitra fonosin'ny hira</th>
-                        <td>${formatCellValue(songData[columnIndices.songIdea])}</td>
-                    </tr>
-                `;
-            }
-            
-            // 3. Karazan-kira
-            if (columnIndices.genre !== -1 && songData[columnIndices.genre]) {
-                html += `
-                    <tr>
-                        <th><i class="fas fa-compact-disc icon-music"></i> Karazan-kira</th>
-                        <td>${formatCellValue(songData[columnIndices.genre])}</td>
-                    </tr>
-                `;
-            }
-            
-            // 4. Gadona
-            if (columnIndices.musicType !== -1 && songData[columnIndices.musicType]) {
-                html += `
-                    <tr>
-                        <th><i class="fas fa-drum icon-music"></i> Gadona</th>
-                        <td>${formatCellValue(songData[columnIndices.musicType])}</td>
-                    </tr>
-                `;
-            }
-            
-            // 5. Structure
-            if (columnIndices.structure !== -1 && songData[columnIndices.structure]) {
-                html += `
-                    <tr>
-                        <th><i class="fas fa-sitemap icon-structure"></i> Structure</th>
-                        <td>${formatCellValue(songData[columnIndices.structure])}</td>
-                    </tr>
-                `;
-            }
-            
-            html += `
-                    </table>
-                </div>
-            `;
-            
-            // Section TONONKIRA
-            const hasTononkira = tononkiraColumns.some(col => {
-                const value = songData[col.index] || '';
-                return value.trim() !== '';
-            });
-            
-            if (hasTononkira) {
-                html += `
-                    <div class="section-title" style="color: var(--music-color);"><i class="fas fa-music"></i> TONONKIRA</div>
-                    <div class="section-content">
-                        <table class="data-table">
-                `;
-                
-                tononkiraColumns.forEach(col => {
-                    const value = songData[col.index] || '';
-                    if (value.trim() !== '') {
-                        html += `
-                            <tr>
-                                <th>${col.name}</th>
-                                <td>${formatTononkira(value)}</td>
-                            </tr>
-                        `;
-                    }
-                });
-                
-                html += `
-                        </table>
-                    </div>
-                `;
-            }
-            
-            // Section HISTO FANATSARANA
-            const hasHistoryData = (columnIndices.niraketana !== -1 && songData[columnIndices.niraketana]) ||
-                                  (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) ||
-                                  (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) ||
-                                  (columnIndices.history !== -1 && songData[columnIndices.history]) ||
-                                  (columnIndices.horodateur !== -1 && songData[columnIndices.horodateur]);
-            
-            if (hasHistoryData) {
-                html += `
-                    <div class="section-title" style="color: #795548;"><i class="fas fa-history icon-history"></i> HISTO FANATSARANA</div>
-                    <div class="section-content">
-                        <table class="data-table">
-                `;
-                
-                // Horodateur
-                if (columnIndices.horodateur !== -1 && songData[columnIndices.horodateur]) {
-                    html += `
-                        <tr>
-                            <th><i class="fas fa-clock"></i> Horodateur</th>
-                            <td>${formatCellValue(songData[columnIndices.horodateur])}</td>
-                        </tr>
-                    `;
-                }
-                
-                // Niraketana
-                if (columnIndices.niraketana !== -1 && songData[columnIndices.niraketana]) {
-                    html += `
-                        <tr>
-                            <th><i class="fas fa-calendar-alt icon-niraketana"></i> Niraketana</th>
-                            <td>${formatCellValue(songData[columnIndices.niraketana])}</td>
-                        </tr>
-                    `;
-                }
-                
-                // Fanamarihana feo & fihira
-                if (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) {
-                    html += `
-                        <tr>
-                            <th class="orange-title"><i class="fas fa-microphone icon-fanamarihana"></i> Fanamarihana feo & fihira:</th>
-                            <td>${formatCellValue(songData[columnIndices.singersNotes])}</td>
-                        </tr>
-                    `;
-                }
-                
-                // Fanamarihana mozika
-                if (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) {
-                    html += `
-                        <tr>
-                            <th class="orange-title"><i class="fas fa-guitar icon-fanamarihana"></i> Fanamarihana mozika:</th>
-                            <td>${formatCellValue(songData[columnIndices.musiciansNotes])}</td>
-                        </tr>
-                    `;
-                }
-                
-                // Historique Fanavaozana
-                if (columnIndices.history !== -1 && songData[columnIndices.history]) {
-                    html += `
-                        <tr>
-                            <th><i class="fas fa-history icon-history"></i> Historique Fanavaozana:</th>
-                            <td>${formatCellValue(songData[columnIndices.history])}</td>
-                        </tr>
-                    `;
-                }
-                
-                html += `
-                        </table>
-                    </div>
-                `;
-            }
-            
-            // Section AHAFAHANA MIANATRA
-            const hasLearningData = (columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
-                                   (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks]) ||
-                                   (columnIndices.solfa !== -1 && songData[columnIndices.solfa]);
-            
-            if (hasLearningData) {
-                html += `
-                    <div class="section-title" style="color: #3f51b5;"><i class="fas fa-graduation-cap"></i> AHAFAHANA MIANATRA</div>
-                    <div class="section-content">
-                `;
-                
-                // Rohy hafa AUDIO, VIDEO
-                if ((columnIndices.audioLinks !== -1 && songData[columnIndices.audioLinks]) ||
-                    (columnIndices.videoLinks !== -1 && songData[columnIndices.videoLinks])) {
-                    html += `
-                        <div style="margin-bottom: 20px;">
-                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
-                                <i class="fas fa-link icon-links"></i> Rohy hafa AUDIO, VIDEO
-                            </h4>
-                            <div class="media-preview">
-                    `;
-                    
-                    // Liens audio
-                    if (songData[columnIndices.audioLinks]) {
-                        const audioLinks = songData[columnIndices.audioLinks].split('\n').filter(link => link.trim() !== '');
-                        audioLinks.forEach(link => {
-                            if (link.trim() !== '') {
-                                html += `
-                                    <div class="media-item">
-                                        <div class="audio-preview">
-                                            <i class="fas fa-volume-up icon-audio"></i>
-                                            <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">AUDIO</p>
-                                            <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 12px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s; font-size: 0.85em;">
-                                                Écouter <i class="fas fa-play-circle"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                `;
-                            }
-                        });
-                    }
-                    
-                    // Liens vidéo
-                    if (songData[columnIndices.videoLinks]) {
-                        const videoLinks = songData[columnIndices.videoLinks].split('\n').filter(link => link.trim() !== '');
-                        videoLinks.forEach(link => {
-                            if (link.trim() !== '') {
-                                if (link.includes('youtube.com') || link.includes('youtu.be')) {
-                                    let videoId = '';
-                                    if (link.includes('youtube.com/watch?v=')) {
-                                        videoId = link.split('v=')[1].split('&')[0];
-                                    } else if (link.includes('youtu.be/')) {
-                                        videoId = link.split('youtu.be/')[1].split('?')[0];
-                                    }
-                                    
-                                    if (videoId) {
-                                        html += `
-                                            <div class="media-item">
-                                                <div class="youtube-preview">
-                                                    <iframe src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                                </div>
-                                            </div>
-                                        `;
-                                    }
-                                } else {
-                                    html += `
-                                        <div class="media-item">
-                                            <div class="audio-preview">
-                                                <i class="fas fa-video icon-video"></i>
-                                                <p style="font-weight: 600; margin: 8px 0; color: var(--secondary-color); font-size: 0.9em;">VIDEO</p>
-                                                <a href="${link.trim()}" target="_blank" style="display: inline-block; margin-top: 8px; padding: 6px 12px; background: var(--primary-color); color: white; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s; font-size: 0.85em;">
-                                                    Regarder <i class="fas fa-play-circle"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    `;
-                                }
-                            }
-                        });
-                    }
-                    
-                    html += `
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                // Solfa
-                if (columnIndices.solfa !== -1 && songData[columnIndices.solfa]) {
-                    html += `
-                        <div>
-                            <h4 style="color: var(--primary-color); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; font-size: 1em;">
-                                <i class="fas fa-music icon-solfa"></i> Solfa:
-                            </h4>
-                            <div style="background: #f8f5ff; padding: 15px; border-radius: 8px; border: 2px solid #e1e1e1; font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4;">
-                                ${formatCellValue(songData[columnIndices.solfa])}
-                            </div>
-                        </div>
-                    `;
-                }
-                
-                html += `</div>`;
-            }
-            
-            // Ajouter la section "Rohin'ity hira ity" si déverrouillée
-            if (isUnlocked && columnIndices.rohinity !== -1) {
-                const rohinityValue = songData[columnIndices.rohinity] || '';
-                if (rohinityValue.trim() !== '') {
-                    html += `
-                        <div class="rohinity-section">
-                            <div class="section-title" style="color: #4caf50; margin-top: 0;">
-                                <i class="fas fa-unlock"></i> ROHIN'ITY HIRA ITY
-                            </div>
-                            <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #4caf50; font-size: 0.95em;">
-                                ${formatCellValue(rohinityValue)}
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-            
-            html += `
-                    </div>
-                </div>
-                
-                <!-- BOUTON RETOUR À LA LISTE -->
-                <button class="back-to-list-btn" onclick="displayAllFichesAsGrid()">
-                    <i class="fas fa-arrow-left"></i> Retour à la liste des chansons
-                </button>
-            `;
-            
-            resultContent.innerHTML = html;
-            resultTitle.textContent = `Fiche: ${songTitle}`;
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Ajouter le style pour les titres orange
-            const style = document.createElement('style');
-            style.innerHTML = `
-                .orange-title {
-                    color: var(--orange-title) !important;
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        function formatTononkira(text) {
-            // Gestion des tononkira multi-lignes
-            if (!text) return '';
-            
-            const lines = text.split('\n');
-            if (lines.length <= 1) {
-                return `<div class="lyrics-box">
-                    <div class="lyrics-content" style="line-height: 1.4;">${text}</div>
-                </div>`;
-            }
-            
-            // Si le texte contient des sections (strophes, refrains)
-            let html = '<div class="lyrics-box">';
-            
-            lines.forEach((line, index) => {
-                if (line.trim() === '') {
-                    // Ligne vide = séparation entre strophes
-                    if (index > 0 && index < lines.length - 1) {
-                        html += '<div style="height: 10px;"></div>';
-                    }
-                } else {
-                    html += `<div class="tononkira-line" style="line-height: 1.4;">${line}</div>`;
-                }
-            });
-            
-            html += '</div>';
-            return html;
-        }
-        
-        function displayAllFichesAsGrid() {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            let html = `
-                <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
-                    <strong style="font-size: 1em;">${sheetData.length} chanson(s) au total</strong>
-                    <p style="margin-top: 6px; color: #666; font-size: 0.85em;">Cliquez sur une fiche pour voir les détails complets</p>
-                </div>
-                <div class="fiches-grid" id="fichesGrid">
-            `;
-            
-            sheetData.forEach((row, index) => {
-                html += generateSongCardGrid(row, index);
-            });
-            
-            html += `</div>`;
-            
-            resultContent.innerHTML = html;
-            resultTitle.textContent = 'Toutes les fiches de chansons';
-            resultsSection.style.display = 'block';
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Ajouter les événements de clic
-            document.querySelectorAll('.fiche-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const index = parseInt(this.getAttribute('data-index'));
-                    displaySingleSong(index);
-                });
-            });
-        }
-        
-        function generateSongCardGrid(row, index) {
-            const songTitle = row[columnIndices.title] || `Chanson ${index + 1}`;
-            const author = row[columnIndices.author] || '';
-            const tempo = row[columnIndices.tempo] || '';
-            const tonality = row[columnIndices.tonality] || '';
-            
-            return `
-                <div class="fiche-card" data-index="${index}">
-                    <div class="fiche-card-header">
-                        <div class="fiche-card-title">${songTitle}</div>
-                        ${author ? `<div class="fiche-card-author">${author}</div>` : ''}
-                    </div>
-                    <div class="fiche-card-info">
-                        ${tempo ? `<div class="fiche-card-tempo">${tempo}</div>` : ''}
-                        ${tonality ? `<div class="fiche-card-tonality">${tonality}</div>` : ''}
-                    </div>
-                </div>
-            `;
-        }
-        
-        function displayResults(results, title) {
-            const resultsSection = document.getElementById('resultsSection');
-            const resultContent = document.getElementById('resultContent');
-            const resultTitle = document.getElementById('resultTitle');
-            
-            if (results.length === 0) {
+            if (customHtml) {
+                resultContent.innerHTML = customHtml;
+            } else if (results.length === 0) {
                 resultContent.innerHTML = `
                     <div class="no-results">
                         <div class="no-results-icon">🎵</div>
-                        <h3 style="font-size: 1.2em;">Aucune chanson trouvée</h3>
-                        <p style="font-size: 0.9em;">Essayez avec d'autres mots-clés ou consultez la liste complète</p>
+                        <h3>Aucune chanson trouvée</h3>
+                        <p>Essayez avec d'autres mots-clés ou consultez la liste complète</p>
                     </div>
                 `;
             } else {
+                // Trier les résultats par ordre alphabétique
+                const sortedResults = results
+                    .map(row => ({
+                        data: row,
+                        index: sheetData.findIndex(r => r === row),
+                        title: row[columnIndices.title] || `Chanson ${sheetData.findIndex(r => r === row) + 1}`,
+                        author: row[columnIndices.author] || '',
+                        theme: row[columnIndices.mainTheme] || ''
+                    }))
+                    .sort((a, b) => a.title.localeCompare(b.title));
+                
                 let html = `
                     <div style="margin-bottom: 15px; padding: 12px; background: linear-gradient(135deg, #e3f2fd, #f3e5f5); border-radius: 8px; border: 2px solid var(--primary-color);">
-                        <strong style="font-size: 1em;">${results.length} chanson(s) trouvée(s)</strong>
-                        <p style="margin-top: 6px; color: #666; font-size: 0.85em;">Cliquez sur une chanson pour voir la fiche complète</p>
+                        <strong style="font-size: 1em;">${sortedResults.length} chanson(s) trouvée(s)</strong>
+                        <p style="margin-top: 5px; color: #666; font-size: 0.85em;">Cliquez sur une chanson pour voir la fiche complète</p>
                     </div>
                 `;
                 
-                results.forEach((row, index) => {
-                    const songTitle = row[columnIndices.title] || `Chanson ${index + 1}`;
-                    const author = row[columnIndices.author] || '';
-                    const theme = columnIndices.mainTheme !== -1 ? (row[columnIndices.mainTheme] || '') : '';
-                    
+                sortedResults.forEach(song => {
                     html += `
-                        <div class="song-item" data-index="${sheetData.indexOf(row)}" style="margin-bottom: 12px; cursor: pointer; padding: 15px; background: white; border-radius: 8px; border-left: 5px solid var(--music-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: all 0.3s;">
-                            <div style="font-weight: 700; color: var(--secondary-color); font-size: 1em; margin-bottom: 6px;">${songTitle}</div>
-                            ${author ? `<div style="color: var(--music-color); font-style: italic; font-weight: 600; font-size: 0.85em; margin-bottom: 4px;">${author}</div>` : ''}
-                            ${theme ? `<div style="color: #666; font-size: 0.8em; margin-bottom: 8px;">Thème: ${theme}</div>` : ''}
-                            <div style="margin-top: 8px; font-size: 0.8em; color: var(--primary-color); font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                        <div class="song-item" data-index="${song.index}" style="margin-bottom: 12px; cursor: pointer; padding: 15px; background: white; border-radius: 8px; border-left: 5px solid var(--music-color); box-shadow: 0 4px 12px rgba(0,0,0,0.05); font-size: 0.9em;">
+                            <div style="font-weight: 700; color: var(--secondary-color); margin-bottom: 6px;">${song.title}</div>
+                            ${song.author ? `<div style="color: var(--music-color); font-style: italic; font-weight: 600; margin-bottom: 4px;">${song.author}</div>` : ''}
+                            ${song.theme ? `<div style="color: #666; margin-bottom: 8px;">Thème: ${song.theme}</div>` : ''}
+                            <div style="margin-top: 8px; color: var(--primary-color); font-weight: 600; display: flex; align-items: center; gap: 6px; font-size: 0.85em;">
                                 <i class="fas fa-arrow-right"></i> Cliquez pour voir la fiche complète
                             </div>
                         </div>
                     `;
                 });
+                
+                // Ajouter le bouton retour à la liste
+                html += `
+                    <div class="back-to-list">
+                        <button onclick="displayAllFichesGrid()">
+                            <i class="fas fa-arrow-left"></i> Retour à la liste
+                        </button>
+                    </div>
+                `;
                 
                 resultContent.innerHTML = html;
                 
@@ -3713,35 +3892,6 @@
             resultTitle.textContent = title;
             resultsSection.style.display = 'block';
             resultsSection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Ajouter le bouton retour à la liste
-            addBackToListButton();
-        }
-        
-        function addBackToListButton() {
-            const backButton = document.createElement('button');
-            backButton.className = 'back-to-list-btn';
-            backButton.innerHTML = '<i class="fas fa-arrow-left"></i> Retour à la liste des chansons';
-            backButton.addEventListener('click', displayAllFichesAsGrid);
-            
-            const resultContent = document.getElementById('resultContent');
-            resultContent.appendChild(backButton);
-        }
-        
-        function formatCellValue(value) {
-            const strValue = String(value);
-            
-            if (strValue.startsWith('http') && strValue.match(/\.(jpeg|jpg|png|gif|webp|bmp)/i)) {
-                return `<img src="${strValue}" alt="Image" onerror="this.style.display='none'" style="max-width: 95%; max-height: 150px;">`;
-            }
-            
-            if (strValue.startsWith('http')) {
-                return `<a href="${strValue}" target="_blank" style="text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--primary-color); color: white; border-radius: 6px; transition: all 0.3s; font-size: 0.85em;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px rgba(52, 152, 219, 0.3)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">
-                    <i class="fas fa-external-link-alt"></i> Ouvrir le lien
-                </a>`;
-            }
-            
-            return `<div style="white-space: pre-wrap; line-height: 1.4; font-family: inherit; font-size: 0.95em;">${strValue}</div>`;
         }
         
         function closeResults() {
@@ -3755,10 +3905,11 @@
         }
         
         function showPasswordModalForSheet() {
+            // Demander le mot de passe pour accéder au Google Sheet
             const password = prompt('Entrez le mot de passe pour accéder au Google Sheet original:');
             if (password === 'tek') {
                 window.open(ORIGINAL_SHEET_URL, '_blank');
-            } else {
+            } else if (password !== null) {
                 alert('Mot de passe incorrect. Essayez "tek".');
             }
         }
@@ -3807,9 +3958,9 @@
             }
             
             content.innerHTML = `
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.2em;"><i class="fas fa-share"></i> ${title}</h2>
-                    <button id="closeSelection" style="background: none; border: none; font-size: 1.5em; cursor: pointer; color: var(--accent-color);">&times;</button>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
+                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-share"></i> ${title}</h2>
+                    <button id="closeSelection" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
                 </div>
                 <div style="margin-bottom: 15px;">
                     <p style="font-size: 0.9em;">Sélectionnez les chansons à ${action.includes('email') ? 'envoyer par email' : 'exporter'}:</p>
@@ -3829,7 +3980,7 @@
                         </table>
                     </div>
                     <div style="margin-top: 15px; text-align: center;">
-                        <button id="confirmSelection" style="padding: 8px 20px; background: #f39c12; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em; font-weight: 600; transition: all 0.3s;">
+                        <button id="confirmSelection" style="padding: 10px 20px; background: #f39c12; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 0.9em; font-weight: 600;">
                             ${action.includes('email') ? 'Envoyer par email' : 'Exporter'}
                         </button>
                     </div>
@@ -3841,17 +3992,23 @@
             const selectionBody = document.getElementById('selectionTableBody');
             selectionBody.innerHTML = '';
             
-            sheetData.forEach((row, index) => {
-                const songTitle = row[columnIndices.title] || `Chanson ${index + 1}`;
-                const author = row[columnIndices.author] || '';
-                
+            // Trier les chansons par ordre alphabétique
+            const sortedSongs = sheetData
+                .map((row, index) => ({
+                    index,
+                    title: row[columnIndices.title] || `Chanson ${index + 1}`,
+                    author: row[columnIndices.author] || ''
+                }))
+                .sort((a, b) => a.title.localeCompare(b.title));
+            
+            sortedSongs.forEach(song => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td style="text-align: center;">
-                        <input type="checkbox" class="song-checkbox" data-index="${index}">
+                        <input type="checkbox" class="song-checkbox" data-index="${song.index}">
                     </td>
-                    <td>${songTitle}</td>
-                    <td>${author}</td>
+                    <td>${song.title}</td>
+                    <td>${song.author}</td>
                 `;
                 selectionBody.appendChild(tr);
             });
