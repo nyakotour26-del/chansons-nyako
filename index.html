@@ -922,9 +922,9 @@
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
         
-        /* NOUVEAU BOUTON POUR ÉCRIRE UNE NOUVELLE FICHE */
+        /* NOUVEAU BOUTON POUR ÉCRIRE UNE NOUVELLE FICHE - MODIFICATION EN ROSE */
         .floating-button.new-btn {
-            background: linear-gradient(135deg, #ff5722, #e91e63);
+            background: linear-gradient(135deg, #ff4081, #e91e63); /* Rose */
         }
         
         /* BOUTON SIDEBAR MOBILE */
@@ -1316,6 +1316,30 @@
         .export-fiche-btn:hover, .export-lyrics-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* NOUVEAU: Bouton d'export PDF sur chaque tononkira */
+        .tononkira-export-btn {
+            background: linear-gradient(135deg, #ff4081, #e91e63); /* Rose */
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+            margin-top: 8px;
+            float: right;
+        }
+        
+        .tononkira-export-btn:hover {
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(233, 30, 99, 0.3);
         }
         
         /* MODAL PASSWORD améliorée */
@@ -2207,7 +2231,7 @@
             </div>
             
             <div style="margin-top: 25px;">
-                <button id="submitWritePassword" style="padding: 12px 30px; background: linear-gradient(135deg, #ff5722, #e91e63); color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px; font-size: 1em; font-weight: 600; width: 48%;">
+                <button id="submitWritePassword" style="padding: 12px 30px; background: linear-gradient(135deg, #ff4081, #e91e63); color: white; border: none; border-radius: 8px; cursor: pointer; margin-right: 10px; font-size: 1em; font-weight: 600; width: 48%;">
                     <i class="fas fa-check"></i> Valider
                 </button>
                 <button id="cancelWritePassword" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: 600; width: 48%;">
@@ -3259,7 +3283,7 @@
                 </div>
             `;
             
-            // Section TONONKIRA avec cadre décoratif
+            // Section TONONKIRA avec cadre décoratif ET BOUTON D'EXPORT PDF
             const hasTononkira = tononkiraColumns.some(col => {
                 const value = songData[col.index] || '';
                 return value.trim() !== '';
@@ -3271,7 +3295,7 @@
                     <div style="margin-top: 12px; width: 100%;">
                 `;
                 
-                tononkiraColumns.forEach(col => {
+                tononkiraColumns.forEach((col, colIndex) => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
                         html += `
@@ -3282,6 +3306,10 @@
                                     </div>
                                     <div class="tononkira-content">
                                         ${formatTononkira(value)}
+                                        <button class="tononkira-export-btn" onclick="exportSingleTononkiraToPDF(${index}, ${colIndex})">
+                                            <i class="fas fa-file-pdf"></i> Exporter cette parole en PDF
+                                        </button>
+                                        <div style="clear: both;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -3694,7 +3722,7 @@
                         <div class="song-tononkira-content" id="tononkira-${index}" style="display: none; padding: 12px; background: white;">
                 `;
                 
-                tononkiraColumns.forEach(col => {
+                tononkiraColumns.forEach((col, colIndex) => {
                     const value = songData[col.index] || '';
                     if (value.trim() !== '') {
                         html += `
@@ -3705,6 +3733,10 @@
                                     </div>
                                     <div class="tononkira-content">
                                         ${formatTononkira(value)}
+                                        <button class="tononkira-export-btn" onclick="exportSingleTononkiraToPDF(${index}, ${colIndex})">
+                                            <i class="fas fa-file-pdf"></i> Exporter cette parole en PDF
+                                        </button>
+                                        <div style="clear: both;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -3746,6 +3778,89 @@
                     }
                 });
             });
+        }
+        
+        // NOUVELLE FONCTION : Exporter une seule tononkira en PDF
+        function exportSingleTononkiraToPDF(songIndex, tononkiraIndex) {
+            const songData = sheetData[songIndex];
+            const col = tononkiraColumns[tononkiraIndex];
+            const lyrics = songData[col.index] || '';
+            const songTitle = songData[columnIndices.title] || `Chanson ${songIndex + 1}`;
+            const author = songData[columnIndices.author] || '';
+            
+            if (!lyrics || lyrics.trim() === '') {
+                alert('Aucune parole disponible pour cette chanson');
+                return;
+            }
+            
+            // Créer un contenu HTML pour le PDF
+            let pdfContent = `
+                <html>
+                <head>
+                    <title>Tononkira - ${songTitle} - ${col.name}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 15px; }
+                        h1 { color: #3498db; text-align: center; font-size: 18px; }
+                        .song-title { color: #2c3e50; font-size: 16px; font-weight: bold; margin-bottom: 5px; }
+                        .song-author { color: #9b59b6; font-style: italic; margin-bottom: 15px; font-size: 14px; }
+                        .lyrics-title { color: #8B4513; font-weight: bold; margin-top: 12px; margin-bottom: 8px; font-size: 14px; }
+                        .lyrics-content { background-color: #fef9f3; padding: 12px; border-radius: 6px; border: 2px solid #d4b896; font-family: 'Dancing Script', cursive; font-size: 14px; }
+                        .lyrics-line { margin-bottom: 4px; line-height: 1.3; }
+                        .footer { text-align: center; margin-top: 25px; color: #666; font-size: 11px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>TONONKIRA</h1>
+                    <div class="song-title">${songTitle}</div>
+                    <div class="song-author">${author}</div>
+                    <hr>
+                    <div class="lyrics-title">${col.name}</div>
+                    <div class="lyrics-content">
+            `;
+            
+            // Formater les paroles ligne par ligne
+            const lines = lyrics.split('\n');
+            lines.forEach(line => {
+                if (line.trim() !== '') {
+                    pdfContent += `<div class="lyrics-line">${line}</div>`;
+                }
+            });
+            
+            pdfContent += `
+                    </div>
+                    <div class="footer">
+                        <p>Export généré depuis l'application Fiche Technique Chansons NY AKO</p>
+                        <p>Date : ${new Date().toLocaleDateString()}</p>
+                    </div>
+                </body>
+                </html>
+            `;
+            
+            // Ouvrir une nouvelle fenêtre avec le contenu pour impression
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(pdfContent);
+            printWindow.document.close();
+            
+            // Attendre que le contenu soit chargé puis déclencher l'impression
+            printWindow.onload = function() {
+                printWindow.print();
+            };
+            
+            // Afficher un message de confirmation
+            const dataInfo = document.getElementById('dataInfo');
+            dataInfo.innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-file-pdf"></i> Export PDF de la parole généré avec succès !
+                    <br><small>Chanson: ${songTitle}</small>
+                    <br><small>Version: ${col.name}</small>
+                    <br><small>Une fenêtre d'impression s'ouvrira bientôt. Sélectionnez "Enregistrer au format PDF" dans les options d'impression.</small>
+                </div>
+            `;
+            dataInfo.style.display = 'block';
+            
+            setTimeout(() => {
+                dataInfo.style.display = 'none';
+            }, 8000);
         }
         
         function showSongsTable() {
@@ -4472,7 +4587,7 @@
             }, 8000);
         }
         
-        // Fonction d'export PDF des fiches complètes
+        // Fonction d'export PDF des fiches complètes - MODIFIÉE POUR INCLURE TOUTES LES TONONKIRA
         function exportToPDF(songs, type) {
             if (songs.length === 0) return;
             
@@ -4560,7 +4675,7 @@
                 
                 pdfContent += `</table>`;
                 
-                // Ajouter les tononkira si disponibles
+                // Ajouter TOUTES les tononkira disponibles
                 const hasTononkira = tononkiraColumns.some(col => {
                     const value = songData[col.index] || '';
                     return value.trim() !== '';
@@ -4633,12 +4748,11 @@
             exportLyricsToPDF(songsArray, 'original');
         }
         
-        // Fonction d'export PDF des paroles seulement
+        // Fonction d'export PDF des paroles seulement - MODIFIÉE POUR INCLURE LES DEUX VERSIONS
         function exportLyricsToPDF(songs, type) {
             if (songs.length === 0) return;
             
             const songTitles = songs.map(s => s.title).join(', ');
-            const lyricType = type === 'original' ? 'TONONKIRA (Original)' : 'TONONKIRA (Dikan-teny hafa)';
             
             // Créer un contenu HTML pour le PDF
             let pdfContent = `
@@ -4659,7 +4773,7 @@
                     </style>
                 </head>
                 <body>
-                    <h1>Paroles de Chansons - ${lyricType}</h1>
+                    <h1>Paroles de Chansons - Toutes les versions</h1>
                     <p style="font-size: 13px;">Généré le ${new Date().toLocaleDateString()} à ${new Date().toLocaleTimeString()}</p>
                     <p style="font-size: 13px;">Nombre de chansons: ${songs.length}</p>
                     <hr>
@@ -4681,40 +4795,41 @@
                         <div class="song-author">${author}</div>
                 `;
                 
-                // Trouver la colonne de paroles correspondante
-                let lyricsColumn = null;
-                if (type === 'original') {
-                    lyricsColumn = tononkiraColumns.find(col => 
-                        col.name.includes('TONONKIRA') && 
-                        (col.name.includes('Original') || !col.name.includes('Dikan-teny'))
-                    );
-                } else {
-                    lyricsColumn = tononkiraColumns.find(col => 
-                        col.name.includes('TONONKIRA') && 
-                        col.name.includes('Dikan-teny')
-                    );
-                }
+                // Ajouter TOUTES les colonnes tononkira
+                const hasTononkira = tononkiraColumns.some(col => {
+                    const value = songData[col.index] || '';
+                    return value.trim() !== '';
+                });
                 
-                if (lyricsColumn && songData[lyricsColumn.index]) {
-                    const lyrics = songData[lyricsColumn.index];
-                    pdfContent += `
-                        <div class="lyrics-title">${lyricType}</div>
-                        <div class="lyrics-content">
-                    `;
-                    
-                    // Formater les paroles ligne par ligne
-                    const lines = lyrics.split('\n');
-                    lines.forEach(line => {
-                        if (line.trim() !== '') {
-                            pdfContent += `<div class="lyrics-line">${line}</div>`;
+                if (hasTononkira) {
+                    // Ajouter chaque version des paroles
+                    tononkiraColumns.forEach((col, colIndex) => {
+                        const lyrics = songData[col.index] || '';
+                        if (lyrics.trim() !== '') {
+                            if (colIndex > 0) {
+                                pdfContent += `<div style="margin-top: 15px;"></div>`;
+                            }
+                            
+                            pdfContent += `
+                                <div class="lyrics-title">${col.name}</div>
+                                <div class="lyrics-content">
+                            `;
+                            
+                            // Formater les paroles ligne par ligne
+                            const lines = lyrics.split('\n');
+                            lines.forEach(line => {
+                                if (line.trim() !== '') {
+                                    pdfContent += `<div class="lyrics-line">${line}</div>`;
+                                }
+                            });
+                            
+                            pdfContent += `</div>`;
                         }
                     });
-                    
-                    pdfContent += `</div>`;
                 } else {
                     pdfContent += `
                         <div style="color: #e74c3c; padding: 8px; background-color: #ffeaea; border-radius: 4px; font-size: 12px;">
-                            <i class="fas fa-exclamation-triangle"></i> Aucune parole "${lyricType}" disponible pour cette chanson.
+                            <i class="fas fa-exclamation-triangle"></i> Aucune parole disponible pour cette chanson.
                         </div>
                     `;
                 }
@@ -4725,7 +4840,7 @@
             pdfContent += `
                     <div class="footer">
                         <p>Export généré depuis l'application Fiche Technique Chansons NY AKO</p>
-                        <p>Type: ${lyricType}</p>
+                        <p>Inclut toutes les versions des paroles (Originales et Traductions)</p>
                     </div>
                 </body>
                 </html>
@@ -4747,7 +4862,7 @@
                 <div class="success-message">
                     <i class="fas fa-file-pdf"></i> Export PDF des paroles généré avec succès !
                     <br><small>Chansons: ${songTitles}</small>
-                    <br><small>Type: ${lyricType}</small>
+                    <br><small>Inclut toutes les versions des paroles</small>
                     <br><small>Une fenêtre d'impression s'ouvrira bientôt. Sélectionnez "Enregistrer au format PDF" dans les options d'impression.</small>
                 </div>
             `;
