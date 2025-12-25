@@ -176,6 +176,7 @@
             color: var(--secondary-color);
             min-height: 110px;
             font-size: 0.95em;
+	    font-weight: 600;
         }
         
         .home-button:hover {
@@ -230,6 +231,8 @@
             color: var(--secondary-color);
             min-height: 90px;
             font-size: 0.85em;
+            font-weight: 600;
+
         }
         
         .action-button:hover {
@@ -792,6 +795,28 @@
             box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
         }
         
+        /* Styles pour les auteurs cliquables */
+        .clickable-author {
+            color: #27ae60 !important; /* Vert */
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid rgba(39, 174, 96, 0.2);
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 2px 4px;
+        }
+        
+        .clickable-author:hover {
+            background-color: #27ae60;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(39, 174, 96, 0.3);
+        }
+        
         /* PRÉVISUELS AUDIO/VIDÉO */
         .media-preview {
             display: grid;
@@ -895,10 +920,6 @@
         
         .floating-button.search-btn {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
-        }
-        
-        .floating-button.lists-btn {
-            background: linear-gradient(135deg, #9c27b0, #673ab7);
         }
         
         /* NOUVEAU BOUTON POUR ÉCRIRE UNE NOUVELLE FICHE */
@@ -1008,7 +1029,7 @@
             color: var(--primary-color);
         }
         
-        /* TABLEAU DES CHANSONS */
+        /* TABLEAU DES CHANSONS AMÉLIORÉ */
         .songs-table-modal {
             display: none;
             position: fixed;
@@ -1025,53 +1046,102 @@
         .songs-table-content {
             background-color: white;
             border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 1200px;
+            width: 95%;
+            max-width: 1400px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 15px;
+            padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .songs-table-container {
             overflow-x: auto;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
         }
         
         .songs-data-table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 0.85em;
         }
         
         .songs-data-table th {
-            background-color: var(--primary-color);
+            background-color: #3498db;
             color: white;
-            padding: 8px 10px; /* Réduit */
+            padding: 10px 12px;
             text-align: left;
             font-weight: bold;
             position: sticky;
             top: 0;
-            font-size: 0.85em; /* Réduit */
+            border-right: 1px solid rgba(255,255,255,0.3);
         }
         
+        /* Couleurs différentes pour chaque colonne */
+        .songs-data-table th:nth-child(1) { background-color: #3498db; } /* Lohateny - Bleu */
+        .songs-data-table th:nth-child(2) { background-color: #2ecc71; } /* Mpanoratra - Vert */
+        .songs-data-table th:nth-child(3) { background-color: #9b59b6; } /* Lohahevitra - Violet */
+        .songs-data-table th:nth-child(4) { background-color: #e74c3c; } /* Karazan-kira - Rouge */
+        .songs-data-table th:nth-child(5) { background-color: #f39c12; } /* Gadona/Tempo - Orange */
+        .songs-data-table th:nth-child(6) { background-color: #34495e; } /* Tonalité - Gris foncé */
+        
         .songs-data-table td {
-            padding: 6px 8px; /* Réduit */
+            padding: 8px 10px;
             border-bottom: 1px solid #eee;
-            font-size: 0.8em; /* Réduit */
+        }
+        
+        /* Alternance de couleurs pour les lignes */
+        .songs-data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
         
         .songs-data-table tr:hover {
-            background-color: #f5f7fa;
+            background-color: #f0f7ff;
         }
+        
+        /* Couleurs différentes pour chaque colonne des cellules */
+        .songs-data-table td:nth-child(1) { border-left: 3px solid #3498db; } /* Lohateny */
+        .songs-data-table td:nth-child(2) { border-left: 3px solid #2ecc71; } /* Mpanoratra */
+        .songs-data-table td:nth-child(3) { border-left: 3px solid #9b59b6; } /* Lohahevitra */
+        .songs-data-table td:nth-child(4) { border-left: 3px solid #e74c3c; } /* Karazan-kira */
+        .songs-data-table td:nth-child(5) { border-left: 3px solid #f39c12; } /* Gadona/Tempo */
+        .songs-data-table td:nth-child(6) { border-left: 3px solid #34495e; } /* Tonalité */
         
         .clickable-cell {
             color: var(--primary-color);
             cursor: pointer;
             text-decoration: underline;
             transition: all 0.2s;
+            font-weight: 500;
         }
         
         .clickable-cell:hover {
             color: var(--accent-color);
+            background-color: #f0f8ff;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        
+        /* Boutons d'export dans le tableau */
+        .export-song-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75em;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            transition: all 0.3s;
+        }
+        
+        .export-song-btn:hover {
+            background: linear-gradient(135deg, #2980b9, #1c5980);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
         /* TABLEAU POUR LES NOTES */
@@ -1210,6 +1280,42 @@
             padding: 6px; /* Réduit */
             background: #f9f9f9;
             border-radius: 5px;
+        }
+        
+        /* Boutons d'export dans les fiches */
+        .fiche-export-buttons {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .export-fiche-btn, .export-lyrics-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s;
+        }
+        
+        .export-fiche-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .export-lyrics-btn {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+        
+        .export-fiche-btn:hover, .export-lyrics-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
         /* MODAL PASSWORD améliorée */
@@ -1776,8 +1882,8 @@
             <div class="desktop-sidebar-option" id="desktopFiltersBtn">
                 <i class="fas fa-filter"></i>
                 <div>
-                    <strong>Filtres de données</strong>
-                    <small>Fanamarihana feo & fihira</small>
+                    <strong>Filtres Tononkira</strong>
+                    <small>Filtrer et exporter les paroles</small>
                 </div>
             </div>
             <div class="desktop-sidebar-option" id="desktopTononkiraBtn">
@@ -1803,7 +1909,7 @@
             <div class="desktop-sidebar-option" id="desktopEmailBtn">
                 <i class="fas fa-envelope"></i>
                 <div>
-                    <strong>Envoyer par email</strong>
+                    <strong>Envoyer par email (Admin)</strong>
                     <small>Une ou plusieurs fiches</small>
                 </div>
             </div>
@@ -1919,8 +2025,8 @@
             
             <button class="action-button export" id="exportBtn">
                 <i class="fas fa-share"></i>
-                <span>Export & Envoi</span>
-                <small>PDF, Mail, Options</small>
+                <span>Export</span>
+                <small>PDF, Options d'export</small>
             </button>
         </div>
         
@@ -1981,6 +2087,7 @@
                             <th>Karazan-kira</th>
                             <th>Gadona/Tempo</th>
                             <th>Tonalité</th>
+                            <th>Export</th>
                         </tr>
                     </thead>
                     <tbody id="songsTableBody">
@@ -1999,8 +2106,8 @@
             
             <div class="export-options">
                 <div class="export-option" data-option="email">
-                    <h3 style="font-size: 1em;"><i class="fas fa-envelope"></i> Envoi par mail</h3>
-                    <p style="font-size: 0.85em;">Envoyer une ou plusieurs fiches par email</p>
+                    <h3 style="font-size: 1em;"><i class="fas fa-envelope"></i> Envoi par mail (Admin)</h3>
+                    <p style="font-size: 0.85em;">Envoyer une ou plusieurs fiches par email (Admin uniquement)</p>
                 </div>
                 
                 <div class="export-option" data-option="pdf-fiches">
@@ -2026,7 +2133,7 @@
                 </div>
                 
                 <div id="emailOptions" style="display: none;">
-                    <h4 style="font-size: 1em;">Options d'envoi :</h4>
+                    <h4 style="font-size: 1em;">Options d'envoi (Admin uniquement) :</h4>
                     <input type="email" id="emailRecipient" placeholder="Adresse email du destinataire" style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9em;">
                     <input type="text" id="emailSubject" placeholder="Sujet du message" style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9em;">
                     <textarea id="emailMessage" placeholder="Message personnalisé" rows="3" style="width: 100%; padding: 8px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9em;"></textarea>
@@ -2162,8 +2269,8 @@
                     <div class="mobile-sidebar-option" id="mobileFiltersBtn">
                         <i class="fas fa-filter"></i>
                         <div>
-                            <strong>Filtres de données</strong>
-                            <small>Fanamarihana feo & fihira</small>
+                            <strong>Filtres Tononkira</strong>
+                            <small>Filtrer et exporter les paroles</small>
                         </div>
                     </div>
                     <div class="mobile-sidebar-option" id="mobileTononkiraBtn">
@@ -2189,7 +2296,7 @@
                     <div class="mobile-sidebar-option" id="mobileEmailBtn">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <strong>Envoyer par email</strong>
+                            <strong>Envoyer par email (Admin)</strong>
                             <small>Une ou plusieurs fiches</small>
                         </div>
                     </div>
@@ -2254,11 +2361,8 @@
         <button class="floating-button home-btn" title="Retour à l'accueil" id="homeBtn">
             <i class="fas fa-home"></i>
         </button>
-        <button class="floating-button lists-btn" title="Afficher/Masquer les listes" id="listsBtn">
-            <i class="fas fa-list"></i>
-        </button>
         <button class="floating-button all-btn" title="Toutes les fiches" id="allFichesBtn">
-            <i class="fas fa-th-large"></i>
+            <i class="fas fa-list"></i>
         </button>
         <button class="floating-button search-btn" title="Rechercher" id="searchFloatBtn">
             <i class="fas fa-search"></i>
@@ -2295,7 +2399,32 @@
             loadDataFromGoogleSheets();
             setupMobileSidebar();
             setupDesktopSidebar();
+            setupClickOutsideListeners();
         });
+        
+        function setupClickOutsideListeners() {
+            // Fermer la barre de recherche quand on clique ailleurs
+            document.addEventListener('click', function(e) {
+                const searchInput = document.getElementById('searchText');
+                const suggestionsContainer = document.getElementById('suggestionsContainer');
+                
+                if (searchInput && suggestionsContainer.style.display === 'block') {
+                    if (!searchInput.contains(e.target) && !suggestionsContainer.contains(e.target)) {
+                        suggestionsContainer.style.display = 'none';
+                    }
+                }
+                
+                // Fermer la sidebar mobile quand on clique ailleurs
+                const mobileSidebar = document.getElementById('mobileSidebar');
+                const sidebarToggle = document.getElementById('sidebarToggle');
+                
+                if (mobileSidebar.style.display === 'block') {
+                    if (!mobileSidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                        mobileSidebar.style.display = 'none';
+                    }
+                }
+            });
+        }
         
         function initEventListeners() {
             // Recherche
@@ -2343,13 +2472,6 @@
             // Boutons flottants
             document.getElementById('homeBtn').addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            document.getElementById('listsBtn').addEventListener('click', function() {
-                const listsContainer = document.getElementById('listsContainer');
-                listsContainer.classList.toggle('active');
-                this.innerHTML = listsContainer.classList.contains('active') ? 
-                    '<i class="fas fa-times"></i>' : '<i class="fas fa-list"></i>';
             });
             
             document.getElementById('allFichesBtn').addEventListener('click', displayAllFichesGrid);
@@ -2458,9 +2580,6 @@
                 if (!e.target.closest('.floating-button') && !e.target.closest('.bubble')) {
                     document.getElementById('exportBubble').style.display = 'none';
                     document.getElementById('tableBubble').style.display = 'none';
-                }
-                if (!e.target.closest('.sidebar-toggle') && !e.target.closest('.mobile-sidebar')) {
-                    document.getElementById('mobileSidebar').style.display = 'none';
                 }
             });
         }
@@ -3066,6 +3185,16 @@
                     </div>
                     
                     <div style="padding: 15px;">
+                        
+                        <!-- BOUTONS D'EXPORT -->
+                        <div class="fiche-export-buttons">
+                            <button class="export-fiche-btn" onclick="exportSingleSongToPDF(${index})">
+                                <i class="fas fa-file-pdf"></i> Exporter la fiche en PDF
+                            </button>
+                            <button class="export-lyrics-btn" onclick="exportSingleSongLyricsToPDF(${index})">
+                                <i class="fas fa-music"></i> Exporter les paroles en PDF
+                            </button>
+                        </div>
             `;
             
             // Section MOAMBA NY HIRA
@@ -3202,7 +3331,7 @@
                     </div>
                 `;
                 
-                // Fanamarihana feo & fihira - avec titre en vert pomme
+                // Fanamarihana feo & fihira - avec titre en vert pomme et auteurs cliquables
                 if (columnIndices.singersNotes !== -1 && songData[columnIndices.singersNotes]) {
                     html += `
                         <div class="fanamarihana-section">
@@ -3210,13 +3339,13 @@
                                 <i class="fas fa-microphone"></i> Fanamarihana feo & fihira
                             </div>
                             <div class="fanamarihana-content">
-                                ${formatCellValue(songData[columnIndices.singersNotes])}
+                                ${formatSingersNotes(songData[columnIndices.singersNotes])}
                             </div>
                         </div>
                     `;
                 }
                 
-                // Fanamarihana mozika - avec titre en vert pomme
+                // Fanamarihana mozika - avec titre en vert pomme et auteurs cliquables
                 if (columnIndices.musiciansNotes !== -1 && songData[columnIndices.musiciansNotes]) {
                     html += `
                         <div class="fanamarihana-section">
@@ -3224,7 +3353,7 @@
                                 <i class="fas fa-guitar"></i> Fanamarihana mozika
                             </div>
                             <div class="fanamarihana-content">
-                                ${formatCellValue(songData[columnIndices.musiciansNotes])}
+                                ${formatMusiciansNotes(songData[columnIndices.musiciansNotes])}
                             </div>
                         </div>
                     `;
@@ -3420,6 +3549,49 @@
             resultTitle.textContent = songTitle;
             resultsSection.style.display = 'block';
             resultsSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Ajouter les événements de clic aux auteurs dans fanamarihana
+            setTimeout(() => {
+                document.querySelectorAll('.clickable-author').forEach(authorEl => {
+                    authorEl.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const authorName = this.textContent.trim();
+                        const results = sheetData.filter(row => {
+                            const rowAuthor = row[columnIndices.author] || '';
+                            return rowAuthor.trim() === authorName;
+                        });
+                        
+                        if (results.length > 0) {
+                            displayResults(results, `Chansons de "${authorName}"`);
+                        }
+                    });
+                });
+            }, 100);
+        }
+        
+        function formatSingersNotes(text) {
+            return formatNotesWithClickableAuthors(text);
+        }
+        
+        function formatMusiciansNotes(text) {
+            return formatNotesWithClickableAuthors(text);
+        }
+        
+        function formatNotesWithClickableAuthors(text) {
+            if (!text) return '';
+            
+            // Remplacer les noms d'auteurs par des liens cliquables
+            let formattedText = text;
+            
+            // Chercher les noms d'auteurs dans le texte
+            allAuthors.forEach(author => {
+                if (author && author.trim() !== '') {
+                    const regex = new RegExp(`\\b${author}\\b`, 'gi');
+                    formattedText = formattedText.replace(regex, `<span class="clickable-author">${author}</span>`);
+                }
+            });
+            
+            return `<div style="white-space: pre-wrap; line-height: 1.5; font-size: 14px;">${formattedText}</div>`;
         }
         
         function formatTononkira(text) {
@@ -3604,6 +3776,7 @@
                     <td>${song.genre ? `<span class="clickable-cell" data-value="${song.genre}" data-type="genre">${song.genre}</span>` : ''}</td>
                     <td>${song.tempo ? `<span class="clickable-cell" data-value="${song.tempo}" data-type="tempo">${song.tempo}</span>` : ''}</td>
                     <td>${song.tonality ? `<span class="clickable-cell" data-value="${song.tonality}" data-type="tonality">${song.tonality}</span>` : ''}</td>
+                    <td><button class="export-song-btn" data-index="${song.index}"><i class="fas fa-file-pdf"></i> PDF</button></td>
                 `;
                 
                 tableBody.appendChild(tr);
@@ -3671,6 +3844,14 @@
                 });
             });
             
+            // Ajouter les événements de clic aux boutons d'export
+            document.querySelectorAll('.export-song-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    exportSingleSongToPDF(index);
+                });
+            });
+            
             modal.style.display = 'flex';
         }
         
@@ -3680,7 +3861,7 @@
             
             content.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 2px solid var(--light-color);">
-                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-filter"></i> Filtres de données</h2>
+                    <h2 style="margin: 0; font-size: 1.3em;"><i class="fas fa-filter"></i> Filtres Tononkira</h2>
                     <button id="closeFilters" style="background: none; border: none; font-size: 1.3em; cursor: pointer; color: var(--accent-color);">&times;</button>
                 </div>
                 <div style="margin-bottom: 15px;">
@@ -3724,6 +3905,7 @@
                             <tr>
                                 <th>Chanson</th>
                                 <th>Fanamarihana feo & fihira</th>
+                                <th>Export</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -3748,6 +3930,7 @@
                             </span>
                         </td>
                         <td>${song.voiceNotes.substring(0, 80)}${song.voiceNotes.length > 80 ? '...' : ''}</td>
+                        <td><button class="export-song-btn" data-index="${song.index}"><i class="fas fa-file-pdf"></i> PDF</button></td>
                     </tr>
                 `;
             });
@@ -3767,6 +3950,14 @@
                     displaySingleSong(index);
                 });
             });
+            
+            // Ajouter les événements de clic aux boutons d'export
+            document.querySelectorAll('.export-song-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    exportSingleSongToPDF(index);
+                });
+            });
         }
         
         function showMusicNotesTable() {
@@ -3780,6 +3971,7 @@
                             <tr>
                                 <th>Chanson</th>
                                 <th>Fanamarihana mozika</th>
+                                <th>Export</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -3804,6 +3996,7 @@
                             </span>
                         </td>
                         <td>${song.musicNotes.substring(0, 80)}${song.musicNotes.length > 80 ? '...' : ''}</td>
+                        <td><button class="export-song-btn" data-index="${song.index}"><i class="fas fa-file-pdf"></i> PDF</button></td>
                     </tr>
                 `;
             });
@@ -3821,6 +4014,14 @@
                     const index = parseInt(this.getAttribute('data-index'));
                     document.getElementById('songsTableModal').style.display = 'none';
                     displaySingleSong(index);
+                });
+            });
+            
+            // Ajouter les événements de clic aux boutons d'export
+            document.querySelectorAll('.export-song-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    exportSingleSongToPDF(index);
                 });
             });
         }
@@ -3882,7 +4083,7 @@
                                 ${song.title}
                             </span>
                         </td>
-                        <td>${song.author}</td>
+                        <td>${song.author ? `<span class="clickable-author">${song.author}</span>` : ''}</td>
                         <td>${song.voiceNotes.substring(0, 120)}${song.voiceNotes.length > 120 ? '...' : ''}</td>
                     </tr>
                 `;
@@ -3910,6 +4111,24 @@
                     displaySingleSong(index);
                 });
             });
+            
+            // Ajouter les événements de clic sur les auteurs
+            setTimeout(() => {
+                document.querySelectorAll('.clickable-author').forEach(authorEl => {
+                    authorEl.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const authorName = this.textContent.trim();
+                        const results = sheetData.filter(row => {
+                            const rowAuthor = row[columnIndices.author] || '';
+                            return rowAuthor.trim() === authorName;
+                        });
+                        
+                        if (results.length > 0) {
+                            displayResults(results, `Chansons de "${authorName}"`);
+                        }
+                    });
+                });
+            }, 100);
         }
         
         function showMusiciansNotesInPage() {
@@ -3969,7 +4188,7 @@
                                 ${song.title}
                             </span>
                         </td>
-                        <td>${song.author}</td>
+                        <td>${song.author ? `<span class="clickable-author">${song.author}</span>` : ''}</td>
                         <td>${song.musicNotes.substring(0, 120)}${song.musicNotes.length > 120 ? '...' : ''}</td>
                     </tr>
                 `;
@@ -3997,6 +4216,24 @@
                     displaySingleSong(index);
                 });
             });
+            
+            // Ajouter les événements de clic sur les auteurs
+            setTimeout(() => {
+                document.querySelectorAll('.clickable-author').forEach(authorEl => {
+                    authorEl.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const authorName = this.textContent.trim();
+                        const results = sheetData.filter(row => {
+                            const rowAuthor = row[columnIndices.author] || '';
+                            return rowAuthor.trim() === authorName;
+                        });
+                        
+                        if (results.length > 0) {
+                            displayResults(results, `Chansons de "${authorName}"`);
+                        }
+                    });
+                });
+            }, 100);
         }
         
         function showExportModal() {
@@ -4064,10 +4301,13 @@
             
             const option = selectedOption.dataset.option;
             
+            // Vérifier si c'est l'option email (réservée aux admin)
+            if (option === 'email') {
+                showPasswordModalForEmail();
+                return;
+            }
+            
             switch(option) {
-                case 'email':
-                    sendByEmail(selectedSongs);
-                    break;
                 case 'pdf-fiches':
                     exportToPDF(selectedSongs, 'fiches');
                     break;
@@ -4082,19 +4322,85 @@
             document.getElementById('exportModal').style.display = 'none';
         }
         
-        // Fonction d'envoi par email
-        function sendByEmail(songs) {
-            const recipient = document.getElementById('emailRecipient').value;
-            const subject = document.getElementById('emailSubject').value || 'Fiche technique des chansons';
-            const message = document.getElementById('emailMessage').value || `Bonjour,\n\nJe vous envoie les fiches techniques des chansons suivantes :\n\n`;
+        // Fonction pour vérifier le mot de passe admin pour l'envoi email
+        function showPasswordModalForEmail() {
+            const passwordModal = document.getElementById('passwordModal');
+            const modalHeader = document.querySelector('.password-modal-header h2');
+            const modalDescription = document.querySelector('.password-modal-header p');
             
+            // Modifier le contenu du modal pour l'email
+            modalHeader.textContent = "Envoi par email (Admin)";
+            modalDescription.textContent = "Entrez le mot de passe administrateur pour envoyer par email";
+            
+            // Stocker les chansons sélectionnées dans un attribut temporaire
+            const selectedSongs = Array.from(document.querySelectorAll('#songsChecklist input:checked'))
+                .map(cb => ({
+                    index: parseInt(cb.value),
+                    title: cb.dataset.title
+                }));
+            
+            passwordModal.dataset.selectedSongs = JSON.stringify(selectedSongs);
+            
+            // Modifier le comportement du bouton de validation
+            const submitBtn = document.getElementById('submitPassword');
+            const originalHandler = submitBtn.onclick;
+            
+            submitBtn.onclick = function() {
+                const password = document.getElementById('passwordInput').value;
+                const errorElement = document.getElementById('passwordError');
+                
+                // Mot de passe admin pour l'email
+                const adminPassword = 'admin';
+                
+                if (password === adminPassword) {
+                    passwordModal.style.display = 'none';
+                    
+                    // Récupérer les chansons sélectionnées
+                    const selectedSongs = JSON.parse(passwordModal.dataset.selectedSongs);
+                    
+                    // Récupérer les informations d'email
+                    const recipient = document.getElementById('emailRecipient').value;
+                    const subject = document.getElementById('emailSubject').value;
+                    const message = document.getElementById('emailMessage').value;
+                    
+                    if (!recipient) {
+                        alert('Veuillez entrer une adresse email');
+                        return;
+                    }
+                    
+                    // Envoyer l'email
+                    sendByEmail(selectedSongs, recipient, subject, message);
+                    
+                    document.getElementById('exportModal').style.display = 'none';
+                    
+                    // Restaurer le comportement original
+                    submitBtn.onclick = originalHandler;
+                    modalHeader.textContent = "Déverrouiller les données";
+                    modalDescription.textContent = "Entrez le mot de passe pour accéder aux données de la colonne \"Rohin'ity hira ity\"";
+                    errorElement.innerHTML = '<i class="fas fa-exclamation-circle"></i> Mot de passe incorrect. Essayez "tek".';
+                    
+                } else {
+                    errorElement.innerHTML = '<i class="fas fa-exclamation-circle"></i> Mot de passe administrateur incorrect.';
+                    errorElement.style.display = 'block';
+                    document.getElementById('passwordInput').focus();
+                    document.getElementById('passwordInput').select();
+                }
+            };
+            
+            passwordModal.style.display = 'flex';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+        
+        // Fonction d'envoi par email
+        function sendByEmail(songs, recipient, subject, message) {
             if (!recipient) {
                 alert('Veuillez entrer une adresse email');
                 return;
             }
             
             // Construire le corps de l'email avec les données des chansons
-            let emailBody = message;
+            let emailBody = message || `Bonjour,\n\nJe vous envoie les fiches techniques des chansons sélectionnées.\n\n`;
             
             // Ajouter la liste des chansons
             emailBody += `Chansons incluses (${songs.length}) :\n`;
@@ -4144,7 +4450,7 @@
             emailBody += `Date : ${new Date().toLocaleDateString()}\n`;
             
             // Simuler l'envoi d'email
-            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject || 'Fiche technique des chansons')}&body=${encodeURIComponent(emailBody)}`;
             
             // Ouvrir le client de messagerie par défaut
             window.open(mailtoLink, '_blank');
@@ -4311,6 +4617,20 @@
             setTimeout(() => {
                 dataInfo.style.display = 'none';
             }, 8000);
+        }
+        
+        // Fonction pour exporter une seule chanson en PDF
+        function exportSingleSongToPDF(index) {
+            const song = sheetData[index];
+            const songsArray = [{index: index, title: song[columnIndices.title] || `Chanson ${index + 1}`}];
+            exportToPDF(songsArray, 'fiches');
+        }
+        
+        // Fonction pour exporter les paroles d'une seule chanson en PDF
+        function exportSingleSongLyricsToPDF(index) {
+            const song = sheetData[index];
+            const songsArray = [{index: index, title: song[columnIndices.title] || `Chanson ${index + 1}`}];
+            exportLyricsToPDF(songsArray, 'original');
         }
         
         // Fonction d'export PDF des paroles seulement
@@ -4815,7 +5135,7 @@
             const errorElement = document.getElementById('writePasswordError');
             
             // Mot de passe administrateur (peut être changé)
-            const adminPassword = 'admin123';
+            const adminPassword = 'admin';
             
             if (password === adminPassword) {
                 document.getElementById('writeModal').style.display = 'none';
