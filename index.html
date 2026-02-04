@@ -694,7 +694,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%238B4513" fill-opacity="0.03" d="M50,10 C65,5 80,10 90,25 L90,75 C80,90 65,95 50,90 C35,95 20,90 10,75 L10,25 C20,10 35,5 50,10 Z M40,40 L60,40 L60,60 L40,60 Z M45,45 L45,55 L55,55 L55,45 Z"/></svg>');
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%238B4513" fill-opacity="0.03" d="M50,10 C65,5 80,10 90,25 L90,75 C80,90 65,95 50,90 C35,95 20,90 10,75 L10,25 C20,10 35,5 50,10 Z M40,40 L60,40 L60,60 L40,60 Z M45,45 L45,55 L55,55 L55,45 Z"/></svg>');
             pointer-events: none;
         }
         
@@ -815,6 +815,61 @@
             color: white !important;
             transform: translateY(-2px);
             box-shadow: 0 3px 6px rgba(39, 174, 96, 0.3);
+        }
+        
+        /* Styles pour les liens cliquables dans fanamarihana */
+        .fanamarihana-link {
+            color: #3498db !important;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 1px solid rgba(52, 152, 219, 0.2);
+            transition: all 0.3s;
+            display: inline-block;
+            margin: 2px 4px;
+        }
+        
+        .fanamarihana-link:hover {
+            background-color: #3498db;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 3px 6px rgba(52, 152, 219, 0.3);
+        }
+        
+        .youtube-link {
+            color: #e74c3c !important;
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+        
+        .youtube-link:hover {
+            background-color: #e74c3c;
+            color: white !important;
+        }
+        
+        .audio-link {
+            color: #9b59b6 !important;
+            background-color: rgba(155, 89, 182, 0.1);
+            border: 1px solid rgba(155, 89, 182, 0.2);
+        }
+        
+        .audio-link:hover {
+            background-color: #9b59b6;
+            color: white !important;
+        }
+        
+        .video-link {
+            color: #e67e22 !important;
+            background-color: rgba(230, 126, 34, 0.1);
+            border: 1px solid rgba(230, 126, 34, 0.2);
+        }
+        
+        .video-link:hover {
+            background-color: #e67e22;
+            color: white !important;
         }
         
         /* PRÉVISUELS AUDIO/VIDÉO */
@@ -3598,20 +3653,61 @@
         }
         
         function formatSingersNotes(text) {
-            return formatNotesWithClickableAuthors(text);
+            return formatNotesWithClickableAuthorsAndLinks(text);
         }
         
         function formatMusiciansNotes(text) {
-            return formatNotesWithClickableAuthors(text);
+            return formatNotesWithClickableAuthorsAndLinks(text);
         }
         
-        function formatNotesWithClickableAuthors(text) {
+        function formatNotesWithClickableAuthorsAndLinks(text) {
             if (!text) return '';
             
-            // Remplacer les noms d'auteurs par des liens cliquables
+            // Remplacer les URLs par des liens cliquables
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
             let formattedText = text;
             
-            // Chercher les noms d'auteurs dans le texte
+            // D'abord, traiter les URLs
+            formattedText = formattedText.replace(urlRegex, function(url) {
+                const cleanUrl = url.trim();
+                let linkClass = 'fanamarihana-link';
+                let linkIcon = 'fas fa-external-link-alt';
+                let linkText = 'Lien';
+                
+                // Déterminer le type de lien
+                if (cleanUrl.includes('youtube.com') || cleanUrl.includes('youtu.be')) {
+                    linkClass = 'youtube-link';
+                    linkIcon = 'fab fa-youtube';
+                    linkText = 'YouTube';
+                } else if (cleanUrl.includes('soundcloud.com') || 
+                          cleanUrl.includes('spotify.com') || 
+                          cleanUrl.includes('audio') || 
+                          cleanUrl.match(/\.(mp3|wav|ogg|m4a)$/i)) {
+                    linkClass = 'audio-link';
+                    linkIcon = 'fas fa-volume-up';
+                    linkText = 'Audio';
+                } else if (cleanUrl.includes('video') || 
+                          cleanUrl.includes('vimeo.com') || 
+                          cleanUrl.match(/\.(mp4|avi|mov|wmv)$/i)) {
+                    linkClass = 'video-link';
+                    linkIcon = 'fas fa-video';
+                    linkText = 'Vidéo';
+                } else if (cleanUrl.includes('drive.google.com') || 
+                          cleanUrl.includes('dropbox.com') || 
+                          cleanUrl.includes('onedrive.live.com')) {
+                    linkIcon = 'fas fa-cloud';
+                    linkText = 'Fichier';
+                } else if (cleanUrl.includes('facebook.com')) {
+                    linkIcon = 'fab fa-facebook';
+                    linkText = 'Facebook';
+                }
+                
+                return `<a href="${cleanUrl}" target="_blank" class="${linkClass}">
+                    <i class="${linkIcon}"></i> ${linkText}
+                </a>`;
+            });
+            
+            // Ensuite, remplacer les noms d'auteurs par des liens cliquables
             allAuthors.forEach(author => {
                 if (author && author.trim() !== '') {
                     const regex = new RegExp(`\\b${author}\\b`, 'gi');
@@ -5278,4 +5374,3 @@
     </script>
 </body>
 </html>
-
